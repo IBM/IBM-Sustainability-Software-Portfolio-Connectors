@@ -1,0 +1,45 @@
+# mkdocs serve
+
+site_name: IBM Sustainability Software Portfolio Connectors
+site_url: https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/
+
+repo_name: GitHub
+repo_url: https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors
+edit_uri: blob/master/docs/
+
+nav:
+  - 'Home': mas-tas.md
+  - 'Mas-Tas': mas-tas.md
+  - 'Service Request': service-request.md
+  - 'Work Order': work-order.md
+  - 'Maximo -> Envizi': maximo-envizi.md
+  - 'Tririga -> Envizi': tririga-envizi.md
+
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
+  prev_next_buttons_location: none
+extra_css:
+  - extra.css
+  - https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js
+  - https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js
+  # Add this to support expandable sections
+  #- pymdownx.details
+
+# https://squidfunk.github.io/mkdocs-material/extensions/admonition/
+# Note
+# Abstract
+# Info
+# Tip
+# Success
+# Question
+# Warning
+# Failure
+# Danger
+# Bug
+# Example
+# Quote
