@@ -1,16 +1,33 @@
 
 # Work Order Configuration
 
+## Table of contents
 
-### Summary
+<!--ts-->
+  * [Summary](#summary)
+  * [Description](#description)
+  * [Pre-Requisites](#pre-requisites) 
+    * [Maximo](#maximo)
+    * [Tririga](#tririga)
+    * [App Connect](#configuring-the-flow-to-use-the-right-accounts)
+    * [Configuring the Scheduler](#configuring-the-scheduler)
+    * [Using the flows](#using-the-flows)
+      * [On-demand Flow](#on-demand-flow)
+      * [Always-On Flow](#always-on-flow)
+      * [Configuring the Flow Parameters](#configuring-the-flow-parameters)
+    * [Starting and Stopping the flow](#starting-and-stopping-the-flow)
+  * [Post-Setup Instructions](#post-setup-instructions)
+<!--te-->
+
+## Summary
 
 Enable automated synchronization of Work Order data from IBM Maximo to IBM TRIRIGA or vice versa.
 
-### Description
+## Description
 
 In this code pattern, learn how to synchronize a Work Order created in Maximo with TRIRIGA using an AppConnect Designer flow. 
 
-<img src="/Images/Work-Order-Diagram.png">
+<img src="https://media.github.ibm.com/user/348712/files/f6354980-3806-11ed-977c-310048b1e763" alt="Work Order Diagram">
 
 1. When a Work Order is created in Maximo Asset Management, it triggers the flow to populate the request in TRIRIGA. (There is also a flow that works in the reverse direction, that works in a similar way.)
 2. App Connect sends a request with the new information through the flow towards the target system (TRIRIGA).
@@ -30,16 +47,15 @@ At the end of this process, a Work Order can be created within Maximo and sent t
 This configuration assumes the completion of the pre-requisites and steps outlined in the Maximo <-> TRIRIGA code pattern. [See here](https://developer.ibm.com/patterns/synchronize-databases-between-asset-workplace-management-solutions/) for those steps.
 
 
-<details><summary><b>Maximo</b></summary>
+### Maximo
 
 Within Maximo, some initial changes to the database and Work Order application need to be completed in order for the integration to work properly. Errors may arise if these steps are not completed.
 
-## First, create a Domain that will link to an attribute on the WORKORDER table.
+#### 1. Create a Domain that will link to an attribute on the WORKORDER table.
 
 
-<img src="/Images/Domains.png" >
+<img src="https://media.github.ibm.com/user/348712/files/f5041c80-3806-11ed-8928-8b6daf3c8057" alt="WO Domains" >
 
-#
 
 |Domain | Description | Domain Type | Data Type | Length |
 |--|--|--|--|--|
@@ -48,11 +64,11 @@ Within Maximo, some initial changes to the database and Work Order application n
 
 These domain will need to be populated in order to send a Work Order out of Maximo. This will be completed in a later step.
 
-## Next, head to Database Configuration and search for the 'WORKORDER' object. 
+#### 2. Search for the 'WORKORDER' object in Database Configuration. 
 
-<img src="/Images/DB-config.png" >
+<img src="https://media.github.ibm.com/user/348712/files/f5041c80-3806-11ed-9f5a-79d905676151" alt="DB Config" >
 
-#
+
 
 Go to 'Attributes' and create a new row:
 
@@ -61,15 +77,15 @@ Go to 'Attributes' and create a new row:
 |PLUSILOCPATH|Tririga location path details | ALN | ALN | No | *Select the PLUSILOCPATH Domain from the previous step*
 |PLUSIORGPATH | Primary organization path | ALN | ALN | No | *Select the PLUSIORG Domain from the previous step*
 
-** Make sure the length of this attribute has the same length as the domain that is linked
+**Make sure the length of this attribute has the same length as the domain that is linked**
 
-#
+
 
 Save the attribute. Apply the configuration changes to the database by switching on Admin mode and Apply Database Configuration
 
-### Configure the Publish Channel, Enterprise Service, End Point, and External System
+#### 3. Configure the Publish Channel, Enterprise Service, End Point, and External System
 
-#### Publish Channel
+##### Publish Channel
 Navigate to Integration -> Publish Channels
 1. Search for 'MXWOInterface' under the Publish Channel field. Click on the channel and from the left side of the screen select 'Duplicate Publish Channel' 
 2. Rename the channel PLUSIMXWO
@@ -77,7 +93,7 @@ Navigate to Integration -> Publish Channels
 4. Make sure Publish JSON and Retain MBO's are checked, the Operation should default to Publish and the Adapter should default to MAXIMO.
 5. Click 'Save Publish Channel' on the left under Common Actions
 
-#### Enterprise Service
+##### Enterprise Service
  Navigate to Integration -> Enterprise Services and click on the blue plus button at the top of the page
 1. Under the System name fill in PLUSIWO and in the Description fill in "Work Order"
 2. Select 'MXWO' under Object Structure which will populate the Object Structure Sub-Records table
@@ -85,7 +101,7 @@ Navigate to Integration -> Publish Channels
 
 Repeat this sequence for PLUSIORGDOMAIN and PLUSILOCDOMAIN. In Description fill in "Organization records from Tririga" & "Location path records from Tririga" respectively and select 'MXDOMAIN' for both Object Structures.
 
-#### End Point 
+##### End Point 
  Navigate to Integration -> End Points and click on the blue plus bitton at the top of the page
 1. Under End Point fill in PLUSIWO and in the Description fill in "AppConnect Work Order outbound to TRIRIGA"
 2. Select 'HTTP' for Handler
@@ -96,21 +112,20 @@ Repeat this sequence for PLUSIORGDOMAIN and PLUSILOCDOMAIN. In Description fill 
 5. Save the End Point
 
 
-#### External System
+##### External System
  Navigate to Integration -> External System and open up the 'PLUSITRIRIGA' external system that was previously set up. Associate the Publish Channel and Enterprise Services to the External System
  
 1. Add a new row in Publish Channel with the newly created PLUSIMXWO and link the PLUSIWO End Point as well
 2. Add three new rows with the newly created Enterprise Services. 
 
-** Make sure all are enabled
+**Make sure all are enabled**
 
 
-### Create a relationship in the WORKORDER object
+#### 4. Create a relationship in the WORKORDER object
 
 
-<img src="/Images/Relationship.png" >
+<img src="https://media.github.ibm.com/user/348712/files/f59cb300-3806-11ed-8a04-99e8e1e64148" alt="Relationship" >
 
-#
 
 Go to DB Config -> WORKORDER object -> Relationships. Add a 'New Row' and enter the following values:
 
@@ -120,12 +135,11 @@ Go to DB Config -> WORKORDER object -> Relationships. Add a 'New Row' and enter 
 |PLUSIORGANIZATIONPATH | ALNDOMAIN | domainid='PLUSIORG' and value=:plusiorgpath | Relationship to PLUSIORGPATH Alndomain
 
 
-### Application Designer
+#### 5. Application Designer
 
 
-<img src="/Images/App-Designer.png" >
+<img src="https://media.github.ibm.com/user/348712/files/f46b8600-3806-11ed-8a5d-43e6c8db4760" alt="App Designer" >
 
-#
 
 Go to System Configuration -> Platform Configuration -> Application Designer
 
@@ -135,7 +149,7 @@ Switch to the Work Order Tab and scroll down to the Work Order Details section
 
 At the top, click the icon labeled Control Palette and drag the respective controls into the first main section on the right of the screen. Add these values within the properties of the control. 
 
-** Be sure that the PLUSIREQCLASSID Attribute is taken from the WORKORDER Object. **
+**Be sure that the PLUSIREQCLASSID Attribute is taken from the WORKORDER Object.**
 
 |Type of Control | Label | Attribute | Attribute for Part 2 (*If Multipart Textbox*) | Lookup | Input Mode for Part 2 (*If Multipart Textbox*)
 |--|--|--|--|--|--|
@@ -145,9 +159,8 @@ At the top, click the icon labeled Control Palette and drag the respective contr
 
 Click 'Save Definition' after the changes are added.
 
-</details>
- 
- <details><summary><b>AppConnect</b></summary>
+
+### AppConnect
  
 The configuration of AppConnect from the previous code pattern should provide the 'mxtririga' and 'trimaximo' accounts within AppConnect needed for the flows to work properly.
 
@@ -161,11 +174,9 @@ Download and import the .yaml files and keep the urls handy for a later step. Us
 |mxDomain | PLUSILOCPATH (*For Loc Path flow*) / PLUSIORGPATH (*For Org Path flow*)|
 
 
-</details>
+### TRIRIGA
 
-<details><summary><b>TRIRIGA</b></summary>
-
-### Populate the domains created in the Maximo pre-requisites
+**Populate the domains created in the Maximo pre-requisites**
 
 Go to Tools -> System Setup and select Integration Object under the Integration heading
 
@@ -177,9 +188,8 @@ Select Organization - APIC - HTTP Post from the table. Fill in the required sect
 | Request Method | POST |
 |Content-Type | application/json |
 
-**If the AppConnect instance is based on cloud, include the api key in the Headers. If the instance is on-prem, include your basic authorization in UserName and Password
+**If the AppConnect instance is based on cloud, include the api key in the Headers. If the instance is on-prem, include your basic authorization in UserName and Password**
 
-#
 
 Once the correct values are filled in, click Execute at the top of the window. The process will take a few minutes since there is a large amount of files, but once it is completed you can check that the batch processed correctly under the specified domain.
 
@@ -189,15 +199,13 @@ Verify the data is in sync by checking the corresponding Domain in Maximo. The p
 
 <img width="1786" alt="Populated-Domain" src="https://media.github.ibm.com/user/348712/files/3f728c80-0ce1-11ed-87cb-f3079380ad56">
 
-</details>
-
 
 ## Step 1. Create a Work Order
-<details><summary><b>Maximo to TRIRIGA</b></summary>
+### Maximo to TRIRIGA
 
 Go to Work Orders -> Work Order Tracking and click on the blue plus sign to create a new Work Order.
 
-<img src="/Images/MX-Work-Order.png" >
+<img src="https://media.github.ibm.com/user/348712/files/f59cb300-3806-11ed-8bdb-d30c653a6894" alt="MX Work Order" >
 
 Input the desired name/number of the WO along with the description and assign the corresponding Primary Org and Location Path. Click 'Save Work Order' and the flow should fire.
 
@@ -239,23 +247,20 @@ A full breakdown of costs can be found by going to View -> Costs from the left s
 
 <img width="1792" alt="View Costs" src="https://media.github.ibm.com/user/348712/files/3d103280-0ce1-11ed-9993-b769a66da5db">
 
-</details>
-
-<details><summary><b>TRIRIGA to Maximo</b></summary>
+### TRIRIGA to Maximo
  
  Go to Tasks -> Manage Tasks -> Work Tasks and click the 'Add' button on the top right. 
  
- <img src="/Images/Tri-Work-Order.jpeg" >
+ <img src="https://media.github.ibm.com/user/348712/files/f6354980-3806-11ed-9486-47977fdfdc12" alt="Tri Work Order" >
  
  Fill in the required fields and click 'Submit' at the top right of the newly opened window. The flow should fire upon submission.
  
- </details>
 
 ## Troubleshooting
 
 Common Errors and their resolutions:
 
-<details><summary><b>Maximo</b></summary>
+### Maximo
  
  Common errors found in the Maximo system
  
@@ -263,28 +268,24 @@ Common Errors and their resolutions:
   ---|---
  401: Bad Request | This usually means an aspect of the request was not sent correctly- double check what is being sent as well as the flow in AppConnect to make sure everything is correct and running.
  
- </details>
- 
-<details><summary><b>AppConnect</b></summary>
+### AppConnect
  The best way to troubleshoot with AppConnect is to use the logging function. While the flow is stopped, add a 'Log' node into the flow from the 'Toolbox' tab.
  
- <img src="/Images/Log-Designer.jpeg" >
+ <img src="https://media.github.ibm.com/user/348712/files/47dcd480-3805-11ed-9c5f-f68af91cbc41" alt="Log Designer" >
  
  This will allow mapping of any field to the 'Logging' section of the application. Select Info for the Log level and then map the field that needs debugging. In this example the Request Object has been mapped to see what is being sent through the flow. Click the icon to the right of the Message Detail filed to map the desired field. 
  
- <img src="/Images/Log-Content.jpeg" >
+ <img src="https://media.github.ibm.com/user/348712/files/46aba780-3805-11ed-8db5-67c866d28126" alt="Log Content" >
  
  The Log node will compile the message and read out here:
  
- <img src="/Images/Log-Location.jpeg" >
+ <img src="https://media.github.ibm.com/user/348712/files/47dcd480-3805-11ed-9efb-a9cb2dd074d4" alt="Log Location" >
  
  Diagnose the response that shows up in this section to learn what might be causing the issue.
  
- <img src="/Images/Log-Dashboard.jpeg" >
+ <img src="https://media.github.ibm.com/user/348712/files/47443e00-3805-11ed-9e6e-7fe53c4465c3" alt="Log Dashboard" >
  
- </details>
- 
-<details><summary><b>TRIRIGA</b></summary>
+### TRIRIGA
  
  Common errors found in the TRIRIGA system
 
@@ -294,5 +295,3 @@ Error | Cause
   ERROR: Building Does not Exist | No Building record exists with the triNameTX value mentioned in triBuildingTX field of the payload
   ERROR: Location Does not Exist | No Location record exists with the triNameTX value mentioned in triParentLocationTX field of the payload
   ERROR: Organization Does not Exist | No Organization record exists with the triPathTX value mentioned in triCustomerOrgTX field of the payload
-    
- </details>

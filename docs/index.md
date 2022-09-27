@@ -1,9 +1,13 @@
 # IBM Sustainability Software Portfolio Connectors
 
-### Summary
+## Overview
 
 Enable automated synchronization of portfolio data between TRIRIGA and Maximo Asset Management systems to integrate asset and facility management operations.
 
-### Description
+## Installing App Connect
 
-In this code pattern, learn how to synchronize bi-directional portfolio data of IBM TRIRIGA and IBM Maximo Asset Management using App Connect Designer flows for synchronizing People, Locations, and Assets. Using the provided flows, enable a variety of use cases: from a simple trigger-action integration that updates or populates the records in the other application, to more complex scripted cron jobs that orchestrate these objects into their respective primary system of record.
+These code patterns utilize App Connect to transfer & transform data.
+
+To create a proof of concept, go [here](https://cloud.ibm.com/catalog/services/app-connect) and spin up a free instance.
+
+For MAS or TAS customers, see the docs [here](https://www.ibm.com/docs/en/mas-cd/continuous-delivery?topic=ons-app-connect) about installing the operator or request an instance through your IBM SRE contact.
