@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/maximo-envizi/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>IBM Maximo Application Suite Connector for Envizi - IBM Sustainability Software Portfolio Connectors</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IBM Maximo Application Suite Connector for Envizi";
+        var mkdocs_page_input_path = "maximo-envizi.md";
+        var mkdocs_page_url = "/IBM-Sustainability-Software-Portfolio-Connectors/maximo-envizi/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IBM Sustainability Software Portfolio Connectors
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">IBM MAS Connector for TRIRIGA</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas/">Portfolio Data</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../work-order/">Work Order</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">IBM MAS Connector for Envizi</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../max-envizi-index/">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">IBM Maximo Application Suite Connector for Envizi</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#maximo-configuration">Maximo Configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#pre-checks-on-your-data">Pre-checks on your data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deploying-maximo-build">Deploying Maximo Build</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuring-artifacts">Configuring Artifacts</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#meter-groups">Meter Groups</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#end-points">End Points</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#crons">Crons</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#appconnect-configuration">AppConnect Configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#adding-accounts">Adding Accounts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#importing-the-flow">Importing the flow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuring-the-flow-to-use-the-right-accounts">Configuring the flow to use the right accounts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#starting-and-stopping-the-flow">Starting and Stopping the flow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-api-key">Creating API Key</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#working-of-the-flow">Working of the flow</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#if">If</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#if-3">If 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-variable-5">Set variable 5</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-variable">Set variable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#http-invoke-method">HTTP Invoke Method</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-variable-2">Set variable 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-variable-3">Set variable 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#for-each-page">For each: page</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#http-invoke-method-2">HTTP Invoke method 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-variable-4">Set variable 4</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sftp-create-file">SFTP Create file</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#response">Response</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">IBM TAS Connector for Envizi</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../tas-envizi-index/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tririga-envizi/">IBM Tririga Application Suite Connector for Envizi</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IBM Sustainability Software Portfolio Connectors</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>IBM MAS Connector for Envizi &raquo;</li>
+      <li>IBM Maximo Application Suite Connector for Envizi</li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/maximo-envizi.md"
+          class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="maximo-envizi-integration">Maximo - Envizi integration</h1>
+<h2 id="table-of-contents">Table of contents</h2>
+<!--ts-->
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#maximo-configuration">Maximo Configuration</a><ul>
+<li><a href="#pre-checks-on-your-data">Pre-checks on your data</a></li>
+<li><a href="#deploying-maximo-build">Deploying Maximo Build</a></li>
+<li><a href="#configuring-artifacts">Configuring Artifacts</a><ul>
+<li><a href="#meter-groups">Meter Groups</a></li>
+<li><a href="#end-points">End Points</a></li>
+<li><a href="#crons">Crons</a><ul>
+<li><a href="#always-on-cron-always-cron">Always-on Cron (Always-Cron)</a></li>
+<li><a href="#on-demand-cron-cron-demand">On-demand Cron (Cron-demand)</a></li>
+<li><a href="#basic-parameters">Basic Parameters</a></li>
+<li><a href="#advanced-parameters">Advanced Parameters</a></li>
+<li><a href="#configuring-cron-task">Configuring Cron Task</a></li>
+<li><a href="#startstop-the-cron-task-instance">Start/Stop the Cron Task Instance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#appconnect-configuration">AppConnect Configuration</a><ul>
+<li><a href="#adding-accounts">Adding Accounts</a></li>
+<li><a href="#importing-the-flow">Importing the flow</a></li>
+<li><a href="#configuring-the-flow-to-use-the-right-accounts">Configuring the flow to use the right accounts</a></li>
+<li><a href="#starting-and-stopping-the-flow">Starting and Stopping the flow</a></li>
+<li><a href="#creating-api-key">Creating API Key</a></li>
+</ul>
+</li>
+<li><a href="#working-of-the-flow">Working of the flow</a></li>
+</ul>
+<!--te-->
+
+<h2 id="overview">Overview</h2>
+<p><img alt="Maximo-Envizi Integration" src="https://media.github.ibm.com/user/375131/files/213f0180-e8d8-11ec-8d47-a276b27d6fb0" /></p>
+<h2 id="maximo-configuration">Maximo Configuration</h2>
+<h3 id="pre-checks-on-your-data">Pre-checks on your data</h3>
+<ul>
+<li>Data for Location Meter will not be exported to Envizi if the Unit of Measurement is not configured.</li>
+<li>
+<p>The current integration with Envizi only supports the following Units of Measurement for the Location Meter data:</p>
+<ul>
+<li>Electric Meters<ul>
+<li>GJ</li>
+<li>kWh</li>
+<li>MWh</li>
+</ul>
+</li>
+<li>Natural Gas Meters<ul>
+<li>GJ</li>
+<li>MJ</li>
+<li>kWh</li>
+<li>m3</li>
+<li>mmbtu</li>
+<li>therms</li>
+</ul>
+</li>
+<li>Water Meters<ul>
+<li>litres</li>
+<li>kliter</li>
+<li>m3</li>
+<li>gallons</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Service Address must be configured in Location with the below fields for proper functioning of Envizi's features:</p>
+<ul>
+<li>Street Address</li>
+<li>City</li>
+<li>State</li>
+<li>Post Code</li>
+<li>Country</li>
+<li>Latitude</li>
+<li>Longitude</li>
+</ul>
+</li>
+</ul>
+<h3 id="deploying-maximo-build">Deploying Maximo Build</h3>
+<p>Within Maximo, the integration provides integration components (via .dbc script files) and Java Classes as part of the solution. These components need to be installed in the customer's Maximo environment. Components and other content created for this integration solution will be identified by names that begin with PLUSZ.</p>
+<ol>
+<li>
+<p>On the Maximo Admin workstation, overlay the Maximo SMP directory (<code>/opt/IBM/SMP/maximo</code>) with the contents from the solution zip file that is provided. This will lay down the Java Classes and .dbc files provided with the solution.</p>
+</li>
+<li>
+<p>Shutdown the MXServer</p>
+</li>
+<li>
+<p>Run UpdateDB command to install the solution components</p>
+<ul>
+<li>Navigate to <code>/opt/IBM/SMP/maximo/tools/maximo</code></li>
+<li>Run <code>./updatedb.sh</code></li>
+</ul>
+</li>
+<li>
+<p>Build the Maximo EAR file</p>
+<ul>
+<li>Navigate to <code>/opt/IBM/SMP/maximo/deployment</code></li>
+<li>Run <code>./buildmaximoear.sh</code></li>
+</ul>
+</li>
+<li>
+<p>Deploy the new Maximo EAR File on all Maximo servers</p>
+<ul>
+<li>In WebSphere console, navigate to: Applications-&gt;Application types-&gt;Websphere enterprise applications</li>
+<li>Select MAXIMO and then hit "Update" button</li>
+<li>Select "Browse" and select the EAR file from Step 4</li>
+<li>Hit "Next" and accept defaults from all pages</li>
+<li>After deployment, click on "Save"</li>
+</ul>
+</li>
+<li>
+<p>Start the applications and MXServer</p>
+</li>
+</ol>
+<h3 id="configuring-artifacts">Configuring Artifacts</h3>
+<h4 id="meter-groups">Meter Groups</h4>
+<ul>
+<li>Make sure all the Meters that need to sync with Envizi are in the right meter groups:<ul>
+<li><code>PLUSZ_ELEC</code> - Electric Meters</li>
+<li><code>PLUSZ_GAS</code> - Natural Gas Meters</li>
+<li><code>PLUSZ_WTR</code> - Water Meters</li>
+</ul>
+</li>
+</ul>
+<h4 id="end-points">End Points</h4>
+<ul>
+<li>
+<p>In the Maximo menu, click on Integration &gt; End Points
+<img width="580" alt="End Points - Menu" src="https://media.github.ibm.com/user/375131/files/b7315700-e8ed-11ec-8e95-885b57b97a66"></p>
+</li>
+<li>
+<p>Under the "End Point" column, type "PLUSZ" and hit enter to search</p>
+</li>
+<li>
+<p>Click on the "PLUSZEXPORT" End Point
+<img width="692" alt="End Points - Search" src="https://media.github.ibm.com/user/375131/files/aed91c00-e8ed-11ec-9e22-99cece3dadbc"></p>
+</li>
+<li>
+<p>Configure the parameters required to execute the AppConnect flow</p>
+<ul>
+<li><code>URL</code>: Full URL to the flow's API as show in AppConnect "API Documentation Link"</li>
+<li><code>HEADERS</code>: Replace the <code>YourAPIKeyHere</code> with the AppConnect flow's API Key<ul>
+<li>By default the AppConnect flow will be looking for the API key in the <code>X-IBM-Client-Id</code> header</li>
+<li>If the API Key is <code>123</code>, the final value in this field will be <code>X-IBM-Client-Id: 123,Content-Type: application/json</code></li>
+<li><strong>Do not</strong> remove <code>,Content-Type:application/json</code></li>
+</ul>
+</li>
+<li><code>HTTPMETHOD</code>: Do not change the default value <code>POST</code>
+<img width="946" alt="End Points - Configuration" src="https://media.github.ibm.com/user/375131/files/5787e680-f7dd-11ec-93af-d44216ffbf86"></li>
+</ul>
+</li>
+<li>
+<p>Click on "Save End Point" in "Common Actions" on the left side</p>
+</li>
+</ul>
+<p>The End Point is now configured </p>
+<h4 id="crons">Crons</h4>
+<p>For every Object Structure that gets pulled out of Maximo and pushed to Envizi, there are two types of Cron jobs:</p>
+<h5 id="always-on-cron-always-cron">Always-on Cron (Always-Cron)</h5>
+<p>This is for pulling the live or recent data, which is supposed to run frequently. This will pull the data that has come into the system after the last time it ran.</p>
+<p>Based on its running frequency, the system will automatically decide the window of dates/timestamps to pull the data from.</p>
+<p>These Cron Task Instances will use the suffix <code>_ALWAYS_ON</code></p>
+<p><img width="360" alt="Cron task instance - always on" src="https://media.github.ibm.com/user/375131/files/27732000-f7aa-11ec-82f3-0b1e39ea5c02"></p>
+<h5 id="on-demand-cron-cron-demand">On-demand Cron (Cron-demand)</h5>
+<p>Even though this is a Cron, this is supposed to run just once, on-demand, when the customer or the user wants to pull data between fixed dates/timestamps. Once the first cron event executes, it should be stopped in order to prevent the same data getting pulled again and again. <em>This is a stop-gap for now as we dont have another way from Maximo to call a preconfigured API on-demand.</em></p>
+<p>This might be needed during initial setup of the system, as the Always-on Cron will start pulling data that has arrived after it has been started. This can also be used anytime in the future if there is any need to pull any historical data on-demand.</p>
+<p>The start date (<code>OVERRIDESTARTDATE</code>) and end date (<code>OVERRIDEENDDATE</code>) have to be configured before the cron is started. </p>
+<p>These Cron Task Instances will use the suffix <code>ON_DEMAND</code></p>
+<p><img width="356" alt="Cron task instance - on demand" src="https://media.github.ibm.com/user/375131/files/6e611580-f7aa-11ec-80ac-5378b76aa2a9"></p>
+<h5 id="basic-parameters">Basic Parameters</h5>
+<ul>
+<li>
+<p><code>MXURL</code>: The base URL of the Maximo instance. This would include the protocol, domain name and the port number. Do not put a trailing <code>/</code> at the end. In the absense of port number, the default port for the protocol will be used <em>(80 for http, 443 for https)</em>.</p>
+<ul>
+<li>e.g. http://example.maximo.com:9080</li>
+</ul>
+</li>
+<li>
+<p><code>CUSTOMER</code>: Name of the customer. This will be used to name the CSV files. To be supplied by Envizi.</p>
+</li>
+<li>
+<p><code>OVERRIDESTARTDATE</code>: <em>(Only for On-demand Cron)</em> The start timestamp of the window between which the data will be pulled from.</p>
+<ul>
+<li>The date must be specified in ISO 8601 format.</li>
+<li>e.g. <code>2022-06-26T23:09:30-07:00</code> where <code>-07:00</code> represents timezone offset of UTC-07:00 hours</li>
+</ul>
+</li>
+<li><code>OVERRIDEENDDATE</code>: <em>(Only for On-demand Cron)</em> The end timestamp of the window between which the data will be pulled from.<ul>
+<li>The date must be specified in ISO 8601 format.</li>
+<li>e.g. <code>2022-06-26T23:09:30-07:00</code> where <code>-07:00</code> represents timezone offset of UTC-07:00 hours</li>
+</ul>
+</li>
+</ul>
+<h5 id="advanced-parameters">Advanced Parameters</h5>
+<p>These will be set to the right values by default. DO NOT change these parameters without consulting with Envizi.</p>
+<ul>
+<li><code>SELECT</code>: Names of the fields from the Object Structure</li>
+<li><code>FROM</code>: Name of the Object Structure</li>
+<li><code>WHERE</code>: <em>(Optional).</em> OSLC Condition for data selection</li>
+<li><code>ORDERBY</code>: <em>(Optional).</em> Sequence by which the data should be pulled</li>
+<li><code>TARGETDATECOLUMN</code>: Name of the DateTime Column in the Object structure that will be used to filter records between a date-time window.</li>
+<li><code>SAVEDQUERY</code></li>
+<li><code>ENDPOINTNAME</code> - Name of the Maximo End Point configured to connect to the AppConnect flow.</li>
+<li><code>PAGESIZE</code> - Maximum number of records pulled from Maximo in one API call. This will also be the maximum number of records in the CSV file.</li>
+</ul>
+<h5 id="configuring-cron-task">Configuring Cron Task</h5>
+<ul>
+<li>
+<p>In the Maximo menu, click on System Configuration &gt; Platform Configuration &gt; Cron Task Setup
+<img width="638" alt="Cron task - Menu" src="https://media.github.ibm.com/user/375131/files/204c1200-f7aa-11ec-902b-56a6cacbbbb1"></p>
+</li>
+<li>
+<p>Under the "Cron Task" column, type "PLUSZ" and hit enter to search
+<img width="754" alt="Cron task - Search" src="https://media.github.ibm.com/user/375131/files/217d3f00-f7aa-11ec-8d77-1339ac049a2d"></p>
+</li>
+<li>
+<p>Click on the "PLUSZEXPORT" Cron Task</p>
+</li>
+<li>In the Cron Task Instances, click on the Schedule/Calendar icon to set the schedule for the Cron Task Instance</li>
+<li>Once it is configured, click on "OK"</li>
+<li>Select the Cron Task Instance to configure Parameters for</li>
+<li>Scroll down to the "Cron Task Parameters" section and configure the "Value" column as needed. Ideally, only the <code>CUSTOMER</code> and <code>MXURL</code> parameters will need to be edited for all instances. For the "On-demand" Crons, the <code>OVERRIDESTARTDATE</code> and <code>OVERRIDEENDDATE</code> parameters will need to be edited.</li>
+<li>Click on Save</li>
+</ul>
+<h5 id="startstop-the-cron-task-instance">Start/Stop the Cron Task Instance</h5>
+<ul>
+<li>Navigate inside the Cron Task as mentioned above</li>
+<li>Enable/Disable the checkbox in the column "Active?" in front of the desired Cron Task Instance</li>
+<li>Click on Save</li>
+</ul>
+<h2 id="appconnect-configuration">AppConnect Configuration</h2>
+<p>Note: You need IBM Cloud AppConnect Professional or Enterprise to run this flow.</p>
+<p>Note: The names in the screenshots are generic, other instances will not have the same names during setup.</p>
+<h3 id="adding-accounts">Adding Accounts</h3>
+<p>Before importing the flow to AppConnect, add Accounts for SFTP and HTTP connectors.</p>
+<ul>
+<li>
+<p>Navigate to Catalog section of the AppConnect instance
+<img width="960" alt="Create Account 1" src="https://media.github.ibm.com/user/375131/files/eb8b5a00-eb1d-11ec-8401-35b47d561ce4"></p>
+</li>
+<li>
+<p>In the "Search application", type name of the connector to add the account for</p>
+</li>
+<li>
+<p>If the AppConnect instance does not have an account for the connector, click on "Connect" to create a new account
+<img width="960" alt="Create Account 2a" src="https://media.github.ibm.com/user/375131/files/ec23f080-eb1d-11ec-9f62-af1addec3fd3"></p>
+</li>
+<li>
+<p>Else, open the account selection drop down, and click on "Add a new account ..."
+<img width="948" alt="Create Account 2b" src="https://media.github.ibm.com/user/375131/files/ecbc8700-eb1d-11ec-9693-4ce83ffda2e6"></p>
+</li>
+<li>
+<p>Enter the necessary details for the connector</p>
+<ul>
+<li>For SFTP, it will be the SFTP server and user account.</li>
+<li>For HTTP, it will be the Authentication Key or username and password needed for Maximo.
+<img width="960" alt="Create Account 3" src="https://media.github.ibm.com/user/375131/files/ed551d80-eb1d-11ec-9894-350e87fbb2b2"></li>
+</ul>
+</li>
+<li>
+<p>Click on Connect
+<img width="960" alt="Create Account 4" src="https://media.github.ibm.com/user/375131/files/ed551d80-eb1d-11ec-983c-c276d43e0654"></p>
+</li>
+<li>
+<p>From the account selection drop down, select the newly created account. e.g., The default name will be <code>Account 2</code> if you already have <code>Account 1</code></p>
+</li>
+<li>
+<p>Click on the kebab menu (three dots) and select "Rename Account"
+<img width="960" alt="Create Account 5" src="https://media.github.ibm.com/user/375131/files/ededb400-eb1d-11ec-9a29-fd9fa65dbf8b"></p>
+</li>
+<li>
+<p>Enter an account name and click on "Rename Account". This name can now be used by the connector in the flow.
+<img width="958" alt="Create Account 6" src="https://media.github.ibm.com/user/375131/files/ee864a80-eb1d-11ec-96d1-fdc42c679896"></p>
+</li>
+</ul>
+<h3 id="importing-the-flow">Importing the flow</h3>
+<ul>
+<li>Open the Dashboard of the AppConnect instance</li>
+<li>
+<p>Click on the "New" button and select "Import Flow"
+<img width="861" alt="Flow Import 0" src="https://media.github.ibm.com/user/375131/files/ea582e00-eb19-11ec-9912-0881d321f3c7"></p>
+</li>
+<li>
+<p>Browse to the flow's YAML file and click on "Import"
+<img width="960" alt="Flow Import 1" src="https://media.github.ibm.com/user/375131/files/ea582e00-eb19-11ec-88a7-abebff4e0534"></p>
+</li>
+<li>
+<p>The flow will now be imported and opened.
+<img width="960" alt="Flow Import 2" src="https://media.github.ibm.com/user/375131/files/eaf0c480-eb19-11ec-885b-919da812499b"></p>
+</li>
+</ul>
+<h3 id="configuring-the-flow-to-use-the-right-accounts">Configuring the flow to use the right accounts</h3>
+<p>When importing a flow, it is important to check if the flow is using the right accounts for the different connectors.</p>
+<ul>
+<li>
+<p>Click on "Edit Flow"</p>
+</li>
+<li>
+<p>See if the connectors are using the right accounts.</p>
+</li>
+<li>
+<p>To change the account for any connector, select the connector and click on the dropdown icon next to the Account's name
+<img width="960" alt="Select Account 1" src="https://media.github.ibm.com/user/375131/files/11186380-eb1e-11ec-9c92-5f892df61a57"></p>
+</li>
+<li>
+<p>Select the account name that you want to use from the list
+<img width="659" alt="Select Account 2" src="https://media.github.ibm.com/user/375131/files/11b0fa00-eb1e-11ec-88fd-8e4998f6304a"></p>
+</li>
+</ul>
+<h3 id="starting-and-stopping-the-flow">Starting and Stopping the flow</h3>
+<ul>
+<li>
+<p>If using AppConnect Dashboard, Click on the kebab menu (three dots) on the flow's tile.
+<img width="656" alt="Flow start 1" src="https://media.github.ibm.com/user/375131/files/5be4ac00-eb1b-11ec-85b0-b7b2d400a7e1"></p>
+</li>
+<li>
+<p>If inside the flow, Click on the kebab menu (three dots) on top right of the screen.
+<img width="959" alt="Flow start 2" src="https://media.github.ibm.com/user/375131/files/5be4ac00-eb1b-11ec-93f2-4031220e144f"></p>
+</li>
+<li>
+<p>Click on "Start API" or "Stop API" depending on what action you want to perform.</p>
+</li>
+</ul>
+<p><em>Note: If the flow is not running, AppConnect will give Error 404 on the API call.</em></p>
+<h3 id="creating-api-key">Creating API Key</h3>
+<ul>
+<li>
+<p>Click on "Manage".
+<img width="960" alt="Flow API Key 1" src="https://media.github.ibm.com/user/375131/files/12479180-eb1a-11ec-86ee-1adea1c7836f"></p>
+</li>
+<li>
+<p>Scroll to the bottom of the page. Click on "Create API key and documentation link"
+<img width="960" alt="Flow API Key 2" src="https://media.github.ibm.com/user/375131/files/12e02800-eb1a-11ec-9da1-36c9b85d002c"></p>
+</li>
+<li>
+<p>Enter name for the API key and click on "Create"
+<img width="960" alt="Flow API Key 3" src="https://media.github.ibm.com/user/375131/files/1378be80-eb1a-11ec-9c2f-b700d0e55d9e"></p>
+</li>
+<li>
+<p>Make a note of this key. Maximo End Point will be configured to send this API key as value for the <code>X-IBM-Client-Id</code> header while calling the AppConnect flow API.</p>
+</li>
+<li>
+<p>Open the "API Documentation Link" in another tab.</p>
+</li>
+<li>
+<p>Click on the Route to see the URL
+<img width="958" alt="Flow API Key 4" src="https://media.github.ibm.com/user/375131/files/14115500-eb1a-11ec-8988-315fe623751c"></p>
+</li>
+<li>
+<p>Copy the link show in details tab next to the HTTP Method
+<img width="960" alt="Flow API Key 5" src="https://media.github.ibm.com/user/375131/files/14115500-eb1a-11ec-8bce-d7751c8e9141"></p>
+</li>
+</ul>
+<p>It is helpful to use a tool like Postman to test this API prior to testing it for the first time from Maximo.</p>
+<h2 id="working-of-the-flow">Working of the flow</h2>
+<p><img width="893" alt="PLUSZMXTOSFTP_P1" src="https://media.github.ibm.com/user/375131/files/4383bb00-f7c4-11ec-9d13-c85b6f8ce6ee">
+<img width="884" alt="PLUSZMXTOSFTP_P2" src="https://media.github.ibm.com/user/375131/files/441c5180-f7c4-11ec-9cbd-229152cebafd">
+<img width="902" alt="PLUSZMXTOSFTP_P3" src="https://media.github.ibm.com/user/375131/files/467eab80-f7c4-11ec-9558-276e2708db02"></p>
+<h4 id="if">If</h4>
+<p>Checks for the mandatory fields that are required for the flow to function. If any of the fields are missing, the flow returns Error 400.</p>
+<h4 id="if-3">If 3</h4>
+<p>Checks the presence of <code>OVERRIDESTARTDATE</code> and <code>OVERRIDEENDDATE</code> in the Request. It also checks if they are valid dates. If all checks are passed, <code>dateQuery</code> with these override dates is generated.
+If the override date checks fail, it checks if <code>LASTSTARTDATE</code> is present. If it is, <code>dateQuery</code> with it is generated.
+If all checks fail, the flow returns Error 400</p>
+<h4 id="set-variable-5">Set variable 5</h4>
+<ul>
+<li><code>where</code>: The final <code>oslc.where</code> query created using <code>WHERE</code> from Request and <code>dateQuery</code> from the output of "If 3"</li>
+<li><code>batchTimestamp</code>: Current Epoc timestamp in milliseconds. This will be included in every filename to indicate that they are from the same batch of exported data.</li>
+</ul>
+<h4 id="set-variable">Set variable</h4>
+<ul>
+<li><code>query</code>: The query to be sent to OSLC API to fetch the required data</li>
+<li><code>pagesize</code>: The total number of records that will be fetched in one page. If it is not specified in the request, the flow will use default value of <code>100</code>.</li>
+</ul>
+<h4 id="http-invoke-method">HTTP Invoke Method</h4>
+<p>Does an HTTP GET to the Maximo's OSLC API to fetch the total number of records that match the query. <code>countonlyparams</code> from "Set variable" will be used here.</p>
+<h4 id="set-variable-2">Set variable 2</h4>
+<p><code>totalCount</code>: Total Count received in the response of the "HTTP Invoke Method"</p>
+<h4 id="set-variable-3">Set variable 3</h4>
+<p><code>totalPages</code>: Total number of pages to be fetched from Maximo OSLC API that match the query. This is calculated using the <code>totalCount</code> from "Set variable 2" and <code>pagesize</code> from "Set variable".</p>
+<h4 id="for-each-page">For each: page</h4>
+<ul>
+<li>Summary: Fetches data from Maximo OSLC API page by page and writes CSV file to the SFTP server.</li>
+<li>Input: An array of numbers from 1 to <code>totalPages</code> from "Set variable 3"</li>
+<li>Output: <code>fileWritten</code> - Array of string containing names of files written to the SFTP server.</li>
+</ul>
+<h4 id="http-invoke-method-2">HTTP Invoke method 2</h4>
+<p>Does an HTTP GET call to Maximo OSLC API to fetch the data that matches <code>queryparams</code> from "Set variable" for the current page from "For each: page"</p>
+<h4 id="set-variable-4">Set variable 4</h4>
+<p><code>filename</code>: File name as per format specified by Envizi team using <code>CUSTOMER</code> and <code>FROM</code> from the Request, <code>batchTimestamp</code> from "Set variable 5" and current page from "For each: page".</p>
+<p>eg. <code>DemoCorporation_PLUSZLOCATIONS_1654856600431_1.csv</code></p>
+<h4 id="sftp-create-file">SFTP Create file</h4>
+<p>Writes Response body from "HTTP Invoke method 2" to the configured SFTP Server with the <code>filename</code> from "Set variable 4" at the preconfigured file path.</p>
+<h4 id="response">Response</h4>
+<p>Returns HTTP Status 200 with JSON body containing:
+- <code>filesWritten</code>: Array of file names written to the SFTP server, obtained from the output of "For each: page"
+- <code>queryparams</code>: <code>query</code> from "Set variable"</p>
+<p>The JSON in response body is not used or stored by Maximo.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../max-envizi-index/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../tas-envizi-index/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" defer></script>
+      <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

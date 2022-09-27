@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/tririga-configuration/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Tririga Configuration for Envizi Integration - IBM Sustainability Software Portfolio Connectors</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Tririga Configuration for Envizi Integration";
+        var mkdocs_page_input_path = "tririga-configuration.md";
+        var mkdocs_page_url = "/IBM-Sustainability-Software-Portfolio-Connectors/tririga-configuration/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IBM Sustainability Software Portfolio Connectors
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">IBM MAS Connector for TRIRIGA</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas/">Portfolio Data</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../work-order/">Work Order</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">IBM MAS Connector for Envizi</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../max-envizi-index/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../maximo-envizi/">IBM Maximo Application Suite Connector for Envizi</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">IBM TAS Connector for Envizi</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../tas-envizi-index/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tririga-envizi/">IBM Tririga Application Suite Connector for Envizi</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IBM Sustainability Software Portfolio Connectors</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Tririga Configuration for Envizi Integration</li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/tririga-configuration.md"
+          class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tririga-configuration-for-envizi-integration">Tririga Configuration for Envizi Integration</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<!--ts-->
+<ul>
+<li><a href="#import-om-package">Import OM Package</a></li>
+<li><a href="#data-modeler">Data Modeler</a></li>
+<li><a href="#form-builder">Form Builder</a></li>
+<li><a href="#security-manager">Security Manager</a></li>
+<li><a href="#workflow-builder">Workflow Builder</a><ul>
+<li><a href="#optional-step">Optional: Patch Helper</a></li>
+</ul>
+</li>
+<li><a href="#my-reports-and-oslc">My Reports/OSLC</a></li>
+<li><a href="#how-to-use">How to Use</a></li>
+</ul>
+<p>This solution adds four fields that hold the group name values and the path for the integration. It also makes sure that the payload is sent when there is an update.</p>
+<h3 id="import-om-package">Import OM Package</h3>
+<p>Import the most recent <a href="https://github.com/IBM/tririga-api/tree/main/docs/ompackages">OM Package</a> into the Tririga instance. Go to Tools -&gt; Administration -&gt; Object Migration and select 'New Import Package' to begin the import process.</p>
+<p>Here are the manual changes that need to be done:</p>
+<h3 id="data-modeler">Data Modeler</h3>
+<p>Go to Tools -&gt; Builder Tools -&gt; Data Modeler and using the Object Browser navigate to Location-&gt;triBuilding.</p>
+<p>Revise the BO and add four fields: cstEnviziParentOneTX, cstEnviziParentTwoTX,
+cstEnviziParentThreeTX and cstEnviziGroupNamePathTX</p>
+<p><img width="512" alt="Data Modeler Fields" src="https://media.github.ibm.com/user/348712/files/3ddd5780-09b5-11ed-9014-fbd85b21e6eb"></p>
+<p>Name and Label should be the following:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cstEnviziParentOneTX</td>
+<td>Envizi Group 1</td>
+</tr>
+<tr>
+<td>cstEnviziParentTwoTX</td>
+<td>Envizi Group 2</td>
+</tr>
+<tr>
+<td>cstEnviziParentThreeTX</td>
+<td>Envizi Group 3</td>
+</tr>
+<tr>
+<td>cstEnviziGroupNamePathTX</td>
+<td>Envizi Path</td>
+</tr>
+</tbody>
+</table>
+<p>After entering these values, click 'Publish' to publish the BO</p>
+<h3 id="form-builder">Form Builder</h3>
+<p>Under Tools -&gt; Builder Tools -&gt; Form Builder, click on the Location module on the left side of the screen and then click on triBuilding.</p>
+<p>Revise the triBuilding form by clicking 'Revise' in the top right corner of the pop-up</p>
+<p>In the Navigation pane on the left side of the screen, click on 'Add Tab' and enter "cstEnvizi" as the 'Name'. Click Apply</p>
+<p>Select this new tab and click on 'Add Section'</p>
+<p>Enter "cstEnviziDetails" as the 'Name' and "Envizi Details" as the 'Label'. Click 'Apply'.</p>
+<p>Now click on the newly created Section and select 'Add Field'. Select each of the four created business objects from the previous step as fields under "Envizi Details".</p>
+<p>Select 'cstEnviziGroupNamePathTX' and modify 'Start Row' to 3 and 'Col Span' to 2 on the
+properties window. Mark this field as "ReadOnly" and click 'Apply'.</p>
+<p>The form should look like this:</p>
+<p><img width="1028" alt="Form Builder" src="https://media.github.ibm.com/user/348712/files/4f266400-09b5-11ed-9ca4-4253b2fa9baa"></p>
+<p>Click on triBuilding on the left panel and then click on 'Sort Tab'. Move
+the 'cstEnvizi' tab to the second position and click 'Apply'</p>
+<p><img width="256" alt="Form Builder Properties" src="https://media.github.ibm.com/user/348712/files/4f266400-09b5-11ed-8a73-f526a24a86db"></p>
+<p>Publish the form</p>
+<h3 id="security-manager">Security Manager</h3>
+<p>Go to Tools -&gt; Administration -&gt; Security Manager</p>
+<p>This application sets who can and cannot access this newly created tab. Click on the desired group, and navigate to the 'Access' tab</p>
+<p>On this tab select Location -&gt; triBuilding -&gt; cstEnvizi</p>
+<p>Choose the access level for the group and 'Save'</p>
+<p><img width="423" alt="Security Manager Access" src="https://media.github.ibm.com/user/348712/files/4fbefa80-09b5-11ed-99e5-b92fca943ddf"></p>
+<h3 id="workflow-builder">Workflow Builder</h3>
+<p>Three Workflows will need to be edited.</p>
+<p><strong>1. Go to Tools -&gt; Builder Tools -&gt; Workflow Builder. Select Location -&gt; triBuilding.</strong></p>
+<p>Create a new Workflow name "cst - triBuilding - Update Envizi path"</p>
+<p>This Workflow should look like this:</p>
+<p><img width="564" alt="Workflow" src="https://media.github.ibm.com/user/348712/files/4f266400-09b5-11ed-9919-1f2fb10fd860"></p>
+<p>Add to the workflow with the following steps:</p>
+<ul>
+<li>Create the first 'Switch Condition' and enter the following condition:</li>
+</ul>
+<p><img width="484" alt="1st Switch Expression" src="https://media.github.ibm.com/user/348712/files/4fbefa80-09b5-11ed-8738-62e0ccb761f9"></p>
+<ul>
+<li>Create two 'Modify Tasks' and place them on either side of the switch. The 'Modify Parent One' task should be on the left and have this mapping:</li>
+</ul>
+<p><img width="569" alt="Modify Parent One Mapping" src="https://media.github.ibm.com/user/348712/files/4fbefa80-09b5-11ed-9306-f120dffa38e8"></p>
+<ul>
+<li>The 'Set Blank' task is the other condition of the first switch and it should have this mapping:</li>
+</ul>
+<p><img width="680" alt="Set Blank Task" src="https://media.github.ibm.com/user/348712/files/50579100-09b5-11ed-80b3-0bc45efda653"></p>
+<ul>
+<li>The second switch should flow from the 'Modify Parent One' task and have the following condition:</li>
+</ul>
+<p><img width="473" alt="2nd Switch Expression" src="https://media.github.ibm.com/user/348712/files/4fbefa80-09b5-11ed-8db9-31cb358f4b60"></p>
+<ul>
+<li>Create the 'Modify Parent Two' task and give it this mapping:</li>
+</ul>
+<p><img width="629" alt="Modify Parent Two Mapping" src="https://media.github.ibm.com/user/348712/files/361eb280-09b7-11ed-9e3f-00b94068ebd6"></p>
+<p><img width="587" alt="Parent Two Inputs and Formula" src="https://media.github.ibm.com/user/348712/files/36b74900-09b7-11ed-875c-e60f87afefcf"></p>
+<ul>
+<li>The third switch should flow from 'Modify Parent Two' and have the following condition:</li>
+</ul>
+<p><img width="474" alt="3rd Switch Expression" src="https://media.github.ibm.com/user/348712/files/36b74900-09b7-11ed-89c5-71da43fe6e50"></p>
+<ul>
+<li>The 'Modify Parent Three' task should have this mapping:</li>
+</ul>
+<p><img width="487" alt="Modify Parent Three Mapping" src="https://media.github.ibm.com/user/348712/files/36b74900-09b7-11ed-8058-03b7ed9d8bc6"></p>
+<p><img width="589" alt="Modify Parent Three Mapping-2" src="https://media.github.ibm.com/user/348712/files/374fdf80-09b7-11ed-80d9-3911aa5f031e"></p>
+<p>Publish "cst - triBuilding - Update Envizi path" workflow</p>
+<p><strong>2. Within the Location object, search for the existing Workflow "triBuilding - Synchronous - Permanent Save
+Validation".</strong></p>
+<p>Revise this workflow and after Call Module Level Validation add a new WF
+call to "cst - triBuilding - Update Envizi path" like displayed below:</p>
+<p><img width="736" alt="WF call in Update Envizi Path" src="https://media.github.ibm.com/user/348712/files/374fdf80-09b7-11ed-8f47-3c588b667a58"></p>
+<p>Publish the workflow</p>
+<p><strong>3. Navigate to Data Utilities -&gt; cstEnviziUtility on the left panel and revise
+Workflow cst - cstEnviziUtility - Synchronous - Update Buildings with
+Group Names</strong></p>
+<p>This workflow has some mapping missing. Update the three Modify Tasks:</p>
+<ul>
+<li>Open Modify Group Name1 modify task and enter the following</li>
+</ul>
+<p><img width="759" alt="Group Name1 Modify Task" src="https://media.github.ibm.com/user/348712/files/36b74900-09b7-11ed-8722-b1dbeba27e23"></p>
+<ul>
+<li>Open Modify Group Name2 modify task and enter the following</li>
+</ul>
+<p><img width="768" alt="Group Name2 Modify Task" src="https://media.github.ibm.com/user/348712/files/374fdf80-09b7-11ed-96b8-9634174db7a1"></p>
+<p><img width="608" alt="Group Name2 Modify Task-2" src="https://media.github.ibm.com/user/348712/files/361eb280-09b7-11ed-8044-c0861e85aa4d"></p>
+<ul>
+<li>Open Modify Group Name3 modify task and enter the following</li>
+</ul>
+<p><img width="638" alt="Group Name3 Modify Task" src="https://media.github.ibm.com/user/348712/files/35861c00-09b7-11ed-8a4b-8f4ed004675e"></p>
+<p><img width="600" alt="Group Name3 Modify Task-2" src="https://media.github.ibm.com/user/348712/files/361eb280-09b7-11ed-84be-438ae45f0d7f"></p>
+<p>Publish this workflow</p>
+<h3 id="optional-step">Optional Step</h3>
+<p><em>This is an optional step if there are old records that need to be updated with the patch helper.</em></p>
+<p>Modify the Workflow "cst - triPatchHelper -
+Update All Envizi location fields", located on triHelper -&gt;
+triPatchHelper</p>
+<p>Revise the Workflow and modify the following tasks:</p>
+<ul>
+<li>Modify Parent One task(if a custom value is desired, set it on
+these mappings):</li>
+</ul>
+<p><img width="529" alt="Patch Helper Parent One" src="https://media.github.ibm.com/user/348712/files/73d10a80-09ba-11ed-958f-6c3df5f47ad3"></p>
+<ul>
+<li>Modify Parent Two task(if a custom value is desired, set it on
+these mappings):</li>
+</ul>
+<p><img width="619" alt="Patch Helper Parent Two" src="https://media.github.ibm.com/user/348712/files/73d10a80-09ba-11ed-9bca-cdf074e7cf37"></p>
+<ul>
+<li>Modify Parent TwoPath task:</li>
+</ul>
+<p><img width="629" alt="Modify Parent Two Mapping" src="https://media.github.ibm.com/user/348712/files/361eb280-09b7-11ed-9e3f-00b94068ebd6"></p>
+<p><img width="587" alt="Parent Two Inputs and Formula" src="https://media.github.ibm.com/user/348712/files/36b74900-09b7-11ed-875c-e60f87afefcf"></p>
+<ul>
+<li>Modify Parent Three task(if a custom value is desired, set it on
+these mappings):</li>
+</ul>
+<p><img width="592" alt="Patch Helper Parent Three" src="https://media.github.ibm.com/user/348712/files/73387400-09ba-11ed-8a8a-9f412982a9ce"></p>
+<ul>
+<li>Modify Parent Three Path task:</li>
+</ul>
+<p><img width="487" alt="Modify Parent Three Mapping" src="https://media.github.ibm.com/user/348712/files/36b74900-09b7-11ed-8058-03b7ed9d8bc6"></p>
+<p><img width="589" alt="Modify Parent Three Mapping-2" src="https://media.github.ibm.com/user/348712/files/374fdf80-09b7-11ed-80d9-3911aa5f031e"></p>
+<ul>
+<li>SetBlank:</li>
+</ul>
+<p><img width="683" alt="Patch Helper Set Blank 1" src="https://media.github.ibm.com/user/348712/files/73387400-09ba-11ed-81fa-ab59763a2de0"></p>
+<ul>
+<li>Set Parent Two and Three Blank:</li>
+</ul>
+<p><img width="679" alt="Patch Helper Set Blank 2" src="https://media.github.ibm.com/user/348712/files/729fdd80-09ba-11ed-95df-381836697eed"></p>
+<ul>
+<li>Set Parent Three Blank:</li>
+</ul>
+<p><img width="674" alt="Patch Helper Set Blank 3" src="https://media.github.ibm.com/user/348712/files/73387400-09ba-11ed-9aea-16908b7c9861"></p>
+<p>Save and publish the workflow</p>
+<h3 id="my-reports-and-oslc">My Reports and OSLC</h3>
+<p>Go to My Reports and navigate to 'System Reports'. Add those four new fields to the existing query
+"triAPICBuilding - OSLC -- Outbound" and save the report.</p>
+<p>Open Tools -&gt; System Setup -&gt; Integration -&gt; OSLC Resource manager
+and search for "triAPICOutboundBuildingRS". On this resource, add the four
+new fields either individually or using 'Import all Fields'</p>
+<p><img width="683" alt="OSLC Manager" src="https://media.github.ibm.com/user/348712/files/73387400-09ba-11ed-912f-569fce1dc420"></p>
+<h3 id="how-to-use">How to use</h3>
+<p>This tool will allow user to make changes on this new Envizi group name fields, but existing records must be considered too. To populate those records, there is a patch helper workflow that can handle that.</p>
+<p>This workflow by default adds the groupnames with the value from Hierarchy Path. So for example, if the HierarchyPath is "Location/NorthAmerica/USA/Texas/Dallas", then the group names will be:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Envizi Group 1</td>
+<td>Dallas</td>
+</tr>
+<tr>
+<td>Envizi Group 2</td>
+<td>Texas</td>
+</tr>
+<tr>
+<td>Envizi Group 3</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>Envizi Path</td>
+<td>USA/Texas/Dallas</td>
+</tr>
+</tbody>
+</table>
+<p>You can customize this values by changing workflow "cst - triPatchHelper - Update All Envizi location fields" like described before</p>
+<p>Also, you can filter to change only the desired records by changing
+query "cst - triBuilding - Query - Get All Buildings for envizi". The
+list of buildings displayed on this query will be the list of buildings
+that the patch helper will modify</p>
+<p>To run this patch helper, go To Administration -&gt; Data
+Integration to run patch helper. Upload a file using triNameTx = Envizi</p>
+<p><img width="682" alt="Data Integrator" src="https://media.github.ibm.com/user/348712/files/7469a100-09ba-11ed-9111-c30331bb797b"></p>
+<p>TXT file should have this content</p>
+<p><img width="82" alt="TXT file" src="https://media.github.ibm.com/user/348712/files/73d10a80-09ba-11ed-97e9-d1655dfec1f8"></p>
+<p>After that the records will be populated with the initial values
+defined. Please note that Patch helpers can be executed only once. To run this patch helper one more time, Envizi will need to be removed from the list that can be found using the query `"triPatchHelper - Display - All"</p>
+<p>There are two possible scenarios to use this solution:</p>
+<ol>
+<li>
+<p>Modify only one record</p>
+<p>a.  Open the building to change and click on tab Envizi.
+    Modify the values and save the record</p>
+</li>
+<li>
+<p>Modify multiple records</p>
+<p>a.  Go to My Reports, and run report "cst -
+    cstEnviziUtility - QUERY - Update Envizi GroupNames"</p>
+<p>b.  Click on 'Add'</p>
+<p>c.  Define the values for each groupName and filter the buildings
+    to apply on the Buildings section</p>
+<p>d.  Select the buildings and click on Create.</p>
+<p>e.  Click on Mass Update</p>
+</li>
+</ol>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" defer></script>
+      <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
