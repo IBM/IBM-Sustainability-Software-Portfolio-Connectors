@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/tririga-envizi/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>IBM Tririga Application Suite Connector for Envizi - IBM Sustainability Software Portfolio Connectors</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IBM Tririga Application Suite Connector for Envizi";
+        var mkdocs_page_input_path = "tririga-envizi.md";
+        var mkdocs_page_url = "/IBM-Sustainability-Software-Portfolio-Connectors/tririga-envizi/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IBM Sustainability Software Portfolio Connectors
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">IBM MAS Connector for TRIRIGA</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas/">Portfolio Data</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../work-order/">Work Order</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">IBM MAS Connector for Envizi</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../max-envizi-index/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../maximo-envizi/">IBM Maximo Application Suite Connector for Envizi</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">IBM TAS Connector for Envizi</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../tas-envizi-index/">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">IBM Tririga Application Suite Connector for Envizi</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tririga-configuration">Tririga Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#appconnect-configuration">AppConnect Configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#adding-accounts">Adding Accounts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#importing-the-flow">Importing the flow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuring-the-flow-to-use-the-right-accounts">Configuring the flow to use the right accounts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuring-the-scheduler">Configuring the Scheduler</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#using-the-flows">Using the flows</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#on-demand-flow">On-demand Flow</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#always-on-flow">Always-On Flow</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configuring-the-flow-parameters">Configuring the Flow Parameters</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#starting-and-stopping-the-flow">Starting and Stopping the flow</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#post-setup-instructions">Post-Setup Instructions</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IBM Sustainability Software Portfolio Connectors</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>IBM TAS Connector for Envizi &raquo;</li>
+      <li>IBM Tririga Application Suite Connector for Envizi</li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/tririga-envizi.md"
+          class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tririga-envizi-integration">Tririga - Envizi integration</h1>
+<h2 id="table-of-contents">Table of contents</h2>
+<!--ts-->
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#tririga-configuration">Tririga Configuration</a></li>
+<li><a href="#appconnect-configuration">AppConnect Configuration</a><ul>
+<li><a href="#adding-accounts">Adding Accounts</a></li>
+<li><a href="#importing-the-flow">Importing the flow</a></li>
+<li><a href="#configuring-the-flow-to-use-the-right-accounts">Configuring the flow to use the right accounts</a></li>
+<li><a href="#configuring-the-scheduler">Configuring the Scheduler</a></li>
+<li><a href="#using-the-flows">Using the flows</a></li>
+<li><a href="#on-demand-flow">On-demand Flow</a></li>
+<li><a href="#always-on-flow">Always-On Flow</a></li>
+<li><a href="#configuring-the-flow-parameters">Configuring the Flow Parameters</a></li>
+<li><a href="#starting-and-stopping-the-flow">Starting and Stopping the flow</a></li>
+</ul>
+</li>
+<li><a href="#post-setup-instructions">Post-Setup Instructions</a></li>
+</ul>
+<!--te-->
+
+<h2 id="overview">Overview</h2>
+<ul>
+<li>Flows included in this integration:</li>
+<li><a href="/AppConnect%20Flows/TririgaBuildings_Always_On.yaml">TririgaBuildings_Always_On</a></li>
+<li><a href="/AppConnect%20Flows/TririgaBuildings_On_Demand.yaml">TririgaBuildings_On_Demand</a></li>
+</ul>
+<p><img alt="Tririga-Envizi integration" src="https://media.github.ibm.com/user/375131/files/1a642100-01ed-11ed-8151-31e573db3664" /></p>
+<h2 id="tririga-configuration">Tririga Configuration</h2>
+<p>Before AppConnect flow is configured, OM package needs to be installed on the Tririga instance.</p>
+<p>Follow the documentation <a href="../tririga-configuration/">here</a> for detailed instructions.</p>
+<h2 id="appconnect-configuration">AppConnect Configuration</h2>
+<p>Note: IBM Cloud AppConnect Professional or Enterprise is needed to run this flow.</p>
+<p>Note: The names in the screenshots are generic, the elements in this integration will not have the same names during setup.</p>
+<h3 id="adding-accounts">Adding Accounts</h3>
+<p>Before importing the flow to AppConnect, add Accounts for SFTP and HTTP connectors. While adding the HTTP connector account, include credentials for the Tririga user which can consume the OSLC API.</p>
+<ul>
+<li>
+<p>Navigate to Catalog section of the AppConnect instance
+<img width="960" alt="Create Account 1" src="https://media.github.ibm.com/user/375131/files/eb8b5a00-eb1d-11ec-8401-35b47d561ce4"></p>
+</li>
+<li>
+<p>In the "Search application" field, type name of the connector.</p>
+</li>
+<li>
+<p>If the AppConnect instance does not have an account for the connector, click on "Connect" to create a new account
+<img width="960" alt="Create Account 2a" src="https://media.github.ibm.com/user/375131/files/ec23f080-eb1d-11ec-9f62-af1addec3fd3"></p>
+</li>
+<li>
+<p>Else, open the account selection drop down, and click on "Add a new account ..."
+<img width="948" alt="Create Account 2b" src="https://media.github.ibm.com/user/375131/files/ecbc8700-eb1d-11ec-9693-4ce83ffda2e6"></p>
+</li>
+<li>
+<p>Enter the necessary details for the connector</p>
+<ul>
+<li>For SFTP, it will be the SFTP server and user account.</li>
+<li>For HTTP, it will be the Authentication Key or username and password needed for Tririga.
+<img width="960" alt="Create Account 3" src="https://media.github.ibm.com/user/375131/files/ed551d80-eb1d-11ec-9894-350e87fbb2b2"></li>
+</ul>
+</li>
+<li>
+<p>Click on Connect
+<img width="960" alt="Create Account 4" src="https://media.github.ibm.com/user/375131/files/ed551d80-eb1d-11ec-983c-c276d43e0654"></p>
+</li>
+<li>
+<p>From the account selection drop down, select the newly created account. e.g., The default name will be <code>Account 2</code> if <code>Account 1</code> is already present</p>
+</li>
+<li>
+<p>Click on the kebab menu (three dots) and select "Rename Account"
+<img width="960" alt="Create Account 5" src="https://media.github.ibm.com/user/375131/files/ededb400-eb1d-11ec-9a29-fd9fa65dbf8b"></p>
+</li>
+<li>
+<p>Enter an account name and click on "Rename Account". This name can now be used by the connector in the flow.
+<img width="958" alt="Create Account 6" src="https://media.github.ibm.com/user/375131/files/ee864a80-eb1d-11ec-96d1-fdc42c679896"></p>
+</li>
+</ul>
+<h3 id="importing-the-flow">Importing the flow</h3>
+<ul>
+<li>Open the Dashboard of the AppConnect instance</li>
+<li>
+<p>Click on the "New" button and select "Import Flow"
+<img width="861" alt="Flow Import 0" src="https://media.github.ibm.com/user/375131/files/ea582e00-eb19-11ec-9912-0881d321f3c7"></p>
+</li>
+<li>
+<p>Browse to the flow's YAML file and click on "Import"
+<img width="960" alt="Flow Import 1" src="https://media.github.ibm.com/user/375131/files/ea582e00-eb19-11ec-88a7-abebff4e0534"></p>
+</li>
+<li>
+<p>The flow will now be imported and opened.
+<img width="960" alt="Flow Import 2" src="https://media.github.ibm.com/user/375131/files/eaf0c480-eb19-11ec-885b-919da812499b"></p>
+</li>
+</ul>
+<h3 id="configuring-the-flow-to-use-the-right-accounts">Configuring the flow to use the right accounts</h3>
+<p>When importing a flow, it is important to check if the flow is using the right accounts for the different connectors.</p>
+<ul>
+<li>
+<p>Click on "Edit Flow"</p>
+</li>
+<li>
+<p>See if the connectors are using the right accounts.</p>
+</li>
+<li>
+<p>To change the account for any connector, select the connector and click on the dropdown icon next to the Account's name
+<img width="960" alt="Select Account 1" src="https://media.github.ibm.com/user/375131/files/11186380-eb1e-11ec-9c92-5f892df61a57"></p>
+</li>
+<li>
+<p>Select the account name to use from the list
+<img width="659" alt="Select Account 2" src="https://media.github.ibm.com/user/375131/files/11b0fa00-eb1e-11ec-88fd-8e4998f6304a"></p>
+</li>
+</ul>
+<h3 id="configuring-the-scheduler">Configuring the Scheduler</h3>
+<ul>
+<li>Click on the "Scheduler" node</li>
+</ul>
+<p><img width="659" alt="Scheduler node" src="https://media.github.ibm.com/user/375131/files/ea694d80-01ed-11ed-8852-16b625339675"></p>
+<ul>
+<li>Configure the schedule as needed</li>
+</ul>
+<p><img width="659" alt="Scheduler configuration 1" src="https://media.github.ibm.com/user/375131/files/d70ab200-01ee-11ed-9af7-4f66738aea7c">
+<img width="659" alt="Scheduler configuration 2" src="https://media.github.ibm.com/user/375131/files/00c3d900-01ef-11ed-86aa-29008ff86450"></p>
+<h3 id="using-the-flows">Using the flows</h3>
+<p>This integration comes with two types of flows:</p>
+<h4 id="on-demand-flow">On-demand Flow</h4>
+<ul>
+<li>This flow is for the initial sync or to sync data that was added/updated between specific dates.</li>
+<li>This flow is meant to be executed just once whenever needed and then stopped.</li>
+<li>To use this flow, the following parameters in "Set variable" node need to be configured:</li>
+<li>Variable &gt; config &gt; OverrideFromDate:<ul>
+<li>The start timestamp of the window between which the data will be pulled from.</li>
+<li>The date must be specified in ISO 8601 format.</li>
+<li>e.g., <code>2022-06-26T23:09:30-07:00</code> where <code>-07:00</code> represents timezone offset of UTC-07:00 hours</li>
+</ul>
+</li>
+<li>Variable &gt; config &gt; OverrideToDate:<ul>
+<li>The end timestamp of the window between which the data will be pulled from.</li>
+<li>The date must be specified in ISO 8601 format.</li>
+<li>e.g., <code>2022-06-26T23:09:30-07:00</code> where <code>-07:00</code> represents timezone offset of UTC-07:00 hours</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Set variable configuration" src="https://media.github.ibm.com/user/375131/files/06799700-0932-11ed-90c4-5842714c7033" /></p>
+<h4 id="always-on-flow">Always-On Flow</h4>
+<ul>
+<li>This flow is to keep syncing the data after the initial sync</li>
+<li>This flow is meant to be kept running</li>
+<li>This flow will only sync the data that has been added or updated after its previous execution event.</li>
+<li>e.g., If the flow executes at 2 PM and it's previous execution was at 1 PM, the flow will pull data that has been added or updated after 1 PM.</li>
+</ul>
+<h4 id="configuring-the-flow-parameters">Configuring the Flow Parameters</h4>
+<ul>
+<li>Click on the "Set variable" node</li>
+</ul>
+<p><img alt="Set variable configuration" src="https://media.github.ibm.com/user/375131/files/06799700-0932-11ed-90c4-5842714c7033" /></p>
+<ul>
+<li>In Variable &gt; config &gt; customer, enter the value provided by Envizi</li>
+<li>In Variable &gt; config &gt; triURL, enter URL for the Tririga instance<ul>
+<li>e.g., https://example.com:9080</li>
+</ul>
+</li>
+</ul>
+<h3 id="starting-and-stopping-the-flow">Starting and Stopping the flow</h3>
+<ul>
+<li>
+<p>If using AppConnect Dashboard, Click on the kebab menu (three dots) on the flow's tile.
+<img width="656" alt="Flow start 1" src="https://media.github.ibm.com/user/375131/files/5be4ac00-eb1b-11ec-85b0-b7b2d400a7e1"></p>
+</li>
+<li>
+<p>If inside the flow, Click on the kebab menu (three dots) on top right of the screen.
+<img width="959" alt="Flow start 2" src="https://media.github.ibm.com/user/375131/files/5be4ac00-eb1b-11ec-93f2-4031220e144f"></p>
+</li>
+<li>
+<p>Click on "Start API" or "Stop API" depending on which action is desired.</p>
+</li>
+</ul>
+<p><em>Note: If the flow is not running, AppConnect will give Error 404 on the API call.</em></p>
+<h2 id="post-setup-instructions">Post-Setup Instructions</h2>
+<p>The Envizi implementation team will support the next steps of the integration by provisioning the file transfer details, enabling Envizi data connectors and validating the Envizi configuration ready to receive the data flow.</p>
+<p>Please reach out to the primary contact at Envizi who can help coordinate next steps.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../tas-envizi-index/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" defer></script>
+      <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
