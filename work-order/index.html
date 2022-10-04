@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/work-order/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Work Order - IBM Sustainability Software Portfolio Connectors</title>
+    <title>Work Order Integration - IBM Sustainability Software Portfolio Connectors</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Work Order";
+        var mkdocs_page_name = "Work Order Integration";
         var mkdocs_page_input_path = "work-order.md";
         var mkdocs_page_url = "/IBM-Sustainability-Software-Portfolio-Connectors/work-order/";
       </script>
@@ -50,14 +50,12 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">Overview</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas/">Portfolio Data</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas/">Portfolio Data Integration</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request Integration</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Work Order</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Work Order Integration</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of contents</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#description">Description</a>
@@ -144,7 +142,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
           <li>IBM MAS Connector for TRIRIGA &raquo;</li>
-      <li>Work Order</li>
+      <li>Work Order Integration</li>
     <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/work-order.md"
           class="icon icon-github"> Edit on GitHub</a>
@@ -155,28 +153,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="work-order-configuration">Work Order Configuration</h1>
-<h2 id="table-of-contents">Table of contents</h2>
-<!--ts-->
-<ul>
-<li><a href="#summary">Summary</a></li>
-<li><a href="#description">Description</a></li>
-<li><a href="#pre-requisites">Pre-Requisites</a> <ul>
-<li><a href="#maximo">Maximo</a></li>
-<li><a href="#tririga">Tririga</a></li>
-<li><a href="#configuring-the-flow-to-use-the-right-accounts">App Connect</a></li>
-<li><a href="#configuring-the-scheduler">Configuring the Scheduler</a></li>
-<li><a href="#using-the-flows">Using the flows</a></li>
-<li><a href="#on-demand-flow">On-demand Flow</a></li>
-<li><a href="#always-on-flow">Always-On Flow</a></li>
-<li><a href="#configuring-the-flow-parameters">Configuring the Flow Parameters</a></li>
-<li><a href="#starting-and-stopping-the-flow">Starting and Stopping the flow</a></li>
-</ul>
-</li>
-<li><a href="#post-setup-instructions">Post-Setup Instructions</a></li>
-</ul>
-<!--te-->
-
+                <h1 id="work-order-integration">Work Order Integration</h1>
 <h2 id="summary">Summary</h2>
 <p>Enable automated synchronization of Work Order data from IBM Maximo to IBM TRIRIGA or vice versa.</p>
 <h2 id="description">Description</h2>
@@ -194,7 +171,7 @@
 </ol>
 <p>At the end of this process, a Work Order can be created within Maximo and sent to TRIRIGA and vice versa.</p>
 <h2 id="pre-requisites">Pre-requisites</h2>
-<p>This configuration assumes the completion of the pre-requisites and steps outlined in the Maximo &lt;-&gt; TRIRIGA code pattern. <a href="https://developer.ibm.com/patterns/synchronize-databases-between-asset-workplace-management-solutions/">See here</a> for those steps.</p>
+<p>This configuration assumes the completion of the pre-requisites and steps outlined in the Maximo &lt;-&gt; TRIRIGA code pattern. <a href="https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/mas-tas-home/">See here</a> for those steps.</p>
 <h3 id="maximo">Maximo</h3>
 <p>Within Maximo, some initial changes to the database and Work Order application need to be completed in order for the integration to work properly. Errors may arise if these steps are not completed.</p>
 <h4 id="1-create-a-domain-that-will-link-to-an-attribute-on-the-workorder-table">1. Create a Domain that will link to an attribute on the WORKORDER table.</h4>

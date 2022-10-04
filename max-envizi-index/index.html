@@ -50,11 +50,11 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">Overview</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas/">Portfolio Data</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas/">Portfolio Data Integration</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request Integration</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../work-order/">Work Order</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../work-order/">Work Order Integration</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">IBM MAS Connector for Envizi</span></p>
@@ -63,7 +63,31 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    <li class="toctree-l2"><a class="reference internal" href="#pre-requisites">Pre-requisites</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#maximo-configuration">Maximo Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#pre-checks-on-your-data">Pre-checks on your data</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#deploying-maximo-build">Deploying Maximo Build</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configuring-artifacts">Configuring Artifacts</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#appconnect-configuration">AppConnect Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#adding-accounts">Adding Accounts</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#importing-the-flow">Importing the flow</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configuring-the-flow-to-use-the-right-accounts">Configuring the flow to use the right accounts</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#creating-api-key">Creating API Key</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
     </li>
     </ul>
                   </li>
@@ -105,7 +129,243 @@
               
                 <h1 id="ibm-mas-connector-for-envizi">IBM MAS Connector for Envizi</h1>
 <h2 id="overview">Overview</h2>
-<h2 id="prerequisites">Prerequisites</h2>
+<p>Enable on-demand and scheduled synchronization of Meters &amp; Meter Reading data between Maximo and Envizi systems.</p>
+<p><img alt="Maximo-Envizi Integration" src="https://media.github.ibm.com/user/375131/files/213f0180-e8d8-11ec-8d47-a276b27d6fb0" /></p>
+<h2 id="pre-requisites">Pre-requisites</h2>
+<h3 id="maximo-configuration">Maximo Configuration</h3>
+<h4 id="pre-checks-on-your-data">Pre-checks on your data</h4>
+<p><em>Data for Location Meter will not be exported to Envizi if the Unit of Measurement is not configured.</em></p>
+<p>The current integration with Envizi only supports the following Units of Measurement for the Location Meter data:</p>
+<ul>
+<li>Electric Meters<ul>
+<li>GJ</li>
+<li>kWh</li>
+<li>MWh</li>
+</ul>
+</li>
+<li>Natural Gas Meters<ul>
+<li>GJ</li>
+<li>MJ</li>
+<li>kWh</li>
+<li>m3</li>
+<li>mmbtu</li>
+<li>therms</li>
+</ul>
+</li>
+<li>Water Meters<ul>
+<li>litres</li>
+<li>kliter</li>
+<li>m3</li>
+<li>gallons</li>
+</ul>
+</li>
+</ul>
+<p>Service Address must be configured in Location with the below fields for proper functioning of Envizi's features:</p>
+<ul>
+<li>Street Address</li>
+<li>City</li>
+<li>State</li>
+<li>Post Code</li>
+<li>Country</li>
+<li>Latitude</li>
+<li>Longitude</li>
+</ul>
+<h4 id="deploying-maximo-build">Deploying Maximo Build</h4>
+<p>Within Maximo, the integration provides integration components (via .dbc script files) and Java Classes as part of the solution. These components need to be installed in the customer's Maximo environment. Components and other content created for this integration solution will be identified by names that begin with PLUSZ.</p>
+<h5 id="maximo-7612">Maximo 7.6.1.2+</h5>
+<ol>
+<li>
+<p>On the Maximo Admin workstation, overlay the Maximo SMP directory (<code>/opt/IBM/SMP/maximo</code>) with the contents from the solution zip file that is provided. This will lay down the Java Classes and .dbc files provided with the solution.</p>
+</li>
+<li>
+<p>Shutdown the MXServer</p>
+</li>
+<li>
+<p>Run UpdateDB command to install the solution components</p>
+<ul>
+<li>Navigate to <code>/opt/IBM/SMP/maximo/tools/maximo</code></li>
+<li>Run <code>./updatedb.sh</code></li>
+</ul>
+</li>
+<li>
+<p>Build the Maximo EAR file</p>
+<ul>
+<li>Navigate to <code>/opt/IBM/SMP/maximo/deployment</code></li>
+<li>Run <code>./buildmaximoear.sh</code></li>
+</ul>
+</li>
+<li>
+<p>Deploy the new Maximo EAR File on all Maximo servers</p>
+<ul>
+<li>In WebSphere console, navigate to: Applications-&gt;Application types-&gt;Websphere enterprise applications</li>
+<li>Select MAXIMO and then hit "Update" button</li>
+<li>Select "Browse" and select the EAR file from Step 4</li>
+<li>Hit "Next" and accept defaults from all pages</li>
+<li>After deployment, click on "Save"</li>
+</ul>
+</li>
+<li>
+<p>Start the applications and MXServer</p>
+</li>
+</ol>
+<h5 id="mas-88">MAS 8.8+</h5>
+<ol>
+<li>Navigate to the Admin dashboard of the instance of Manage within MAS.</li>
+<li>Select the workspace the instance is deployed on and update the configuration. </li>
+<li>Scroll down to "Customization" and link to the location of the .zip file in the field (See <a href="https://www.ibm.com/docs/en/maximo-manage/continuous-delivery?topic=manage-setting-customizations">here</a> for more details)</li>
+<li>Click Apply Changes and Manage will update the instance with the customization. </li>
+</ol>
+<h4 id="configuring-artifacts">Configuring Artifacts</h4>
+<h5 id="meter-groups">Meter Groups</h5>
+<ul>
+<li>Make sure all the Meters that need to sync with Envizi are in the right meter groups:<ul>
+<li><code>PLUSZ_ELEC</code> - Electric Meters</li>
+<li><code>PLUSZ_GAS</code> - Natural Gas Meters</li>
+<li><code>PLUSZ_WTR</code> - Water Meters</li>
+</ul>
+</li>
+</ul>
+<h5 id="end-points">End Points</h5>
+<ul>
+<li>
+<p>In the Maximo menu, click on Integration &gt; End Points
+<img width="580" alt="End Points - Menu" src="https://media.github.ibm.com/user/375131/files/b7315700-e8ed-11ec-8e95-885b57b97a66"></p>
+</li>
+<li>
+<p>Under the "End Point" column, type "PLUSZ" and hit enter to search</p>
+</li>
+<li>
+<p>Click on the "PLUSZEXPORT" End Point
+<img width="692" alt="End Points - Search" src="https://media.github.ibm.com/user/375131/files/aed91c00-e8ed-11ec-9e22-99cece3dadbc"></p>
+</li>
+<li>
+<p>Configure the parameters required to execute the AppConnect flow</p>
+<ul>
+<li><code>URL</code>: Full URL to the flow's API as show in AppConnect "API Documentation Link"</li>
+<li><code>HEADERS</code>: Replace the <code>YourAPIKeyHere</code> with the AppConnect flow's API Key<ul>
+<li>By default the AppConnect flow will be looking for the API key in the <code>X-IBM-Client-Id</code> header</li>
+<li>If the API Key is <code>123</code>, the final value in this field will be <code>X-IBM-Client-Id: 123,Content-Type: application/json</code></li>
+<li><strong>Do not</strong> remove <code>,Content-Type:application/json</code></li>
+</ul>
+</li>
+<li><code>HTTPMETHOD</code>: Do not change the default value <code>POST</code>
+<img width="946" alt="End Points - Configuration" src="https://media.github.ibm.com/user/375131/files/5787e680-f7dd-11ec-93af-d44216ffbf86"></li>
+</ul>
+</li>
+<li>
+<p>Click on "Save End Point" in "Common Actions" on the left side</p>
+</li>
+</ul>
+<p>The End Point is now configured </p>
+<h3 id="appconnect-configuration">AppConnect Configuration</h3>
+<p>Note: You need IBM Cloud AppConnect Professional or Enterprise to run this flow.</p>
+<p>Note: The names in the screenshots are generic, other instances will not have the same names during setup.</p>
+<h4 id="adding-accounts">Adding Accounts</h4>
+<p>Before importing the flow to AppConnect, add Accounts for SFTP and HTTP connectors.</p>
+<ul>
+<li>
+<p>Navigate to Catalog section of the AppConnect instance
+<img width="960" alt="Create Account 1" src="https://media.github.ibm.com/user/375131/files/eb8b5a00-eb1d-11ec-8401-35b47d561ce4"></p>
+</li>
+<li>
+<p>In the "Search application", type name of the connector to add the account for</p>
+</li>
+<li>
+<p>If the AppConnect instance does not have an account for the connector, click on "Connect" to create a new account
+<img width="960" alt="Create Account 2a" src="https://media.github.ibm.com/user/375131/files/ec23f080-eb1d-11ec-9f62-af1addec3fd3"></p>
+</li>
+<li>
+<p>Else, open the account selection drop down, and click on "Add a new account ..."
+<img width="948" alt="Create Account 2b" src="https://media.github.ibm.com/user/375131/files/ecbc8700-eb1d-11ec-9693-4ce83ffda2e6"></p>
+</li>
+<li>
+<p>Enter the necessary details for the connector</p>
+<ul>
+<li>For SFTP, it will be the SFTP server and user account.</li>
+<li>For HTTP, it will be the Authentication Key or username and password needed for Maximo.
+<img width="960" alt="Create Account 3" src="https://media.github.ibm.com/user/375131/files/ed551d80-eb1d-11ec-9894-350e87fbb2b2"></li>
+</ul>
+</li>
+<li>
+<p>Click on Connect
+<img width="960" alt="Create Account 4" src="https://media.github.ibm.com/user/375131/files/ed551d80-eb1d-11ec-983c-c276d43e0654"></p>
+</li>
+<li>
+<p>From the account selection drop down, select the newly created account. e.g., The default name will be <code>Account 2</code> if you already have <code>Account 1</code></p>
+</li>
+<li>
+<p>Click on the kebab menu (three dots) and select "Rename Account"
+<img width="960" alt="Create Account 5" src="https://media.github.ibm.com/user/375131/files/ededb400-eb1d-11ec-9a29-fd9fa65dbf8b"></p>
+</li>
+<li>
+<p>Enter an account name and click on "Rename Account". This name can now be used by the connector in the flow.
+<img width="958" alt="Create Account 6" src="https://media.github.ibm.com/user/375131/files/ee864a80-eb1d-11ec-96d1-fdc42c679896"></p>
+</li>
+</ul>
+<h4 id="importing-the-flow">Importing the flow</h4>
+<ul>
+<li>Open the Dashboard of the AppConnect instance</li>
+<li>
+<p>Click on the "New" button and select "Import Flow"
+<img width="861" alt="Flow Import 0" src="https://media.github.ibm.com/user/375131/files/ea582e00-eb19-11ec-9912-0881d321f3c7"></p>
+</li>
+<li>
+<p>Browse to the flow's YAML file and click on "Import"
+<img width="960" alt="Flow Import 1" src="https://media.github.ibm.com/user/375131/files/ea582e00-eb19-11ec-88a7-abebff4e0534"></p>
+</li>
+<li>
+<p>The flow will now be imported and opened.
+<img width="960" alt="Flow Import 2" src="https://media.github.ibm.com/user/375131/files/eaf0c480-eb19-11ec-885b-919da812499b"></p>
+</li>
+</ul>
+<h4 id="configuring-the-flow-to-use-the-right-accounts">Configuring the flow to use the right accounts</h4>
+<p>When importing a flow, it is important to check if the flow is using the right accounts for the different connectors.</p>
+<ul>
+<li>
+<p>Click on "Edit Flow"</p>
+</li>
+<li>
+<p>See if the connectors are using the right accounts.</p>
+</li>
+<li>
+<p>To change the account for any connector, select the connector and click on the dropdown icon next to the Account's name
+<img width="960" alt="Select Account 1" src="https://media.github.ibm.com/user/375131/files/11186380-eb1e-11ec-9c92-5f892df61a57"></p>
+</li>
+<li>
+<p>Select the account name that you want to use from the list
+<img width="659" alt="Select Account 2" src="https://media.github.ibm.com/user/375131/files/11b0fa00-eb1e-11ec-88fd-8e4998f6304a"></p>
+</li>
+</ul>
+<h4 id="creating-api-key">Creating API Key</h4>
+<ul>
+<li>
+<p>Click on "Manage".
+<img width="960" alt="Flow API Key 1" src="https://media.github.ibm.com/user/375131/files/12479180-eb1a-11ec-86ee-1adea1c7836f"></p>
+</li>
+<li>
+<p>Scroll to the bottom of the page. Click on "Create API key and documentation link"
+<img width="960" alt="Flow API Key 2" src="https://media.github.ibm.com/user/375131/files/12e02800-eb1a-11ec-9da1-36c9b85d002c"></p>
+</li>
+<li>
+<p>Enter name for the API key and click on "Create"
+<img width="960" alt="Flow API Key 3" src="https://media.github.ibm.com/user/375131/files/1378be80-eb1a-11ec-9c2f-b700d0e55d9e"></p>
+</li>
+<li>
+<p>Make a note of this key. Maximo End Point will be configured to send this API key as value for the <code>X-IBM-Client-Id</code> header while calling the AppConnect flow API.</p>
+</li>
+<li>
+<p>Open the "API Documentation Link" in another tab.</p>
+</li>
+<li>
+<p>Click on the Route to see the URL
+<img width="958" alt="Flow API Key 4" src="https://media.github.ibm.com/user/375131/files/14115500-eb1a-11ec-8988-315fe623751c"></p>
+</li>
+<li>
+<p>Copy the link show in details tab next to the HTTP Method
+<img width="960" alt="Flow API Key 5" src="https://media.github.ibm.com/user/375131/files/14115500-eb1a-11ec-8bce-d7751c8e9141"></p>
+</li>
+</ul>
+<p>It is helpful to use a tool like Postman to test this API prior to testing it for the first time from Maximo.</p>
               
             </div>
           </div><footer>
