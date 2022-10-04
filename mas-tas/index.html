@@ -72,13 +72,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-4-configure-websphere-certificates">Step 4 - Configure WebSphere Certificates</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#websphere">Websphere</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-5-test-the-flow">Step 5 - Test the Flow</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-4-test-the-flow">Step 4 - Test the Flow</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
     </li>
@@ -232,42 +226,8 @@
 <p>Under the 'Name' column, type in 'apic', and select the integration object that pertains to the record that is getting sent. </p>
 <p><img src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-9ea5-af57b4059a25" alt="TRIRIGA End Point"></p>
 <p>Click on the object and fill in the credentials in the pop-up box.</p>
-<h2 id="step-4-configure-websphere-certificates">Step 4 - Configure WebSphere Certificates</h2>
-<p>This step makes a test connection to a Secure Sockets Layer (SSL) port and retrieves the signer from the server during the handshake.</p>
-<h3 id="websphere">Websphere</h3>
-<p>Login to the Websphere console that is hosting the Maximo server</p>
-<p><img width="1280" alt="Websphere-Home" src="https://media.github.ibm.com/user/348712/files/ee26db00-3801-11ed-8365-8604ad0a66df"></p>
-<p>Click on Security -&gt; SSL certificate &amp; key management. Under 'Related Items' click on 'Key stores and certificates'</p>
-<p><img width="1282" alt="Websphere-Keystores" src="https://media.github.ibm.com/user/348712/files/eebf7180-3801-11ed-9253-85d4e8bed0ea"></p>
-<p>Click on 'CellDefaultTrustStore' and on the next page under 'Additional Properties' click on 'Signer certificates'. </p>
-<p><img width="1283" alt="Websphere-Signercerts" src="https://media.github.ibm.com/user/348712/files/f121cb80-3801-11ed-9833-65fe541bcef5"></p>
-<p>From this page, click on the button that says 'Retrieve from Port' and fill in the required fields using the table below</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Host</td>
-<td>The host from the url in Step 2</td>
-</tr>
-<tr>
-<td>Port</td>
-<td>443</td>
-</tr>
-<tr>
-<td>Alias</td>
-<td>appconnect</td>
-</tr>
-</tbody>
-</table>
-<p>Once all three have been entered in, click 'Retrieve signer information' and the information from the url will populate on screen. Click save in the box at the top and then repeat the process for 'NodeDefaultTrustStore'</p>
-</details>
-<h2 id="step-5-test-the-flow">Step 5 - Test the Flow</h2>
-<p>With these 4 steps completed, test the flow with a payload.</p>
+<h2 id="step-4-test-the-flow">Step 4 - Test the Flow</h2>
+<p>With these 3 steps completed, test the flow with a payload.</p>
 <p>Head back to the 'Try It' page in the deployed flow (or the documentation page if cloud-based) and scroll down to the bottom of the page under Parameters.</p>
 <p><img src="https://media.github.ibm.com/user/348712/files/e2d3af80-3801-11ed-9e0e-0aba1b46eefa" alt="App Connect Test" ></p>
 <p>In here, fill in mxUrl and triUrl with the urls for the respective applications, generate a test payload to send through the flow and monitor if the information populates in the desired application.</p>

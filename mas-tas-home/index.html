@@ -54,6 +54,16 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#certificates-for-maximo">Certificates for Maximo</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#maximo-7612">Maximo 7.6.1.2+</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mas-88">MAS 8.8+</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#certificates-for-tririga">Certificates for TRIRIGA</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#maximo">Maximo</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#1-create-an-organization-named-tririga">1. Create an Organization named TRIRIGA</a>
@@ -141,7 +151,55 @@
 <h2 id="overview">Overview</h2>
 <p>Portfolio Data is able to be synced bi-directionally across Maximo &amp; TRIRIGA with the use of these integrations. The data that is supported at this time includes People, Assets, Locations/Spaces, Service Requests, and Work Orders/Work Tasks. After configuring the environments with the proper prerequisites, please select the desired connector below and follow the instructions to implement the integration.</p>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>These code patterns all require initial configuration of an instance of Maximo, App Connect, and TRIRIGA. These pre-requisites are also assuming that all three applications are behind the same firewall. If any of these three applications do not share the same firewall, a secure connection between the applications will need to be established. IBM does provide a product that accomplishes this- Secure Gateway. Learn more about getting started with Secure Gateway <a href="https://cloud.ibm.com/docs/SecureGateway?topic=SecureGateway-getting-started-with-sg">here</a></p>
+<p>These code patterns all require initial configuration of an instance of Maximo, App Connect, and TRIRIGA. These pre-requisites also require that all three applications are behind the same firewall. </p>
+<p>If any of these three applications do not share the same firewall, a secure connection between the applications will need to be established. IBM does provide a product that accomplishes this- Secure Gateway. Learn more about getting started with Secure Gateway <a href="https://cloud.ibm.com/docs/SecureGateway?topic=SecureGateway-getting-started-with-sg">here</a></p>
+<p>Certificates for the App Connect instance will need to be imported into both systems:</p>
+<h3 id="certificates-for-maximo">Certificates for Maximo</h3>
+<h4 id="maximo-7612">Maximo 7.6.1.2+</h4>
+<p><strong>Configure WebSphere Certificates</strong></p>
+<p>This step makes a test connection to a Secure Sockets Layer (SSL) port and retrieves the signer from the server during the handshake.</p>
+<p>Login to the Websphere console that is hosting the Maximo server</p>
+<p><img width="1280" alt="Websphere-Home" src="https://media.github.ibm.com/user/348712/files/ee26db00-3801-11ed-8365-8604ad0a66df"></p>
+<p>Click on Security -&gt; SSL certificate &amp; key management. Under 'Related Items' click on 'Key stores and certificates'</p>
+<p><img width="1282" alt="Websphere-Keystores" src="https://media.github.ibm.com/user/348712/files/eebf7180-3801-11ed-9253-85d4e8bed0ea"></p>
+<p>Click on 'CellDefaultTrustStore' and on the next page under 'Additional Properties' click on 'Signer certificates'. </p>
+<p><img width="1283" alt="Websphere-Signercerts" src="https://media.github.ibm.com/user/348712/files/f121cb80-3801-11ed-9833-65fe541bcef5"></p>
+<p>From this page, click on the button that says 'Retrieve from Port' and fill in the required fields using the table below</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host</td>
+<td>The host from the imported flow url</td>
+</tr>
+<tr>
+<td>Port</td>
+<td>443</td>
+</tr>
+<tr>
+<td>Alias</td>
+<td>appconnect</td>
+</tr>
+</tbody>
+</table>
+<p>Once all three have been entered in, click 'Retrieve signer information' and the information from the url will populate on screen. Click save in the box at the top and then repeat the process for 'NodeDefaultTrustStore'</p>
+<h4 id="mas-88">MAS 8.8+</h4>
+<p>Extract the App Connect certificate from an imported flow url. Navigate to the flow's page and click on 'Test' and then 'Try It' to get the proper url.</p>
+<p>From there, navigate to the Admin dashboard for MAS and go to the workspace where Manage is deployed.</p>
+<p><img width="1280" alt="Manage-Workspace" src="https://media.github.ibm.com/user/348712/files/33502d00-43fe-11ed-801b-a454fa4b8f7e"></p>
+<p>Update the configuration and scroll down to 'Imported Certificates'. Untick the 'System managed' button and fill in the extracted certificate in the fields.</p>
+<p><img width="1280" alt="Imported-Certificates" src="https://media.github.ibm.com/user/348712/files/33e8c380-43fe-11ed-91b9-68b37462c897"></p>
+<p>Click 'Apply Changes' at the top of the page and MAS will update the truststore with the new certificate.</p>
+<h3 id="certificates-for-tririga">Certificates for TRIRIGA</h3>
+<p><em>To be filled in with proper information</em>
+<br></p>
+<hr>
+
 <p>See below for the pre-requisites of each system:</p>
 <h3 id="maximo">Maximo</h3>
 <p><strong> Credentials and access to an instance of Maximo as well as the WebSphere application which hosts Maximo are required. This code pattern has been tested on Maximo 7.6.1.2 as well as MAS 8.6 </strong> </p>
