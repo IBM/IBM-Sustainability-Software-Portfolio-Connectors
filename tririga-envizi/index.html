@@ -122,61 +122,62 @@
 </ul>
 <p>This integration comes with two types of flows:</p>
 <h4 id="on-demand-flow">On-demand Flow</h4>
-<ul>
-<li>This flow is for the initial sync or to sync data that was added/updated between specific dates.</li>
-<li>This flow is meant to be executed just once whenever needed and then stopped.</li>
-<li>To use this flow, the following parameters in "Set variable" node need to be configured:</li>
-<li>Variable &gt; config &gt; OverrideFromDate:<ul>
-<li>The start timestamp of the window between which the data will be pulled from.</li>
-<li>The date must be specified in ISO 8601 format.</li>
-<li>e.g., <code>2022-06-26T23:09:30-07:00</code> where <code>-07:00</code> represents timezone offset of UTC-07:00 hours</li>
-</ul>
-</li>
-<li>Variable &gt; config &gt; OverrideToDate:<ul>
-<li>The end timestamp of the window between which the data will be pulled from.</li>
-<li>The date must be specified in ISO 8601 format.</li>
-<li>e.g., <code>2022-06-26T23:09:30-07:00</code> where <code>-07:00</code> represents timezone offset of UTC-07:00 hours</li>
-</ul>
-</li>
-</ul>
-<p><img alt="Set variable configuration" src="https://media.github.ibm.com/user/375131/files/06799700-0932-11ed-90c4-5842714c7033" /></p>
+<p>This flow is for the initial sync or to sync data that was added/updated between specific dates. This flow is meant to be executed just once whenever needed and then stopped.</p>
+<ol>
+<li>The following parameters in the initial <strong>Set variable</strong> node need to be configured in order to use this flow:
+<img alt="Set variable configuration" src="https://media.github.ibm.com/user/375131/files/06799700-0932-11ed-90c4-5842714c7033" />
+<em>Override Dates in Set Variable</em></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OverrideFromDate</td>
+<td>The start timestamp of the window between which the data will be pulled from. e.g., <code>2022-06-26T23:09:30-07:00</code></td>
+</tr>
+<tr>
+<td>OverrideToDate</td>
+<td>The end timestamp of the window between which the data will be pulled from. e.g., <code>2023-06-26T23:09:30-07:00</code></td>
+</tr>
+</tbody>
+</table>
+<p><i><strong>These dates must be specified in ISO 8601 format</strong></i></p>
 <h4 id="always-on-flow">Always-On Flow</h4>
-<ul>
-<li>This flow is to keep syncing the data after the initial sync</li>
-<li>This flow is meant to be kept running</li>
-<li>This flow will only sync the data that has been added or updated after its previous execution event.</li>
-<li>e.g., If the flow executes at 2 PM and it's previous execution was at 1 PM, the flow will pull data that has been added or updated after 1 PM.</li>
-</ul>
+<p>This flow is to keep syncing the data after the initial sync. This flow is meant to be kept running and will only sync the data that has been added or updated after its previous execution event. For example, if the flow executes at 2 PM and it's previous execution was at 1 PM, the flow will pull data that has been added or updated after 1 PM.</p>
 <h4 id="configuring-the-flow-parameters">Configuring the Flow Parameters</h4>
-<ul>
-<li>Click on the "Set variable" node</li>
-</ul>
-<p><img alt="Set variable configuration" src="https://media.github.ibm.com/user/375131/files/06799700-0932-11ed-90c4-5842714c7033" /></p>
-<ul>
-<li>In Variable &gt; config &gt; customer, enter the value provided by Envizi</li>
-<li>In Variable &gt; config &gt; triURL, enter URL for the Tririga instance<ul>
-<li>e.g., https://example.com:9080</li>
-</ul>
+<ol>
+<li>
+<p>Click on the initial <strong>Set variable</strong> node
+<img alt="Set variable configuration" src="https://media.github.ibm.com/user/375131/files/06799700-0932-11ed-90c4-5842714c7033" />
+<em>Fields in the initial Set variable node</em></p>
 </li>
-</ul>
+<li>
+<p>In <strong>Variable -&gt; config -&gt; customer</strong>, enter the value provided by Envizi</p>
+</li>
+<li>In <strong>Variable -&gt; config -&gt; triURL</strong>, enter URL for the Tririga instance. (e.g., https://example.com:9080)</li>
+</ol>
 <h3 id="starting-and-stopping-the-flow">Starting and Stopping the flow</h3>
-<ul>
+<ol>
 <li>
-<p>If using AppConnect Dashboard, Click on the kebab menu (three dots) on the flow's tile.
-<img width="656" alt="Flow start 1" src="https://media.github.ibm.com/user/375131/files/5be4ac00-eb1b-11ec-85b0-b7b2d400a7e1"></p>
+<p>Click on the kebab menu (three dots) on either the flow's tile or the specific flow page.
+<img width="656" alt="Flow start 1" src="https://media.github.ibm.com/user/375131/files/5be4ac00-eb1b-11ec-85b0-b7b2d400a7e1">
+<em>Start the flow from the dashboard</em>
+<img width="959" alt="Flow start 2" src="https://media.github.ibm.com/user/375131/files/5be4ac00-eb1b-11ec-93f2-4031220e144f">
+<em>Start the flow from the page</em></p>
 </li>
 <li>
-<p>If inside the flow, Click on the kebab menu (three dots) on top right of the screen.
-<img width="959" alt="Flow start 2" src="https://media.github.ibm.com/user/375131/files/5be4ac00-eb1b-11ec-93f2-4031220e144f"></p>
+<p>Click on <strong>Start API</strong> or <strong>Stop API</strong> depending on which action is desired.</p>
 </li>
-<li>
-<p>Click on "Start API" or "Stop API" depending on which action is desired.</p>
-</li>
-</ul>
-<p><em>Note: If the flow is not running, AppConnect will give Error 404 on the API call.</em></p>
+</ol>
+<p><em>Note: If the flow is not running, App Connect will give Error 404 on the API call.</em></p>
 <h2 id="post-setup-instructions">Post-Setup Instructions</h2>
 <p>The Envizi implementation team will support the next steps of the integration by provisioning the file transfer details, enabling Envizi data connectors and validating the Envizi configuration ready to receive the data flow.</p>
-<p>Please reach out to the primary contact at Envizi who can help coordinate next steps.</p>
+<p>Reach out to the primary contact at Envizi who can help coordinate next steps.</p>
               
             </div>
           </div><footer>

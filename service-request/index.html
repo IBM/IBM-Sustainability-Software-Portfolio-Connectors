@@ -62,15 +62,7 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#maximo">Maximo</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#1-create-a-domain-that-will-link-to-an-attribute-on-the-ticket-table">1. Create a Domain that will link to an attribute on the Ticket table.</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#2-head-to-database-configuration-and-search-for-the-ticket-object">2. Head to Database Configuration and search for the 'Ticket' object.</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3-configure-the-publish-channel-enterprise-service-end-point-and-external-system">3. Configure the Publish Channel, Enterprise Service, End Point, and External System</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#4-create-a-relationship-in-the-sr-object">4. Create a relationship in the SR object</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#5-application-designer">5. Application Designer</a>
+    <li class="toctree-l4"><a class="reference internal" href="#1-application-designer">1. Application Designer</a>
     </li>
         </ul>
     </li>
@@ -86,10 +78,10 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#optional-step-1-sync-a-person-to-tririga">(Optional) Step 1. Sync a Person to TRIRIGA</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-2-create-a-service-request">Step 2. Create a Service Request</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-1-create-a-service-request">Step 1. Create a Service Request</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequisite">Prerequisite</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#maximo-to-tririga">Maximo to TRIRIGA</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#tririga-to-maximo">TRIRIGA to Maximo</a>
@@ -157,6 +149,7 @@
 <h2 id="description">Description</h2>
 <p>In this code pattern, learn how to synchronize a Service Request created in Maximo with TRIRIGA using an AppConnect Designer flow. </p>
 <p><img width="467" alt="Service-Request-Diagram" src="https://media.github.ibm.com/user/348712/files/490e0180-3805-11ed-922a-e18101228a1e" height=800px></p>
+<p><em>Service Request Flow</em></p>
 <ol>
 <li>When a Service Request is created in Maximo Asset Management, it triggers the flow to populate the request in TRIRIGA. (There is also a flow that works in the reverse direction, that works in a similar way.)</li>
 <li>App Connect sends a request with the new information through the flow towards the target system (TRIRIGA).</li>
@@ -169,146 +162,16 @@
 </ol>
 <p>At the end of this process, a Service Request can be created within Maximo and sent to TRIRIGA and vice versa.</p>
 <h2 id="pre-requisites">Pre-requisites</h2>
-<p>This configuration assumes the completion of the pre-requisites and steps outlined in the Maximo &lt;-&gt; TRIRIGA code pattern. <a href="https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/mas-tas-home/">See here</a> for those steps.</p>
+<p>This configuration assumes the completion of the pre-requisites and steps outlined in the <a href="https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/mas-tas-home/">Maximo &lt;-&gt; TRIRIGA code pattern</a>.</p>
 <h3 id="maximo">Maximo</h3>
-<p>Within Maximo, some initial changes to the database and Service Request application need to be completed in order for the integration to work properly. Errors may arise if these steps are not completed.</p>
-<h4 id="1-create-a-domain-that-will-link-to-an-attribute-on-the-ticket-table">1. Create a Domain that will link to an attribute on the Ticket table.</h4>
-<p><img width="1788" alt="Domains" src="https://media.github.ibm.com/user/348712/files/46aba780-3805-11ed-9a37-72039aa3a088"></p>
-<table>
-<thead>
-<tr>
-<th>Field Name</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Domain</td>
-<td>PLUSIREQCLASS</td>
-</tr>
-<tr>
-<td>Description</td>
-<td>Tririga service request class</td>
-</tr>
-<tr>
-<td>Domain Type</td>
-<td>ALN</td>
-</tr>
-<tr>
-<td>Data Type</td>
-<td>ALN</td>
-</tr>
-<tr>
-<td>Length</td>
-<td>10</td>
-</tr>
-</tbody>
-</table>
-<p>This domain will need to be populated in order to send a service request out of Maximo. This will be completed in a later step.</p>
-<h4 id="2-head-to-database-configuration-and-search-for-the-ticket-object">2. Head to Database Configuration and search for the 'Ticket' object.</h4>
-<p><img width="1784" alt="DB-config" src="https://media.github.ibm.com/user/348712/files/46131100-3805-11ed-81b1-16fa0f9ed5d7"></p>
-<p>Go to 'Attributes' and create a new row:</p>
-<table>
-<thead>
-<tr>
-<th>Field Name</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Attribute</td>
-<td>PLUSIREQCLASSID</td>
-</tr>
-<tr>
-<td>Description</td>
-<td>TRIRIGA request class of value</td>
-</tr>
-<tr>
-<td>Type</td>
-<td>ALN</td>
-</tr>
-<tr>
-<td>Length</td>
-<td>10</td>
-</tr>
-<tr>
-<td>Required</td>
-<td>No</td>
-</tr>
-<tr>
-<td>Domain</td>
-<td><em>Select the PLUSIREQCLASS Domain from the previous step</em></td>
-</tr>
-</tbody>
-</table>
-<p>** Make sure the length of this attribute has the same length as the domain that is linked</p>
-<p>Save the attribute. Apply the configuration changes to the database by switching on Admin mode and Apply Database Configuration</p>
-<h4 id="3-configure-the-publish-channel-enterprise-service-end-point-and-external-system">3. Configure the Publish Channel, Enterprise Service, End Point, and External System</h4>
-<h5 id="publish-channel">Publish Channel</h5>
-<p>Navigate to Integration -&gt; Publish Channels
-1. Search for 'MXSRInterface' under the Publish Channel field. Click on the channel and from the left side of the screen select 'Duplicate Publish Channel' 
-2. Rename the channel PLUSIMXSR
-3. Click on 'Enable Event Listener' on the left side under More Actions
-4. Make sure Publish JSON and Retain MBO's are checked, the Operation should default to Publish and the Adapter should default to MAXIMO.
-5. Click 'Save Publish Channel' on the left under Common Actions</p>
-<h5 id="enterprise-service">Enterprise Service</h5>
-<p>Navigate to Integration -&gt; Enterprise Services and click on the blue plus button at the top of the page
-1. Under the System name fill in PLUSIMXSR and in the Description fill in "SERVICE REQUEST"
-2. Select 'MXSR' under Object Structure which will populate the Object Structure Sub-Records table
-3. Click 'Save Enterprise Service' on the left under Common Actions</p>
-<p>Repeat this sequence for PLUSISRDOMAIN. In Description fill in "Service Request class records from Tririga" and select 'MXDOMAIN' for the Object Structure.</p>
-<h5 id="end-point">End Point</h5>
-<p>Navigate to Integration -&gt; End Points and click on the blue plus bitton at the top of the page
-1. Under End Point fill in PLUSISREQ and in the Description fill in "AppConnect SERVICE REQUEST outbound to TRIRIGA"
-2. Select 'HTTP' for Handler
-3. Click on 'Save End Point' on the left side under More Actions which will populate the Properties for the End Point
-4. Until the flows have a destination url, we can only fill in certain fields:
-   - HEADERS: "Content-Type: application/json"
-   - HTTPMETHOD: POST
-5. Save the End Point</p>
-<h5 id="external-system">External System</h5>
-<p>Navigate to Integration -&gt; External System and open up the 'PLUSITRIRIGA' external system that was previously set up. Associate the Publish Channel and Enterprise Services to the External System</p>
-<ol>
-<li>Add a new row in Publish Channel with the newly created PLUSIMXSR and link the PLUSISREQ End Point as well</li>
-<li>Add two new rows with the newly created Enterprise Services. </li>
-</ol>
-<p><strong>Make sure both are enabled</strong></p>
-<h4 id="4-create-a-relationship-in-the-sr-object">4. Create a relationship in the SR object</h4>
-<p><img width="1791" alt="Relationship" src="https://media.github.ibm.com/user/348712/files/48756b00-3805-11ed-8c9d-ccfc631e04a8"></p>
-<p>Go to DB Config -&gt; SR object -&gt; Relationships. Add a 'New Row' and enter the following values:</p>
-<table>
-<thead>
-<tr>
-<th>Field Name</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Relationship</td>
-<td>PLUSIREQCLASS</td>
-</tr>
-<tr>
-<td>Child Object</td>
-<td>ALNDOMAIN</td>
-</tr>
-<tr>
-<td>Where Clause</td>
-<td><code>domainid= 'PLUSIREQCLASS' and value=:PLUSIreqclassid</code></td>
-</tr>
-<tr>
-<td>Remarks</td>
-<td>Relationship to PLUSIREQCLASS Alndomain</td>
-</tr>
-</tbody>
-</table>
-<h4 id="5-application-designer">5. Application Designer</h4>
+<p>Within Maximo, a change to the Service Request application is needed to see additional fields.</p>
+<h4 id="1-application-designer">1. Application Designer</h4>
 <p><img width="1788" alt="App-Designer" src="https://media.github.ibm.com/user/348712/files/457a7a80-3805-11ed-9484-133899bdfac4"></p>
-<p>Go to System Configuration -&gt; Platform Configuration -&gt; Application Designer</p>
-<p>Search for 'SR'</p>
+<p><em>SR Application Designer</em></p>
+<p>Go to <strong>System Configuration -&gt; Platform Configuration -&gt; Application Designer</strong></p>
+<p>Search for <strong>SR</strong></p>
 <p>Switch to the Service Request Tab and scroll down to the Service Request Details section</p>
-<p>At the top, click the icon labeled Control Palette and add a Multipart Textbox at the top of the right section. Add these values within the properties of the Multipart Textbox. </p>
+<p>At the top, click the icon labeled <strong>Control Palette</strong> and add a Multipart Textbox at the top of the right section. Add these values within the properties of the Multipart Textbox. </p>
 <p><strong> Be sure that the PLUSIREQCLASSID Attribute is taken from the TICKET Object. </strong></p>
 <table>
 <thead>
@@ -336,10 +199,10 @@
 </tr>
 </tbody>
 </table>
-<p>Click 'Save Definition' after the changes are added.</p>
+<p>Click <strong>Save Definition</strong> after the changes are added.</p>
 <h3 id="appconnect">AppConnect</h3>
-<p>The configuration of AppConnect from the previous code pattern should provide the 'mxtririga' and 'trimaximo' accounts within AppConnect needed for the flows to work properly.</p>
-<p>Download and import the .yaml files for 'PLUSIMXServiceReq2TRI' and 'PLUSITRIReqClass2MX' and keep the urls handy for a later step. Use the following table for the parameters:</p>
+<p>The configuration of AppConnect from the previous code pattern should provide the <strong>mxtririga</strong> and <strong>trimaximo</strong> accounts within AppConnect needed for the flows to work properly.</p>
+<p>Download and import the .yaml files for <strong>PLUSIMXServiceReq2TRI</strong> and <strong>PLUSITRIReqClass2MX</strong> and keep the urls handy for a later step. Use the following table for the parameters:</p>
 <table>
 <thead>
 <tr>
@@ -364,67 +227,47 @@
 </table>
 <h3 id="tririga">TRIRIGA</h3>
 <h4 id="populate-the-domain-created-in-the-maximo-pre-requisites">Populate the domain created in the Maximo pre-requisites</h4>
-<p>Go to Tools -&gt; System Setup and select Integration Object under the Integration heading</p>
-<p>Select triRequestClass - APIC - HTTP Post from the table or create it if it is not present. Fill in the required sections:</p>
-<table>
-<thead>
-<tr>
-<th>Field Name</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Name</td>
-<td>triRequestClass - APIC- HTTP Post</td>
-</tr>
-<tr>
-<td>Scheme</td>
-<td>Http Post</td>
-</tr>
-<tr>
-<td>Direction</td>
-<td>Outbound</td>
-</tr>
-<tr>
-<td>Post Type</td>
-<td>JSON</td>
-</tr>
-<tr>
-<td>Http URL</td>
-<td>[the PLUSITRIReqClass2MX url from AppConnect with the correct parameters outlined in the AppConnect section]</td>
-</tr>
-<tr>
-<td>Request Method</td>
-<td>POST</td>
-</tr>
-<tr>
-<td>Content-Type</td>
-<td>application/json</td>
-</tr>
-</tbody>
-</table>
-<p>**If the AppConnect instance is based on cloud, include the api key in the Headers. If the instance is on-prem, include your basic authorization in UserName and Password</p>
-<p>Once the correct values are filled in, click Execute at the top of the window. The process will take a few minutes since there is a large amount of files, but once it is completed you can check that the batch processed correctly under the specified domain.</p>
+<ol>
+<li>
+<p>Go to <strong>Tools -&gt; System Setup -&gt; Integration -&gt; Integration Object</strong></p>
+</li>
+<li>
+<p>Select <strong>triRequestClass - APIC - HTTP Post</strong> from the table and fill in the URL with the correct parameters from the App Connect section.</p>
+</li>
+<li>
+<p>Click <strong>Execute</strong> at the top of the window. The process will take a few minutes since there is a large amount of files, but once it is completed you can check that the batch processed correctly under the specified domain.</p>
+</li>
+</ol>
 <h4 id="filter">Filter</h4>
-<p>To filter the request from TRIRIGA to Maximo, update filter in the triAPICServiceRequest - OSLC - Outbound query to trigger for selected Request Classes.</p>
-<p><img src="https://media.github.ibm.com/user/348712/files/49a69800-3805-11ed-9062-01b4ebbd4cc4" alt="Tri Filter 1" ></p>
-<p><img src="https://media.github.ibm.com/user/348712/files/49a69800-3805-11ed-82e0-38c2fc635983" alt="Tri Filter 2" ></p>
-<p>Current filter is set to Request Class not null.</p>
-<h2 id="optional-step-1-sync-a-person-to-tririga">(Optional) Step 1. Sync a Person to TRIRIGA</h2>
-<p><i> ***This step is optional. If you are starting from scratch, run this flow to sync the person in both systems. If data is already aligned and present, move on to the next step </i></p>
-<p>A service request needs a member of the TRIRIGA organization on both Maximo and TRIRIGA. Accomplish this by creating a person record that will be requesting the SR and assign them to the TRIRIGA org. </p>
-<p>The PLUSIMXPerson2TRI flow can help with this. Navigate to Administration -&gt; Resources -&gt; Person and click on 'New Person' under 'Common Activities' on the left side of the screen. Create this new Person record with a 'Site' field of TRIMAIN as well as a primary email. Save the record and the MXPerson2TRI flow will sync the data into TRIRIGA and this user will be used in Step 2.</p>
-<p><img src="https://media.github.ibm.com/user/348712/files/47dcd480-3805-11ed-872a-6025189ef38c" alt="Person Sync" ></p>
-<h2 id="step-2-create-a-service-request">Step 2. Create a Service Request</h2>
+<ol>
+<li>To filter the request from TRIRIGA to Maximo, update the <strong>Filter</strong> tab in the <strong>triAPICServiceRequest - OSLC - Outbound</strong> query to trigger for selected Request Classes. Select <strong>System</strong> for <strong>triRequestClassCL</strong> and then <strong>Run Report</strong></li>
+</ol>
+<p><img></p>
+<h2 id="step-1-create-a-service-request">Step 1. Create a Service Request</h2>
+<h3 id="prerequisite">Prerequisite</h3>
+<p>A service request needs a member of the TRIRIGA organization on both Maximo and TRIRIGA. If you are starting from scratch, run the <em>PLUSITRIPERSONBATCH</em> flow to sync the person records in both systems. If data is already aligned and present, you are ready to run the integration.</p>
 <h3 id="maximo-to-tririga">Maximo to TRIRIGA</h3>
-<p>Go to Service Desk -&gt; Service Request and click on the blue plus sign to create a new service request.</p>
+<ol>
+<li>
+<p>Go to <strong>Service Desk -&gt; Service Request</strong> and click on the blue plus sign to create a new service request.</p>
+</li>
+<li>
+<p>Assign a user to Reported By and Affected Person. From here, a request classification needs to be selected and the value and description will populate in. <strong>Click Save Service Request</strong> and the flow should fire.</p>
+</li>
+</ol>
 <p><img src="https://media.github.ibm.com/user/348712/files/490e0180-3805-11ed-959f-b0d9f985d16f" alt="Service Request" ></p>
-<p>Assign a user to Reported By and Affected Person (the user created in Step 1 should be used here). From here, a request classification needs to be selected and the value and description will populate in. Click 'Save Service Request' and the flow should fire.</p>
+<p><em>Create Service Request in Maximo</em></p>
 <h3 id="tririga-to-maximo">TRIRIGA to Maximo</h3>
-<p>Go to Requests -&gt; Manage Requests -&gt; Electrical &amp; Lighting and click the 'Add' button on the top right. </p>
+<ol>
+<li>
+<p>Go to <strong>Requests -&gt; Manage Requests -&gt; Electrical &amp; Lighting</strong> and click the <strong>Add</strong> button on the top right. </p>
+</li>
+<li>
+<p>Fill in the required fields and click <strong>Submit</strong> at the top right of the newly opened window. The flow should fire upon submission.</p>
+</li>
+</ol>
 <p><img src="https://media.github.ibm.com/user/348712/files/4a3f2e80-3805-11ed-9020-b097f3cb1251" alt="Tri Service Request" ></p>
-<p>Fill in the required fields and click 'Submit' at the top right of the newly opened window. The flow should fire upon submission.</p>
+<p><em>TRIRIGA Service Request</em></p>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>Common Errors and their resolutions:</p>
 <h3 id="maximo_1">Maximo</h3>
@@ -444,14 +287,26 @@
 </tbody>
 </table>
 <h3 id="appconnect_1">AppConnect</h3>
-<p>The best way to troubleshoot with AppConnect is to use the logging function. While the flow is stopped, add a 'Log' node into the flow from the 'Toolbox' tab.</p>
-<p><img src="https://media.github.ibm.com/user/348712/files/47dcd480-3805-11ed-9c5f-f68af91cbc41" alt="Log Designer" ></p>
-<p>This will allow mapping of any field to the 'Logging' section of the application. Select Info for the Log level and then map the field that needs debugging. In this example the Request Object has been mapped to see what is being sent through the flow. Click the icon to the right of the Message Detail filed to map the desired field. </p>
-<p><img src="https://media.github.ibm.com/user/348712/files/46aba780-3805-11ed-8db5-67c866d28126" alt="Log Content" ></p>
-<p>The Log node will compile the message and read out here:</p>
-<p><img src="https://media.github.ibm.com/user/348712/files/47dcd480-3805-11ed-9efb-a9cb2dd074d4" alt="Log Location" ></p>
+<p>Troubleshoot App Connect with the logging function. </p>
+<ol>
+<li>
+<p>While the flow is stopped, add a <strong>Log</strong> node into the flow from the <strong>Toolbox</strong> tab. This will allow mapping of any field to the <strong>Logging</strong> section of the application. </p>
+</li>
+<li>
+<p>Select <strong>Info</strong> for the Log level and then map the field that needs debugging. In this example the Request Object has been mapped to see what is being sent through the flow. Click the icon to the right of the Message Detail to map the desired field. The <strong>Log</strong> node will compile the message and read it out in the <strong>Logging</strong> section.</p>
+</li>
+<li>
 <p>Diagnose the response that shows up in this section to learn what might be causing the issue.</p>
+</li>
+</ol>
+<p><img src="https://media.github.ibm.com/user/348712/files/47dcd480-3805-11ed-9c5f-f68af91cbc41" alt="Log Designer" ></p>
+<p><em>Step 1: Log Node</em></p>
+<p><img src="https://media.github.ibm.com/user/348712/files/46aba780-3805-11ed-8db5-67c866d28126" alt="Log Content" ></p>
+<p><em>Step 2: Log Content</em></p>
+<p><img src="https://media.github.ibm.com/user/348712/files/47dcd480-3805-11ed-9efb-a9cb2dd074d4" alt="Log Location" ></p>
+<p><em>Logging section</em></p>
 <p><img src="https://media.github.ibm.com/user/348712/files/47443e00-3805-11ed-9e6e-7fe53c4465c3" alt="Log Dashboard" ></p>
+<p><em>Step 3: Logging Dashboard</em></p>
 <h3 id="tririga_1">TRIRIGA</h3>
 <p>Common errors found in the TRIRIGA system</p>
 <table>

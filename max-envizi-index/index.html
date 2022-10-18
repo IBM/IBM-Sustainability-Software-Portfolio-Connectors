@@ -131,6 +131,7 @@
 <h2 id="overview">Overview</h2>
 <p>Enable on-demand and scheduled synchronization of Meters &amp; Meter Reading data between Maximo and Envizi systems.</p>
 <p><img alt="Maximo-Envizi Integration" src="https://media.github.ibm.com/user/375131/files/213f0180-e8d8-11ec-8d47-a276b27d6fb0" /></p>
+<p><em>Maximo to Envizi Integration Diagram</em></p>
 <h2 id="pre-requisites">Pre-requisites</h2>
 <h3 id="maximo-configuration">Maximo Configuration</h3>
 <h4 id="pre-checks-on-your-data">Pre-checks on your data</h4>
@@ -160,7 +161,7 @@
 </ul>
 </li>
 </ul>
-<p>Service Address must be configured in Location with the below fields for proper functioning of Envizi's features:</p>
+<p>Service Address must be configured in Location with the following fields for proper functioning of Envizi's features:</p>
 <ul>
 <li>Street Address</li>
 <li>City</li>
@@ -181,28 +182,22 @@
 <p>Shutdown the MXServer</p>
 </li>
 <li>
-<p>Run UpdateDB command to install the solution components</p>
-<ul>
-<li>Navigate to <code>/opt/IBM/SMP/maximo/tools/maximo</code></li>
-<li>Run <code>./updatedb.sh</code></li>
-</ul>
+<p>Run UpdateDB command to install the solution components<br>
+    a. Navigate to <code>/opt/IBM/SMP/maximo/tools/maximo</code><br>
+    b. Run <code>./updatedb.sh</code></p>
 </li>
 <li>
-<p>Build the Maximo EAR file</p>
-<ul>
-<li>Navigate to <code>/opt/IBM/SMP/maximo/deployment</code></li>
-<li>Run <code>./buildmaximoear.sh</code></li>
-</ul>
+<p>Build the Maximo EAR file<br>
+    a. Navigate to <code>/opt/IBM/SMP/maximo/deployment</code><br>
+    b. Run <code>./buildmaximoear.sh</code></p>
 </li>
 <li>
-<p>Deploy the new Maximo EAR File on all Maximo servers</p>
-<ul>
-<li>In WebSphere console, navigate to: Applications-&gt;Application types-&gt;Websphere enterprise applications</li>
-<li>Select MAXIMO and then hit "Update" button</li>
-<li>Select "Browse" and select the EAR file from Step 4</li>
-<li>Hit "Next" and accept defaults from all pages</li>
-<li>After deployment, click on "Save"</li>
-</ul>
+<p>Deploy the new Maximo EAR File on all Maximo servers<br>
+    a. In WebSphere console, navigate to <strong>Applications-&gt;Application types-&gt;Websphere enterprise applications</strong><br>
+    b. Select <strong>MAXIMO</strong> and then hit <strong>Update</strong> button<br>
+    c. Select <strong>Browse</strong> and select the EAR file from Step 4<br>
+    d. Hit <strong>Next</strong> and accept defaults from all pages<br>
+    e. After deployment, click on <strong>Save</strong><br></p>
 </li>
 <li>
 <p>Start the applications and MXServer</p>
@@ -212,56 +207,79 @@
 <ol>
 <li>Navigate to the Admin dashboard of the instance of Manage within MAS.</li>
 <li>Select the workspace the instance is deployed on and update the configuration. </li>
-<li>Scroll down to "Customization" and link to the location of the .zip file in the field (See <a href="https://www.ibm.com/docs/en/maximo-manage/continuous-delivery?topic=manage-setting-customizations">here</a> for more details)</li>
-<li>Click Apply Changes and Manage will update the instance with the customization. </li>
+<li>Scroll down to <strong>Customization</strong> and link to the location of the .zip file in the field (<a href="https://www.ibm.com/docs/en/maximo-manage/continuous-delivery?topic=manage-setting-customizations">Additional details</a> on setting customizations)</li>
+<li>Click <strong>Apply Changes</strong> and Manage will update the instance with the customization. </li>
 </ol>
 <h4 id="configuring-artifacts">Configuring Artifacts</h4>
 <h5 id="meter-groups">Meter Groups</h5>
-<ul>
-<li>Make sure all the Meters that need to sync with Envizi are in the right meter groups:<ul>
-<li><code>PLUSZ_ELEC</code> - Electric Meters</li>
-<li><code>PLUSZ_GAS</code> - Natural Gas Meters</li>
-<li><code>PLUSZ_WTR</code> - Water Meters</li>
-</ul>
-</li>
-</ul>
+<p>Make sure all the Meters that need to sync with Envizi are in the right meter groups:</p>
+<table>
+<thead>
+<tr>
+<th>Meter Group</th>
+<th>Meters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PLUSZ_ELEC</code></td>
+<td>Electric Meters</td>
+</tr>
+<tr>
+<td><code>PLUSZ_GAS</code></td>
+<td>Natural Gas Meters</td>
+</tr>
+<tr>
+<td><code>PLUSZ_WTR</code></td>
+<td>Water Meters</td>
+</tr>
+</tbody>
+</table>
 <h5 id="end-points">End Points</h5>
-<ul>
+<ol>
 <li>
-<p>In the Maximo menu, click on Integration &gt; End Points
-<img width="580" alt="End Points - Menu" src="https://media.github.ibm.com/user/375131/files/b7315700-e8ed-11ec-8e95-885b57b97a66"></p>
-</li>
-<li>
-<p>Under the "End Point" column, type "PLUSZ" and hit enter to search</p>
+<p>In the Maximo menu, click on <strong>Integration -&gt; End Points</strong>
+<img width="580" alt="End Points - Menu" src="https://media.github.ibm.com/user/375131/files/b7315700-e8ed-11ec-8e95-885b57b97a66">
+<em>End Point Navigation</em></p>
 </li>
 <li>
-<p>Click on the "PLUSZEXPORT" End Point
-<img width="692" alt="End Points - Search" src="https://media.github.ibm.com/user/375131/files/aed91c00-e8ed-11ec-9e22-99cece3dadbc"></p>
+<p>Under the <strong>End Point</strong> column, type <strong>PLUSZ</strong> and hit <strong>Enter</strong> to search.
+<img width="692" alt="End Points - Search" src="https://media.github.ibm.com/user/375131/files/aed91c00-e8ed-11ec-9e22-99cece3dadbc">
+<em>End Point Search</em></p>
 </li>
 <li>
-<p>Configure the parameters required to execute the AppConnect flow</p>
-<ul>
-<li><code>URL</code>: Full URL to the flow's API as show in AppConnect "API Documentation Link"</li>
-<li><code>HEADERS</code>: Replace the <code>YourAPIKeyHere</code> with the AppConnect flow's API Key<ul>
-<li>By default the AppConnect flow will be looking for the API key in the <code>X-IBM-Client-Id</code> header</li>
-<li>If the API Key is <code>123</code>, the final value in this field will be <code>X-IBM-Client-Id: 123,Content-Type: application/json</code></li>
-<li><strong>Do not</strong> remove <code>,Content-Type:application/json</code></li>
-</ul>
+<p>Click on the <strong>PLUSZEXPORT</strong> End Point and configure the parameters required to execute the App Connect flow. Click on <strong>Save End Point</strong> on the left side once finished.</p>
 </li>
-<li><code>HTTPMETHOD</code>: Do not change the default value <code>POST</code>
-<img width="946" alt="End Points - Configuration" src="https://media.github.ibm.com/user/375131/files/5787e680-f7dd-11ec-93af-d44216ffbf86"></li>
-</ul>
-</li>
-<li>
-<p>Click on "Save End Point" in "Common Actions" on the left side</p>
-</li>
-</ul>
-<p>The End Point is now configured </p>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URL</td>
+<td>Full URL to the flow's API as show in App Connect <strong>API Documentation Link</strong></td>
+</tr>
+<tr>
+<td>HEADERS</td>
+<td>Replace the <code>YourAPIKeyHere</code> with the App Connect flow's API Key. Do not remove <code>,Content-Type:application/json</code></td>
+</tr>
+<tr>
+<td>HTTPMETHOD</td>
+<td>Do not change the default value <strong>POST</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img width="946" alt="End Points - Configuration" src="https://media.github.ibm.com/user/375131/files/5787e680-f7dd-11ec-93af-d44216ffbf86"></p>
+<p><em>End Point Configuration Page</em></p>
 <h3 id="appconnect-configuration">AppConnect Configuration</h3>
-<p>Note: You need IBM Cloud AppConnect Professional or Enterprise to run this flow.</p>
-<p>Note: The names in the screenshots are generic, other instances will not have the same names during setup.</p>
+<p><em>Note: You need IBM Cloud AppConnect Professional or Enterprise to run this flow.</em></p>
+<p><em>Note: The names in the screenshots are generic, other instances will not have the same names during setup.</em></p>
 <h4 id="adding-accounts">Adding Accounts</h4>
-<p>Before importing the flow to AppConnect, add Accounts for SFTP and HTTP connectors.</p>
+<p>Before importing the flow to App Connect, add Accounts for SFTP and HTTP connectors.</p>
 <ul>
 <li>
 <p>Navigate to Catalog section of the AppConnect instance

@@ -100,21 +100,149 @@
 <h2 id="table-of-contents">Table of Contents</h2>
 <!--ts-->
 <ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#security-role-configuration">Security Role Configuration</a><ul>
+<li><a href="#object-migration-access">Object Migration Access</a></li>
 <li><a href="#import-om-package">Import OM Package</a></li>
+<li><a href="#tririga-api-user-access">Tririga API User Access</a></li>
+<li><a href="#outbound-traffic-from-tririga">Outbound Traffic</a></li>
+<li><a href="#inbound-traffic-to-tririga">Inbound Traffic</a></li>
+</ul>
+</li>
+<li><a href="#group-name-configuration">Group Name Configuration</a><ul>
 <li><a href="#data-modeler">Data Modeler</a></li>
 <li><a href="#form-builder">Form Builder</a></li>
 <li><a href="#security-manager">Security Manager</a></li>
-<li><a href="#workflow-builder">Workflow Builder</a><ul>
-<li><a href="#optional-step">Optional: Patch Helper</a></li>
+<li><a href="#workflow-builder">Workflow Builder</a></li>
+<li><a href="#my-reports-and-oslc">My Reports/OSLC</a></li>
 </ul>
 </li>
-<li><a href="#my-reports-and-oslc">My Reports/OSLC</a></li>
-<li><a href="#how-to-use">How to Use</a></li>
+<li><a href="#how-to-use">How to Use</a><ul>
+<li><a href="#time-stamp-pre-requisite">TimeStamp Pre-Requisite</a></li>
+<li><a href="#using-the-integration">Using the Integration</a> </li>
 </ul>
+</li>
+</ul>
+<h2 id="overview">Overview</h2>
 <p>This solution adds four fields that hold the group name values and the path for the integration. It also makes sure that the payload is sent when there is an update.</p>
+<h2 id="security-role-configuration">Security Role Configuration</h2>
+<p>In order to properly configure Tririga, a user needs to be configured with the proper security access for Object Migration and Tririga APIs</p>
+<h3 id="object-migration-access">Object Migration Access</h3>
+<p>Object Migration is a task managed by administrators. If a Tririga User needs to have full access to Object Migration in Tririga, access is granted at the group level. Follow the steps given in Chapter 1 <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">here</a> to create a new security group.</p>
+<p>Select the newly created group or desired existing group and switch to the 'Access' tab and add the appropriate access for importation of Object Migration Packages. There are 2 panes in 'Access': Object and Permissions. Scroll and find the Object Migration Object on the left pane and click 'Full Access' on the right pane.</p>
+<p><img width="1002" alt="Access Permissions" src="https://media.github.ibm.com/user/348712/files/baf46d80-1a45-11ed-924e-acda1e9bfe24"></p>
+<p>The users in this group, granted through the Members tab, will be able to import the Tririga API Object Migration package. </p>
+<p>Additional information on Tririga Security groups can be found here: </p>
+<p>https://www.ibm.com/docs/en/tap/3.6.1?topic=security-groups </p>
 <h3 id="import-om-package">Import OM Package</h3>
 <p>Import the most recent <a href="https://github.com/IBM/tririga-api/tree/main/docs/ompackages">OM Package</a> into the Tririga instance. Go to Tools -&gt; Administration -&gt; Object Migration and select 'New Import Package' to begin the import process.</p>
-<p>Here are the manual changes that need to be done:</p>
+<p>Please refer to official IBM® Tririga documentation for more information on Object Migration: </p>
+<p>https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview  </p>
+<h3 id="tririga-api-user-access">Tririga API User Access</h3>
+<p>In order for AppConnect to be able to use Tririga APIs, it will need a user with certain permissions. These user's credentials will be configured in AppConnect.</p>
+<p>Create a new user by following the steps given in Chapter 2 <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">here</a>.</p>
+<p>Choose a security group or create a new group (refer to <a href="#object-migration-access">the above OM Migration steps</a> if a new security group needs to be created) and add the newly created user to it.</p>
+<p>Add the permissions below for the new user's group:
+  | Module        |     Business Object     |     Permissions    |
+  |---------------|-------------------------|--------------------|
+  | Location      |     triBuilding         |     Read           |
+  | triAPIConnect |     triAPICTimestamp    | Read and Update    |</p>
+<p>Follow the steps given in Chapter 1 <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">here</a> and add <strong>any one of the licenses below</strong> for the new user's group:
+  - IBM TRIRIGA Portfolio Data Manager
+  - IBM Facilities and Real Estate Management on Cloud Self Service
+  - Any other license that grants access to the modules</p>
+<p>Please refer to the TRIRIGA Documentation on Security and Licenses by following this link: https://www.ibm.com/docs/en/tap/3.6.1?topic=platform-license-files  </p>
+<p>The user will now be able to interact with the proper Tririga Modules.</p>
+<h3 id="outbound-traffic-from-tririga">Outbound Traffic from Tririga</h3>
+<p>For outbound traffic from Tririga, grant at least READ access on the Business Objects that will be used. The table below shows the various supported business Objects the API can pull from: </p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Business Object Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asset</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/Asset.md">Building Equipment</a></td>
+</tr>
+<tr>
+<td>Classification</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/RequestClass.md">Request Class</a></td>
+</tr>
+<tr>
+<td>Classification</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/SpaceClass.md">Space Class Current</a></td>
+</tr>
+<tr>
+<td>Classification</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/AssetSpecClass.md">Asset Spec Class</a></td>
+</tr>
+<tr>
+<td>People</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/People.md">People</a></td>
+</tr>
+<tr>
+<td>Location</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/Property.md">Property</a></td>
+</tr>
+<tr>
+<td>Location</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/Building.md">Building</a></td>
+</tr>
+<tr>
+<td>Location</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/Floor.md">Floor</a></td>
+</tr>
+<tr>
+<td>Location</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/Space.md">Space</a></td>
+</tr>
+<tr>
+<td>Organization</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/Organization.md">Organization</a></td>
+</tr>
+<tr>
+<td>Request</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/ServiceRequest.md">Service Request</a></td>
+</tr>
+<tr>
+<td>Task</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/WorkTask.md">Work Task</a></td>
+</tr>
+</tbody>
+</table>
+<p>In the example below, the API user is able to pull data from the Building Business Object: </p>
+<p><img width="1097" alt="Outbound Business Object" src="https://media.github.ibm.com/user/348712/files/e5633b80-3b58-11ed-81a4-46540898ff50"></p>
+<h3 id="inbound-traffic-to-tririga">Inbound traffic to Tririga</h3>
+<p>For inbound traffic, Data Access needs to be enabled as well as Application Access permissions to the triAPIConnect Module or the individual Objects. To enable an API user to create a building, grant access to the triAPICBuilding Business object as shown below: </p>
+<p><img width="1000" alt="Inbound Traffic Business Object" src="https://media.github.ibm.com/user/348712/files/e5633b80-3b58-11ed-842e-cea368ad86dd"></p>
+<h3 id="minimum-requirements">Minimum requirements</h3>
+<p>For users to pull from these URLs, the minimum requirements are:</p>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET /oslc/spq/triAPICOutboundBuildingQC</td>
+<td>READ access to triBuilding Business object</td>
+</tr>
+<tr>
+<td>GET /oslc/spq/triAPICTimeStampQC</td>
+<td>READ access to triAPICTimestamp Business Object</td>
+</tr>
+<tr>
+<td>POST /oslc/so/triAPICTimeStampRS/<ID></td>
+<td>Write access to triAPICTimestamp Business Object</td>
+</tr>
+</tbody>
+</table>
+<h2 id="group-name-configuration">Group Name Configuration</h2>
 <h3 id="data-modeler">Data Modeler</h3>
 <p>Go to Tools -&gt; Builder Tools -&gt; Data Modeler and using the Object Browser navigate to Location-&gt;triBuilding.</p>
 <p>Revise the BO and add four fields: cstEnviziParentOneTX, cstEnviziParentTwoTX,
@@ -151,7 +279,7 @@ cstEnviziParentThreeTX and cstEnviziGroupNamePathTX</p>
 <h3 id="form-builder">Form Builder</h3>
 <p>Under Tools -&gt; Builder Tools -&gt; Form Builder, click on the Location module on the left side of the screen and then click on triBuilding.</p>
 <p>Revise the triBuilding form by clicking 'Revise' in the top right corner of the pop-up</p>
-<p>In the Navigation pane on the left side of the screen, click on 'Add Tab' and enter "cstEnvizi" as the 'Name'. Click Apply</p>
+<p>In the Navigation pane on the left side of the screen, click on triBuilding and then 'Add Tab'. Enter "cstEnvizi" as the 'Name' and 'Envizi' as the Label. Click Apply</p>
 <p>Select this new tab and click on 'Add Section'</p>
 <p>Enter "cstEnviziDetails" as the 'Name' and "Envizi Details" as the 'Label'. Click 'Apply'.</p>
 <p>Now click on the newly created Section and select 'Add Field'. Select each of the four created business objects from the previous step as fields under "Envizi Details".</p>
@@ -163,6 +291,11 @@ properties window. Mark this field as "ReadOnly" and click 'Apply'.</p>
 the 'cstEnvizi' tab to the second position and click 'Apply'</p>
 <p><img width="256" alt="Form Builder Properties" src="https://media.github.ibm.com/user/348712/files/4f266400-09b5-11ed-8a73-f526a24a86db"></p>
 <p>Publish the form</p>
+<h3 id="object-migration">Object Migration</h3>
+<p>Go to Import Migration and import package EnviziConfig.zip</p>
+<p>To do that, click on New Import Package, and select the zip file and click Ok.</p>
+<p>A new window will be displayed. If it is not displayed, just select the package from the list.</p>
+<p>On this package, click on Validate and wait for the validation to complete. If no errors are displayed, import the package.</p>
 <h3 id="security-manager">Security Manager</h3>
 <p>Go to Tools -&gt; Administration -&gt; Security Manager</p>
 <p>This application sets who can and cannot access this newly created tab. Click on the desired group, and navigate to the 'Access' tab</p>
@@ -170,178 +303,53 @@ the 'cstEnvizi' tab to the second position and click 'Apply'</p>
 <p>Choose the access level for the group and 'Save'</p>
 <p><img width="423" alt="Security Manager Access" src="https://media.github.ibm.com/user/348712/files/4fbefa80-09b5-11ed-99e5-b92fca943ddf"></p>
 <h3 id="workflow-builder">Workflow Builder</h3>
-<p>Three Workflows will need to be edited.</p>
-<p><strong>1. Go to Tools -&gt; Builder Tools -&gt; Workflow Builder. Select Location -&gt; triBuilding.</strong></p>
-<p>Create a new Workflow name "cst - triBuilding - Update Envizi path"</p>
-<p>This Workflow should look like this:</p>
-<p><img width="564" alt="Workflow" src="https://media.github.ibm.com/user/348712/files/4f266400-09b5-11ed-9919-1f2fb10fd860"></p>
-<p>Add to the workflow with the following steps:</p>
-<ul>
-<li>Create the first 'Switch Condition' and enter the following condition:</li>
-</ul>
-<p><img width="484" alt="1st Switch Expression" src="https://media.github.ibm.com/user/348712/files/4fbefa80-09b5-11ed-8738-62e0ccb761f9"></p>
-<ul>
-<li>Create two 'Modify Tasks' and place them on either side of the switch. The 'Modify Parent One' task should be on the left and have this mapping:</li>
-</ul>
-<p><img width="569" alt="Modify Parent One Mapping" src="https://media.github.ibm.com/user/348712/files/4fbefa80-09b5-11ed-9306-f120dffa38e8"></p>
-<ul>
-<li>The 'Set Blank' task is the other condition of the first switch and it should have this mapping:</li>
-</ul>
-<p><img width="680" alt="Set Blank Task" src="https://media.github.ibm.com/user/348712/files/50579100-09b5-11ed-80b3-0bc45efda653"></p>
-<ul>
-<li>The second switch should flow from the 'Modify Parent One' task and have the following condition:</li>
-</ul>
-<p><img width="473" alt="2nd Switch Expression" src="https://media.github.ibm.com/user/348712/files/4fbefa80-09b5-11ed-8db9-31cb358f4b60"></p>
-<ul>
-<li>Create the 'Modify Parent Two' task and give it this mapping:</li>
-</ul>
-<p><img width="629" alt="Modify Parent Two Mapping" src="https://media.github.ibm.com/user/348712/files/361eb280-09b7-11ed-9e3f-00b94068ebd6"></p>
-<p><img width="587" alt="Parent Two Inputs and Formula" src="https://media.github.ibm.com/user/348712/files/36b74900-09b7-11ed-875c-e60f87afefcf"></p>
-<ul>
-<li>The third switch should flow from 'Modify Parent Two' and have the following condition:</li>
-</ul>
-<p><img width="474" alt="3rd Switch Expression" src="https://media.github.ibm.com/user/348712/files/36b74900-09b7-11ed-89c5-71da43fe6e50"></p>
-<ul>
-<li>The 'Modify Parent Three' task should have this mapping:</li>
-</ul>
-<p><img width="487" alt="Modify Parent Three Mapping" src="https://media.github.ibm.com/user/348712/files/36b74900-09b7-11ed-8058-03b7ed9d8bc6"></p>
-<p><img width="589" alt="Modify Parent Three Mapping-2" src="https://media.github.ibm.com/user/348712/files/374fdf80-09b7-11ed-80d9-3911aa5f031e"></p>
-<p>Publish "cst - triBuilding - Update Envizi path" workflow</p>
-<p><strong>2. Within the Location object, search for the existing Workflow "triBuilding - Synchronous - Permanent Save
-Validation".</strong></p>
+<p>Go to Tools -&gt; Builder Tools -&gt; Workflow Builder. Select Location -&gt; triBuilding.</p>
+<p>Within the Location object, search for the existing Workflow "triBuilding - Synchronous - Permanent Save
+Validation".</p>
 <p>Revise this workflow and after Call Module Level Validation add a new WF
-call to "cst - triBuilding - Update Envizi path" like displayed below:</p>
+call to "triBuilding - Update Envizi fields with defined options" like displayed below:</p>
 <p><img width="736" alt="WF call in Update Envizi Path" src="https://media.github.ibm.com/user/348712/files/374fdf80-09b7-11ed-8f47-3c588b667a58"></p>
-<p>Publish the workflow</p>
-<p><strong>3. Navigate to Data Utilities -&gt; cstEnviziUtility on the left panel and revise
-Workflow cst - cstEnviziUtility - Synchronous - Update Buildings with
-Group Names</strong></p>
-<p>This workflow has some mapping missing. Update the three Modify Tasks:</p>
-<ul>
-<li>Open Modify Group Name1 modify task and enter the following</li>
-</ul>
-<p><img width="759" alt="Group Name1 Modify Task" src="https://media.github.ibm.com/user/348712/files/36b74900-09b7-11ed-8722-b1dbeba27e23"></p>
-<ul>
-<li>Open Modify Group Name2 modify task and enter the following</li>
-</ul>
-<p><img width="768" alt="Group Name2 Modify Task" src="https://media.github.ibm.com/user/348712/files/374fdf80-09b7-11ed-96b8-9634174db7a1"></p>
-<p><img width="608" alt="Group Name2 Modify Task-2" src="https://media.github.ibm.com/user/348712/files/361eb280-09b7-11ed-8044-c0861e85aa4d"></p>
-<ul>
-<li>Open Modify Group Name3 modify task and enter the following</li>
-</ul>
-<p><img width="638" alt="Group Name3 Modify Task" src="https://media.github.ibm.com/user/348712/files/35861c00-09b7-11ed-8a4b-8f4ed004675e"></p>
-<p><img width="600" alt="Group Name3 Modify Task-2" src="https://media.github.ibm.com/user/348712/files/361eb280-09b7-11ed-84be-438ae45f0d7f"></p>
-<p>Publish this workflow</p>
-<h3 id="optional-step">Optional Step</h3>
-<p><em>This is an optional step if there are old records that need to be updated with the patch helper.</em></p>
-<p>Modify the Workflow "cst - triPatchHelper -
-Update All Envizi location fields", located on triHelper -&gt;
-triPatchHelper</p>
-<p>Revise the Workflow and modify the following tasks:</p>
-<ul>
-<li>Modify Parent One task(if a custom value is desired, set it on
-these mappings):</li>
-</ul>
-<p><img width="529" alt="Patch Helper Parent One" src="https://media.github.ibm.com/user/348712/files/73d10a80-09ba-11ed-958f-6c3df5f47ad3"></p>
-<ul>
-<li>Modify Parent Two task(if a custom value is desired, set it on
-these mappings):</li>
-</ul>
-<p><img width="619" alt="Patch Helper Parent Two" src="https://media.github.ibm.com/user/348712/files/73d10a80-09ba-11ed-9bca-cdf074e7cf37"></p>
-<ul>
-<li>Modify Parent TwoPath task:</li>
-</ul>
-<p><img width="629" alt="Modify Parent Two Mapping" src="https://media.github.ibm.com/user/348712/files/361eb280-09b7-11ed-9e3f-00b94068ebd6"></p>
-<p><img width="587" alt="Parent Two Inputs and Formula" src="https://media.github.ibm.com/user/348712/files/36b74900-09b7-11ed-875c-e60f87afefcf"></p>
-<ul>
-<li>Modify Parent Three task(if a custom value is desired, set it on
-these mappings):</li>
-</ul>
-<p><img width="592" alt="Patch Helper Parent Three" src="https://media.github.ibm.com/user/348712/files/73387400-09ba-11ed-8a8a-9f412982a9ce"></p>
-<ul>
-<li>Modify Parent Three Path task:</li>
-</ul>
-<p><img width="487" alt="Modify Parent Three Mapping" src="https://media.github.ibm.com/user/348712/files/36b74900-09b7-11ed-8058-03b7ed9d8bc6"></p>
-<p><img width="589" alt="Modify Parent Three Mapping-2" src="https://media.github.ibm.com/user/348712/files/374fdf80-09b7-11ed-80d9-3911aa5f031e"></p>
-<ul>
-<li>SetBlank:</li>
-</ul>
-<p><img width="683" alt="Patch Helper Set Blank 1" src="https://media.github.ibm.com/user/348712/files/73387400-09ba-11ed-81fa-ab59763a2de0"></p>
-<ul>
-<li>Set Parent Two and Three Blank:</li>
-</ul>
-<p><img width="679" alt="Patch Helper Set Blank 2" src="https://media.github.ibm.com/user/348712/files/729fdd80-09ba-11ed-95df-381836697eed"></p>
-<ul>
-<li>Set Parent Three Blank:</li>
-</ul>
-<p><img width="674" alt="Patch Helper Set Blank 3" src="https://media.github.ibm.com/user/348712/files/73387400-09ba-11ed-9aea-16908b7c9861"></p>
-<p>Save and publish the workflow</p>
+<p>It will be defined as the image below:</p>
+<p><img width="1062" alt="Call Envizi" src="https://media.github.ibm.com/user/348712/files/478e2400-4e19-11ed-81eb-e5462bbcdff1"></p>
+<p>Click on the 'Start' task at the top and publish the workflow</p>
 <h3 id="my-reports-and-oslc">My Reports and OSLC</h3>
 <p>Go to My Reports and navigate to 'System Reports'. Add those four new fields to the existing query
-"triAPICBuilding - OSLC -- Outbound" and save the report.</p>
+"triAPICBuilding - OSLC -- Outbound" by clicking the 'Columns' tab and adding the four fields like below:</p>
+<p><img width="800" alt="System-Report-Columns" src="https://media.github.ibm.com/user/348712/files/f0d51a00-4e19-11ed-9e28-a658b12af215"></p>
+<p>Save the report.</p>
 <p>Open Tools -&gt; System Setup -&gt; Integration -&gt; OSLC Resource manager
 and search for "triAPICOutboundBuildingRS". On this resource, add the four
 new fields either individually or using 'Import all Fields'</p>
 <p><img width="683" alt="OSLC Manager" src="https://media.github.ibm.com/user/348712/files/73387400-09ba-11ed-912f-569fce1dc420"></p>
-<h3 id="how-to-use">How to use</h3>
-<p>This tool will allow user to make changes on this new Envizi group name fields, but existing records must be considered too. To populate those records, there is a patch helper workflow that can handle that.</p>
-<p>This workflow by default adds the groupnames with the value from Hierarchy Path. So for example, if the HierarchyPath is "Location/NorthAmerica/USA/Texas/Dallas", then the group names will be:</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Envizi Group 1</td>
-<td>Dallas</td>
-</tr>
-<tr>
-<td>Envizi Group 2</td>
-<td>Texas</td>
-</tr>
-<tr>
-<td>Envizi Group 3</td>
-<td>USA</td>
-</tr>
-<tr>
-<td>Envizi Path</td>
-<td>USA/Texas/Dallas</td>
-</tr>
-</tbody>
-</table>
-<p>You can customize this values by changing workflow "cst - triPatchHelper - Update All Envizi location fields" like described before</p>
-<p>Also, you can filter to change only the desired records by changing
-query "cst - triBuilding - Query - Get All Buildings for envizi". The
-list of buildings displayed on this query will be the list of buildings
-that the patch helper will modify</p>
-<p>To run this patch helper, go To Administration -&gt; Data
-Integration to run patch helper. Upload a file using triNameTx = Envizi</p>
-<p><img width="682" alt="Data Integrator" src="https://media.github.ibm.com/user/348712/files/7469a100-09ba-11ed-9111-c30331bb797b"></p>
-<p>TXT file should have this content</p>
-<p><img width="82" alt="TXT file" src="https://media.github.ibm.com/user/348712/files/73d10a80-09ba-11ed-97e9-d1655dfec1f8"></p>
-<p>After that the records will be populated with the initial values
-defined. Please note that Patch helpers can be executed only once. To run this patch helper one more time, Envizi will need to be removed from the list that can be found using the query `"triPatchHelper - Display - All"</p>
-<p>There are two possible scenarios to use this solution:</p>
-<ol>
-<li>
-<p>Modify only one record</p>
-<p>a.  Open the building to change and click on tab Envizi.
-    Modify the values and save the record</p>
-</li>
-<li>
-<p>Modify multiple records</p>
-<p>a.  Go to My Reports, and run report "cst -
-    cstEnviziUtility - QUERY - Update Envizi GroupNames"</p>
-<p>b.  Click on 'Add'</p>
-<p>c.  Define the values for each groupName and filter the buildings
-    to apply on the Buildings section</p>
-<p>d.  Select the buildings and click on Create.</p>
-<p>e.  Click on Mass Update</p>
-</li>
-</ol>
+<h3 id="navigation-builder">Navigation Builder</h3>
+<p>Go to Tools-&gt;Builder Tools-&gt; Navigation Builder and find TRIRIGA Global Menu(or the menu associated to the user that will need access to the app). Select and click Edit</p>
+<p><img width="700" alt="Navigation-builder-1" src="https://media.github.ibm.com/user/348712/files/27c34480-3a95-11ed-89ca-17ce43fdeb1d"></p>
+<p>On navigation Items section, expand Landing Page –Tools -&gt; Menu Group –System Setup. Select Menu group –Integration and expand Navigations Item Library</p>
+<p><img width="700" alt="Navigation-builder-2" src="https://media.github.ibm.com/user/348712/files/272aae00-3a95-11ed-85a2-1cb9a42d6900"></p>
+<p>Search for Envizi, select the item and click on Add to Collection</p>
+<p><img width="414" alt="Navigation-builder-3" src="https://media.github.ibm.com/user/348712/files/272aae00-3a95-11ed-8777-57d9809f75dd"></p>
+<p>Click Save. Logout and Login again to the system</p>
+<h2 id="how-to-use">How to use</h2>
+<h3 id="time-stamp-pre-requisite">Time Stamp Pre-requisite</h3>
+<p>The triAPICTimestamp is a tririga record needed to set the baseline for when API connect runs for the first time. </p>
+<p>To enable this functionality go to My Reports -&gt; System Reports and search for Timestamp in the 'Name' section. Run the system report "triAPICTimestamp – Display – Manager Query" as shown below:</p>
+<p><img width="1792" alt="Time-Stamp-1" src="https://media.github.ibm.com/user/348712/files/e5fbd200-3b58-11ed-8cb3-21aef581d0d3"></p>
+<p>Click Add, and create a new record without details, as shown below, and close it</p>
+<p><img width="800" alt="Time-Stamp-2" src="https://media.github.ibm.com/user/348712/files/6a495780-3b4f-11ed-940d-137135ba303d"></p>
+<p>The default date and time the record gets automatically applied to the record, and consequent opening of the record shows the default date and time as shown below:</p>
+<p><img width="800" alt="Time-Stamp-3" src="https://media.github.ibm.com/user/348712/files/69b0c100-3b4f-11ed-95fc-1848213524cf"></p>
+<h3 id="using-the-integration">Using the Integration</h3>
+<p>This tool will allow user to make changes on this new Envizi group name fields. But we must consider the existing records too. If you want those records to be populated, there is a patch helper workflow that can handle that.</p>
+<p>The first this that must be defined is which fields will be used to populate groups 1, 2 and 3 to be used on envizi. To access the envizi tool, go to Tools -&gt; System Setup -&gt; Integration -&gt; Envizi Integation.</p>
+<p>When you open the page, the fieldswill be displayed as group1/group2/group3. By default the values are World Region/Country/City. The field Envizi Hierarchy Path shows how the envizi groupnames will be configured according to the selected option. </p>
+<p>Enable Envizi checkbox is available too. The envizi tab will be displayed only when this checkbox is marked</p>
+<p>One more item that must be configured is the Number of levels to be used on the envizi configuration. Envizihierarchy path will match this selection.</p>
+<p><img width="900" alt="How-to-use" src="https://media.github.ibm.com/user/348712/files/21cd6380-3a95-11ed-800d-aa0c22556421"></p>
+<p>Also, notice that there is a section named “Active/Retire with missing data”and “Draft/Revision with Missing Data”. This section will list the buildings that don’t have data defined for envizi group 3, so it means that no envizi group will be populated on those buildings.</p>
+<p>You can filter to change only the desired records by changing query “cst -triBuilding -Query -Get All Buildings for envizi”. The list of buildings displayed on this query will be the listof buildings that the patch helper will modify.</p>
+<p>To use the tool, just select the desired envizi group names and click Save. On the moment Save is triggered, all buildings will be populated with the desired options. This process may take a few minutes depending on how many buildings you have on your system. After that envizi groups and path will be updated according to the selections made on Envizi Integration page.</p>
+<p><img width="900" alt="How-to-use-2" src="https://media.github.ibm.com/user/348712/files/27c34480-3a95-11ed-9dc8-b6347de21bee"></p>
+<p>Also, every time a building is saved and there are changes on the defined fields, or a new building is created, the envizi groups and path will be modifiedaccording to the selected options. You can find the groups on tab Envizi on the building record</p>
               
             </div>
           </div><footer>
