@@ -54,6 +54,16 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#certificates-for-maximo">Certificates for Maximo</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#maximo-7612">Maximo 7.6.1.2+:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mas-88">MAS 8.8+</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#certificates-for-tririga">Certificates for TRIRIGA</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#maximo">Maximo</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#1-create-an-organization-named-tririga">1. Create an Organization named TRIRIGA</a>
@@ -62,21 +72,11 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#3-create-a-site-trimain-and-set-it-to-active">3. Create a site TRIMAIN and set it to active</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#4-create-the-plusttririga-external-system">4. Create the PLUSTTRIRIGA External System</a>
+    <li class="toctree-l4"><a class="reference internal" href="#4-api-key">4. API Key</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#5-create-the-publish-channels-for-each-integration">5. Create the Publish Channels for each integration</a>
+    <li class="toctree-l4"><a class="reference internal" href="#5-integration-controls">5. Integration Controls</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#6-create-the-enterprise-services-for-each-integration">6. Create the Enterprise Services for each integration</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#7-create-the-end-points-for-each-integration">7. Create the End Points for each integration</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#8-link-the-publish-channels-enterprise-services-to-the-plusttririga-external-system">8. Link the Publish Channels &amp; Enterprise Services to the PLUSTTRIRIGA External System</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#9a-api-key-maximo-x">9a. API Key (Maximo-X)</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#9b-api-key-no-maximo-x">9b. API Key (No Maximo-X)</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#10-integration-controls">10. Integration Controls</a>
+    <li class="toctree-l4"><a class="reference internal" href="#6-enable-object-structure-security">6. Enable Object Structure Security</a>
     </li>
         </ul>
     </li>
@@ -86,15 +86,13 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#connectors">Connectors</a>
-    </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas/">Portfolio Data</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas/">Portfolio Data Integration</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request Integration</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../work-order/">Work Order</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../work-order/">Work Order Integration</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">IBM MAS Connector for Envizi</span></p>
@@ -137,260 +135,168 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="mas-tas-portfolio-data-integrations">MAS-TAS Portfolio Data Integrations</h1>
+                <h1 id="ibm-mas-connector-for-tririga">IBM MAS Connector for TRIRIGA</h1>
 <h2 id="overview">Overview</h2>
-<p>Portfolio Data is able to be synced bi-directionally across Maximo &amp; TRIRIGA with the use of these integrations. The data that is supported at this time includes People, Assets, Locations/Spaces, Service Requests, and Work Orders/Work Tasks. After configuring the environments with the proper prerequisites, please select the desired connector below and follow the instructions to implement the integration.</p>
+<p>Portfolio Data is able to be synced bi-directionally across Maximo and TRIRIGA with the use of a TRIRIGA Application Suite (TAS) or Maximo Application Suite (MAS) Connector. The data that is supported at this time includes People, Assets, Locations/Spaces, Service Requests, and Work Orders/Work Tasks. After configuring the environments with the proper prerequisites, select the desired connector below and follow the instructions to implement the integration.</p>
+<p><strong>Note: IBM MAS Connector for TRIRIGA also refers to the IBM TAS Connector for Maximo</strong></p>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>These code patterns all require initial configuration of an instance of Maximo, App Connect, and TRIRIGA. These pre-requisites are also assuming that all three applications are behind the same firewall. If any of these three applications do not share the same firewall, a secure connection between the applications will need to be established. IBM does provide a product that accomplishes this- Secure Gateway. Learn more about getting started with Secure Gateway <a href="https://cloud.ibm.com/docs/SecureGateway?topic=SecureGateway-getting-started-with-sg">here</a></p>
+<p>These code patterns all require initial configuration of an instance of Maximo, App Connect, and TRIRIGA. These prerequisites also require that all three applications are behind the same firewall. </p>
+<p>If any of these three applications do not share the same firewall, a secure connection between the applications will need to be established. IBM does provide a product that accomplishes this: Secure Gateway. Learn more about getting started with <a href="https://cloud.ibm.com/docs/SecureGateway?topic=SecureGateway-getting-started-with-sg">Secure Gateway.</a></p>
+<p>Certificates for the App Connect instance will need to be imported into both systems:</p>
+<h3 id="certificates-for-maximo">Certificates for Maximo</h3>
+<h4 id="maximo-7612">Maximo 7.6.1.2+:</h4>
+<p><strong>Configure WebSphere Certificates</strong></p>
+<p>This makes a test connection to a Secure Sockets Layer (SSL) port and retrieves the signer from the server during the handshake.</p>
+<ol>
+<li>
+<p>Log into the WebSphere console that is hosting the Maximo server.</p>
+</li>
+<li>
+<p>Click on <strong>Security</strong> -&gt; <strong>SSL certificate &amp; key management</strong>. Under <strong>Related Items</strong> click on <strong>Key stores and certificates</strong>.</p>
+</li>
+<li>
+<p>Click on <strong>CellDefaultTrustStore</strong> and on the next page under <strong>Additional Properties</strong> click on <strong>Signer certificates</strong>. </p>
+</li>
+<li>
+<p>From this page, click on the button that says <strong>Retrieve from Port</strong> and fill in the required fields using the table below:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host</td>
+<td>The host from the imported flow URL</td>
+</tr>
+<tr>
+<td>Port</td>
+<td>443</td>
+</tr>
+<tr>
+<td>Alias</td>
+<td>appconnect</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Once all three have been entered in, click <strong>Retrieve signer information</strong> and the information from the url will populate on screen. Click <strong>Save</strong> in the box at the top and then repeat the process for <strong>NodeDefaultTrustStore</strong>.</p>
+</li>
+</ol>
+<p><img width="1280" alt="Websphere-Home" src="https://media.github.ibm.com/user/348712/files/ee26db00-3801-11ed-8365-8604ad0a66df"></p>
+<p><em>Step 2: WebSphere Homepage</em></p>
+<p><img width="1282" alt="Websphere-Keystores" src="https://media.github.ibm.com/user/348712/files/eebf7180-3801-11ed-9253-85d4e8bed0ea"></p>
+<p><em>Step 3: Websphere Keystores</em></p>
+<p><img width="1283" alt="Websphere-Signercerts" src="https://media.github.ibm.com/user/348712/files/f121cb80-3801-11ed-9833-65fe541bcef5"></p>
+<p><em>Step 4: Websphere Signer Certs</em></p>
+<h4 id="mas-88">MAS 8.8+</h4>
+<ol>
+<li>
+<p>Extract the App Connect certificate from an imported flow URL. Navigate to the flow's page and click on <strong>Test</strong> and then <strong>Try It</strong> to get the proper url.</p>
+</li>
+<li>
+<p>Navigate to the Admin dashboard for MAS and go to the workspace where Manage is deployed.</p>
+</li>
+<li>
+<p>Update the configuration and scroll down to <strong>Imported Certificates</strong>. Untick the <strong>System managed</strong> button and fill in the extracted certificate in the fields.</p>
+</li>
+<li>
+<p>Click <strong>Apply Changes</strong> at the top of the page and MAS will update the truststore with the new certificate.</p>
+</li>
+</ol>
+<p><img width="1280" alt="Manage-Workspace" src="https://media.github.ibm.com/user/348712/files/33502d00-43fe-11ed-801b-a454fa4b8f7e"></p>
+<p><em>Step 2: Manage Workspace</em></p>
+<p><img width="1280" alt="Imported-Certificates" src="https://media.github.ibm.com/user/348712/files/33e8c380-43fe-11ed-91b9-68b37462c897"></p>
+<p><em>Step 3: Imported Certificates</em></p>
+<h3 id="certificates-for-tririga">Certificates for TRIRIGA</h3>
+<p><em>To be filled in with proper information</em>
+<br></p>
+<hr>
+
 <p>See below for the pre-requisites of each system:</p>
 <h3 id="maximo">Maximo</h3>
-<p><strong> Credentials and access to an instance of Maximo as well as the WebSphere application which hosts Maximo are required. This code pattern has been tested on Maximo 7.6.1.2 as well as MAS 8.6 </strong> </p>
-<p>The following steps and pre-requisites are done against a Maximo demo database. The naming conventions may slightly differ from this, but these are the necessary components. </p>
+<p><strong>Credentials and access to an instance of Maximo as well as the WebSphere application which hosts Maximo are required. This code pattern has been tested on Maximo 7.6.1.2 as well as MAS 8.6</strong> </p>
+<p>The following steps and prerequisites are done against a Maximo demo database. The naming conventions may slightly differ from this, but these are the necessary components. </p>
 <p>Within Maximo, configure your instance to be ready to receive records from TRIRIGA. If these pre-requisites are not completed, the action will not be recorded.</p>
 <h4 id="1-create-an-organization-named-tririga">1. Create an Organization named TRIRIGA</h4>
-<ul>
-<li>Navigate to the 'Organizations' page and click the blue + button on the top row.</li>
-<li>Fill in the Organization name with TRIRIGA and the description as "TRIRIGA Organization".</li>
-<li>Fill in the remaining required fields as such<ol>
-<li>Base Currency 1: USD</li>
-<li>Item Set: SET1</li>
-<li>Company Set: COMPSET1</li>
-<li>Default Item Status: PENDING</li>
-<li>Default Stock Category: STK</li>
-</ol>
-</li>
-<li>Click Save Organization on the left side of the screen under Common Actions. This will be set to Active later once there is a clearing account.</li>
-</ul>
+<p>a. Navigate to the <strong>Organizations</strong> page and click the blue + button on the top row.</p>
+<p>b. Fill in the Organization name with TRIRIGA and the description as "TRIRIGA Organization".</p>
+<p>c. Fill in the remaining required fields as such:</p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base Currency 1</td>
+<td><b>USD</b></td>
+</tr>
+<tr>
+<td>Item Set</td>
+<td><strong>SET1</strong></td>
+</tr>
+<tr>
+<td>Company Set</td>
+<td><strong>COMPSET1</strong></td>
+</tr>
+<tr>
+<td>Default Item Status</td>
+<td><strong>PENDING</strong></td>
+</tr>
+<tr>
+<td>Default Stock Category</td>
+<td><strong>STK</strong></td>
+</tr>
+</tbody>
+</table>
+<p>d. Click <strong>Save Organization</strong> on the left side of the screen under Common Actions. This will be set to Active later once there is a clearing account.</p>
 <h4 id="2-create-a-testing-clearing-account-in-chart-of-accounts">2. Create a Testing clearing account in Chart of Accounts</h4>
-<ul>
-<li>Navigate to Financial -&gt; Chart of Accounts and click on the previously created TRIRIGA org in the Organizations table. Currently, there should be no GL Accounts for TRIRIGA present</li>
-<li>Click 'GL Component Maintenance' on the left side under More Actions and add a New Row with the following values:<ol>
-<li>GL Component Value: 1001</li>
-<li>Description: Testing</li>
-<li>Active?: Yes</li>
-</ol>
-</li>
-<li>Click OK. Click New Row under GL Accounts for TRIRIGA and click the magnifying glass to search for that GL Component. Select it and it should populate in the GL Account &amp; Description fields. The Active Date field should auto populate to the current date.</li>
-<li>Now that this account is present, head back to Organizations and update the TRIRIGA organization to show the just created Clearing Account, tick the Active box, and click Save Organization.</li>
-</ul>
+<p>a. Navigate to <strong>Financial</strong> -&gt; <strong>Chart of Accounts</strong> and click on the previously created TRIRIGA org in the Organizations table. Currently, there should be no GL Accounts for TRIRIGA present. <br></p>
+<p>b. Click <strong>GL Component Maintenance</strong> on the left side under More Actions and add a New Row with the following values:</p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GL Component Value</td>
+<td><strong>1001</strong></td>
+</tr>
+<tr>
+<td>Description</td>
+<td><strong>Testing</strong></td>
+</tr>
+<tr>
+<td>Active?</td>
+<td><strong>Yes</strong></td>
+</tr>
+</tbody>
+</table>
+<p>c. Click <strong>OK</strong>. Click <strong>New Row</strong> under GL Accounts for TRIRIGA and click the magnifying glass to search for that GL Component. Select it and it should populate in the GL Account and Description fields. The Active Date field should auto populate to the current date.<br></p>
+<p>d. Now that this account is present, head back to <strong>Organizations</strong> and update the TRIRIGA organization to show the just created Clearing Account, tick the Active box, and click <strong>Save Organization</strong>.<br></p>
 <h4 id="3-create-a-site-trimain-and-set-it-to-active">3. Create a site TRIMAIN and set it to active</h4>
-<ul>
-<li>On the Organization page, click on the 'Sites' tab at the top of the page.</li>
-<li>Click New Row under 'Sites' and enter TRIMAIN for Site and "MAIN Site" for Description. Set the site to Active.</li>
-<li>Click Save Organization.</li>
-</ul>
-<h4 id="4-create-the-plusttririga-external-system">4. Create the PLUSTTRIRIGA External System</h4>
-<ul>
-<li>Navigate to Integration -&gt; External Systems and click on the blue plus button at the top of the page.</li>
-<li>Under the System name fill in PLUSTTRIRIGA and in the Description fill in "To integrate Maximo with TRIRIGA"</li>
-<li>Enable the System and then fill in the Queues on the right hand side as follows:<ol>
-<li>Outbound Sequential Queue: jms/maximo/int/queues/sqout</li>
-<li>Inbound Sequential Queue: jms/maximo/int/queues/sqin</li>
-<li>Inbound Continuous Queue: jms/maximo/int/queues/cqin</li>
-</ol>
-</li>
-<li>Save the External System</li>
-</ul>
-<h4 id="5-create-the-publish-channels-for-each-integration">5. Create the Publish Channels for each integration</h4>
-<p><img alt="Publish Channel Config" src="https://media.github.ibm.com/user/348712/files/ea935400-3801-11ed-9326-b40304b0b7a4"></p>
-<ul>
-<li>Navigate to Integration -&gt; Publish Channels</li>
-<li>For Asset<ol>
-<li>Search for 'MXASSETInterface' under the Publish Channel field. Click on the channel and from the left side of the screen select 'Duplicate Publish Channel' </li>
-<li>Rename the channel PLUSTMXASSETInterface</li>
-<li>Click on 'Enable Event Listener' on the left side under More Actions</li>
-<li>Make sure Publish JSON and Retain MBO's are checked, the Operation should default to Publish and the Adapter should default to MAXIMO.</li>
-<li>Click 'Save Publish Channel' on the left under Common Actions</li>
-</ol>
-</li>
-<li>For Location<ol>
-<li>Search for 'MXOPERLOCInterface' under the Publish Channel field. Click on the channel and from the left side of the screen select 'Duplicate Publish Channel' </li>
-<li>Rename the channel PLUSTMXOPERLOCInterface</li>
-<li>Click on 'Enable Event Listener' on the left side under More Actions</li>
-<li>Make sure Publish JSON and Retain MBO's are checked, the Operation should default to Publish and the Adapter should default to MAXIMO.</li>
-<li>Click 'Save Publish Channel' on the left under Common Actions</li>
-</ol>
-</li>
-<li>For Person<ol>
-<li>Search for 'MXPERSONInterface' under the Publish Channel field. Click on the channel and from the left side of the screen select 'Duplicate Publish Channel' </li>
-<li>Rename the channel PLUSTMXPERSONInterface</li>
-<li>Click on 'Enable Event Listener' on the left side under More Actions</li>
-<li>Make sure Publish JSON and Retain MBO's are checked, the Operation should default to Publish and the Adapter should default to MAXIMO.</li>
-<li>Click 'Save Publish Channel' on the left under Common Actions</li>
-</ol>
-</li>
-</ul>
-<h4 id="6-create-the-enterprise-services-for-each-integration">6. Create the Enterprise Services for each integration</h4>
-<p><img alt="Enterprise Service Config" src="https://media.github.ibm.com/user/348712/files/e7986380-3801-11ed-8cde-1e6a47b09a0c"></p>
-<ul>
-<li>Navigate to Integration -&gt; Enterprise Services and click on the blue plus button at the top of the page</li>
-<li>For Asset<ol>
-<li>Under the System name fill in PLUSTMXASSETInterface and in the Description fill in "ASSETS"</li>
-<li>Select 'MXASSET' under Object Structure which will populate the Object Structure Sub-Records table</li>
-<li>Click 'Save Enterprise Service' on the left under Common Actions</li>
-</ol>
-</li>
-<li>For Location<ol>
-<li>Under the System name fill in PLUSTMXOPERLOCInterface and in the Description fill in "OPERATION LOCATION"</li>
-<li>Select 'MXOPERLOC' under Object Structure which will populate the Object Structure Sub-Records table</li>
-<li>Click 'Save Enterprise Service' on the left under Common Actions</li>
-</ol>
-</li>
-<li>For Person<ol>
-<li>Under the System name fill in PLUSTMXPERSONInterface and in the Description fill in "PERSON"</li>
-<li>Select 'MXPERSON' under Object Structure which will populate the Object Structure Sub-Records table</li>
-<li>Click 'Save Enterprise Service' on the left under Common Actions</li>
-</ol>
-</li>
-</ul>
-<h4 id="7-create-the-end-points-for-each-integration">7. Create the End Points for each integration</h4>
-<p><img src="https://media.github.ibm.com/user/348712/files/e6ffcd00-3801-11ed-8aee-523e5de087c4" alt="End Point Config"></p>
-<ul>
-<li>Navigate to Integration -&gt; End Points and click on the blue plus button at the top of the page</li>
-<li>
-<p>For Asset</p>
-<ol>
-<li>Under End Point fill in PLUSTASSET and in the Description fill in "AppConnect ASSET outbound to TRIRIGA"</li>
-<li>Select 'HTTP' for Handler</li>
-<li>Click on 'Save End Point' on the left side under More Actions which will populate the Properties for the End Point</li>
-<li>Until the flows have a destination url, we can only fill in certain fields:</li>
-<li>HEADERS: "Content-Type: application/json"</li>
-<li>HTTPMETHOD: POST</li>
-<li>Save the End Point</li>
-</ol>
-</li>
-<li>
-<p>For Location</p>
-<ol>
-<li>Under End Point fill in PLUSTLOCATION and in the Description fill in "AppConnect LOCATION outbound to TRIRIGA"</li>
-<li>Select 'HTTP' for Handler</li>
-<li>Click on 'Save End Point' on the left side under More Actions which will populate the Properties for the End Point</li>
-<li>Until the flows have a destination url, we can only fill in certain fields:</li>
-<li>HEADERS: "Content-Type: application/json"</li>
-<li>HTTPMETHOD: POST</li>
-<li>Save the End Point</li>
-</ol>
-</li>
-<li>For Person<ol>
-<li>Under End Point fill in PLUSTPERSON and in the Description fill in "AppConnect PERSON outbound to TRIRIGA"</li>
-<li>Select 'HTTP' for Handler</li>
-<li>Click on 'Save End Point' on the left side under More Actions which will populate the Properties for the End Point</li>
-<li>Until the flows have a destination url, we can only fill in certain fields:</li>
-<li>HEADERS: "Content-Type: application/json"</li>
-<li>HTTPMETHOD: POST</li>
-<li>Save the End Point</li>
-</ol>
-</li>
-</ul>
-<h4 id="8-link-the-publish-channels-enterprise-services-to-the-plusttririga-external-system">8. Link the Publish Channels &amp; Enterprise Services to the PLUSTTRIRIGA External System</h4>
-<ul>
-<li>On the External Systems page, search and select PLUSTTRIRIGA. Switch over to the Publish Channels tab. One at a time, click New Row and select the Publish Channel for the just created integrations. Make sure the Publish Channel name matches the End Point and it is Enabled like the below image:</li>
-</ul>
-<p><img src="https://media.github.ibm.com/user/348712/files/e830fa00-3801-11ed-879f-6e9ad68dde4a" alt="Link Publish Channel"></p>
-<p>Once finished, the linked Publish Channels should look like the table below:</p>
-<table>
-<thead>
-<tr>
-<th>Channel</th>
-<th>Description</th>
-<th>Adaptor</th>
-<th>End Point</th>
-<th>User Defined</th>
-<th>Enabled</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PLUSTMXASSETInterface</td>
-<td>ASSETS</td>
-<td>MAXIMO</td>
-<td>PLUSTASSET</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>PLUSTMXOPERLOCInterface</td>
-<td>OPERATION LOCATION</td>
-<td>MAXIMO</td>
-<td>PLUSTLOCATION</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>PLUSTMXPERSONInterface</td>
-<td>PERSON</td>
-<td>MAXIMO</td>
-<td>PLUSTPERSON</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Save the External System</li>
-<li>Switch over to the Enterprise Services tab. One at a time, click New Row and select the Enterprise Service for the integrations you just created. It should look similar to the below image:</li>
-</ul>
-<p><img src="https://media.github.ibm.com/user/348712/files/e7986380-3801-11ed-848e-2440c90fb049" alt="Link Enterprise Service"></p>
-<p>When you have finished, your linked Enterprise Services should look like the table below:</p>
-<table>
-<thead>
-<tr>
-<th>Service</th>
-<th>Description</th>
-<th>Adaptor</th>
-<th>Operation</th>
-<th>User Defined</th>
-<th>Enabled</th>
-<th>Use Continuous Queue?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PLUSTMXASSETInterface</td>
-<td>ASSETS</td>
-<td>MAXIMO</td>
-<td>Sync</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>PLUSTMXOPERLOCInterface</td>
-<td>OPERATION LOCATION</td>
-<td>MAXIMO</td>
-<td>Sync</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>PLUSTMXPERSONInterface</td>
-<td>PERSON</td>
-<td>MAXIMO</td>
-<td>Sync</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Save the External System</li>
-</ul>
-<h4 id="9a-api-key-maximo-x">9a. API Key (Maximo-X)</h4>
-<ul>
-<li>First, check to see if the version of Maximo comes with Maximo-X. Navigate to Administration -&gt; Administration and a new tab/window should open with the Maximo-x application. If there is trouble reaching this page or it is not installed, follow 9b in order to create an API key.</li>
-<li>You should be on a page titled 'Integration'. Click on the tab at the top of the page that says API Keys and click on the button with the blue plus sign that reads 'Add API key'</li>
-<li>Select user 'MXINTADM' and click the Add button to generate an API key for this user. Securely store this API key for later use.</li>
-</ul>
-<h4 id="9b-api-key-no-maximo-x">9b. API Key (No Maximo-X)</h4>
-<ul>
-<li>Follow the steps in <a href="https://www.ibm.com/docs/en/mam/7.6.1.2?topic=components-api-keys">this documentation</a> to generate an API key for the user</li>
-</ul>
-<h4 id="10-integration-controls">10. Integration Controls</h4>
-<ul>
-<li>
-<p>There should be 5 Integration Controls created with the following associations:</p>
+<p>a. On the Organization page, click on the <strong>Sites</strong> tab at the top of the page.</p>
+<p>b. Click <strong>New Row</strong> under <strong>Sites</strong> and enter TRIMAIN for Site and MAIN Site for Description. Set the site to Active.</p>
+<p>c. Click <strong>Save Organization</strong>.</p>
+<h4 id="4-api-key">4. API Key</h4>
+<p><em>Check to see if the version of Maximo comes with Maximo-X.</em> </p>
+<p><strong>a. Maximo-X<br></strong>
+  - Navigate to <strong>Administration -&gt; Administration</strong> and a new tab/window should open with the Maximo-X application.<br>
+  - You should be on a page titled 'Integration'. Click on the tab at the top of the page that says API Keys and click on the button with the blue plus sign that reads <strong>Add API key</strong><br>
+  - Select user <strong>MXINTADM</strong> and click the <strong>Add</strong> button to generate an API key for this user. Securely store this API key for later use.</p>
+<p><strong>b. No Maximo-X<br></strong>
+  - Follow the steps in <a href="https://www.ibm.com/docs/en/mam/7.6.1.2?topic=components-api-keys">this documentation</a> to generate an API key for the user</p>
+<h4 id="5-integration-controls">5. Integration Controls</h4>
+<p>a. Head to <strong>Enterprise Services</strong> and click on <strong>Create Integration Controls</strong>. There should be 5 X-Ref Integration Controls created with the following associations:</p>
 <table>
 <thead>
 <tr>
@@ -403,7 +309,7 @@
 </thead>
 <tbody>
 <tr>
-<td>PLUSTLOCSTATUS</td>
+<td>PLUSILOCSTATUS</td>
 <td>ACTIVE</td>
 <td>ACTIVE</td>
 <td>Tririga Location Status mapping for inbound flows</td>
@@ -424,7 +330,7 @@
 <td>N/A</td>
 </tr>
 <tr>
-<td>PLUSTORG</td>
+<td>PLUSIORG</td>
 <td>TRIMAIN</td>
 <td>IBM</td>
 <td>Organization mapping for Tririga</td>
@@ -438,7 +344,7 @@
 <td>N/A</td>
 </tr>
 <tr>
-<td>PLUSTORGEN</td>
+<td>PLUSIORGEN</td>
 <td>TRIRIGA</td>
 <td>EAGLENA</td>
 <td>Tririga Organization mapping for Inbound flow</td>
@@ -473,7 +379,7 @@
 <td>N/A</td>
 </tr>
 <tr>
-<td>PLUSTPRIORITY</td>
+<td>PLUSIPRIORITY</td>
 <td>1</td>
 <td>High</td>
 <td>Priority mapping for Tririga</td>
@@ -494,7 +400,7 @@
 <td>N/A</td>
 </tr>
 <tr>
-<td>PLUSTSITEEN</td>
+<td>PLUSISITEEN</td>
 <td>TRIMAIN</td>
 <td>BEDFORD</td>
 <td>Tririga Location mapping for inbound flows</td>
@@ -523,11 +429,7 @@
 </tr>
 </tbody>
 </table>
-</li>
-<li>
-<p>Once these Integration Controls are created, associate them in both the created Enterprise Services and Publish Channels by using the following two tables</p>
-</li>
-</ul>
+<p>b. Once these Integration Controls are created, associate them in both the created Enterprise Services and Publish Channels by using the following two tables</p>
 <table>
 <thead>
 <tr>
@@ -537,36 +439,36 @@
 </thead>
 <tbody>
 <tr>
-<td>PLUSTMXASSETInterface</td>
-<td>PLUSTORGEN</td>
+<td>PLUSIMXASSETInterface</td>
+<td>PLUSIORGEN</td>
 </tr>
 <tr>
 <td>""</td>
-<td>PLUSTPRIORITY</td>
+<td>PLUSIPRIORITY</td>
 </tr>
 <tr>
 <td>""</td>
-<td>PLUSTSITEEN</td>
+<td>PLUSISITEEN</td>
 </tr>
 <tr>
-<td>PLUSTMXOPERLOCInterface</td>
-<td>PLUSTLOCSTATUS</td>
-</tr>
-<tr>
-<td>""</td>
-<td>PLUSTSITEEN</td>
+<td>PLUSIMXOPERLOCInterface</td>
+<td>PLUSILOCSTATUS</td>
 </tr>
 <tr>
 <td>""</td>
-<td>PLUSTSTATUS</td>
-</tr>
-<tr>
-<td>PLUSTMXPERSONInterface</td>
-<td>PLUSTORGEN</td>
+<td>PLUSISITEEN</td>
 </tr>
 <tr>
 <td>""</td>
-<td>PLUSTSITEEN</td>
+<td>PLUSISTATUS</td>
+</tr>
+<tr>
+<td>PLUSIMXPERSONInterface</td>
+<td>PLUSIORGEN</td>
+</tr>
+<tr>
+<td>""</td>
+<td>PLUSISITEEN</td>
 </tr>
 </tbody>
 </table>
@@ -579,29 +481,50 @@
 </thead>
 <tbody>
 <tr>
-<td>PLUSTMXASSETInterface</td>
-<td>PLUSTPRIORITY</td>
+<td>PLUSIMXASSETInterface</td>
+<td>PLUSIPRIORITY</td>
 </tr>
 <tr>
-<td>PLUSTMXOPERLOCInterface</td>
+<td>PLUSIMXOPERLOCInterface</td>
 <td>N/A</td>
 </tr>
 <tr>
-<td>PLUSTMXPERSONInterface</td>
-<td>PLUSTORG</td>
+<td>PLUSIMXPERSONInterface</td>
+<td>PLUSIORG</td>
 </tr>
 </tbody>
 </table>
+<p>c. Return to the PLUSITRIRIGA External System. On the left side of the External Systems page, select <strong>Setup Integration Controls</strong> under <strong>More Actions</strong> and make sure that all 5 Integration Controls are showing as present.</p>
+<h4 id="6-enable-object-structure-security">6. Enable Object Structure Security</h4>
+<p>The user needs to be able to transact against the specific object structure in Manage. Navigate to Object Structures and search for MXPERSON. On the left side of the MXPERSON screen select <strong>Configure Object Structure Storage</strong> and turn on the button underneath <strong>Use Object Structure for Authorization Name?</strong></p>
+<p><img width="1788" alt="Configure Object Security" src="https://media.github.ibm.com/user/348712/files/f1affe00-48a5-11ed-8488-a41686aafba5"></p>
+<p><em>Configure Object Security Screen</em></p>
+<p>The structure should save. Complete this process for the following objects:</p>
 <ul>
-<li>Return to the PLUSTTRIRIGA External System. On the left side of the External Systems page, select Setup Integration Controls under 'More Actions' and make sure that all 5 Integration Controls are showing as present.</li>
+<li>MXASSET</li>
+<li>MXOPERLOC</li>
+<li>MXSR</li>
+<li>MXWO</li>
+<li>MXDOMAIN</li>
 </ul>
+<p>Next, navigate to <strong>Security -&gt; Security Groups</strong> and select the security group the current user is apart of. Click the <strong>Object Structures</strong> tab and filter search for MXPERSON. Once selected, click <strong>Grant Listed Options for This Object Structure</strong> and Save the Group. </p>
+<p><img width="1785" alt="Security Group Page" src="https://media.github.ibm.com/user/348712/files/f2489480-48a5-11ed-8833-fc3297fb7881"></p>
+<p><em>Security Group Page</em></p>
+<p>Repeat this process for the other changed structures.</p>
 <h3 id="app-connect">App Connect</h3>
-<p><strong> Access to an instance of App Connect with a deployed instance of a Designer is required. This code pattern has been tested with AppConnect version 3.0 </strong></p>
-<p>Two accounts need to be created from the 'Catalog' tab in order to connect the applications.</p>
-<p>Once all of the connectors have loaded, type in 'http' to find the HTTP Application.</p>
-<p><img src="https://media.github.ibm.com/user/348712/files/e23b1900-3801-11ed-8ab4-a5234d64325d" alt="App Connect Catalog"></p>
-<p>If this is the first account, select 'Connect' to begin setting up the initial HTTP account. If this is not the first account, make sure to take note if there are any other generic account names present because the number of the one created will depend on what has already been created. App Connect creates an account with a generic name in sequential order (Example: if Account 1 and Account 2 are present, the new account will be Account 3).</p>
-<p>See the below table for credentials:</p>
+<p><strong> Access to an instance of App Connect with a deployed instance of a Designer is required. This code pattern has been tested with App Connect version 3.0. </strong></p>
+<ol>
+<li>
+<p>Two accounts need to be created from the <strong>Catalog</strong> tab in order to connect the applications. Once all of the connectors have loaded, type in <strong>http</strong> to find the HTTP Application.</p>
+</li>
+<li>
+<p>If this is the first account, select <strong>Connect</strong> to begin setting up the initial HTTP account. If this is not the first account, make sure to take note if there are any other generic account names present because the number of the one created will depend on what has already been created. App Connect creates an account with a generic name in sequential order (Example: if Account 1 and Account 2 are present, the new account will be Account 3).</p>
+</li>
+<li>
+<p>Use the below table to associate the proper credentials for the accounts.</p>
+</li>
+<li>Once the account is connected, head back to the HTTP Application on the Catalog page and rename the new account according to the Account Name column in the above table.</li>
+</ol>
 <table>
 <thead>
 <tr>
@@ -635,34 +558,16 @@
 </tr>
 </tbody>
 </table>
-<p>Once the account is connected, head back to the HTTP Application on the Catalog page and rename the new account according to the Account Name column in the above table.</p>
+<p><img src="https://media.github.ibm.com/user/348712/files/e23b1900-3801-11ed-8ab4-a5234d64325d" alt="App Connect Catalog"></p>
+<p><em>App Connect catalog</em></p>
 <h3 id="tririga">TRIRIGA</h3>
-<p>Navigate to Tools &gt; Object Migration and import the latest OM Package found <a href="https://github.com/IBM/tririga-api/tree/main/docs/ompackages">here</a>.</p>
-<p>The Date Time Format field in the user profile must be in UTC. Navigate to Portfolio &gt; People &gt; My Profile and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.</p>
+<ol>
+<li>Download the latest <a href="https://github.com/IBM/tririga-api/tree/main/docs/ompackages">OM Package</a>.</li>
+<li>Navigate to <strong>Tools -&gt; Object Migration</strong> and import the package into the instance of TRIRIGA.</li>
+<li>The Date Time Format field in the user profile must be in UTC. Navigate to <strong>Portfolio -&gt; People -&gt; My Profile</strong> and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.</li>
+</ol>
 <p><img width="1792" alt="TRI-UTC" src="https://media.github.ibm.com/user/348712/files/ec5d1780-3801-11ed-8f32-72fc453558f0"></p>
-<h2 id="connectors">Connectors</h2>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Link</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Portfolio Data</td>
-<td><a href="../mas-tas/">Code Pattern</a></td>
-</tr>
-<tr>
-<td>Service Request</td>
-<td><a href="../service-request/">Code Pattern</a></td>
-</tr>
-<tr>
-<td>Work Order</td>
-<td><a href="../work-order/">Code Pattern</a></td>
-</tr>
-</tbody>
-</table>
+<p><em>Date Time Format Field in My Profile</em></p>
               
             </div>
           </div><footer>

@@ -11,9 +11,9 @@ nav:
   - 'Home': index.md
   - 'IBM MAS Connector for TRIRIGA':
     - 'Overview': mas-tas-home.md
-    - 'Portfolio Data' : mas-tas.md
-    - 'Service Request': service-request.md
-    - 'Work Order': work-order.md
+    - 'Portfolio Data Integration' : mas-tas.md
+    - 'Service Request Integration': service-request.md
+    - 'Work Order Integration': work-order.md
   - 'IBM MAS Connector for Envizi': 
     - 'Overview': max-envizi-index.md
     - 'IBM Maximo Application Suite Connector for Envizi': maximo-envizi.md
@@ -44,7 +44,7 @@ extra_javascript:
 # Success
 # Question
 # Warning
-# Failure
+# Failure`
 # Danger
 # Bug
 # Example
