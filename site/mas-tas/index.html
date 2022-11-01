@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/mas-tas/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Portfolio Data - IBM Sustainability Software Portfolio Connectors</title>
+    <title>Portfolio Data Integration - IBM Sustainability Software Portfolio Connectors</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Portfolio Data";
+        var mkdocs_page_name = "Portfolio Data Integration";
         var mkdocs_page_input_path = "mas-tas.md";
         var mkdocs_page_url = "/IBM-Sustainability-Software-Portfolio-Connectors/mas-tas/";
       </script>
@@ -50,17 +50,33 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">Overview</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Portfolio Data</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Portfolio Data Integration</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#description">Description</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-application-designer-changes">1. Application Designer Changes</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#person">Person</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#asset">Asset</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#location">Location</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#step-1-select-an-app-connect-flow-for-deployment">Step 1 - Select an App Connect Flow for deployment</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#step-2-import-the-selected-flow-in-app-connect">Step 2 - Import the Selected Flow in App Connect</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#import-steps">Import Steps</a>
+    <li class="toctree-l3"><a class="reference internal" href="#import-steps-ace">Import Steps (ACE)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#import-steps-app-connect-cloud">Import Steps (App Connect Cloud)</a>
     </li>
         </ul>
     </li>
@@ -72,13 +88,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-4-configure-websphere-certificates">Step 4 - Configure WebSphere Certificates</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#websphere">Websphere</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-5-test-the-flow">Step 5 - Test the Flow</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-4-test-the-flow">Step 4 - Test the Flow</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
     </li>
@@ -94,9 +104,9 @@
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request Integration</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../work-order/">Work Order</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../work-order/">Work Order Integration</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">IBM MAS Connector for Envizi</span></p>
@@ -128,7 +138,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
           <li>IBM MAS Connector for TRIRIGA &raquo;</li>
-      <li>Portfolio Data</li>
+      <li>Portfolio Data Integration</li>
     <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/mas-tas.md"
           class="icon icon-github"> Edit on GitHub</a>
@@ -139,7 +149,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="app-connect-flows-for-maximotririga-application-suites">App Connect Flows for MAXIMO/TRIRIGA Application Suites</h1>
+                <h1 id="portfolio-data-integration">Portfolio Data Integration</h1>
 <h3 id="summary">Summary</h3>
 <p>Enable automated synchronization of portfolio data between TRIRIGA and Maximo Asset Management systems to integrate asset and facility management operations.</p>
 <h3 id="description">Description</h3>
@@ -158,8 +168,165 @@
 </ol>
 <p>At the end of this process, a Person, Asset, or Location can be sent from Maximo to TRIRIGA and TRIRIGA to Maximo utilizing App Connect.</p>
 <p>A detailed breakdown of the specific fields being mapped within each flow can be found in this <a href="/docs/TRIRIGA_Maximo_Field_Mapping-Final.xlsx">Mapping Document</a></p>
+<h2 id="prerequisites">Prerequisites</h2>
+<h3 id="1-application-designer-changes">1. Application Designer Changes</h3>
+<!-- <img width="1788" alt="App-Designer" src="https://media.github.ibm.com/user/348712/files/457a7a80-3805-11ed-9484-133899bdfac4"> -->
+
+<p>Go to <strong>System Configuration -&gt; Platform Configuration -&gt; Application Designer</strong></p>
+<h4 id="person">Person</h4>
+<ol>
+<li>
+<p>Search for <strong>PERSON</strong>, switch to the <strong>Person</strong> Tab and select a section to add three new boxes.</p>
+</li>
+<li>
+<p>At the top, click the icon labeled <strong>Control Palette</strong> and add a Multipart Textbox at the bottom of the section. Add the values from the below table within the properties of the Multipart Textbox and click <strong>Save Definition</strong> </p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Note</strong>
+<em>Be sure that the Attributes are taken from the PERSON Object.</em></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Type of Control</th>
+<th>Label</th>
+<th>Attribute</th>
+<th>Attribute for Part 2 (<em>If Multipart Textbox</em>)</th>
+<th>Lookup</th>
+<th>Input Mode for Part 2 (<em>If Multipart Textbox</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multipart Textbox</td>
+<td>TRIRIGA Location Path</td>
+<td>PLUSIPRIMARYLOCPATH</td>
+<td>PLUSILOCATIONPATH.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Multipart Textbox</td>
+<td>TRIRIGA Primary Organization</td>
+<td>PLUSIORGPATH</td>
+<td>PLUSIORGANIZATIONPATH.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Textbox</td>
+<td>TRIRIGA Record ID</td>
+<td>EXTERNALREFID (<em>From the Person Object</em>)</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p>Follow the same directions using the following information for Asset and Location</p>
+<h4 id="asset">Asset</h4>
+<ol>
+<li>Search for <strong>ASSET</strong> in Application Designer</li>
+</ol>
+<blockquote>
+<p><strong>Note</strong>
+<em>Be sure that the Attributes are taken from the ASSET Object.</em></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Type of Control</th>
+<th>Label</th>
+<th>Attribute</th>
+<th>Attribute for Part 2 (<em>If Multipart Textbox</em>)</th>
+<th>Lookup</th>
+<th>Input Mode for Part 2 (<em>If Multipart Textbox</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multipart Textbox</td>
+<td>TRIRIGA Building Equipment Spec</td>
+<td>PLUSIASSETSPECNAME</td>
+<td>PLUSIASSETSPECCLASS.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Multipart Textbox</td>
+<td>TRIRIGA Primary Organization</td>
+<td>PLUSIORGPATH</td>
+<td>PLUSIORGANIZATIONPATH.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Multipart Textbox</td>
+<td>TRIRIGA Location Path</td>
+<td>PLUSILOCPATH</td>
+<td>PLUSILOCATIONPATH.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Textbox</td>
+<td>TRIRIGA Record ID</td>
+<td>EXTERNALREFID (<em>From the Asset Object</em>)</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h4 id="location">Location</h4>
+<p>Search for <strong>LOCATION</strong> in Application Designer</p>
+<blockquote>
+<p><strong>Note</strong>
+<em>Be sure that the Attributes are taken from the LOCATION Object.</em></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Type of Control</th>
+<th>Label</th>
+<th>Attribute</th>
+<th>Attribute for Part 2 (<em>If Multipart Textbox</em>)</th>
+<th>Lookup</th>
+<th>Input Mode for Part 2 (<em>If Multipart Textbox</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multipart Textbox</td>
+<td>TRIRIGA Space Classification</td>
+<td>PLUSISPACECLASSIFICATION</td>
+<td>PLUSISPCCLASSIFICATION.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Multipart Textbox</td>
+<td>TRIRIGA Parent Location</td>
+<td>PLUSIPARENTLOCATION</td>
+<td>PLUSIPARENTPATH.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Textbox</td>
+<td>TRIRIGA Record ID</td>
+<td>EXTERNALREFID (<em>From the Location Object</em>)</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
 <h2 id="step-1-select-an-app-connect-flow-for-deployment">Step 1 - Select an App Connect Flow for deployment</h2>
-<p>Locate the .yaml file for the deployment direction (MX2TRI or TRI2MX) based on the system of record and download to the local machine. From the previous example, use the MX2TRI flow in the Person row.</p>
+<ol>
+<li>Locate the .yaml file for the deployment direction (MX2TRI or TRI2MX) based on the system of record and download to the local machine. From the previous example, use the MX2TRI flow in the Person row.</li>
+</ol>
 <table>
 <thead>
 <tr>
@@ -189,89 +356,106 @@
 <p>Make sure to check the <a href="/docs/TRIRIGA_Maximo_Field_Mapping-Final.xlsx">Mapping Document</a> that the correct fields are being mapped in the selected flow.</p>
 <h2 id="step-2-import-the-selected-flow-in-app-connect">Step 2 - Import the Selected Flow in App Connect</h2>
 <p>Follow the below steps to import the flow.</p>
-<h3 id="import-steps">Import Steps</h3>
-<p>From the App Connect Dashboard, click 'New' and select 'Import Flow' from the drop down menu.</p>
-<p><img src="https://media.github.ibm.com/user/348712/files/e23b1900-3801-11ed-9bf0-334b0f78fb60" alt="App Connect Dashboard"> </p>
+<h3 id="import-steps-ace">Import Steps (ACE)</h3>
+<ol>
+<li>
+<p>From the App Connect Dashboard, click <strong>New</strong> and select <strong>Import Flow</strong> from the drop down menu.</p>
+</li>
+<li>
 <p>Either drag and drop or select the flow for import. In this example, the MX2TRI Person flow will be used.</p>
+</li>
+<li>
+<p>The flow should now be uploaded onto the App Connect instance. From this screen navigate using the <strong>Edit flow</strong> button to see the individual nodes of this flow. Be sure to select the HTTP account that was configured for Maximo to TRIRIGA for the connector. </p>
+</li>
+<li>
+<p>Click <strong>Done</strong> on the top right of the screen then click on the three dots in the top right corner and select <strong>Start API</strong>.</p>
+</li>
+<li>
+<p>Go to the <strong>Test</strong> tab once it shows that the flow is <strong>Running</strong> and select the <strong>POST</strong> option on the left side of the screen. Click on <strong>Try It</strong> and grab the url and security credentials from this screen for the next step.</p>
+</li>
+</ol>
+<p><img src="https://media.github.ibm.com/user/348712/files/e23b1900-3801-11ed-9bf0-334b0f78fb60" alt="App Connect Dashboard"> </p>
+<p><em>Step 1: App Connect Dashboard</em></p>
 <p><img width="300" alt="Uploaded_Flow" src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-886a-b5bb80a59523"></p>
-<p>The flow should now be uploaded onto the App Connect instance. From this screen navigate using the 'Edit flow' button to see the individual nodes of this flow. Be sure to select the HTTP account that was configured for Maximo to TRIRIGA for the connector. </p>
+<p><em>Step 2: Import a Flow</em> </p>
 <p><img width="1771" alt="Completed_Flow" src="https://media.github.ibm.com/user/348712/files/e6673680-3801-11ed-9883-661b31bad8b5"></p>
-<p>Click 'Done' on the top right of the screen then click on the three dots in the top right corner and select 'Start API'.</p>
+<p><em>Step 3: Completed Flow</em></p>
 <p><img width="251" alt="Start_API" src="https://media.github.ibm.com/user/348712/files/ea935400-3801-11ed-826c-318a039b6bec"></p>
-<p>Go to the 'Test' tab once it shows that the flow is 'Running' and select the 'POST' option on the left side of the screen.</p>
-<p>Click on 'Try It' and grab the url and security credentials from this screen for the next step.</p>
 <p><img src="https://media.github.ibm.com/user/348712/files/e49d7300-3801-11ed-83f4-a6fd5e41a3da" alt="App Connect Config Full" ></p>
+<h3 id="import-steps-app-connect-cloud">Import Steps (App Connect Cloud)</h3>
+<ol>
+<li>
 <p>If your instance of AppConnect is through the cloud, your page will look a bit different</p>
-<p>The interface is mostly the same, but instead of 'Try It' you'll see a tab called 'Manage'</p>
-<p><img src="https://media.github.ibm.com/user/348712/files/e36c4600-3801-11ed-8744-4aa3b105af0d" alt="AppConnect Cloud Manage Tab" ></p>
-<p>This page contains a few important pieces of information that you'll need to complete the configuration. First, at the top of the page under 'API Info' you'll see a field called 'Route'</p>
+</li>
+<li>
+<p>The interface is mostly the same, but instead of <strong>Try It</strong> you'll see a tab called <strong>Manage</strong>. This page contains a few important pieces of information that you'll need to complete the configuration. First, at the top of the page under <strong>API Info</strong> you'll see a field called <strong>Route</strong>. Piece this together with the correct path of the flow that you're implementing in order to create the proper flow url.</p>
+</li>
+<li>
+<p>Collect the API key at the bottom of the page from a field called <strong>Sharing outside of Cloud Foundry organization</strong>. Click on <strong>Create API key and documentation link</strong>. Provide a name and it will generate an apikey for you to use with this flow along with a documentation link that looks like the <strong>Test</strong> page from the on-prem configuration.</p>
+</li>
+<li>
+<p>The end of the url at the top of the page should have the path that will complete the route url. Copy the end of the url that begins with <strong>tri</strong> and add it to the piece gathered earlier. The 6 character string that precedes the path on the documentation should match the last 6 characters of the route piece from before.</p>
+</li>
+</ol>
+<p><img src="https://media.github.ibm.com/user/348712/files/e36c4600-3801-11ed-8744-4aa3b105af0d" alt="AppConnect Cloud Manage Tab" >
+  <em>Step 1: Manage Tab</em></p>
 <p><img src="https://media.github.ibm.com/user/348712/files/e404dc80-3801-11ed-95de-e332d10a5597" alt="AppConnect Cloud Route" ></p>
-<p>This is the route for your flow, you'll need to piece this together with the correct path of the flow that you're implementing in order to create the proper flow url.</p>
-<p>At the bottom of the page is a field called 'Sharing outside of Cloud Foundry organization'.</p>
+<p><em>Step 2: Cloud Route</em></p>
 <p><img src="https://media.github.ibm.com/user/348712/files/e49d7300-3801-11ed-9084-943aa4afe16c" alt="AppConnect Cloud Sharing" ></p>
-<p>Here is where you will create your apikey for authentication. The on-prem set up uses basic authentication but the cloud configuration uses an apikey to authorize access. Click on 'Create API key and documentation link' </p>
-<p>Provide a name and it will generate an apikey for you to use with this flow along with a documentation link that looks like the 'Test' page from the on-prem configuration.</p>
+<p><em>Step 3: API key creation</em></p>
 <p><img src="https://media.github.ibm.com/user/348712/files/e2d3af80-3801-11ed-8ff7-4e319d52da99" alt="AppConnect Cloud Documentation Link" > </p>
-<p>The end of the url at the top of the page should have the path that will complete the route url. Copy the end of the url that begins with 'tri' and add it to the piece gathered earlier. The 6 character string that precedes the path on the documentation should match the last 6 characters of the route piece from before.</p>
+<p><em>Step 4: API Documentation Link</em></p>
 <h2 id="step-3-configure-maximo-and-tririga-instances-with-app-connect-urls">Step 3 - Configure Maximo and TRIRIGA instances with App Connect urls</h2>
 <p>Using the credentials from the end of Step 2, populate the instances of Maximo and TRIRIGA with the correct End Points of the recently created flow.</p>
 <h3 id="maximo">Maximo</h3>
-<p>From the main page of Maximo, click the menu icon on the top left and navigate to Integration -&gt; End Points</p>
+<ol>
+<li>
+<p>From the main page of Maximo, click the menu icon on the top left and navigate to <strong>Integration -&gt; End Points</strong>.</p>
+</li>
+<li>
+<p>Fill in the properties with the url, username, and password from Step 2.</p>
+</li>
+<li>
+<p>Click the <strong>Test</strong> button at the bottom right of the screen and send a simple {"hello":"world"}. With the proper configuration, there will be an expected error that ends with <strong>Bad Request</strong>. If there is a different error than Bad Request in the Response window, refer to the Troubleshooting section to debug.</p>
+</li>
+</ol>
+<p><em>If the instance is based in the cloud, there is a slight difference in authorization.</em></p>
+<ol>
+<li>Since the authorization is with an api key, remove the basic authorization values (USERNAME &amp; PASSWORD) and in the <strong>HEADERS</strong> field add the API key after Content-Type. The <strong>Headers</strong> field should look something like this:</li>
+</ol>
+<p>Content-Type: application/json, X-IBM-Client-Id: [apikey from step 2]</p>
 <p><img src="https://media.github.ibm.com/user/348712/files/e830fa00-3801-11ed-8366-1d1c57561fba" alt="Maximo End Point Navigation" ></p>
-<p>Fill in the properties with the url, username, and password from Step 2</p>
+<p><em>Step 1: Maximo End Point app</em></p>
 <p><img src="https://media.github.ibm.com/user/348712/files/e8c99080-3801-11ed-91c8-96763b471911" alt="Maximo End Point Properties" ></p>
-<p>Click the 'Test' button at the bottom right of the screen and send a simple {"hello":"world"}. With the proper configuration, there will be an expected error that ends with 'Bad Request'. If there is a different error than Bad Request in the Response window, refer to the Troubleshooting section to debug.</p>
-<p>If the instance is based in the cloud, there is a slight difference in authorization.</p>
-<p>Since the authorization is with an api key, remove the basic authorization values (USERNAME &amp; PASSWORD) and in the 'HEADERS' field add the following after Content-Type: </p>
-<p>X-IBM-Client-Id: [apikey from Step 2] </p>
-<p>Make sure to separate these two values with a comma. It should look something like this:</p>
-<p>Content-Type: application/json, X-IBM-Client-Id: [apikey]</p>
+<p><em>On-prem End Point properties</em></p>
 <p><img src="https://media.github.ibm.com/user/348712/files/e5360980-3801-11ed-99bb-64636c034d61" alt="Cloud End Point" > </p>
+<p><em>Cloud End Point properties</em></p>
 <h3 id="tririga">TRIRIGA</h3>
-<p>From the main page of TRIRIGA, click on Tools -&gt; System Setup -&gt; Integration -&gt; Integration Object.</p>
-<p>Under the 'Name' column, type in 'apic', and select the integration object that pertains to the record that is getting sent. </p>
-<p><img src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-9ea5-af57b4059a25" alt="TRIRIGA End Point"></p>
+<ol>
+<li>
+<p>From the main page of TRIRIGA, click on <strong>Tools -&gt; System Setup -&gt; Integration -&gt; Integration Object</strong>. Under the <strong>Name</strong> column, type in <strong>apic</strong>, and select the integration object that pertains to the record that is getting sent. </p>
+</li>
+<li>
 <p>Click on the object and fill in the credentials in the pop-up box.</p>
-<h2 id="step-4-configure-websphere-certificates">Step 4 - Configure WebSphere Certificates</h2>
-<p>This step makes a test connection to a Secure Sockets Layer (SSL) port and retrieves the signer from the server during the handshake.</p>
-<h3 id="websphere">Websphere</h3>
-<p>Login to the Websphere console that is hosting the Maximo server</p>
-<p><img width="1280" alt="Websphere-Home" src="https://media.github.ibm.com/user/348712/files/ee26db00-3801-11ed-8365-8604ad0a66df"></p>
-<p>Click on Security -&gt; SSL certificate &amp; key management. Under 'Related Items' click on 'Key stores and certificates'</p>
-<p><img width="1282" alt="Websphere-Keystores" src="https://media.github.ibm.com/user/348712/files/eebf7180-3801-11ed-9253-85d4e8bed0ea"></p>
-<p>Click on 'CellDefaultTrustStore' and on the next page under 'Additional Properties' click on 'Signer certificates'. </p>
-<p><img width="1283" alt="Websphere-Signercerts" src="https://media.github.ibm.com/user/348712/files/f121cb80-3801-11ed-9833-65fe541bcef5"></p>
-<p>From this page, click on the button that says 'Retrieve from Port' and fill in the required fields using the table below</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Host</td>
-<td>The host from the url in Step 2</td>
-</tr>
-<tr>
-<td>Port</td>
-<td>443</td>
-</tr>
-<tr>
-<td>Alias</td>
-<td>appconnect</td>
-</tr>
-</tbody>
-</table>
-<p>Once all three have been entered in, click 'Retrieve signer information' and the information from the url will populate on screen. Click save in the box at the top and then repeat the process for 'NodeDefaultTrustStore'</p>
-</details>
-<h2 id="step-5-test-the-flow">Step 5 - Test the Flow</h2>
-<p>With these 4 steps completed, test the flow with a payload.</p>
-<p>Head back to the 'Try It' page in the deployed flow (or the documentation page if cloud-based) and scroll down to the bottom of the page under Parameters.</p>
-<p><img src="https://media.github.ibm.com/user/348712/files/e2d3af80-3801-11ed-9e0e-0aba1b46eefa" alt="App Connect Test" ></p>
-<p>In here, fill in mxUrl and triUrl with the urls for the respective applications, generate a test payload to send through the flow and monitor if the information populates in the desired application.</p>
+</li>
+</ol>
+<p><img src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-9ea5-af57b4059a25" alt="TRIRIGA End Point"></p>
+<p><em>TRIRIGA End Point</em></p>
+<h2 id="step-4-test-the-flow">Step 4 - Test the Flow</h2>
+<p>With these 3 steps completed, test the flow with a payload.</p>
+<ol>
+<li>
+<p>Head back to the <strong>Try It</strong> page in the deployed flow (or the documentation page if cloud-based) and scroll down to the bottom of the page under Parameters.</p>
+</li>
+<li>
+<p>In here, fill in <strong>mxUrl</strong> and <strong>triUrl</strong> with the urls for the respective applications, generate a test payload to send through the flow and monitor if the information populates in the desired application.</p>
+</li>
+<li>
 <p>If there is a response other than 200 from the Test, refer to Troubleshooting.</p>
+</li>
+</ol>
+<p><img src="https://media.github.ibm.com/user/348712/files/e2d3af80-3801-11ed-9e0e-0aba1b46eefa" alt="App Connect Test" ></p>
+<p><em>App Connect Test</em></p>
 <h2 id="references">References</h2>
 <p><a href="/docs/TRIRIGA_Maximo_Field_Mapping-Final.xlsx">Mapping Document</a></p>
 <h2 id="troubleshooting">Troubleshooting</h2>
@@ -279,7 +463,7 @@
 <p>#### Testing the whole flow</p>
 <ul>
 <li>
-<p>If there is a 404 Not Found error when trying to test the flow, this could mean that the flow is not running. Double check to make sure the flow shows a green dot and says 'Running' after edits have been made.</p>
+<p>If there is a 404 Not Found error when trying to test the flow, this could mean that the flow is not running. Double check to make sure the flow shows a green dot and says <strong>Running</strong> after edits have been made.</p>
 </li>
 <li>
 <p>If there is a 400 Bad Request error when testing the flow, this could mean the wrong account configurations. Double check to make sure the Accounts from the App Connect pre-requisite section are correct.</p>
@@ -289,10 +473,10 @@
 <p>#### Testing the End Point</p>
 <ul>
 <li>
-<p>If an error reads "The response code received from the HTTP request from the endpoint is not successful.", this is related to the configured End Point. Double check and make sure the values in 'End Points' are correct. Make sure there are no accidental spaces at the beginning or end in the event of the values being copy/pasted.</p>
+<p>If an error reads "The response code received from the HTTP request from the endpoint is not successful.", this is related to the configured End Point. Double check and make sure the values in <strong>End Points</strong> are correct. Make sure there are no accidental spaces at the beginning or end in the event of the values being copy/pasted.</p>
 </li>
 <li>
-<p>If an error comes back as a 'PKSync error', this is related to the certificates in WebSphere. Double check and confirm that the certificates from Step 4 are correctly configured. </p>
+<p>If an error comes back as a <strong>PKSync error</strong>, this is related to the certificates in WebSphere. Double check and confirm that the certificates from Step 4 are correctly configured. </p>
 </li>
 </ul>
 <h3 id="common-errors-that-arise-from-tririga">Common errors that arise from TRIRIGA</h3>
