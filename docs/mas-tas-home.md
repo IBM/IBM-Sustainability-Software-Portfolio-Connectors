@@ -1,10 +1,20 @@
-# IBM MAS Connector for TRIRIGA
+# TRIRIGA - Maximo Connector
 
-## Overview
+The **TRIRIGA - Maximo Connector** is released in TAS under the name *"TAS Connector for Maximo"* and in MAS under the name *"MAS Connector for TRIRIGA"*. 
+This connector supports the following capabilities through a collection of App Connect flows:
 
-Portfolio Data is able to be synced bi-directionally across Maximo and TRIRIGA with the use of a TRIRIGA Application Suite (TAS) or Maximo Application Suite (MAS) Connector. The data that is supported at this time includes People, Assets, Locations/Spaces, Service Requests, and Work Orders/Work Tasks. After configuring the environments with the proper prerequisites, select the desired connector below and follow the instructions to implement the integration.
+- Bi-directional loading, and continuous synchronization of portfolio data such as People, Locations and Assets.
+- Bi-directinoal routing of service requests between TRIRIGA and Maximo
+- Automatic shadowing of TRIRIGA Work Tasks with Maximo Work Orders to enable Facility teams to do planing, budgeting and project management in TRIRIGA while work tasks get reflected in Maximo as Work Orders for execution.
 
-**Note: IBM MAS Connector for TRIRIGA also refers to the IBM TAS Connector for Maximo**
+<img width="1280" alt="TRI-MAS Architecture" src="https://user-images.githubusercontent.com/20128676/199506541-1f7b96cd-a758-4011-802a-c1ea1a46e60d.png">
+
+## Data Mapping
+
+
+
+<img width="1280" alt="TRI-MAS Architecture" src="https://user-images.githubusercontent.com/20128676/199506793-e96635d7-4a18-4f4b-97df-633374c334c5.png">
+
 
 ## Prerequisites
 
