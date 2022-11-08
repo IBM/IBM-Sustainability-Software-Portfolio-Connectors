@@ -1,4 +1,4 @@
-# Portfolio Data Integration
+# Portfolio Data Integration - To be deleted
 
 ### Summary
 
@@ -8,7 +8,7 @@ Enable automated synchronization of portfolio data between TRIRIGA and Maximo As
 
 In this code pattern, learn how to synchronize bi-directional portfolio data of IBM TRIRIGA and IBM Maximo Asset Management using App Connect Designer flows for synchronizing People, Locations, and Assets. Using the provided flows, enable a variety of use cases: from a simple trigger-action integration that updates or populates the records in the other application, to more complex scripted cron jobs that orchestrate these objects into their respective primary system of record.
 
-<img alt="MX2TRI Graph"src="https://media.github.ibm.com/user/348712/files/ea935400-3801-11ed-9dc2-9f5a0d4e38a8" >
+<img alt="MX2TRI Graph"src="https://media.github.ibm.com/user/348712/files/ea935400-3801-11ed-9dc2-9f5a0d4e38a8">
 
 1. When a record is updated in Maximo Asset Management, it triggers the flow to synchronize with TRIRIGA. (There is also a flow that works in the reverse direction, that works in a similar way.)
 2. App Connect sends a request with the updated information through the flow towards the target system (TRIRIGA).
