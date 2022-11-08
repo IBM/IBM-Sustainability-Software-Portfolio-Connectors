@@ -8,18 +8,18 @@ repo_url: https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connector
 edit_uri: blob/master/docs/
 
 nav:
-  - 'Home': index.md
-  - 'IBM MAS Connector for TRIRIGA':
-    - 'Overview': mas-tas-home.md
-    - 'Portfolio Data Integration' : mas-tas.md
-    - 'Service Request Integration': service-request.md
-    - 'Work Order Integration': work-order.md
-  - 'IBM MAS Connector for Envizi': 
-    - 'Overview': max-envizi-index.md
-    - 'IBM Maximo Application Suite Connector for Envizi': maximo-envizi.md
-  - 'IBM TAS Connector for Envizi': 
-    - 'Overview': tas-envizi-index.md
-    - 'IBM Tririga Application Suite Connector for Envizi': tririga-envizi.md
+  - 'Sustainability Software Portfolio Connectors': index.md
+  #- 'IBM MAS Connector for TRIRIGA':
+  - 'IBM MAS Connector for TRIRIGA': mas-tas-home.md
+    # - 'Portfolio Data Integration' : mas-tas.md
+    # - 'Service Request Integration': service-request.md
+    # - 'Work Order Integration': work-order.md
+  #- 'IBM MAS Connector for Envizi': 
+  - 'IBM MAS Connector for Envizi': max-envizi-index.md
+  #  - 'IBM Maximo Application Suite Connector for Envizi': maximo-envizi.md
+  #- 'IBM TAS Connector for Envizi': 
+  - 'IBM TAS Connector for Envizi': tas-envizi-index.md
+  #  - 'IBM Tririga Application Suite Connector for Envizi': tririga-envizi.md
 
 theme:
   name: readthedocs

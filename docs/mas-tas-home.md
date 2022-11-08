@@ -76,7 +76,7 @@ PLUSITRIASSETBATCH_v1_0_0.yaml | Batch Assets | TRI to Max | Batch
 
 ***
 
-# Installation & Configuration Guide
+## Installation & Configuration Guide
 
 
 >## Before you begin you will need:
@@ -91,23 +91,26 @@ PLUSITRIASSETBATCH_v1_0_0.yaml | Batch Assets | TRI to Max | Batch
 ***
 
 ## Installation Steps Overview
-1. Import the flows into App Connect 
-2. TRIRIGA OM Package & Configuration
-   - Point integration object to App Connect Flow
-3. Maximo Configurations
-   - Publish channel to point to App Connect Flow
-   - Manually add necessary fields
+1. Configure App Connect 
+   1. Authenticate
+   2. Import Flows
+2. Configure TRIRIGA
+   1. Import TRIRIGA OM Package 
+   2. Point integration object to App Connect Flow
+3. Configure Maximo
+   1.  Add necessary fields
+   2.  Publish channel to point to App Connect Flow
 4. Test 
-  - MAS outbound connectivity
-  - TRIRIGA POSTMAN
+   1. MAS outbound connectivity
+   2. TRIRIGA POSTMAN
 
 ***
 
-## Part 1. Installing the Right Flows into App Connect 
+## Part 1. Configure App Connect
 
 ### App Connect Authentication
 
->Access to an instance of App Connect with a deployed instance of a Designer is required. This code pattern has been tested with App Connect version 3.0. 
+>Access to an instance of App Connect with a deployed instance of a Designer is required. 
 
 1. Two accounts need to be created from the **Catalog** tab in order to connect the applications. Once all of the connectors have loaded, type in **http** to find the HTTP Application.
  
@@ -123,26 +126,72 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
 
 
 <img src="https://media.github.ibm.com/user/348712/files/e23b1900-3801-11ed-8ab4-a5234d64325d" alt="App Connect Catalog">
-
 *App Connect catalog*
 
 ### Importing App Connect Flows
 
-...
+1. Locate the .yaml files for the desired flows from the provided zip.
+2. Import the Selected Flows into **App Connect Enterprose**, or **App Connect SaaS on IBM Cloud** using the instructions below
 
-## Part 2. TRIRIGA Configuration
+
+#### Import Steps (App Connect Enterprise)
+
+  1. From the App Connect Dashboard, click **New** and select **Import Flow** from the drop down menu.
+  2. Either drag and drop or select the flow for import. In this example, the MX2TRI Person flow will be used.
+  3. The flow should now be uploaded onto the App Connect instance. From this screen navigate using the **Edit flow** button to see the individual nodes of this flow. Be sure to select the HTTP account that was configured for Maximo to TRIRIGA for the connector. 
+  4. Click **Done** on the top right of the screen then click on the three dots in the top right corner and select **Start API**.
+  5. Go to the **Test** tab once it shows that the flow is **Running** and select the **POST** option on the left side of the screen. Click on **Try It** and grab the url and security credentials from this screen for the next step.
+  
+  <img src="https://media.github.ibm.com/user/348712/files/e23b1900-3801-11ed-9bf0-334b0f78fb60" alt="App Connect Dashboard"> 
+  *Step 1: App Connect Dashboard*
+
+  <img width="300" alt="Uploaded_Flow" src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-886a-b5bb80a59523">
+  *Step 2: Import a Flow* 
+
+  <img width="1771" alt="Completed_Flow" src="https://media.github.ibm.com/user/348712/files/e6673680-3801-11ed-9883-661b31bad8b5">
+  *Step 3: Completed Flow*
+
+  <img width="251" alt="Start_API" src="https://media.github.ibm.com/user/348712/files/ea935400-3801-11ed-826c-318a039b6bec">
+  
+  <img src="https://media.github.ibm.com/user/348712/files/e49d7300-3801-11ed-83f4-a6fd5e41a3da" alt="App Connect Config Full" >
+
+#### Import Steps (App Connect SaaS)
+  1. If your instance of AppConnect is through the cloud, your page will look a bit different
+  2. The interface is mostly the same, but instead of **Try It** you'll see a tab called **Manage**. This page contains a few important pieces of information that you'll need to complete the configuration. First, at the top of the page under **API Info** you'll see a field called **Route**. Piece this together with the correct path of the flow that you're implementing in order to create the proper flow url.
+  3. Collect the API key at the bottom of the page from a field called **Sharing outside of Cloud Foundry organization**. Click on **Create API key and documentation link**. Provide a name and it will generate an apikey for you to use with this flow along with a documentation link that looks like the **Test** page from the on-prem configuration.
+  4. The end of the url at the top of the page should have the path that will complete the route url. Copy the end of the url that begins with **tri** and add it to the piece gathered earlier. The 6 character string that precedes the path on the documentation should match the last 6 characters of the route piece from before.
+
+  
+  <img src="https://media.github.ibm.com/user/348712/files/e36c4600-3801-11ed-8744-4aa3b105af0d" alt="AppConnect Cloud Manage Tab" >
+  *Step 1: Manage Tab*
+  
+  <img src="https://media.github.ibm.com/user/348712/files/e404dc80-3801-11ed-95de-e332d10a5597" alt="AppConnect Cloud Route" >
+  *Step 2: Cloud Route*
+
+  <img src="https://media.github.ibm.com/user/348712/files/e49d7300-3801-11ed-9084-943aa4afe16c" alt="AppConnect Cloud Sharing" >
+  *Step 3: API key creation*
+  
+  <img src="https://media.github.ibm.com/user/348712/files/e2d3af80-3801-11ed-8ff7-4e319d52da99" alt="AppConnect Cloud Documentation Link" > 
+  *Step 4: API Documentation Link*
+
+## Part 2. Configure TRIRIGA
 
 > **Note** If you have not already done so, please import AppConnect Cert to TRIRIGA to enable encrypted communication. For instructions on how to do that please go here. 
 
-
+#### Import Object Migration Package
 1. Download the latest [OM Package](https://github.com/IBM/tririga-api/tree/main/docs/ompackages).
 2. Navigate to **Tools -> Object Migration** and import the package into the instance of TRIRIGA.
 3. The Date Time Format field in the user profile must be in UTC. Navigate to **Portfolio -> People -> My Profile** and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.
 
 <img width="600" alt="TRI-UTC" src="https://media.github.ibm.com/user/348712/files/ec5d1780-3801-11ed-8f32-72fc453558f0">
-
 *Date Time Format Field in My Profile*
 
+#### Configure Integration Object
+4. Confirgure the integration Object - From the main page of TRIRIGA, click on **Tools -> System Setup -> Integration -> Integration Object**. Under the **Name** column, type in **apic**, and select the integration object that pertains to the record that is getting sent. 
+5. Click on the object and fill in the credentials in the pop-up box.
+ 
+<img src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-9ea5-af57b4059a25" alt="TRIRIGA End Point">
+*TRIRIGA End Point*
 
 ***
 
@@ -151,18 +200,14 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
 
 > **Note 1** If you have not already done so, please import AppConnect Cert to Maximo to enable encrypted communication. 
 
-
 >**Note 2**: The following steps and prerequisites are done against a Maximo demo database. The naming conventions may slightly differ from this, but these are the necessary components.
 
 Within Maximo, configure your instance to be ready to receive records from TRIRIGA. If these pre-requisites are not completed, the action will not be recorded.
 
 #### 1. Create an Organization named TRIRIGA
  
- 
 a. Navigate to the **Organizations** page and click the blue + button on the top row.
-
 b. Fill in the Organization name with TRIRIGA and the description as "TRIRIGA Organization".
-
 c. Fill in the remaining required fields as such:
   
   Field Name | Value
@@ -173,7 +218,6 @@ c. Fill in the remaining required fields as such:
   Default Item Status| **PENDING**
   Default Stock Category| **STK**
  
-  
 d. Click **Save Organization** on the left side of the screen under Common Actions. This will be set to Active later once there is a clearing account.
   
 
@@ -182,7 +226,6 @@ d. Click **Save Organization** on the left side of the screen under Common Actio
 **Un-require the GL Account fields**
 
 a. Navigate to **Financial** -> **Chart of Accounts** and click on the previously created TRIRIGA org in the Organizations table. Currently, there should be no GL Accounts for TRIRIGA present. <br>
-
 b. Click **GL Component Maintenance** on the left side under More Actions and add a New Row with the following values:
 
 Field Name | Value
@@ -192,15 +235,12 @@ Description| **Testing**
 Active?| **Yes**
 
 c. Click **OK**. Click **New Row** under GL Accounts for TRIRIGA and click the magnifying glass to search for that GL Component. Select it and it should populate in the GL Account and Description fields. The Active Date field should auto populate to the current date.<br>
-
 d. Now that this account is present, head back to **Organizations** and update the TRIRIGA organization to show the just created Clearing Account, tick the Active box, and click **Save Organization**.<br>
  
 #### 3. Create a site TRIMAIN and set it to active 
  
   a. On the Organization page, click on the **Sites** tab at the top of the page.
-
   b. Click **New Row** under **Sites** and enter TRIMAIN for Site and MAIN Site for Description. Set the site to Active.
-
   c. Click **Save Organization**.
 
 #### 4. API Key
@@ -266,7 +306,6 @@ c. Return to the PLUSITRIRIGA External System. On the left side of the External 
 The user needs to be able to transact against the specific object structure in Manage. Navigate to Object Structures and search for MXPERSON. On the left side of the MXPERSON screen select **Configure Object Structure Storage** and turn on the button underneath **Use Object Structure for Authorization Name?**
 
 <img width="1788" alt="Configure Object Security" src="https://media.github.ibm.com/user/348712/files/f1affe00-48a5-11ed-8488-a41686aafba5">
-
 *Configure Object Security Screen*
 
 The structure should save. Complete this process for the following objects:
@@ -280,17 +319,89 @@ The structure should save. Complete this process for the following objects:
 Next, navigate to **Security -> Security Groups** and select the security group the current user is apart of. Click the **Object Structures** tab and filter search for MXPERSON. Once selected, click **Grant Listed Options for This Object Structure** and Save the Group. 
 
 <img width="1785" alt="Security Group Page" src="https://media.github.ibm.com/user/348712/files/f2489480-48a5-11ed-8833-fc3297fb7881">
-
 *Security Group Page*
 
-Repeat this process for the other changed structures.
+>**Note**
+>Repeat this process for the other changed structures.
+
+### 7. Application Designer Changes
+
+<!-- <img width="1788" alt="App-Designer" src="https://media.github.ibm.com/user/348712/files/457a7a80-3805-11ed-9484-133899bdfac4"> -->
+
+Go to **System Configuration -> Platform Configuration -> Application Designer**
+
+#### Person
+
+1. Search for **PERSON**, switch to the **Person** Tab and select a section to add three new boxes.
+2. At the top, click the icon labeled **Control Palette** and add a Multipart Textbox at the bottom of the section. Add the values from the below table within the properties of the Multipart Textbox and click **Save Definition** 
+> **Note**
+> *Be sure that the Attributes are taken from the PERSON Object.*
+
+|Type of Control | Label | Attribute | Attribute for Part 2 (*If Multipart Textbox*) | Lookup | Input Mode for Part 2 (*If Multipart Textbox*)
+|--|--|--|--|--|--|
+| Multipart Textbox |TRIRIGA Location Path | PLUSIPRIMARYLOCPATH | PLUSILOCATIONPATH.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox | TRIRIGA Primary Organization | PLUSIORGPATH | PLUSIORGANIZATIONPATH.DESCRIPTION | VALUELIST | Readonly
+|Textbox | TRIRIGA Record ID | EXTERNALREFID (*From the Person Object*) | N/A | N/A | N/A
 
 
+Follow the same directions using the following information for the other objects that will be used in the integration
+
+#### Asset
+
+Search for **ASSET** in Application Designer
+> **Note**
+> *Be sure that the Attributes are taken from the ASSET Object.*
+
+|Type of Control | Label | Attribute | Attribute for Part 2 (*If Multipart Textbox*) | Lookup | Input Mode for Part 2 (*If Multipart Textbox*)
+|--|--|--|--|--|--|
+| Multipart Textbox |TRIRIGA Building Equipment Spec | PLUSIASSETSPECNAME | PLUSIASSETSPECCLASS.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox | TRIRIGA Primary Organization | PLUSIORGPATH | PLUSIORGANIZATIONPATH.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox | TRIRIGA Location Path | PLUSILOCPATH | PLUSILOCATIONPATH.DESCRIPTION | VALUELIST | Readonly
+|Textbox | TRIRIGA Record ID | EXTERNALREFID (*From the Asset Object*) | N/A | N/A | N/A
+
+#### Location
+
+Search for **LOCATION** in Application Designer
+> **Note**
+> *Be sure that the Attributes are taken from the LOCATION Object.*
+
+|Type of Control | Label | Attribute | Attribute for Part 2 (*If Multipart Textbox*) | Lookup | Input Mode for Part 2 (*If Multipart Textbox*)
+|--|--|--|--|--|--|
+| Multipart Textbox |TRIRIGA Space Classification | PLUSISPACECLASSIFICATION | PLUSISPCCLASSIFICATION.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox | TRIRIGA Parent Location | PLUSIPARENTLOCATION | PLUSIPARENTPATH.DESCRIPTION | VALUELIST | Readonly
+|Textbox | TRIRIGA Record ID | EXTERNALREFID (*From the Location Object*) | N/A | N/A | N/A
+
+#### Service Request
+
+Search for **SR** in Application Designer
+> **Note**
+> Be sure that the PLUSIREQCLASSID Attribute is taken from the TICKET Object.
+
+|Field Name|Value  |
+|--|--|
+|Attribute | PLUSIREQCLASSID |
+|Attribute for Part 2 | PLUSIREQCLASS.DESCRIPTION |
+| Lookup | VALUELIST |
+|Input Mode for Part 2 | Readonly |
+
+e. Click **Save Definition** after the changes are added.
 ***
 
+#### Work Order
+Search for **WOTRACK** in Application Designer
+> **Note**
+> Be sure that the PLUSIREQCLASSID Attribute is taken from the WORKORDER Object.
+
+|Type of Control | Label | Attribute | Attribute for Part 2 (*If Multipart Textbox*) | Lookup | Input Mode for Part 2 (*If Multipart Textbox*)
+|--|--|--|--|--|--|
+| Multipart Textbox |Tririga Location Path | PLUSILOCPATH | PLUSILOCATIONPATH.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox | Tririga Primary Organization | PLUSIORGPATH | PLUSIORGANIZATIONPATH.DESCRIPTION | VALUELIST | Readonly
+|Textbox | External Ref ID | EXTERNALREFID (*From the WorkOrder Object*) | N/A | N/A | N/A
+
+Click **Save Definition** after the changes are added.
 
 
-### **Reference for Pre-requisite**
+## **Troubleshooting and Reference for Pre-requisite**
 
 ### **Pre-requisite: add an App Connect Certificate in MAS 8.9+**
 

@@ -24,11 +24,11 @@ This connector supports the following capabilities:
 
 ### Installing App Connect
 
-- **App Connect SaaS** is available in the IBM Cloud catalog [here](https://cloud.ibm.com/catalog/services/app-connect). 
+- **App Connect SaaS** is available in the [IBM Cloud catalog ](https://cloud.ibm.com/catalog/services/app-connect). 
 
 
 
-- **App Connect Enterprise on-prem** can be provisioned within your RedHat OpenShift Cluster directly from the OpenShift Operator. Please follow the docs [here](https://www.ibm.com/docs/en/mas-cd/continuous-delivery?topic=ons-app-connect) 
+- **App Connect Enterprise on-prem** can be provisioned within your RedHat OpenShift Cluster directly from the [OpenShift Operator](https://www.ibm.com/docs/en/mas-cd/continuous-delivery?topic=ons-app-connect) 
 
 - If you are using a MAS or TAS Managed Service provided by IBM SRE you can request Dev and Test instances of App Connect. Please reach out to your SRE contact.
 

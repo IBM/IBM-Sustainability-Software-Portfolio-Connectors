@@ -1,54 +1,18 @@
 
-# Service Request Integration
-
-
-## Summary
-
-Enable automated synchronization of Service Request data from IBM Maximo to IBM TRIRIGA or vice versa.
-
-## Description
-
-In this code pattern, learn how to synchronize a Service Request created in Maximo with TRIRIGA using an AppConnect Designer flow. 
-
-<img width="467" alt="Service-Request-Diagram" src="https://media.github.ibm.com/user/348712/files/490e0180-3805-11ed-922a-e18101228a1e" height=800px>
-
-*Service Request Flow*
-
-1. When a Service Request is created in Maximo Asset Management, it triggers the flow to populate the request in TRIRIGA. (There is also a flow that works in the reverse direction, that works in a similar way.)
-2. App Connect sends a request with the new information through the flow towards the target system (TRIRIGA).
-3. A JSON Parser sifts through the request and converts it to an object.
-4. This object from the JSON Parser goes through Steps 5-8.
-5. The data from the object is mapped to the corresponding fields in the target application (TRIRIGA).
-6. The newly mapped data is sent to the target application (TRIRIGA) where the request is then created.
-7. This record is then validated with the original application (Maximo Asset Management) via another Post request.
-8. An ID is created within the original application (Maximo Asset Management).
-
-At the end of this process, a Service Request can be created within Maximo and sent to TRIRIGA and vice versa.
-
-## Pre-requisites
-
-This configuration assumes the completion of the pre-requisites and steps outlined in the [Maximo <-> TRIRIGA code pattern](https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/mas-tas-home/).
-
 
 ### Maximo
 
 Within Maximo, a change to the Service Request application is needed to see additional fields.
 
-#### 1. Application Designer
-
+#### 1. Service Request
 
 <img width="1788" alt="App-Designer" src="https://media.github.ibm.com/user/348712/files/457a7a80-3805-11ed-9484-133899bdfac4">
-
 *SR Application Designer*
 
-
-Go to **System Configuration -> Platform Configuration -> Application Designer**
-
-Search for **SR**
-
-Switch to the Service Request Tab and scroll down to the Service Request Details section
-
-At the top, click the icon labeled **Control Palette** and add a Multipart Textbox at the top of the right section. Add these values within the properties of the Multipart Textbox. 
+a. Go to **System Configuration -> Platform Configuration -> Application Designer**
+b. Search for **SR**
+c. Switch to the Service Request Tab and scroll down to the Service Request Details section
+d. At the top, click the icon labeled **Control Palette** and add a Multipart Textbox at the top of the right section. Add these values within the properties of the Multipart Textbox. 
 
 ** Be sure that the PLUSIREQCLASSID Attribute is taken from the TICKET Object. **
 
@@ -59,7 +23,7 @@ At the top, click the icon labeled **Control Palette** and add a Multipart Textb
 | Lookup | VALUELIST |
 |Input Mode for Part 2 | Readonly |
 
-Click **Save Definition** after the changes are added.
+e. Click **Save Definition** after the changes are added.
 
 ### AppConnect
  

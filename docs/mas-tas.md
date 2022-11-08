@@ -29,8 +29,8 @@ A detailed breakdown of the specific fields being mapped within each flow can be
 ### 1. Application Designer Changes
 
 
-<!-- <img width="1788" alt="App-Designer" src="https://media.github.ibm.com/user/348712/files/457a7a80-3805-11ed-9484-133899bdfac4"> -->
-
+<img width="1788" alt="App-Designer" src="https://media.github.ibm.com/user/348712/files/457a7a80-3805-11ed-9484-133899bdfac4">
+*SR Application Designer*
 
 Go to **System Configuration -> Platform Configuration -> Application Designer**
 
