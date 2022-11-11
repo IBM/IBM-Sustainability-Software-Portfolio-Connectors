@@ -10,9 +10,9 @@ This connector supports the following capabilities through a collection of App C
 ***
 ## Use case examples
    
-   1. TRIRIGA is the system of record for People and Space data while Maximo is the system of record for Assets. The Maintenance team wants consistent reports across the entire organization and more streamlined operations. The Spaces flows provided can be used to bulk-load all Spaces data from TRIRIGA into Maximo Locations, and then continuosly keep the data in sync as it gets updated in TRIRIGA by a Facility Management team. This can apply to Assets, or People data in both directions. 
-   2. Employees use TRIRIGA Request Central to submit a Service Request for a broken elevator, since elevators are maintained in Maximo, the flow will create a corresponding Service Request in Maximo that will be assigned to technicians and resolved. As the Maximo Service Request gets updated, the changes are automatically reflected in the TRIRIGA Service request so the originator of the request remains informed of its status. This flow can operate in reverse as well if a Service Request originates from Maximo against a maintenance operation that should be tracked in TRIRIGA.
-   3. Facility Management team have a capital project in TRIRIGA to upgrade all the lights to LEDs. The project has the budget,  scope and tasks already defined. The flow can then create corresponding Work Orders in Maximo for each task to get executed by technicians using the Maximo Manage and Mobile applications. As the tasks get updated in Maximo, those updates flow back into TRIRIGA to reflect in the project plan.
+   1. TRIRIGA is the system of record for People and Space data while Maximo is the system of record for Assets. The Maintenance team wants consistent reports across the entire organization and more streamlined operations. The Spaces flows provided can be used to bulk-load all Spaces data from TRIRIGA into Maximo Locations, and then continuously keep the data in sync as it gets updated in TRIRIGA by a Facility Management team. This can apply to Assets, or People data in both directions. 
+   2. Employees use TRIRIGA Request Central to submit a Service Request for a broken elevator. Since elevators are maintained in Maximo, the flow will create a corresponding Service Request in Maximo that will be assigned to technicians and resolved. As the Maximo Service Request gets updated, the changes are automatically reflected in the TRIRIGA Service request so the originator of the request remains informed of its status. This flow can operate in reverse as well if a Service Request originates from Maximo against a maintenance operation that should be tracked in TRIRIGA.
+   3. Facility Management team have a capital project in TRIRIGA to upgrade all the lights to LEDs. The project has the budget, scope and tasks already defined. The flow can then create corresponding Work Orders in Maximo for each task to get executed by technicians using the Maximo Manage and Mobile applications. As the tasks get updated in Maximo, those updates flow back into TRIRIGA to reflect in the project plan.
 
 ***
 
@@ -42,7 +42,7 @@ The image below illustrates the record types that are available the APIs and App
 
 ## App Connect Flows
 
-Included with this connector are 20+ flows that map TRIRIGA records to Maximo, and vice versa, along with all the required fields they contain. The table below shows all the flows you can use in differnet combinations to implement your desired integration use cases. For a more detailed mapping of all the fields please review the attached [data mapping spreadsheet](site/Resources/TRIRIGA_Maximo_Field_Mapping-Final.xlsx). 
+Included with this connector are 20+ flows that map TRIRIGA records to Maximo, and vice versa, along with all the required fields they contain. The table below shows all the flows you can use in differnet combinations to implement your desired integration use cases. For a more detailed mapping of all the fields please review the attached [data mapping spreadsheet](https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/TRIMAS-Updates/site/Resources/TRIRIGA_Maximo_Field_Mapping-Final.xlsx). 
 
 File | Flow | Destination | Operation
 -- | -- |--|--
@@ -91,18 +91,18 @@ PLUSITRIASSETBATCH_v1_0_0.yaml | Batch Assets | TRI to Max | Batch
 ***
 
 ## Installation Steps Overview
-1. Configure App Connect 
-   1. Authenticate
-   2. Import Flows
-2. Configure TRIRIGA
-   1. Import TRIRIGA OM Package 
-   2. Point integration object to App Connect Flow
-3. Configure Maximo
-   1.  Add necessary fields
-   2.  Publish channel to point to App Connect Flow
-4. Test 
-   1. MAS outbound connectivity
-   2. TRIRIGA POSTMAN
+1. Configure App Connect<br> 
+   a. Authenticate<br>
+   b. Import Flows<br>
+2. Configure TRIRIGA<br>
+   a. Import TRIRIGA OM Package <br>
+   b. Point integration object to App Connect Flow<br>
+3. Configure Maximo<br>
+   a.  Add necessary fields<br>
+   b.  Publish channel to point to App Connect Flow<br>
+4. Test <br>
+   a. MAS outbound connectivity<br>
+   b. TRIRIGA POSTMAN<br>
 
 ***
 
@@ -110,7 +110,7 @@ PLUSITRIASSETBATCH_v1_0_0.yaml | Batch Assets | TRI to Max | Batch
 
 ### App Connect Authentication
 
->Access to an instance of App Connect with a deployed instance of a Designer is required. 
+*Access to an instance of App Connect with a deployed instance of a Designer is required.* 
 
 1. Two accounts need to be created from the **Catalog** tab in order to connect the applications. Once all of the connectors have loaded, type in **http** to find the HTTP Application.
  
@@ -131,7 +131,7 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
 ### Importing App Connect Flows
 
 1. Locate the .yaml files for the desired flows from the provided zip.
-2. Import the Selected Flows into **App Connect Enterprose**, or **App Connect SaaS on IBM Cloud** using the instructions below
+2. Import the Selected Flows into **App Connect Enterprise**, or **App Connect SaaS on IBM Cloud** using the instructions below
 
 
 #### Import Steps (App Connect Enterprise)
@@ -140,7 +140,7 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
   2. Either drag and drop or select the flow for import. In this example, the MX2TRI Person flow will be used.
   3. The flow should now be uploaded onto the App Connect instance. From this screen navigate using the **Edit flow** button to see the individual nodes of this flow. Be sure to select the HTTP account that was configured for Maximo to TRIRIGA for the connector. 
   4. Click **Done** on the top right of the screen then click on the three dots in the top right corner and select **Start API**.
-  5. Go to the **Test** tab once it shows that the flow is **Running** and select the **POST** option on the left side of the screen. Click on **Try It** and grab the url and security credentials from this screen for the next step.
+  5. Go to the **Test** tab once it shows that the flow is **Running** and select the **POST** option on the left side of the screen. Click on **Try It** and grab the URL and security credentials from this screen for the next step.
   
   <img src="https://media.github.ibm.com/user/348712/files/e23b1900-3801-11ed-9bf0-334b0f78fb60" alt="App Connect Dashboard"> 
   *Step 1: App Connect Dashboard*
@@ -152,14 +152,16 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
   *Step 3: Completed Flow*
 
   <img width="251" alt="Start_API" src="https://media.github.ibm.com/user/348712/files/ea935400-3801-11ed-826c-318a039b6bec">
+  *Step 4: Start Flow*
   
   <img src="https://media.github.ibm.com/user/348712/files/e49d7300-3801-11ed-83f4-a6fd5e41a3da" alt="App Connect Config Full" >
+  *Step 5: Try It*
 
 #### Import Steps (App Connect SaaS)
-  1. If your instance of AppConnect is through the cloud, your page will look a bit different
-  2. The interface is mostly the same, but instead of **Try It** you'll see a tab called **Manage**. This page contains a few important pieces of information that you'll need to complete the configuration. First, at the top of the page under **API Info** you'll see a field called **Route**. Piece this together with the correct path of the flow that you're implementing in order to create the proper flow url.
+  1. If your instance of AppConnect is through the cloud, your page will look a bit different.
+  2. The interface is mostly the same, but instead of **Try It** you'll see a tab called **Manage**. This page contains a few important pieces of information that you'll need to complete the configuration. First, at the top of the page under **API Info** you'll see a field called **Route**. Piece this together with the correct path of the flow that you're implementing in order to create the proper flow URL.
   3. Collect the API key at the bottom of the page from a field called **Sharing outside of Cloud Foundry organization**. Click on **Create API key and documentation link**. Provide a name and it will generate an apikey for you to use with this flow along with a documentation link that looks like the **Test** page from the on-prem configuration.
-  4. The end of the url at the top of the page should have the path that will complete the route url. Copy the end of the url that begins with **tri** and add it to the piece gathered earlier. The 6 character string that precedes the path on the documentation should match the last 6 characters of the route piece from before.
+  4. The end of the URL at the top of the page should have the path that will complete the route URL. Copy the end of the URL that begins with **tri** and add it to the piece gathered earlier. The 6 character string that precedes the path on the documentation should match the last 6 characters of the route piece from before.
 
   
   <img src="https://media.github.ibm.com/user/348712/files/e36c4600-3801-11ed-8744-4aa3b105af0d" alt="AppConnect Cloud Manage Tab" >
@@ -176,7 +178,41 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
 
 ## Part 2. Configure TRIRIGA
 
-> **Note** If you have not already done so, please import AppConnect Cert to TRIRIGA to enable encrypted communication. For instructions on how to do that please go here. 
+> **Note** If you have not already done so, please import App Connect Cert to TRIRIGA to enable encrypted communication. Provide the Cert from App Connect as a secret to the instance of TAS as such:
+
+```
+cat <<EOF | oc create -f -
+apiVersion: truststore-mgr.ibm.com/v1
+kind: Truststore
+metadata:
+    name: my-tas-truststore
+spec:
+    license:
+        accept: true
+    includeDefaultCAs: true
+    servers:
+    - "example.com:443"
+    certificates:
+    - alias: alias_1 
+      crt: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        Certificate 1   
+        ...
+        -----END CERTIFICATE-----
+
+        ...
+
+    - alias: alias_n 
+      crt: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        Certificate n   
+        ...
+        -----END CERTIFICATE-----
+EOF        
+
+```
 
 #### Import Object Migration Package
 1. Download the latest [OM Package](https://github.com/IBM/tririga-api/tree/main/docs/ompackages).
@@ -187,7 +223,7 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
 *Date Time Format Field in My Profile*
 
 #### Configure Integration Object
-4. Confirgure the integration Object - From the main page of TRIRIGA, click on **Tools -> System Setup -> Integration -> Integration Object**. Under the **Name** column, type in **apic**, and select the integration object that pertains to the record that is getting sent. 
+4. Confirgure the Integration Object - From the main page of TRIRIGA, click on **Tools -> System Setup -> Integration -> Integration Object**. Under the **Name** column, type in **apic**, and select the integration object that pertains to the record that is getting sent. 
 5. Click on the object and fill in the credentials in the pop-up box.
  
 <img src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-9ea5-af57b4059a25" alt="TRIRIGA End Point">
@@ -206,8 +242,8 @@ Within Maximo, configure your instance to be ready to receive records from TRIRI
 
 #### 1. Create an Organization named TRIRIGA
  
-a. Navigate to the **Organizations** page and click the blue + button on the top row.
-b. Fill in the Organization name with TRIRIGA and the description as "TRIRIGA Organization".
+a. Navigate to the **Organizations** page and click the blue + button on the top row.<br>
+b. Fill in the Organization name with TRIRIGA and the description as "TRIRIGA Organization".<br>
 c. Fill in the remaining required fields as such:
   
   Field Name | Value
@@ -239,8 +275,8 @@ d. Now that this account is present, head back to **Organizations** and update t
  
 #### 3. Create a site TRIMAIN and set it to active 
  
-  a. On the Organization page, click on the **Sites** tab at the top of the page.
-  b. Click **New Row** under **Sites** and enter TRIMAIN for Site and MAIN Site for Description. Set the site to Active.
+  a. On the Organization page, click on the **Sites** tab at the top of the page.<br>
+  b. Click **New Row** under **Sites** and enter TRIMAIN for Site and MAIN Site for Description. Set the site to Active.<br>
   c. Click **Save Organization**.
 
 #### 4. API Key
@@ -269,41 +305,44 @@ d. Now that this account is present, head back to **Organizations** and update t
   PLUSIORGEN | TRIRIGA | EAGLENA | Tririga Organization mapping for Inbound flow | N/A
   "" | TRIRIGA | IBM | N/A | N/A
   "" | TRIRIGA | MAXIMO ORG | N/A | N/A
-  "" | TRIRIGA | TEST | N/A | N/A
   "" | TRIRIGA | TRIRIGA | N/A | N/A
   PLUSIPRIORITY | 1 | High | Priority mapping for Tririga | N/A
   "" | 2 | Medium | N/A | N/A
   "" | 3 | Low | N/A | N/A
   PLUSISITEEN | TRIMAIN | BEDFORD | Tririga Location mapping for inbound flows | N/A
   "" | TRIMAIN | SPACE 01 | N/A | N/A
-  "" | TRIMAIN | TEST | N/A | N/A
   "" | TRIMAIN | TRIMAIN | N/A | N/A |
     
 b. Once these Integration Controls are created, associate them in both the created Enterprise Services and Publish Channels by using the following two tables
 
 Enterprise Service | Control
 --|-- 
-PLUSIMXASSETInterface | PLUSIORGEN
+PLUSIASSET | PLUSIORGEN
 "" | PLUSIPRIORITY
 "" | PLUSISITEEN 
-PLUSIMXOPERLOCInterface | PLUSILOCSTATUS
+PLUSILOCATION | PLUSILOCSTATUS
  "" | PLUSISITEEN
  "" | PLUSISTATUS
- PLUSIMXPERSONInterface | PLUSIORGEN
+ PLUSIPERSON | PLUSIORGEN
  "" | PLUSISITEEN
+  PLUSIWO | PLUSIWOPRIORITY
+
 
 
 Publish Channel | Control
 --|--
-PLUSIMXASSETInterface | PLUSIPRIORITY
-PLUSIMXOPERLOCInterface | N/A
-PLUSIMXPERSONInterface | PLUSIORG
+PLUSIASSET | PLUSIPRIORITY
+PLUSILOCATION | N/A
+PLUSIPERSON | PLUSIORG
+PLUSISR | N/A
+PLUSIWO | PLUSIWOPRIORITY
+"" | PLUSIWOSTART
  
 c. Return to the PLUSITRIRIGA External System. On the left side of the External Systems page, select **Setup Integration Controls** under **More Actions** and make sure that all 5 Integration Controls are showing as present.
 
 #### 6. Enable Object Structure Security
 
-The user needs to be able to transact against the specific object structure in Manage. Navigate to Object Structures and search for MXPERSON. On the left side of the MXPERSON screen select **Configure Object Structure Storage** and turn on the button underneath **Use Object Structure for Authorization Name?**
+The user needs to be able to transact against the specific object structureS in Manage. Navigate to Object Structures and search for MXPERSON. On the left side of the MXPERSON screen select **Configure Object Structure Storage** and turn on the button underneath **Use Object Structure for Authorization Name?**
 
 <img width="1788" alt="Configure Object Security" src="https://media.github.ibm.com/user/348712/files/f1affe00-48a5-11ed-8488-a41686aafba5">
 *Configure Object Security Screen*
@@ -385,7 +424,7 @@ Search for **SR** in Application Designer
 |Input Mode for Part 2 | Readonly |
 
 e. Click **Save Definition** after the changes are added.
-***
+
 
 #### Work Order
 Search for **WOTRACK** in Application Designer
@@ -400,12 +439,50 @@ Search for **WOTRACK** in Application Designer
 
 Click **Save Definition** after the changes are added.
 
+***
 
-## **Troubleshooting and Reference for Pre-requisite**
+## Troubleshooting
+
+Depending on the direction of the flow, cross-referencing errors from two systems can help identify the root cause of an issue with the integration. For example:
+ 
+ - If there is a Not Found error in Maximo Message Reprocessing when running the flow, double check the logs in App Connect to see if there is a corresponding error. If there is, the root cause might be related to what is being sent out of Maximo. If there isn't, then the message never left Maximo and the flow should be checked to make sure it is running.
+ 
+### Common errors that arise from Maximo
+ 
+#### Testing the End Point
+ 
+When testing that the end point is entered correctly on the **End Points** application, there are two common errors:
+
+Error | Cause | Resolution
+ -- |-- |--
+Response code received from the HTTP request from the endpoint is not successful | Invalid URL in the Integration Object | Double check the URL that all of the components are entered correctly. Make sure there are no accidental spaces at the beginning or the end in event of a copy/paste.
+PKSync error| Certificate error | Confirm the certificate is configured correctly
+ 
+#### Message Reprocessing
+
+Errors in Maximo can be found in **Message Reprocessing**
+
+ Error | Cause | Resolution
+ -- |-- |--
+Bad Request error | Either the payload being sent out is incorrect or the account configurations are wrong |Double check to make sure the Accounts from the App Connect pre-requisite section are correct and that the item in Maximo has all of the mapped fields
+
+### Common errors that arise from TRIRIGA
+ 
+ Error | Cause | Resolution
+ -- |-- |--
+ 404 - Not Found: Cannot POST | Invalid URL in the Integration Object | Double check the URL in the specific Integration Object that all of the components are entered correctly
+ 404 - API doesn't exist | Flow is not running | Double check that the flow is Active in App Connect
+ 404 - The HTTP request returned with an error 404 "Not Found" | Incorrect App Connect connector config | Double check that the credentials being used in the HTTP post node in App Connect are correct
+ 
+ - Clear OSLC Cache in TRIRIGA Admin Console in case the integrations do not work in intended manner.
+ 
+
+
+## Reference for Pre-requisite
 
 ### **Pre-requisite: add an App Connect Certificate in MAS 8.9+**
 
-1. Extract the App Connect certificate from an imported flow URL. Navigate to the flow's page and click on **Test** and then **Try It** to get the proper url.
+1. Extract the App Connect certificate from an imported flow URL. Navigate to the flow's page and click on **Test** and then **Try It** to get the proper URL.
 
 2. Navigate to the Admin dashboard for MAS and go to the workspace where Manage is deployed.
 
@@ -442,7 +519,7 @@ Configure WebSphere Certificates. This makes a test connection to a Secure Socke
     Port | 443
     Alias | appconnect
 
-5. Once all three have been entered in, click **Retrieve signer information** and the information from the url will populate on screen. Click **Save** in the box at the top and then repeat the process for **NodeDefaultTrustStore**.
+5. Once all three have been entered in, click **Retrieve signer information** and the information from the URL will populate on screen. Click **Save** in the box at the top and then repeat the process for **NodeDefaultTrustStore**.
 
 <img width="600" alt="Websphere-Home" src="https://media.github.ibm.com/user/348712/files/ee26db00-3801-11ed-8365-8604ad0a66df">
 
