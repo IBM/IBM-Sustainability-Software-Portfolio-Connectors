@@ -8,7 +8,7 @@ The **IBM MAS Connector for Envizi** is released under the name "MAS Connector f
 
 ## Use Case Examples
 
-*Use Case*
+Corporate sustainability managers can gather and maintain accurate sustainability data for their portfolio of assets directly from Maximo where those assets are managed. Location data from Maximo serves as a baseline for all other Sustainability reports in Envizi; continuously updated meter readings data captured in Maximo (Electricity, Gas, Water) enables accurate GHG accounting and performance reporting in Envizi.
 
 ***
 
@@ -54,7 +54,8 @@ PLUSZMXTOS3_v1_1_0.yaml | Locations and Meter Reading | Max to Envizi | Bulk Loa
 >1. An instance of App Connect Enterprise or App Connect Pro with the Designer component.
 >2. Admin access to your Maximo instance with an api key generated for this integration.<br>
 >3. Envizi instance with a AWS S3 Bucket
->4. Import AppConnect Cert to Maximo to enable encrypted communication
+>4. [Import AppConnect Cert to Maximo](#pre-requisite-add-an-app-connect-certificate-in-mas-89) to enable encrypted communication
+>5. [Check that meter data uses supported units of measure](#pre-requisite-pre-check-that-data-is-correct)
 
 ***
 
@@ -63,11 +64,10 @@ PLUSZMXTOS3_v1_1_0.yaml | Locations and Meter Reading | Max to Envizi | Bulk Loa
    a. Import Flows into App Connect<br>
    b. Configure Flows<br>
 2. Configure Maximo<br> 
-   a. Pre-check the supported data<br>
-   b. Upload Configuration File <br>
-   c. Categorize existing meters into groups <br>
-   d. Set up End Points <br>
-   e. Configure Cron Task <br>
+   a. Upload Configuration File <br>
+   b. Categorize existing meters into groups <br>
+   c. Set up End Points <br>
+   d. Configure Cron Task <br>
 3. Test <br>
    a. MAS outbound connectivity<br>
 
@@ -335,12 +335,17 @@ These will be set to the right values by default. **DO NOT** change these parame
 
 - Click on **Start API** or **Stop API** depending on what action you want to perform.
 
-_Note: If the flow is not running, AppConnect will give Error 404 on the API call._
-
 <img width="893" alt="PLUSZMXTOSFTP_P1" src="https://media.github.ibm.com/user/375131/files/4383bb00-f7c4-11ec-9d13-c85b6f8ce6ee">
 <img width="884" alt="PLUSZMXTOSFTP_P2" src="https://media.github.ibm.com/user/375131/files/441c5180-f7c4-11ec-9cbd-229152cebafd">
 <img width="902" alt="PLUSZMXTOSFTP_P3" src="https://media.github.ibm.com/user/348712/files/985426bc-11fe-4864-8094-3cc1dc2de611">
 
+## Part 3: Testing
+
+To test that the configuration is complete, send a test payload in order to test connectivity.
+
+1. Go to the **End Points** application and click **Test** at the bottom of the PLUSZExport end point.
+- Send a test payload that is a valid object. ```{"Hello":"World"}``` would work.
+- If the response is anything other than **Bad Request**, see [what might be causing the error](#troubleshooting)
 
 ## Troubleshooting
  

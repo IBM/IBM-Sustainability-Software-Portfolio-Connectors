@@ -42,7 +42,7 @@ The image below illustrates the record types that are available the APIs and App
 
 ## App Connect Flows
 
-Included with this connector are 20+ flows that map TRIRIGA records to Maximo, and vice versa, along with all the required fields they contain. The table below shows all the flows you can use in differnet combinations to implement your desired integration use cases. For a more detailed mapping of all the fields please review the attached [data mapping spreadsheet](https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/TRIMAS-Updates/site/Resources/TRIRIGA_Maximo_Field_Mapping-Final.xlsx). 
+Included with this connector are 20+ flows that map TRIRIGA records to Maximo, and vice versa, along with all the required fields they contain. The table below shows all the flows you can use in differnet combinations to implement your desired integration use cases. For a more detailed mapping of all the fields please review the [data mapping spreadsheet](https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/TRIMAS-Updates/site/Resources/TRIRIGA_Maximo_Field_Mapping-Final.xlsx). 
 
 File | Flow | Destination | Operation
 -- | -- |--|--
@@ -85,8 +85,8 @@ PLUSITRIASSETBATCH_v1_0_0.yaml | Batch Assets | TRI to Max | Batch
 >2. Admin access to your Maximo instance with an api key generated for this integration
 >3. TRIRIGA with dedicated user/pw for this integration
 >4. Secure connection between TRIRIGA, App Connect, and Maximo. If required IBM does provides a product that accomplishes this: Secure Gateway. Learn more about getting started with [Secure Gateway.](https://cloud.ibm.com/docs/SecureGateway?topic=SecureGateway-getting-started-with-sg)
->5. Import AppConnect Cert to Maximo to enable encrypted communication
->6. Import AppConnect Cert to TRIRIGA to enable encrypted communication
+>5. [Import AppConnect Cert to Maximo](#pre-requisite-add-an-app-connect-certificate-in-mas-89) to enable encrypted communication
+>6. [Import AppConnect Cert to TRIRIGA](#pre-requisite-add-certificate-in-tririga) to enable encrypted communication
 
 ***
 
@@ -178,46 +178,12 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
 
 ## Part 2. Configure TRIRIGA
 
-> **Note** If you have not already done so, please import App Connect Cert to TRIRIGA to enable encrypted communication. Provide the Cert from App Connect as a secret to the instance of TAS as such:
-
-```
-cat <<EOF | oc create -f -
-apiVersion: truststore-mgr.ibm.com/v1
-kind: Truststore
-metadata:
-    name: my-tas-truststore
-spec:
-    license:
-        accept: true
-    includeDefaultCAs: true
-    servers:
-    - "example.com:443"
-    certificates:
-    - alias: alias_1 
-      crt: |
-        -----BEGIN CERTIFICATE-----
-        ...
-        Certificate 1   
-        ...
-        -----END CERTIFICATE-----
-
-        ...
-
-    - alias: alias_n 
-      crt: |
-        -----BEGIN CERTIFICATE-----
-        ...
-        Certificate n   
-        ...
-        -----END CERTIFICATE-----
-EOF        
-
-```
-
 #### Import Object Migration Package
-1. Download the latest [OM Package](https://github.com/IBM/tririga-api/tree/main/docs/ompackages).
-2. Navigate to **Tools -> Object Migration** and import the package into the instance of TRIRIGA.
-3. The Date Time Format field in the user profile must be in UTC. Navigate to **Portfolio -> People -> My Profile** and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.
+
+1. Import the OM Package labeled *APIConnector* into the TRIRIGA instance. Go to **Tools -> Administration -> Object Migration** and select **New Import Package** to begin the import process.
+**Refer to the [IBM® TRIRIGA documentation](https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview ) for more information on Object Migration**
+
+2. The Date Time Format field in the user profile must be in UTC. Navigate to **Portfolio -> People -> My Profile** and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.
 
 <img width="600" alt="TRI-UTC" src="https://media.github.ibm.com/user/348712/files/ec5d1780-3801-11ed-8f32-72fc453558f0">
 *Date Time Format Field in My Profile*
@@ -441,6 +407,18 @@ Click **Save Definition** after the changes are added.
 
 ***
 
+## Part 4: Testing
+
+To test that the configuration is complete, send a test payload in order to test connectivity.
+
+### Maximo
+1. Go to the **End Points** application and click **Test** at the bottom of the integration you would like to test.
+- Send a test payload that is a valid object. ```{"Hello":"World"}``` would work.
+- If the response is anything other than **Bad Request**, see [what might be causing the error](#testing-the-end-point)
+
+### TRIRIGA
+Use a tool like POSTMan to test the connectivity of the App Connect flow. You can use a Sample JSON Payload from this [open source repository](https://github.com/IBM/tririga-api). 
+
 ## Troubleshooting
 
 Depending on the direction of the flow, cross-referencing errors from two systems can help identify the root cause of an issue with the integration. For example:
@@ -456,6 +434,7 @@ When testing that the end point is entered correctly on the **End Points** appli
 Error | Cause | Resolution
  -- |-- |--
 Response code received from the HTTP request from the endpoint is not successful | Invalid URL in the Integration Object | Double check the URL that all of the components are entered correctly. Make sure there are no accidental spaces at the beginning or the end in event of a copy/paste.
+404: Not Found | Flow is not Running | Make sure the flow is Running before starting the cron tasks
 PKSync error| Certificate error | Confirm the certificate is configured correctly
  
 #### Message Reprocessing
@@ -533,4 +512,38 @@ Configure WebSphere Certificates. This makes a test connection to a Secure Socke
  
 *Step 4: Websphere Signer Certs*
 
+### Pre-Requisite: Add certificate in TRIRIGA:
 
+```
+cat <<EOF | oc create -f -
+apiVersion: truststore-mgr.ibm.com/v1
+kind: Truststore
+metadata:
+    name: my-tas-truststore
+spec:
+    license:
+        accept: true
+    includeDefaultCAs: true
+    servers:
+    - "example.com:443"
+    certificates:
+    - alias: alias_1 
+      crt: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        Certificate 1   
+        ...
+        -----END CERTIFICATE-----
+
+        ...
+
+    - alias: alias_n 
+      crt: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        Certificate n   
+        ...
+        -----END CERTIFICATE-----
+EOF        
+
+```
