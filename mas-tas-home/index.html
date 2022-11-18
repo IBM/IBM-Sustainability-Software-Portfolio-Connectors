@@ -115,6 +115,14 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-4-testing">Part 4: Testing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#maximo">Maximo</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tririga">TRIRIGA</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#common-errors-that-arise-from-maximo">Common errors that arise from Maximo</a>
@@ -134,6 +142,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#pre-requisite-add-an-app-connect-certificate-in-mas-89">Pre-requisite: add an App Connect Certificate in MAS 8.9+</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#pre-requisite-add-an-app-connect-certificate-in-maximo-7612">Pre-requisite: add an App Connect Certificate in Maximo 7.6.1.2+:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pre-requisite-add-certificate-in-tririga">Pre-Requisite: Add certificate in TRIRIGA:</a>
     </li>
         </ul>
     </li>
@@ -200,7 +210,7 @@ This connector supports the following capabilities through a collection of App C
 <p><img width="1280" alt="TRI-MAS Architecture" src="https://user-images.githubusercontent.com/20128676/199506793-e96635d7-4a18-4f4b-97df-633374c334c5.png"></p>
 <hr />
 <h2 id="app-connect-flows">App Connect Flows</h2>
-<p>Included with this connector are 20+ flows that map TRIRIGA records to Maximo, and vice versa, along with all the required fields they contain. The table below shows all the flows you can use in differnet combinations to implement your desired integration use cases. For a more detailed mapping of all the fields please review the attached <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/TRIMAS-Updates/site/Resources/TRIRIGA_Maximo_Field_Mapping-Final.xlsx">data mapping spreadsheet</a>. </p>
+<p>Included with this connector are 20+ flows that map TRIRIGA records to Maximo, and vice versa, along with all the required fields they contain. The table below shows all the flows you can use in differnet combinations to implement your desired integration use cases. For a more detailed mapping of all the fields please review the <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/TRIMAS-Updates/site/Resources/TRIRIGA_Maximo_Field_Mapping-Final.xlsx">data mapping spreadsheet</a>. </p>
 <table>
 <thead>
 <tr>
@@ -384,8 +394,8 @@ This connector supports the following capabilities through a collection of App C
 <li>Admin access to your Maximo instance with an api key generated for this integration</li>
 <li>TRIRIGA with dedicated user/pw for this integration</li>
 <li>Secure connection between TRIRIGA, App Connect, and Maximo. If required IBM does provides a product that accomplishes this: Secure Gateway. Learn more about getting started with <a href="https://cloud.ibm.com/docs/SecureGateway?topic=SecureGateway-getting-started-with-sg">Secure Gateway.</a></li>
-<li>Import AppConnect Cert to Maximo to enable encrypted communication</li>
-<li>Import AppConnect Cert to TRIRIGA to enable encrypted communication</li>
+<li><a href="#pre-requisite-add-an-app-connect-certificate-in-mas-89">Import AppConnect Cert to Maximo</a> to enable encrypted communication</li>
+<li><a href="#pre-requisite-add-certificate-in-tririga">Import AppConnect Cert to TRIRIGA</a> to enable encrypted communication</li>
 </ol>
 </blockquote>
 <hr />
@@ -494,46 +504,15 @@ This connector supports the following capabilities through a collection of App C
 <p><img src="https://media.github.ibm.com/user/348712/files/e2d3af80-3801-11ed-8ff7-4e319d52da99" alt="AppConnect Cloud Documentation Link" > 
   <em>Step 4: API Documentation Link</em></p>
 <h2 id="part-2-configure-tririga">Part 2. Configure TRIRIGA</h2>
-<blockquote>
-<p><strong>Note</strong> If you have not already done so, please import App Connect Cert to TRIRIGA to enable encrypted communication. Provide the Cert from App Connect as a secret to the instance of TAS as such:</p>
-</blockquote>
-<pre><code>cat &lt;&lt;EOF | oc create -f -
-apiVersion: truststore-mgr.ibm.com/v1
-kind: Truststore
-metadata:
-    name: my-tas-truststore
-spec:
-    license:
-        accept: true
-    includeDefaultCAs: true
-    servers:
-    - &quot;example.com:443&quot;
-    certificates:
-    - alias: alias_1 
-      crt: |
-        -----BEGIN CERTIFICATE-----
-        ...
-        Certificate 1   
-        ...
-        -----END CERTIFICATE-----
-
-        ...
-
-    - alias: alias_n 
-      crt: |
-        -----BEGIN CERTIFICATE-----
-        ...
-        Certificate n   
-        ...
-        -----END CERTIFICATE-----
-EOF        
-
-</code></pre>
 <h4 id="import-object-migration-package">Import Object Migration Package</h4>
 <ol>
-<li>Download the latest <a href="https://github.com/IBM/tririga-api/tree/main/docs/ompackages">OM Package</a>.</li>
-<li>Navigate to <strong>Tools -&gt; Object Migration</strong> and import the package into the instance of TRIRIGA.</li>
-<li>The Date Time Format field in the user profile must be in UTC. Navigate to <strong>Portfolio -&gt; People -&gt; My Profile</strong> and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.</li>
+<li>
+<p>Import the OM Package labeled <em>APIConnector</em> into the TRIRIGA instance. Go to <strong>Tools -&gt; Administration -&gt; Object Migration</strong> and select <strong>New Import Package</strong> to begin the import process.
+<strong>Refer to the <a href="https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview">IBM® TRIRIGA documentation</a> for more information on Object Migration</strong></p>
+</li>
+<li>
+<p>The Date Time Format field in the user profile must be in UTC. Navigate to <strong>Portfolio -&gt; People -&gt; My Profile</strong> and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.</p>
+</li>
 </ol>
 <p><img width="600" alt="TRI-UTC" src="https://media.github.ibm.com/user/348712/files/ec5d1780-3801-11ed-8f32-72fc453558f0">
 <em>Date Time Format Field in My Profile</em></p>
@@ -1074,6 +1053,16 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the WORKORDER Object.</
 </table>
 <p>Click <strong>Save Definition</strong> after the changes are added.</p>
 <hr />
+<h2 id="part-4-testing">Part 4: Testing</h2>
+<p>To test that the configuration is complete, send a test payload in order to test connectivity.</p>
+<h3 id="maximo">Maximo</h3>
+<ol>
+<li>Go to the <strong>End Points</strong> application and click <strong>Test</strong> at the bottom of the integration you would like to test.</li>
+<li>Send a test payload that is a valid object. <code>{"Hello":"World"}</code> would work.</li>
+<li>If the response is anything other than <strong>Bad Request</strong>, see <a href="#testing-the-end-point">what might be causing the error</a></li>
+</ol>
+<h3 id="tririga">TRIRIGA</h3>
+<p>Use a tool like POSTMan to test the connectivity of the App Connect flow. You can use a Sample JSON Payload from this <a href="https://github.com/IBM/tririga-api">open source repository</a>. </p>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>Depending on the direction of the flow, cross-referencing errors from two systems can help identify the root cause of an issue with the integration. For example:</p>
 <ul>
@@ -1095,6 +1084,11 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the WORKORDER Object.</
 <td>Response code received from the HTTP request from the endpoint is not successful</td>
 <td>Invalid URL in the Integration Object</td>
 <td>Double check the URL that all of the components are entered correctly. Make sure there are no accidental spaces at the beginning or the end in event of a copy/paste.</td>
+</tr>
+<tr>
+<td>404: Not Found</td>
+<td>Flow is not Running</td>
+<td>Make sure the flow is Running before starting the cron tasks</td>
 </tr>
 <tr>
 <td>PKSync error</td>
@@ -1218,6 +1212,39 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the WORKORDER Object.</
 <p><em>Step 3: Websphere Keystores</em></p>
 <p><img width="600" alt="Websphere-Signercerts" src="https://media.github.ibm.com/user/348712/files/f121cb80-3801-11ed-9833-65fe541bcef5"></p>
 <p><em>Step 4: Websphere Signer Certs</em></p>
+<h3 id="pre-requisite-add-certificate-in-tririga">Pre-Requisite: Add certificate in TRIRIGA:</h3>
+<pre><code>cat &lt;&lt;EOF | oc create -f -
+apiVersion: truststore-mgr.ibm.com/v1
+kind: Truststore
+metadata:
+    name: my-tas-truststore
+spec:
+    license:
+        accept: true
+    includeDefaultCAs: true
+    servers:
+    - &quot;example.com:443&quot;
+    certificates:
+    - alias: alias_1 
+      crt: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        Certificate 1   
+        ...
+        -----END CERTIFICATE-----
+
+        ...
+
+    - alias: alias_n 
+      crt: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        Certificate n   
+        ...
+        -----END CERTIFICATE-----
+EOF        
+
+</code></pre>
               
             </div>
           </div><footer>
