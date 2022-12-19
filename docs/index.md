@@ -5,8 +5,8 @@
 IBM TRIRIGA Application Suite (TAS) and IBM Maximo Application Suite (MAS) customers can access a collection of predefined integrations between TAS, MAS, and IBM Envizi ESG Suite. These integrations can be used in various combinations to enable different usecases and each intergration can be configured for additional flexibility. 
 
 **The TRIRIGA - Maximo Connector** is released under two names: TAS Connector for Maximo and MAS Connector for TRIRIGA depending on which applications suite is used to access it. This connector supports the following use cases:  
-- Bi-directional loading, and continuous synchronization of portfolio data such as People, Locations, and Assets.
-- Bi-directinoal routing of service requests between TRIRIGA and Maximo.
+- Bidirectional loading, and continuous synchronization of portfolio data such as People, Locations, and Assets.
+- Bidirectinoal routing of service requests between TRIRIGA and Maximo.
 - Automatic shadowing of TRIRIGA Work Tasks with Maximo Work Orders to enable Facility teams to do planing, budgeting and project management in TRIRIGA while work tasks get reflected in Maximo as Work Orders for execution.
 
 **TAS Connector for Envizi** automatically sync space and occupancy data from TRIRIGA with Envizi to enable energy usage calculations across entire facility portfolio with advanced analytics by location, by SQF, and by occupant.
