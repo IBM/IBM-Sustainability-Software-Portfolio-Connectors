@@ -275,6 +275,7 @@ These Cron Task Instances will use the suffix `ON_DEMAND`
 
 - `MXURL`: The base URL of the Maximo instance. This would include the protocol, domain name and the port number. Do not put a trailing `/` at the end. In the absense of port number, the default port for the protocol will be used _(80 for http, 443 for https)_.
     - e.g. http://example.maximo.com:9080
+    - For MAS deployments, this route should be to the Manage instance domain. You can find this route in OpenShift under **Networking -> Routes** within the Manage namespace. The route should have the format **"workspace".manage."instanceid"**
 
 - `CUSTOMER`: Name of the customer. This will be used to name the CSV files. To be supplied by Envizi.
 
@@ -356,6 +357,9 @@ Error | Cause | Resolution
 Response code received from the HTTP request from the endpoint is not successful | Invalid URL in the Integration Object | Double check the URL that all of the components are entered correctly. Make sure there are no accidental spaces at the beginning or the end in event of a copy/paste.
 404: Not Found | Flow is not Running | Make sure the flow is Running before starting the cron tasks
 PKSync error| Certificate error | Confirm the certificate is configured correctly
+Unable to Verify Leaf Signature | Certificate Error |Confirm the HTTP account is set with "Allow Self-Signed Certificates" as True.
+Status Code 400: BMXAA8744E - The OSLC query was not parsed. | Incorrect character in cron task parameter field, such as a decimal point in Page Size |Check the parameters in the cron task.
+“Cannot GET /maximo/api/os/PLUSZLOCATIONS” | MXUrl is not valid |Verify the MXURL parameter in Cron task that it is pointing to the correct url.
 
 
 ## Reference for Pre-requisite
