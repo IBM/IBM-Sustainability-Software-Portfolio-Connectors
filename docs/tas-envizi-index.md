@@ -457,7 +457,6 @@ The below errors are found in the App Connect logs.
 
  Error | Cause | Resolution
  -- |-- |--
- 404 - API doesn't exist | Flow is not running | Double check that the flow is Active in App Connect
  404 - The HTTP request returned with an error 404 "Not Found" | Incorrect App Connect connector config | Double check that the credentials being used in the HTTP post node in App Connect are correct
  
  - If these do not resolve the issue, try clearing the OSLC Cache in TRIRIGA Admin Console in case the integrations do not work in intended manner.
