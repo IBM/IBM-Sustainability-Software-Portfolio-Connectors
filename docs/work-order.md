@@ -35,8 +35,7 @@ This configuration assumes the completion of the pre-requisites and steps outlin
 
 Within Maximo, a change to the Work Order Application is needed to see additional fields.
 
-#### 1. Application Designer
-
+#### Work Order
 
 <img src="https://media.github.ibm.com/user/348712/files/f46b8600-3806-11ed-8a5d-43e6c8db4760" alt="App Designer" >
 
