@@ -11,7 +11,7 @@ This connector supports the following capabilities through a collection of App C
 ## Use case examples
    
    1. TRIRIGA is the system of record for People and Space data while Maximo is the system of record for Assets. The Maintenance team wants consistent reports across the entire organization and more streamlined operations. The Spaces flows provided can be used to bulk-load all Spaces data from TRIRIGA into Maximo Locations, and then continuously keep the data in sync as it gets updated in TRIRIGA by a Facility Management team. This can apply to Assets, or People data in both directions. 
-   2. Employees use TRIRIGA Request Central to submit a Service Request for a broken elevator. Since elevators are maintained in Maximo, the flow will create a corresponding Service Request in Maximo that will be assigned to technicians and resolved. As the Maximo Service Request gets updated, the changes are automatically reflected in the TRIRIGA Service request so the originator of the request remains informed of its status. This flow can operate in reverse as well if a Service Request originates from Maximo against a maintenance operation that should be tracked in TRIRIGA.
+   2. Employees use Request Central to submit a Service Request for a broken elevator. Since elevators are maintained in Maximo, the flow will create a corresponding Service Request in Maximo that will be assigned to technicians and resolved. As the Maximo Service Request gets updated, the changes are automatically reflected in the TRIRIGA Service request so the originator of the request remains informed of its status. This flow can operate in reverse as well if a Service Request originates from Maximo against a maintenance operation that should be tracked in TRIRIGA.
    3. Facility Management team have a capital project in TRIRIGA to upgrade all the lights to LEDs. The project has the budget, scope and tasks already defined. The flow can then create corresponding Work Orders in Maximo for each task to get executed by technicians using the Maximo Manage and Mobile applications. As the tasks get updated in Maximo, those updates flow back into TRIRIGA to reflect in the project plan.
 
 ***
@@ -176,12 +176,12 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
   <img src="https://media.github.ibm.com/user/348712/files/e2d3af80-3801-11ed-8ff7-4e319d52da99" alt="AppConnect Cloud Documentation Link" > 
   *Step 4: API Documentation Link*
 
-## Part 2. Configure TRIRIGA
+## Part 2. Configure TAS
 
 #### Import Object Migration Package
 
-1. Import the OM Package labeled *APIConnector* into the TRIRIGA instance. Go to **Tools -> Administration -> Object Migration** and select **New Import Package** to begin the import process.
-**Refer to the [IBM® TRIRIGA documentation](https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview ) for more information on Object Migration**
+1. Import the OM Package labeled *APIConnector* into the TAS instance. Go to **Tools -> Administration -> Object Migration** and select **New Import Package** to begin the import process.
+**Refer to the [IBM® TAS documentation](https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview ) for more information on Object Migration**
 
 2. The Date Time Format field in the user profile must be in UTC. Navigate to **Portfolio -> People -> My Profile** and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.
 
@@ -189,11 +189,40 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
 *Date Time Format Field in My Profile*
 
 #### Configure Integration Object
-4. Confirgure the Integration Object - From the main page of TRIRIGA, click on **Tools -> System Setup -> Integration -> Integration Object**. Under the **Name** column, type in **apic**, and select the integration object that pertains to the record that is getting sent. 
+4. Configure the Integration Object - From the main page of TAS, click on **Tools -> System Setup -> Integration -> Integration Object**. Under the **Name** column, type in **apic**, and select the integration object that pertains to the record that is getting sent. 
 5. Click on the object and fill in the credentials in the pop-up box.
  
-<img src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-9ea5-af57b4059a25" alt="TRIRIGA End Point">
-*TRIRIGA End Point*
+<img src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-9ea5-af57b4059a25" alt="TAS End Point">
+*TAS End Point*
+
+#### Outbound Traffic from TAS
+
+For outbound traffic from TAS, grant at least READ access on the Business Objects that will be used. The table below shows the various supported business Objects the API can pull from: 
+
+Module | Business Object Label
+--|--
+Asset | [Building Equipment](https://github.com/IBM/tririga-api/blob/main/markdowns/Asset.md)
+Classification | [Request Class](https://github.com/IBM/tririga-api/blob/main/markdowns/RequestClass.md)
+Classification | [Space Class Current](https://github.com/IBM/tririga-api/blob/main/markdowns/SpaceClass.md)
+Classification | [Asset Spec Class](https://github.com/IBM/tririga-api/blob/main/markdowns/AssetSpecClass.md)
+People | [People](https://github.com/IBM/tririga-api/blob/main/markdowns/People.md)
+Location |[Property](https://github.com/IBM/tririga-api/blob/main/markdowns/Property.md)
+Location |[Building](https://github.com/IBM/tririga-api/blob/main/markdowns/Building.md)
+Location |[Floor](https://github.com/IBM/tririga-api/blob/main/markdowns/Floor.md)
+Location |[Space](https://github.com/IBM/tririga-api/blob/main/markdowns/Space.md)
+Organization |[Organization](https://github.com/IBM/tririga-api/blob/main/markdowns/Organization.md)
+Request |[Service Request](https://github.com/IBM/tririga-api/blob/main/markdowns/ServiceRequest.md)
+Task |[Work Task](https://github.com/IBM/tririga-api/blob/main/markdowns/WorkTask.md)
+
+In the example below, the API user is able to pull data from the Building Business Object: 
+
+<img width="1097" alt="Outbound Business Object" src="https://media.github.ibm.com/user/348712/files/e5633b80-3b58-11ed-81a4-46540898ff50">
+
+#### Inbound traffic to TAS
+
+For inbound traffic, Data Access needs to be enabled as well as Application Access permissions to the **triAPIConnect Module** or the individual Objects. To enable an API user to create a building, grant access to the triAPICBuilding Business object as shown below: 
+
+<img width="1000" alt="Inbound Traffic Business Object" src="https://media.github.ibm.com/user/348712/files/e5633b80-3b58-11ed-842e-cea368ad86dd">
 
 ***
 
@@ -264,33 +293,33 @@ d. Now that this account is present, head back to **Organizations** and update t
   Integration Control | MAXIMO Value | External Value | Description | Domain
   ---|---|---|---|---
   PLUSILOCSTATUS | ACTIVE | ACTIVE | Tririga Location Status mapping for inbound flows | LOCASSETSTATUS
-  "" | INACTIVE | REVIEW IN PROGRESS | N/A | N/A
-  "" | OPERATING | OPERATING | N/A | N/A
+  PLUSILOCSTATUS | INACTIVE | REVIEW IN PROGRESS | N/A | N/A
+  PLUSILOCSTATUS | OPERATING | OPERATING | N/A | N/A
   PLUSIORG | TRIMAIN | IBM | Organization mapping for Tririga | N/A
-  "" | TRIRIGA | TRIRIGA | N/A | N/A
+  PLUSIORG | TRIRIGA | TRIRIGA | N/A | N/A
   PLUSIORGEN | TRIRIGA | EAGLENA | Tririga Organization mapping for Inbound flow | N/A
-  "" | TRIRIGA | IBM | N/A | N/A
-  "" | TRIRIGA | MAXIMO ORG | N/A | N/A
-  "" | TRIRIGA | TRIRIGA | N/A | N/A
+  PLUSIORGEN | TRIRIGA | IBM | N/A | N/A
+  PLUSIORGEN | TRIRIGA | MAXIMO ORG | N/A | N/A
+  PLUSIORGEN | TRIRIGA | TRIRIGA | N/A | N/A
   PLUSIPRIORITY | 1 | High | Priority mapping for Tririga | N/A
-  "" | 2 | Medium | N/A | N/A
-  "" | 3 | Low | N/A | N/A
+  PLUSIPRIORITY | 2 | Medium | N/A | N/A
+  PLUSIPRIORITY | 3 | Low | N/A | N/A
   PLUSISITEEN | TRIMAIN | BEDFORD | Tririga Location mapping for inbound flows | N/A
-  "" | TRIMAIN | SPACE 01 | N/A | N/A
-  "" | TRIMAIN | TRIMAIN | N/A | N/A |
+  PLUSISITEEN | TRIMAIN | SPACE 01 | N/A | N/A
+  PLUSISITEEN | TRIMAIN | TRIMAIN | N/A | N/A |
     
 b. Once these Integration Controls are created, associate them in both the created Enterprise Services and Publish Channels by using the following two tables
 
 Enterprise Service | Control
 --|-- 
 PLUSIASSET | PLUSIORGEN
-"" | PLUSIPRIORITY
-"" | PLUSISITEEN 
+PLUSIASSET | PLUSIPRIORITY
+PLUSIASSET | PLUSISITEEN 
 PLUSILOCATION | PLUSILOCSTATUS
- "" | PLUSISITEEN
- "" | PLUSISTATUS
+ PLUSILOCATION | PLUSISITEEN
+ PLUSILOCATION | PLUSISTATUS
  PLUSIPERSON | PLUSIORGEN
- "" | PLUSISITEEN
+ PLUSIPERSON | PLUSISITEEN
   PLUSIWO | PLUSIWOPRIORITY
 
 
@@ -302,7 +331,7 @@ PLUSILOCATION | N/A
 PLUSIPERSON | PLUSIORG
 PLUSISR | N/A
 PLUSIWO | PLUSIWOPRIORITY
-"" | PLUSIWOSTART
+PLUSIWO | PLUSIWOSTART
  
 c. Return to the PLUSITRIRIGA External System. On the left side of the External Systems page, select **Setup Integration Controls** under **More Actions** and make sure that all 5 Integration Controls are showing as present.
 
@@ -512,7 +541,9 @@ Configure WebSphere Certificates. This makes a test connection to a Secure Socke
  
 *Step 4: Websphere Signer Certs*
 
-### Pre-Requisite: Add certificate in TRIRIGA:
+### Pre-Requisite: Update TAS Custom Resource with App Connect Certificates:
+
+In OpenShift, import the following yaml with the App Connect certificates added under the spec.alias.crt section:
 
 ```
 cat <<EOF | oc create -f -
@@ -547,3 +578,5 @@ spec:
 EOF        
 
 ```
+
+If there is already a truststore for TAS, update the truststore with the App Connect certificate.
