@@ -76,7 +76,7 @@ PLUSZMXTOS3_v1_1_0.yaml | Locations and Meter Reading | Max to Envizi | Bulk Loa
 
 ## Part 1: App Connect Configuration
 
-*Note: You need IBM Cloud AppConnect Professional or Enterprise to run this flow.*
+*Note: IBM App Connect Professional or Enterprise is needed to run this flow. The flows have been tested on IBM Cloud App Connect, AWS App Connect, as well as the containerized version of App Connect.*
 
 *Note: The names in the screenshots are generic, other instances will not have the same names during setup.*
 

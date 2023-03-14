@@ -55,7 +55,7 @@ TririgaBuildings_On_Demand_v1_1_1.yaml | Space Data | TAS to Envizi | Bulk Initi
 >1. An instance of App Connect Enterprise or App Connect Pro with the Designer component.
 >2. Admin access to TAS with user/pw for integration
 >3. Envizi instance with a AWS S3 Bucket
->4. [Import AppConnect Cert to TAS](#tririga-certificates) to enable encrypted communication
+>4. [Import AppConnect Cert to TAS](#tas-certificates) to enable encrypted communication
 
 ***
 
@@ -73,7 +73,7 @@ TririgaBuildings_On_Demand_v1_1_1.yaml | Space Data | TAS to Envizi | Bulk Initi
 
 ## Part 1: App Connect Configuration
 
-*Note: IBM Cloud App Connect Professional or Enterprise is needed to run this flow.*
+*Note: IBM App Connect Professional or Enterprise is needed to run this flow. The flows have been tested on IBM Cloud App Connect, AWS App Connect, as well as the containerized version of App Connect.*
 
 *Note: The names in the screenshots are generic, the elements in this integration will not have the same names during setup.*
 
@@ -425,3 +425,4 @@ spec:
 EOF        
 
 ```
+This must then be added as the truststore to the TAS instance. In the Custom Resource Definition for TAS, update the `spec.integration.truststore` field to reference the name of the created truststore. If there already is a truststore for TAS, update the Truststore resource to include the certificate with an additional alias.

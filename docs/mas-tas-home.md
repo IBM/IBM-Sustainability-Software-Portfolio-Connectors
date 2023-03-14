@@ -78,11 +78,10 @@ PLUSITRIASSETBATCH_v1_0_0.yaml | Batch Assets | TRI to Max | Batch
 
 ## Installation & Configuration Guide
 
-
 >## Before you begin you will need:
 >
 >1. An instance of App Connect Enterprise or App Connect Pro with the Designer component.
->2. Admin access to your Maximo instance with an api key generated for this integration
+>2. Admin access to your Maximo instance with an API key generated for this integration
 >3. TRIRIGA with dedicated user/pw for this integration
 >4. Secure connection between TRIRIGA, App Connect, and Maximo. If required IBM does provides a product that accomplishes this: Secure Gateway. Learn more about getting started with [Secure Gateway.](https://cloud.ibm.com/docs/SecureGateway?topic=SecureGateway-getting-started-with-sg)
 >5. [Import AppConnect Cert to Maximo](#pre-requisite-add-an-app-connect-certificate-in-mas-89) to enable encrypted communication
@@ -91,26 +90,65 @@ PLUSITRIASSETBATCH_v1_0_0.yaml | Batch Assets | TRI to Max | Batch
 ***
 
 ## Installation Steps Overview
-1. Configure App Connect<br> 
+1. Install Connector<br>
+2. Configure App Connect<br> 
    a. Authenticate<br>
    b. Import Flows<br>
-2. Configure TRIRIGA<br>
+3. Configure TRIRIGA<br>
    a. Import TRIRIGA OM Package <br>
    b. Point integration object to App Connect Flow<br>
-3. Configure Maximo<br>
+4. Configure Maximo<br>
    a.  Add necessary fields<br>
    b.  Publish channel to point to App Connect Flow<br>
-4. Test <br>
+5. Test <br>
    a. MAS outbound connectivity<br>
    b. TRIRIGA POSTMAN<br>
 
 ***
 
-## Part 1. Configure App Connect
+## Part 1. Install Connector
+
+### MAS 8.9
+The MAS Connector to TAS in Manage can be installed by using the proper customization .zip file provided from Passport Advantage. This .zip file will have all of the configurations necessary to complete step 4 in the Installation process. To apply this to the instance of Manage:
+
+1. Head to the admin dashboard and click on **Catalog** and then **Manage**.
+
+2. Click on **View deployment details** and then **Go to workspace details page** at the bottom of the Manage status page. At the top right corner of the page under **Actions**, select **Update configuration**. From the right side of the pop up under **Configurations**, select **Customization**.
+
+3. Un-select the **System managed** button and add the File address for the file. Be sure to leave the Alias as the default value or else this process will not work properly. Once added, scroll to the top and click **Apply Changes** and **Confirm** on the next window.
+
+<img src="https://media.github.ibm.com/user/348712/files/9c466a39-45d4-4811-bed5-f80e208757bc" alt="Manage dashboard">
+*Step 1: Manage dashboard*
+
+<img src="https://media.github.ibm.com/user/348712/files/4db55bcb-53ff-4cf3-a9c1-3ab760174406" alt="Configuration Page">
+*Step 2: Navigate to Configuration page*
+
+<img src="https://media.github.ibm.com/user/348712/files/2a7f4f27-5c7a-4f87-858b-13ea68363879" alt="Add Customization">
+*Step 3: Add Customization to Manage instance*
+
+The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created `build` pods in the Manage namespace in the OpenShift cluster to see the progress.
+
+### MAS 8.10
+The MAS Connector to TAS in Manage can be installed on the MAS administration dashboard through the tile. 
+
+1. Search for TRIRIGA from the Catalog page and select the **TRIRIGA Connector** tile.
+
+2. On the tile page, click **Configure** and it will take you to the update configuration page. Select the latest version of the connector under the **Components** section and then click **Apply Changes** at the top of the page and **Confirm** on the next window.
+
+<img src="https://media.github.ibm.com/user/348712/files/aff7df19-4804-4407-9994-bb82fedd1c6e" alt="Tile dashboard">
+*Step 1: Select Connector Tile*
+
+<img src="https://media.github.ibm.com/user/348712/files/9c550273-474a-41b4-bf9b-b266c90014ac" alt="Component Section">
+*Step 2: Apply Changes for Connector*
+
+The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created `build` pods in the Manage namespace in the OpenShift cluster to see the progress.
+
+## Part 2. Configure App Connect
 
 ### App Connect Authentication
 
-*Access to an instance of App Connect with a deployed instance of a Designer is required.* 
+*Note: IBM App Connect Professional or Enterprise is needed to run these flows. The flows have been tested on IBM Cloud App Connect, AWS App Connect, as well as the containerized version of App Connect.*
+
 
 1. Two accounts need to be created from the **Catalog** tab in order to connect the applications. Once all of the connectors have loaded, type in **http** to find the HTTP Application.
  
@@ -134,7 +172,7 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
 2. Import the Selected Flows into **App Connect Enterprise**, or **App Connect SaaS on IBM Cloud** using the instructions below
 
 
-#### Import Steps (App Connect Enterprise)
+#### Import Steps (App Connect Enterprise & App Connect AWS)
 
   1. From the App Connect Dashboard, click **New** and select **Import Flow** from the drop down menu.
   2. Either drag and drop or select the flow for import. In this example, the MX2TRI Person flow will be used.
@@ -176,7 +214,27 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
   <img src="https://media.github.ibm.com/user/348712/files/e2d3af80-3801-11ed-8ff7-4e319d52da99" alt="AppConnect Cloud Documentation Link" > 
   *Step 4: API Documentation Link*
 
-## Part 2. Configure TAS
+
+#### Running in Production
+
+Once the configuration of the below applications is complete and the connectivity between systems is working as expected, you will need to deploy the flow as an integration server via the App Connect Dashboard. From the dashboard view of the Designer application, click the three dots on the flow's tile, select **Export**, and then **Runtime flow asset (BAR)**.
+
+<img src="https://media.github.ibm.com/user/348712/files/100feeb6-e960-43b0-abc1-ac9b5568a150" alt="Export Bar file" >
+*Step 1: Export Bar file*
+
+In the App Connect Dashboard instance, select **Create Server** and then the type of integration you would like to run. The flows work with all types of integration sizes, so pick the one that is right for your deployment. Import the bar file you just downloaded into the section on the **Integrations** tab.
+
+<img src="https://media.github.ibm.com/user/348712/files/d81a2a41-5d31-4c0b-9b7d-24ff3286810b" alt="Create Integration Server" >
+*Step 2: Create Integration Server*
+
+On the Configuration screen, refer to the [IBM® documentation](https://www.ibm.com/docs/en/app-connect/containers_cd?topic=examples-securing-rest-based-integration-in-app-connect) to properly secure the server.
+
+Finally, give the intended details of the server such as the name, version, and correct license to use. Click **Create** when you're ready to deploy. After 5-10 minutes the server should be up and running
+
+<img src="https://media.github.ibm.com/user/348712/files/6e75ff15-92fc-4829-9198-6fb378c75c3a" alt="Details Page" >
+*Step 3: Final details*
+
+## Part 3. Configure TAS
 
 #### Import Object Migration Package
 
@@ -227,7 +285,7 @@ For inbound traffic, Data Access needs to be enabled as well as Application Acce
 ***
 
 
-## Part 3. Maximo Configuration
+## Part 4. Maximo Configuration
 
 > **Note 1** If you have not already done so, please import AppConnect Cert to Maximo to enable encrypted communication. 
 
@@ -288,7 +346,7 @@ d. Now that this account is present, head back to **Organizations** and update t
  
 #### 5. Integration Controls
  
-  a. Head to **Enterprise Services** and click on **Create Integration Controls**. There should be 5 X-Ref Integration Controls created with the following associations:
+  a. Head to **Enterprise Services** and click on **Create Integration Controls**. These integration controls help translate specific external values into values Maximo understands. The following tables contain values to set up this demo, but can be customized to fit your TRIRIGA and Maximo naming conventions. There should be 5 X-Ref Integration Controls created with the following associations:
  
   Integration Control | MAXIMO Value | External Value | Description | Domain
   ---|---|---|---|---
@@ -411,12 +469,13 @@ Search for **SR** in Application Designer
 > **Note**
 > Be sure that the PLUSIREQCLASSID Attribute is taken from the TICKET Object.
 
-|Field Name|Value  |
-|--|--|
-|Attribute | PLUSIREQCLASSID |
-|Attribute for Part 2 | PLUSIREQCLASS.DESCRIPTION |
-| Lookup | VALUELIST |
-|Input Mode for Part 2 | Readonly |
+
+|Type of Control | Label | Attribute | Attribute for Part 2 (*If Multipart Textbox*) | Lookup | Input Mode for Part 2 (*If Multipart Textbox*)
+|--|--|--|--|--|--|
+| Multipart Textbox |TRIRIGA Request Classification | PLUSIREQCLASSID | PLUSIREQCLASS.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox |TRIRIGA Space Classification | PLUSISPACECLASSIFICATION | PLUSISPCCLASSIFICATION.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox | TRIRIGA Parent Location | PLUSIPARENTLOCATION | PLUSIPARENTPATH.DESCRIPTION | VALUELIST | Readonly
+|Textbox | TRIRIGA Record ID | EXTERNALREFID (*From the Ticket Object*) | N/A | N/A | N/A
 
 e. Click **Save Definition** after the changes are added.
 
@@ -436,7 +495,7 @@ Click **Save Definition** after the changes are added.
 
 ***
 
-## Part 4: Testing
+## Part 5: Testing
 
 To test that the configuration is complete, send a test payload in order to test connectivity.
 
@@ -453,6 +512,22 @@ Use a tool like POSTMan to test the connectivity of the App Connect flow. You ca
 Depending on the direction of the flow, cross-referencing errors from two systems can help identify the root cause of an issue with the integration. For example:
  
  - If there is a Not Found error in Maximo Message Reprocessing when running the flow, double check the logs in App Connect to see if there is a corresponding error. If there is, the root cause might be related to what is being sent out of Maximo. If there isn't, then the message never left Maximo and the flow should be checked to make sure it is running.
+
+### Where to find logs in App Connect
+
+#### App Connect Enterprise
+
+The logs in App Connect Enterprise are found in the Integration Server pod. If running from App Connect Designer, this integration server is found in the App Connect namespace in OpenShift. Typically the Designer integration server has 4 pods and the logs can be found in the pod with a similar naming convention to `des-01-quickstart-ma-designer-designer-flows`.
+
+<img src="https://media.github.ibm.com/user/348712/files/259886b8-45d5-4fff-9d31-18145cf61c03" alt="App Connect Enterprise">
+*App Connect Enterprise*
+
+#### App Connect SaaS & AWS
+
+The logs in App Connect SaaS and AWS can be found within the application itself by clicking on the clipboard icon on the left side task bar.
+
+<img src="https://media.github.ibm.com/user/348712/files/32ea395f-a001-4529-ae96-8615a35bd5c1" alt="App Connect SaaS or AWS">
+*App Connect SaaS or AWS*
  
 ### Common errors that arise from Maximo
  
