@@ -65,9 +65,19 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#before-you-begin-you-will-need">Before you begin you will need:</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#downloadable-resources">Downloadable Resources</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#installation-steps-overview">Installation Steps Overview</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#part-1-app-connect-configuration">Part 1: App Connect Configuration</a>
+    <li class="toctree-l2"><a class="reference internal" href="#part-1-install-connector">Part 1. Install Connector</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mas-89">MAS 8.9</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mas-810">MAS 8.10</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-2-app-connect-configuration">Part 2: App Connect Configuration</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#adding-accounts">Adding Accounts</a>
     </li>
@@ -85,7 +95,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#part-2-maximo-configuration">Part 2: Maximo Configuration</a>
+    <li class="toctree-l2"><a class="reference internal" href="#part-3-maximo-configuration">Part 3: Maximo Configuration</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#deploying-maximo-build">Deploying Maximo Build</a>
         <ul>
@@ -212,9 +222,12 @@
 <li><a href="#pre-requisite-pre-check-that-data-is-correct">Check that meter data uses supported units of measure</a></li>
 </ol>
 </blockquote>
+<h2 id="downloadable-resources">Downloadable Resources</h2>
+<p>Download the <a href="https://github.com/IBM/maximo-envizi-appconnect-flows/releases/tag/Latest">zip file</a> that has all of the flows and configuration files.</p>
 <hr />
 <h2 id="installation-steps-overview">Installation Steps Overview</h2>
 <ol>
+<li>Install Connector<br></li>
 <li>Configure App Connect<br>
    a. Import Flows into App Connect<br>
    b. Configure Flows<br></li>
@@ -227,8 +240,44 @@
    a. MAS outbound connectivity<br></li>
 </ol>
 <hr />
-<h2 id="part-1-app-connect-configuration">Part 1: App Connect Configuration</h2>
-<p><em>Note: You need IBM Cloud AppConnect Professional or Enterprise to run this flow.</em></p>
+<h2 id="part-1-install-connector">Part 1. Install Connector</h2>
+<h3 id="mas-89">MAS 8.9</h3>
+<p>The MAS Connector to Envizi in Manage can be installed by using the proper customization .zip file provided from Passport Advantage. This .zip file will have all of the configurations necessary to complete step 4 in the Installation process. To apply this to the instance of Manage:</p>
+<ol>
+<li>
+<p>Head to the admin dashboard and click on <strong>Catalog</strong> and then <strong>Manage</strong>.</p>
+</li>
+<li>
+<p>Click on <strong>View deployment details</strong> and then <strong>Go to workspace details page</strong> at the bottom of the Manage status page. At the top right corner of the page under <strong>Actions</strong>, select <strong>Update configuration</strong>. From the right side of the pop up under <strong>Configurations</strong>, select <strong>Customization</strong>.</p>
+</li>
+<li>
+<p>Un-select the <strong>System managed</strong> button and add the File address for the file. Be sure to leave the Alias as the default value or else this process will not work properly. Once added, scroll to the top and click <strong>Apply Changes</strong> and <strong>Confirm</strong> on the next window.</p>
+</li>
+</ol>
+<p><img src="https://media.github.ibm.com/user/348712/files/9c466a39-45d4-4811-bed5-f80e208757bc" alt="Manage dashboard">
+<em>Step 1: Manage dashboard</em></p>
+<p><img src="https://media.github.ibm.com/user/348712/files/4db55bcb-53ff-4cf3-a9c1-3ab760174406" alt="Configuration Page">
+<em>Step 2: Navigate to Configuration page</em></p>
+<p><img src="https://media.github.ibm.com/user/348712/files/2a7f4f27-5c7a-4f87-858b-13ea68363879" alt="Add Customization">
+<em>Step 3: Add Customization to Manage instance</em></p>
+<p>The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created <code>build</code> pods in the Manage namespace in the OpenShift cluster to see the progress.</p>
+<h3 id="mas-810">MAS 8.10</h3>
+<p>The MAS Connector to Envizi in Manage can be installed on the MAS administration dashboard through the tile. </p>
+<ol>
+<li>
+<p>Search for Envizi from the Catalog page and select the <strong>Envizi Connector</strong> tile.</p>
+</li>
+<li>
+<p>On the tile page, click <strong>Configure</strong> and it will take you to the update configuration page. Select the latest version of the connector under the <strong>Components</strong> section and then click <strong>Apply Changes</strong> at the top of the page and <strong>Confirm</strong> on the next window.</p>
+</li>
+</ol>
+<p><img src="https://media.github.ibm.com/user/348712/files/aff7df19-4804-4407-9994-bb82fedd1c6e" alt="Tile dashboard">
+<em>Step 1: Select Connector Tile</em></p>
+<p><img src="https://media.github.ibm.com/user/348712/files/9c550273-474a-41b4-bf9b-b266c90014ac" alt="Component Section">
+<em>Step 2: Apply Changes for Connector</em></p>
+<p>The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created <code>build</code> pods in the Manage namespace in the OpenShift cluster to see the progress.</p>
+<h2 id="part-2-app-connect-configuration">Part 2: App Connect Configuration</h2>
+<p><em>Note: IBM App Connect Professional or Enterprise is needed to run this flow. The flows have been tested on IBM Cloud App Connect, AWS App Connect, as well as the containerized version of App Connect.</em></p>
 <p><em>Note: The names in the screenshots are generic, other instances will not have the same names during setup.</em></p>
 <h3 id="adding-accounts">Adding Accounts</h3>
 <p>Before importing the flow to App Connect, add Accounts for S3 and HTTP connectors.</p>
@@ -348,7 +397,7 @@
 </ol>
 <p>It is helpful to use a tool like Postman to test this API prior to testing it for the first time from Maximo.</p>
 <hr />
-<h2 id="part-2-maximo-configuration">Part 2: Maximo Configuration</h2>
+<h2 id="part-3-maximo-configuration">Part 3: Maximo Configuration</h2>
 <h3 id="deploying-maximo-build">Deploying Maximo Build</h3>
 <p>Within Maximo, the integration provides integration components (via .dbc script files) and Java Classes as part of the solution. These components need to be installed in the customer's Maximo environment. Components and other content created for this integration solution will be identified by names that begin with PLUSZ.</p>
 <h4 id="maximo-7612">Maximo 7.6.1.2+</h4>
@@ -473,6 +522,7 @@
 <p><code>MXURL</code>: The base URL of the Maximo instance. This would include the protocol, domain name and the port number. Do not put a trailing <code>/</code> at the end. In the absense of port number, the default port for the protocol will be used <em>(80 for http, 443 for https)</em>.</p>
 <ul>
 <li>e.g. http://example.maximo.com:9080</li>
+<li>For MAS deployments, this route should be to the Manage instance domain. You can find this route in OpenShift under <strong>Networking -&gt; Routes</strong> within the Manage namespace. The route should have the format <strong>"workspace".manage."instanceid"</strong></li>
 </ul>
 </li>
 <li>
@@ -581,6 +631,21 @@
 <td>PKSync error</td>
 <td>Certificate error</td>
 <td>Confirm the certificate is configured correctly</td>
+</tr>
+<tr>
+<td>Unable to Verify Leaf Signature</td>
+<td>Certificate Error</td>
+<td>Confirm the HTTP account is set with "Allow Self-Signed Certificates" as True.</td>
+</tr>
+<tr>
+<td>Status Code 400: BMXAA8744E - The OSLC query was not parsed.</td>
+<td>Incorrect character in cron task parameter field, such as a decimal point in Page Size</td>
+<td>Check the parameters in the cron task.</td>
+</tr>
+<tr>
+<td>“Cannot GET /maximo/api/os/PLUSZLOCATIONS”</td>
+<td>MXUrl is not valid</td>
+<td>Verify the MXURL parameter in Cron task that it is pointing to the correct url.</td>
 </tr>
 </tbody>
 </table>
