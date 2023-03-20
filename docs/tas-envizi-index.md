@@ -57,6 +57,10 @@ TririgaBuildings_On_Demand_v1_1_1.yaml | Space Data | TAS to Envizi | Bulk Initi
 >3. Envizi instance with a AWS S3 Bucket
 >4. [Import AppConnect Cert to TAS](#tas-certificates) to enable encrypted communication
 
+
+## Downloadable Resources
+
+Download the [zip file](https://github.com/IBM/tririga-envizi-appconnect-flows/releases/tag/v1.0.1) that has all of the flows and configuration files.
 ***
 
 ## Installation Steps Overview
@@ -169,10 +173,22 @@ Please refer to the [IBM® TAS documentation](https://www.ibm.com/docs/en/tap/3.
 
 In order for App Connect to be able to use TAS APIs, it will need a user with certain permissions. These user's credentials will be configured in App Connect.
 
-1. Create an integration user by following the steps given in [Chapter 2](https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf).
+1. Create an integration user by following the steps given in [Chapter 2](https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf). This user should be a non-admin user and not part of the Admin security group.
 
-- Assign that user to the proper group (*Insert new portfolio group name here*)
-  
+- Assign that user to a new or existing group for the integration. If you need to create a new security group, follow the steps given in [Chapter 1](https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf).
+
+- Add the "TAS Base License" to the **License Details** section on the user Profile.
+
+- Select the newly created group or desired existing group and switch to the **Access** tab and add the appropriate access for the integration.
+
+- Add the permissions below for the new user's group:
+
+  | Module        |     Business Object     |     Permissions    |
+  |---------------|-------------------------|--------------------|
+  | Location      |     triBuilding         |     Read           |
+  | triAPIConnect |     triAPICTimestamp    | Read and Update    |
+
+ 
 The user will now be able to interact with the proper TAS Modules.
 
 #### Minimum requirements
@@ -310,7 +326,7 @@ Enable Envizi checkbox is available too. The Envizi tab will be displayed only w
 
 One more item that must be configured is the Number of levels to be used on the Envizi configuration. Envizi hierarchy path will match this selection.
 
-<img width="900" alt="How-to-use" src="https://media.github.ibm.com/user/348712/files/21cd6380-3a95-11ed-800d-aa0c22556421">
+<img width="900" alt="How-to-use" src="https://media.github.ibm.com/user/348712/files/46f543c2-d118-4c98-8445-ed3e945d5dae">
 
 Also, notice that there is a section named **Active/Retire with missing data** and **Draft/Revision with Missing Data**. This section will list the buildings that don’t have data defined for Envizi group 3, so it means that no Envizi group will be populated on those buildings.
 
@@ -381,6 +397,7 @@ The below errors are found in the App Connect logs.
  Error | Cause | Resolution
  -- |-- |--
  404 - The HTTP request returned with an error 404 "Not Found" | Incorrect App Connect connector config | Double check that the credentials being used in the HTTP post node in App Connect are correct
+ 401 - Authorization error | Too many user sessions open in TAS | Open the Admin dashboard on the TAS environment and check the Users logged in. This issue can arise after a number of requests are made to TAS and then gives a 401 error even with the proper credentials. Clear the users logged in and the issue should clear.
  
  - If these do not resolve the issue, try clearing the OSLC Cache in TAS Admin Console in case the integrations do not work in intended manner.
  
@@ -426,3 +443,38 @@ EOF
 
 ```
 This must then be added as the truststore to the TAS instance. In the Custom Resource Definition for TAS, update the `spec.integration.truststore` field to reference the name of the created truststore. If there already is a truststore for TAS, update the Truststore resource to include the certificate with an additional alias.
+
+## Field Mapping
+
+### Buildings
+
+
+| CSV Headers       | TAS Fields             | Comments                                                                                                               |
+|-------------------|----------------------------|------------------------------------------------------------------------------------------------------------------------|
+| CITY              | spi:triCityTX              |                                                                                                                        |
+| COUNTRY           | spi:triCountryTX           |                                                                                                                        |
+| DESCRIPTION       | spi:triDescriptionTX       |                                                                                                                        |
+| GROUPNAME1        | spi:cstEnviziParentOneTX   | Value for this field will be available only after Location Hierarchy mapping for Envizi groups is completed on TAS |
+| GROUPNAME2        | spi:cstEnviziParentTwoTX   | Value for this field will be available only after Location Hierarchy mapping for Envizi groups is completed on TAS |
+| GROUPNAME3        | spi:cstEnviziParentThreeTX | Value for this field will be available only after Location Hierarchy mapping for Envizi groups is completed on TAS |
+| LATITUDEY         | spi:triGisLatitudeNU       |                                                                                                                        |
+| LOCATION          | spi:triNameTX              |                                                                                                                        |
+| LOCATIONCLOSEDATE | spi:triActiveEndDA         |                                                                                                                        |
+| LOCATIONID        | spi:triIdTX                |                                                                                                                        |
+| LONGITUDEX        | spi:triGisLongitudeNU      |                                                                                                                        |
+| POSTALCODE        | spi:triZipPostalTX         |                                                                                                                        |
+| STATEPROVINCE     | spi:triStateProvTX         |                                                                                                                        |
+| STREETADDRESS     | spi:triAddressTX           |                                                                                                                        |
+
+### Accounts
+
+| CSV Header    | TAS Field                                        | Comment |
+|---------------|------------------------------------------------------|---------|
+| ACCOUNT       | spi:triIdTX + ("_HEADCOUNT" or "_FLOORAREA")         |         |
+| DATATYPE      | "HEADCOUNT" or "FLOORAREA"                           |         |
+| LOCATION      | spi:triNameTX                                        |         |
+| LOCATIONID    | spi:triIdTX                                          |         |
+| MEASUREUNITID | spi:triAreaUO                                        |         |
+| METERNAME     | "HEADCOUNT" or "FLOORAREA"                           |         |
+| READING       | spi:triHeadcountNU or spi:triTotalAreaOccupiedCalcNU |         |
+| READINGDATE   | spi:triModifiedSY                                    |         |

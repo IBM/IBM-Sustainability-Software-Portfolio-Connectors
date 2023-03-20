@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/mas-tas-home/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Overview - IBM Sustainability Software Portfolio Connectors</title>
+    <title>IBM MAS Connector for TRIRIGA - IBM Sustainability Software Portfolio Connectors</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Overview";
+        var mkdocs_page_name = "IBM MAS Connector for TRIRIGA";
         var mkdocs_page_input_path = "mas-tas-home.md";
         var mkdocs_page_url = "/IBM-Sustainability-Software-Portfolio-Connectors/mas-tas-home/";
       </script>
@@ -43,71 +43,162 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                <li class="toctree-l1"><a class="reference internal" href="..">Sustainability Software Portfolio Connectors</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">IBM MAS Connector for TRIRIGA</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Overview</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">IBM MAS Connector for TRIRIGA</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    <li class="toctree-l2"><a class="reference internal" href="#use-case-examples">Use case examples</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#certificates-for-maximo">Certificates for Maximo</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#maximo-7612">Maximo 7.6.1.2+:</a>
+    <li class="toctree-l2"><a class="reference internal" href="#connector-architecture">Connector architecture</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#mas-88">MAS 8.8+</a>
+    <li class="toctree-l2"><a class="reference internal" href="#data-mapping">Data Mapping</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#app-connect-flows">App Connect Flows</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-configuration-guide">Installation &amp; Configuration Guide</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#before-you-begin-you-will-need">Before you begin you will need:</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#certificates-for-tririga">Certificates for TRIRIGA</a>
+    <li class="toctree-l2"><a class="reference internal" href="#downloadable-resources">Downloadable Resources</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-steps-overview">Installation Steps Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-1-install-connector">Part 1. Install Connector</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mas-810">MAS 8.10+</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mas-88-89">MAS 8.8 &amp; 8.9</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#maximo-7612">Maximo 7.6.1.2+</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-2-configure-app-connect">Part 2. Configure App Connect</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#app-connect-authentication">App Connect Authentication</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#importing-app-connect-flows">Importing App Connect Flows</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#import-steps-app-connect-enterprise-cp4i-app-connect-saas-aws">Import Steps - App Connect Enterprise (CP4I) &amp; App Connect SaaS (AWS)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#import-steps-app-connect-saas-ibm-cloud">Import Steps - App Connect SaaS (IBM Cloud)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#running-in-production">Running in Production</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-3-configure-tas">Part 3. Configure TAS</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#import-object-migration-package">Import Object Migration Package</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tas-api-user-access">TAS API User Access</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#outbound-traffic-from-tas">Outbound Traffic from TAS</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#inbound-traffic-to-tas">Inbound traffic to TAS</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#date-time-format">Date Time Format</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configure-integration-object">Configure Integration Object</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-4-maximo-configuration">Part 4. Maximo Configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-create-an-organization-named-tas">1. Create an Organization named TAS</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-create-a-testing-clearing-account-in-chart-of-accounts">2. Create a Testing clearing account in Chart of Accounts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-create-a-site-trimain-and-set-it-to-active">3. Create a site TRIMAIN and set it to active</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-api-key">4. API Key</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#mas">MAS</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#maximo-7612_1">Maximo 7.6.1.2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-integration-controls">5. Integration Controls</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6-enable-object-structure-security">6. Enable Object Structure Security</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7-application-designer-changes">7. Application Designer Changes</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#person">Person</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#asset">Asset</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#location">Location</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#service-request">Service Request</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#work-order">Work Order</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-5-testing">Part 5: Testing</a>
+        <ul>
     <li class="toctree-l3"><a class="reference internal" href="#maximo">Maximo</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#1-create-an-organization-named-tririga">1. Create an Organization named TRIRIGA</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#2-create-a-testing-clearing-account-in-chart-of-accounts">2. Create a Testing clearing account in Chart of Accounts</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3-create-a-site-trimain-and-set-it-to-active">3. Create a site TRIMAIN and set it to active</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#4-api-key">4. API Key</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#5-integration-controls">5. Integration Controls</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#6-enable-object-structure-security">6. Enable Object Structure Security</a>
+    <li class="toctree-l3"><a class="reference internal" href="#tas">TAS</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#app-connect">App Connect</a>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#where-to-find-logs-in-app-connect">Where to find logs in App Connect</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#app-connect-enterprise">App Connect Enterprise</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#tririga">TRIRIGA</a>
+    <li class="toctree-l4"><a class="reference internal" href="#app-connect-saas-aws">App Connect SaaS &amp; AWS</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#common-errors-that-arise-from-maximo">Common errors that arise from Maximo</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#testing-the-end-point">Testing the End Point</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#message-reprocessing">Message Reprocessing</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#common-errors-that-arise-from-tas">Common errors that arise from TAS</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reference-for-pre-requisite">Reference for Pre-requisite</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#pre-requisite-add-an-app-connect-certificate-in-mas-89">Pre-requisite: add an App Connect Certificate in MAS 8.9+</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pre-requisite-add-an-app-connect-certificate-in-maximo-7612">Pre-requisite: add an App Connect Certificate in Maximo 7.6.1.2+:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pre-requisite-update-tas-custom-resource-with-app-connect-certificates">Pre-Requisite: Update TAS Custom Resource with App Connect Certificates:</a>
     </li>
         </ul>
     </li>
     </ul>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas/">Portfolio Data Integration</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request Integration</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../work-order/">Work Order Integration</a>
-                  </li>
+                </li>
               </ul>
-              <p class="caption"><span class="caption-text">IBM MAS Connector for Envizi</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../max-envizi-index/">Overview</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../maximo-envizi/">IBM Maximo Application Suite Connector for Envizi</a>
-                  </li>
+                <li class="toctree-l1"><a class="reference internal" href="../max-envizi-index/">IBM MAS Connector for Envizi</a>
+                </li>
               </ul>
-              <p class="caption"><span class="caption-text">IBM TAS Connector for Envizi</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../tas-envizi-index/">Overview</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../tririga-envizi/">IBM Tririga Application Suite Connector for Envizi</a>
-                  </li>
+                <li class="toctree-l1"><a class="reference internal" href="../tas-envizi-index/">IBM TAS Connector for Envizi</a>
+                </li>
               </ul>
       </div>
     </div>
@@ -123,8 +214,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>IBM MAS Connector for TRIRIGA &raquo;</li>
-      <li>Overview</li>
+      <li>IBM MAS Connector for TRIRIGA</li>
     <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/mas-tas-home.md"
           class="icon icon-github"> Edit on GitHub</a>
@@ -135,18 +225,1185 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="ibm-mas-connector-for-tririga">IBM MAS Connector for TRIRIGA</h1>
-<h2 id="overview">Overview</h2>
-<p>Portfolio Data is able to be synced bi-directionally across Maximo and TRIRIGA with the use of a TRIRIGA Application Suite (TAS) or Maximo Application Suite (MAS) Connector. The data that is supported at this time includes People, Assets, Locations/Spaces, Service Requests, and Work Orders/Work Tasks. After configuring the environments with the proper prerequisites, select the desired connector below and follow the instructions to implement the integration.</p>
-<p><strong>Note: IBM MAS Connector for TRIRIGA also refers to the IBM TAS Connector for Maximo</strong></p>
-<h2 id="prerequisites">Prerequisites</h2>
-<p>These code patterns all require initial configuration of an instance of Maximo, App Connect, and TRIRIGA. These prerequisites also require that all three applications are behind the same firewall. </p>
-<p>If any of these three applications do not share the same firewall, a secure connection between the applications will need to be established. IBM does provide a product that accomplishes this: Secure Gateway. Learn more about getting started with <a href="https://cloud.ibm.com/docs/SecureGateway?topic=SecureGateway-getting-started-with-sg">Secure Gateway.</a></p>
-<p>Certificates for the App Connect instance will need to be imported into both systems:</p>
-<h3 id="certificates-for-maximo">Certificates for Maximo</h3>
-<h4 id="maximo-7612">Maximo 7.6.1.2+:</h4>
-<p><strong>Configure WebSphere Certificates</strong></p>
-<p>This makes a test connection to a Secure Sockets Layer (SSL) port and retrieves the signer from the server during the handshake.</p>
+                <h1 id="tririga-maximo-connector">TRIRIGA - Maximo Connector</h1>
+<p>The <strong>TRIRIGA - Maximo Connector</strong> is released in TAS under the name <em>"TAS Connector for Maximo"</em> and in MAS under the name <em>"MAS Connector for TRIRIGA"</em>. 
+This connector supports the following capabilities through a collection of App Connect flows:</p>
+<ul>
+<li>Bi-directional loading, and continuous synchronization of portfolio data such as People, Locations and Assets.</li>
+<li>Bi-directional routing of service requests between TAS and Maximo</li>
+<li>Automatic shadowing of TAS Work Tasks with Maximo Work Orders to enable Facility teams to do planing, budgeting and project management in TAS while work tasks get reflected in Maximo as Work Orders for execution.</li>
+</ul>
+<hr />
+<h2 id="use-case-examples">Use case examples</h2>
+<ol>
+<li>TAS is the system of record for People and Space data while Maximo is the system of record for Assets. The Maintenance team wants consistent reports across the entire organization and more streamlined operations. The Spaces flows provided can be used to bulk-load all Spaces data from TAS into Maximo Locations, and then continuously keep the data in sync as it gets updated in TAS by a Facility Management team. This can apply to Assets, or People data in both directions. </li>
+<li>Employees use Request Central to submit a Service Request for a broken elevator. Since elevators are maintained in Maximo, the flow will create a corresponding Service Request in Maximo that will be assigned to technicians and resolved. As the Maximo Service Request gets updated, the changes are automatically reflected in the TAS Service request so the originator of the request remains informed of its status. This flow can operate in reverse as well if a Service Request originates from Maximo against a maintenance operation that should be tracked in TAS.</li>
+<li>Facility Management team have a capital project in TAS to upgrade all the lights to LEDs. The project has the budget, scope and tasks already defined. The flow can then create corresponding Work Orders in Maximo for each task to get executed by technicians using the Maximo Manage and Mobile applications. As the tasks get updated in Maximo, those updates flow back into TAS to reflect in the project plan.</li>
+</ol>
+<hr />
+<h2 id="connector-architecture">Connector architecture</h2>
+<p><strong>IBM App Connect</strong> provides a flexible environment for integration solutions to transform, enrich, route, and process business messages and data. </p>
+<p><strong>App Connect Flows</strong> enable specific integration use cases by connecting to predefined APIs to route and map data. Mapping has been pre-defined, but it can be customized.</p>
+<p><strong>Native API framework</strong> is used for Maximo and TAS and enabled thorugh provided packages that can be imported.</p>
+<p><img width="1280" alt="TRI-MAS Architecture" src="https://user-images.githubusercontent.com/20128676/199506541-1f7b96cd-a758-4011-802a-c1ea1a46e60d.png"></p>
+<hr />
+<h2 id="data-mapping">Data Mapping</h2>
+<p>The image below illustrates the record types that are available the APIs and App Connect Flows Provided.</p>
+<p><img width="1280" alt="TRI-MAS Architecture" src="https://user-images.githubusercontent.com/20128676/199506793-e96635d7-4a18-4f4b-97df-633374c334c5.png"></p>
+<hr />
+<h2 id="app-connect-flows">App Connect Flows</h2>
+<p>Included with this connector are 20+ flows that map TAS records to Maximo, and vice versa, along with all the required fields they contain. The table below shows all the flows you can use in differnet combinations to implement your desired integration use cases. For a more detailed mapping of all the fields please review the <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/TRIMAS-Updates/site/Resources/TRIRIGA_Maximo_Field_Mapping-Final.xlsx">data mapping spreadsheet</a>. </p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Flow</th>
+<th>Destination</th>
+<th>Operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PLUSITRIPerson2MX_v1_0_0.yaml</td>
+<td>People</td>
+<td>TRI to Max</td>
+<td>Single Record at a time</td>
+</tr>
+<tr>
+<td>PLUSITRIOrg2MX_v1_0_0.yaml</td>
+<td>People</td>
+<td>TRI to Max</td>
+<td>Single Record at a time</td>
+</tr>
+<tr>
+<td>PLUSIMXPerson2TRI_v1_0_0.yaml</td>
+<td>People</td>
+<td>Max to TRI</td>
+<td>Batch &amp; Individual Records</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PLUSITRISpace2MX_v1_0_0.yaml</td>
+<td>Spaces/Locations</td>
+<td>TRI to Max</td>
+<td>Single Record at a time</td>
+</tr>
+<tr>
+<td>PLUSITRISpaceClass2MX_v1_0_0.yaml</td>
+<td>Spaces/Locations</td>
+<td>TRI to Max</td>
+<td>Single Record at a time</td>
+</tr>
+<tr>
+<td>PLUSITRILocPath2MX_v1_0_0.yaml</td>
+<td>Spaces/Locations</td>
+<td>TRI to Max</td>
+<td>Single Record at a time</td>
+</tr>
+<tr>
+<td>PLUSIMXLocation2TRI_v1_0_0.yaml</td>
+<td>Spaces/Locations</td>
+<td>Max to TRI</td>
+<td>Batch &amp; Individual Records</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PLUSITRIAsset2MX_v1_0_0.yaml</td>
+<td>Assets</td>
+<td>TRI to Max</td>
+<td>Single Record at a time</td>
+</tr>
+<tr>
+<td>PLUSITRIAssetSpec2MX_v1_0_0.yaml</td>
+<td>Assets</td>
+<td>TRI to Max</td>
+<td>Single Record at a time</td>
+</tr>
+<tr>
+<td>PLUSIMXAsset2TRI_v1_0_0.yaml</td>
+<td>Assets</td>
+<td>Max to TRI</td>
+<td>Batch &amp; Individual Records</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PLUSITRIServiceReq2MX_v1_0_0.yaml</td>
+<td>Service Requests</td>
+<td>TRI to Max</td>
+<td>Single Record at a time</td>
+</tr>
+<tr>
+<td>PLUSITRIReqClass2MX_v1_0_0.yaml</td>
+<td>Service Requests</td>
+<td>TRI to Max</td>
+<td>Single Record at a time</td>
+</tr>
+<tr>
+<td>PLUSIMXServiceReq2TRI_v1_0_0.yaml</td>
+<td>Service Requests</td>
+<td>Max to TRI</td>
+<td>Single Record at a time</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PLUSITRIWorkOrder2MX_v1_0_0.yaml</td>
+<td>Tasks / Work Orders</td>
+<td>TRI to Max</td>
+<td>Single Record at a time</td>
+</tr>
+<tr>
+<td>PLUSIMXWorkOrder2TRI_v1_0_0.yaml</td>
+<td>Tasks / Work Orders</td>
+<td>Max to TRI</td>
+<td>Single Record at a time</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PLUSITRIPEOPLEBATCH_v1_0_0.yaml</td>
+<td>Batch People</td>
+<td>TRI to Max</td>
+<td>Batch</td>
+</tr>
+<tr>
+<td>PLUSITRIORGANIZATIONBATCH_v1_0_0.yaml</td>
+<td>Batch Org</td>
+<td>TRI to Max</td>
+<td>Batch</td>
+</tr>
+<tr>
+<td>PLUSITRISPACEBATCH_v1_0_0.yaml</td>
+<td>Batch Space</td>
+<td>TRI to Max</td>
+<td>Batch</td>
+</tr>
+<tr>
+<td>PLUSITRIPROPERTYBATCH_v1_0_0.yaml</td>
+<td>Batch Property</td>
+<td>TRI to Max</td>
+<td>Batch</td>
+</tr>
+<tr>
+<td>PLUSITRIBUILDINGBATCH_v1_0_0.yaml</td>
+<td>Batch Building</td>
+<td>TRI to Max</td>
+<td>Batch</td>
+</tr>
+<tr>
+<td>PLUSITRIFLOORBATCH_v1_0_0.yaml</td>
+<td>Batch Floors</td>
+<td>TRI to Max</td>
+<td>Batch</td>
+</tr>
+<tr>
+<td>PLUSITRIASSETBATCH_v1_0_0.yaml</td>
+<td>Batch Assets</td>
+<td>TRI to Max</td>
+<td>Batch</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="installation-configuration-guide">Installation &amp; Configuration Guide</h2>
+<blockquote>
+<h3 id="before-you-begin-you-will-need">Before you begin you will need:</h3>
+<ol>
+<li>An instance of App Connect Enterprise or App Connect Pro with the Designer component.</li>
+<li>Admin access to your Maximo instance with an API key generated for this integration</li>
+<li>TRIRIGA with dedicated user/pw for this integration</li>
+<li>Secure connection between TRIRIGA, App Connect, and Maximo. If required IBM does provides a product that accomplishes this: Secure Gateway. Learn more about getting started with <a href="https://cloud.ibm.com/docs/SecureGateway?topic=SecureGateway-getting-started-with-sg">Secure Gateway.</a></li>
+<li><a href="#pre-requisite-add-an-app-connect-certificate-in-mas-89">Import AppConnect Cert to Maximo</a> to enable encrypted communication</li>
+<li><a href="#pre-requisite-add-certificate-in-tririga">Import AppConnect Cert to TRIRIGA</a> to enable encrypted communication</li>
+</ol>
+</blockquote>
+<h2 id="downloadable-resources">Downloadable Resources</h2>
+<p>Download the <a href="https://github.com/IBM/mas-tas-appconnect-flows/releases/tag/v1.0.0">zip file</a> that has all of the flows and configuration files.</p>
+<hr />
+<h2 id="installation-steps-overview">Installation Steps Overview</h2>
+<ol>
+<li>Install Connector<br></li>
+<li>Configure App Connect<br> 
+   a. Authenticate<br>
+   b. Import Flows<br></li>
+<li>Configure TRIRIGA<br>
+   a. Import TRIRIGA OM Package <br>
+   b. Point integration object to App Connect Flow<br></li>
+<li>Configure Maximo<br>
+   a.  Add necessary fields<br>
+   b.  Publish channel to point to App Connect Flow<br></li>
+<li>Test <br>
+   a. MAS outbound connectivity<br>
+   b. TRIRIGA POSTMAN<br></li>
+</ol>
+<hr />
+<h2 id="part-1-install-connector">Part 1. Install Connector</h2>
+<h3 id="mas-810">MAS 8.10+</h3>
+<p>The MAS Connector to TAS in Manage can be installed on the MAS administration dashboard through the tile. </p>
+<ol>
+<li>Search for TRIRIGA from the Catalog page and select the <strong>TRIRIGA Connector</strong> tile.</li>
+<li>On the tile page, click <strong>Configure</strong> and it will take you to the update configuration page. Select the latest version of the connector under the <strong>Components</strong> section and then click <strong>Apply Changes</strong> at the top of the page and <strong>Confirm</strong> on the next window.</li>
+</ol>
+<p><img src="https://media.github.ibm.com/user/348712/files/aff7df19-4804-4407-9994-bb82fedd1c6e" alt="Tile dashboard">
+<em>Step 1: Select Connector Tile</em></p>
+<p><img src="https://media.github.ibm.com/user/348712/files/9c550273-474a-41b4-bf9b-b266c90014ac" alt="Component Section">
+<em>Step 2: Apply Changes for Connector</em></p>
+<p>The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created <code>build</code> pods in the Manage namespace in the OpenShift cluster to see the progress.</p>
+<h3 id="mas-88-89">MAS 8.8 &amp; 8.9</h3>
+<p>The MAS Connector to TAS in Manage can be installed by using the proper customization .zip file provided from Passport Advantage. This .zip file will have all of the configurations necessary to complete step 4 in the Installation process.</p>
+<ol>
+<li>Navigate to the Admin dashboard of the instance of Manage within MAS.</li>
+<li>Select the workspace the instance is deployed on and update the configuration. </li>
+<li>Scroll down to <strong>Customization</strong> and link to the location of the .zip file in the field (<a href="https://www.ibm.com/docs/en/maximo-manage/continuous-delivery?topic=manage-setting-customizations">Additional details</a> on setting customizations)</li>
+<li>Click <strong>Apply Changes</strong> and Manage will update the instance with the customization.</li>
+</ol>
+<p>The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created <code>build</code> pods in the Manage namespace in the OpenShift cluster to see the progress.</p>
+<h4 id="maximo-7612">Maximo 7.6.1.2+</h4>
+<ol>
+<li>
+<p>On the Maximo Admin workstation, overlay the Maximo SMP directory (<code>/opt/IBM/SMP/maximo</code>) with the contents from the solution zip file that is provided. This will lay down the Java Classes and .dbc files provided with the solution.</p>
+</li>
+<li>
+<p>Shutdown the MXServer</p>
+</li>
+<li>
+<p>Run UpdateDB command to install the solution components<br>
+    a. Navigate to <code>/opt/IBM/SMP/maximo/tools/maximo</code><br>
+    b. Run <code>./updatedb.sh</code></p>
+</li>
+<li>
+<p>Build the Maximo EAR file<br>
+    a. Navigate to <code>/opt/IBM/SMP/maximo/deployment</code><br>
+    b. Run <code>./buildmaximoear.sh</code></p>
+</li>
+<li>
+<p>Deploy the new Maximo EAR File on all Maximo servers<br>
+    a. In WebSphere console, navigate to <strong>Applications-&gt;Application types-&gt;Websphere enterprise applications</strong><br>
+    b. Select <strong>MAXIMO</strong> and then hit <strong>Update</strong> button<br>
+    c. Select <strong>Browse</strong> and select the EAR file from Step 4<br>
+    d. Hit <strong>Next</strong> and accept defaults from all pages<br>
+    e. After deployment, click on <strong>Save</strong><br></p>
+</li>
+<li>
+<p>Start the applications and MXServer</p>
+</li>
+</ol>
+<h2 id="part-2-configure-app-connect">Part 2. Configure App Connect</h2>
+<h3 id="app-connect-authentication">App Connect Authentication</h3>
+<p><em>Note: IBM App Connect Professional or Enterprise is needed to run these flows. The flows have been tested on IBM Cloud App Connect, AWS App Connect, as well as the containerized version of App Connect.</em></p>
+<ol>
+<li>
+<p>Two accounts need to be created from the <strong>Catalog</strong> tab in order to connect the applications. Once all of the connectors have loaded, type in <strong>http</strong> to find the HTTP Application.</p>
+</li>
+<li>
+<p>If this is the first account, select <strong>Connect</strong> to begin setting up the initial HTTP account. If this is not the first account, make sure to take note if there are any other generic account names present because the number of the one created will depend on what has already been created. App Connect creates an account with a generic name in sequential order (Example: if Account 1 and Account 2 are present, the new account will be Account 3).</p>
+</li>
+<li>
+<p>Use the below table to associate the proper credentials for the accounts.</p>
+</li>
+<li>Once the account is connected, head back to the HTTP Application on the Catalog page and rename the new account according to the Account Name column in the table below.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Flow</th>
+<th>Account Name</th>
+<th>Username</th>
+<th>Password</th>
+<th>API key</th>
+<th>API location</th>
+<th>API key name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Max -&gt; Tri</td>
+<td>mxtririga</td>
+<td>Your TAS Username</td>
+<td>Your TAS Password</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Tri -&gt; Max</td>
+<td>trimaximo</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Your Maximo apikey</td>
+<td>header</td>
+<td>apikey</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://media.github.ibm.com/user/348712/files/e23b1900-3801-11ed-8ab4-a5234d64325d" alt="App Connect Catalog">
+<em>App Connect catalog</em></p>
+<h3 id="importing-app-connect-flows">Importing App Connect Flows</h3>
+<ol>
+<li>Locate the .yaml files for the desired flows from the provided zip.</li>
+<li>Import the Selected Flows into <strong>App Connect Enterprise</strong>, or <strong>App Connect SaaS on IBM Cloud</strong> using the instructions below</li>
+</ol>
+<h4 id="import-steps-app-connect-enterprise-cp4i-app-connect-saas-aws">Import Steps - App Connect Enterprise (CP4I) &amp; App Connect SaaS (AWS)</h4>
+<ol>
+<li>From the App Connect Dashboard, click <strong>New</strong> and select <strong>Import Flow</strong> from the drop down menu.</li>
+<li>Either drag and drop or select the flow for import. In this example, the MX2TRI Person flow will be used.</li>
+<li>The flow should now be uploaded onto the App Connect instance. From this screen navigate using the <strong>Edit flow</strong> button to see the individual nodes of this flow. Be sure to select the HTTP account that was configured for Maximo to TRIRIGA for the connector. </li>
+<li>Click <strong>Done</strong> on the top right of the screen then click on the three dots in the top right corner and select <strong>Start API</strong>.</li>
+<li>Go to the <strong>Test</strong> tab once it shows that the flow is <strong>Running</strong> and select the <strong>POST</strong> option on the left side of the screen. Click on <strong>Try It</strong> and grab the URL and security credentials from this screen for the next step.</li>
+</ol>
+<p><img src="https://media.github.ibm.com/user/348712/files/e23b1900-3801-11ed-9bf0-334b0f78fb60" alt="App Connect Dashboard"> 
+  <em>Step 1: App Connect Dashboard</em></p>
+<p><img width="300" alt="Uploaded_Flow" src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-886a-b5bb80a59523">
+  <em>Step 2: Import a Flow</em> </p>
+<p><img width="1771" alt="Completed_Flow" src="https://media.github.ibm.com/user/348712/files/e6673680-3801-11ed-9883-661b31bad8b5">
+  <em>Step 3: Completed Flow</em></p>
+<p><img width="251" alt="Start_API" src="https://media.github.ibm.com/user/348712/files/ea935400-3801-11ed-826c-318a039b6bec">
+  <em>Step 4: Start Flow</em></p>
+<p><img src="https://media.github.ibm.com/user/348712/files/e49d7300-3801-11ed-83f4-a6fd5e41a3da" alt="App Connect Config Full" >
+  <em>Step 5: Try It</em></p>
+<h4 id="import-steps-app-connect-saas-ibm-cloud">Import Steps - App Connect SaaS (IBM Cloud)</h4>
+<ol>
+<li>If your instance of AppConnect is through the cloud, your page will look a bit different.</li>
+<li>The interface is mostly the same, but instead of <strong>Try It</strong> you'll see a tab called <strong>Manage</strong>. This page contains a few important pieces of information that you'll need to complete the configuration. First, at the top of the page under <strong>API Info</strong> you'll see a field called <strong>Route</strong>. Piece this together with the correct path of the flow that you're implementing in order to create the proper flow URL.</li>
+<li>Collect the API key at the bottom of the page from a field called <strong>Sharing outside of Cloud Foundry organization</strong>. Click on <strong>Create API key and documentation link</strong>. Provide a name and it will generate an apikey for you to use with this flow along with a documentation link that looks like the <strong>Test</strong> page from the on-prem configuration.</li>
+<li>The end of the URL at the top of the page should have the path that will complete the route URL. Copy the end of the URL that begins with <strong>tri</strong> and add it to the piece gathered earlier. The 6 character string that precedes the path on the documentation should match the last 6 characters of the route piece from before.</li>
+</ol>
+<p><img src="https://media.github.ibm.com/user/348712/files/e36c4600-3801-11ed-8744-4aa3b105af0d" alt="AppConnect Cloud Manage Tab" >
+  <em>Step 1: Manage Tab</em></p>
+<p><img src="https://media.github.ibm.com/user/348712/files/e404dc80-3801-11ed-95de-e332d10a5597" alt="AppConnect Cloud Route" >
+  <em>Step 2: Cloud Route</em></p>
+<p><img src="https://media.github.ibm.com/user/348712/files/e49d7300-3801-11ed-9084-943aa4afe16c" alt="AppConnect Cloud Sharing" >
+  <em>Step 3: API key creation</em></p>
+<p><img src="https://media.github.ibm.com/user/348712/files/e2d3af80-3801-11ed-8ff7-4e319d52da99" alt="AppConnect Cloud Documentation Link" > 
+  <em>Step 4: API Documentation Link</em></p>
+<h4 id="running-in-production">Running in Production</h4>
+<p>Once the configuration of the below applications is complete and the connectivity between systems is working as expected, you will need to deploy the flow as an integration server via the App Connect Dashboard. </p>
+<ol>
+<li>
+<p>From the dashboard view of the Designer application, click the three dots on the flow's tile, select <strong>Export</strong>, and then <strong>Runtime flow asset (BAR)</strong>.</p>
+</li>
+<li>
+<p>In the App Connect Dashboard instance, select <strong>Create Server</strong> and then the type of integration you would like to run. The flows work with all types of integration sizes, so pick the one that is right for your deployment. Import the bar file you just downloaded into the section on the <strong>Integrations</strong> tab.</p>
+</li>
+<li>
+<p>On the Configuration screen, refer to <a href="https://www.ibm.com/docs/en/app-connect/containers_cd?topic=examples-securing-rest-based-integration-in-app-connect">securing a REST-based integration</a> to properly secure the server.</p>
+</li>
+<li>
+<p>Give the intended details of the server such as the name, version, and correct license to use. Click <strong>Create</strong> when you're ready to deploy. It may take upwards of 5-10 minutes for the server to be up and running.</p>
+</li>
+</ol>
+<p><img src="https://media.github.ibm.com/user/348712/files/100feeb6-e960-43b0-abc1-ac9b5568a150" alt="Export Bar file" >
+<em>Step 1: Export Bar file</em></p>
+<p><img src="https://media.github.ibm.com/user/348712/files/d81a2a41-5d31-4c0b-9b7d-24ff3286810b" alt="Create Integration Server" >
+<em>Step 2: Create Integration Server</em></p>
+<p><img src="https://media.github.ibm.com/user/348712/files/6e75ff15-92fc-4829-9198-6fb378c75c3a" alt="Details Page" >
+<em>Step 3: Final details</em></p>
+<h2 id="part-3-configure-tas">Part 3. Configure TAS</h2>
+<h4 id="import-object-migration-package">Import Object Migration Package</h4>
+<ol>
+<li>Import the OM Package labeled <em>APIConnector</em> into the TAS instance. Go to <strong>Tools -&gt; Administration -&gt; Object Migration</strong> and select <strong>New Import Package</strong> to begin the import process.
+<strong>Refer to the <a href="https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview">Object Migration Overview</a> for more information on Object Migration</strong></li>
+</ol>
+<h4 id="tas-api-user-access">TAS API User Access</h4>
+<p>In order for App Connect to be able to use TAS APIs, it will need a user with certain permissions. These user's credentials will be configured in App Connect.</p>
+<ol>
+<li>
+<p>Create an integration user by following the steps given in <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">Chapter 2</a>. This user should be a non-admin user and not part of the Admin security group.</p>
+</li>
+<li>
+<p>Assign that user to a new or existing group for the integration. If you need to create a new security group, follow the steps given in <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">Chapter 1</a>.</p>
+</li>
+<li>
+<p>Add the "TAS Base License" to the <strong>License Details</strong> section on the user Profile.</p>
+</li>
+<li>
+<p>Select the newly created group or desired existing group and switch to the <strong>Access</strong> tab and add the appropriate access for the integration.</p>
+</li>
+</ol>
+<h5 id="outbound-traffic-from-tas">Outbound Traffic from TAS</h5>
+<p>For outbound traffic from TAS, grant at least READ access on the Business Objects that will be used. The table below shows the various supported business Objects the API can pull from: </p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Business Object Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asset</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/Asset.md">Building Equipment</a></td>
+</tr>
+<tr>
+<td>Classification</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/RequestClass.md">Request Class</a></td>
+</tr>
+<tr>
+<td>Classification</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/SpaceClass.md">Space Class Current</a></td>
+</tr>
+<tr>
+<td>Classification</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/AssetSpecClass.md">Asset Spec Class</a></td>
+</tr>
+<tr>
+<td>People</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/People.md">People</a></td>
+</tr>
+<tr>
+<td>Location</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/Property.md">Property</a></td>
+</tr>
+<tr>
+<td>Location</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/Building.md">Building</a></td>
+</tr>
+<tr>
+<td>Location</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/Floor.md">Floor</a></td>
+</tr>
+<tr>
+<td>Location</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/Space.md">Space</a></td>
+</tr>
+<tr>
+<td>Organization</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/Organization.md">Organization</a></td>
+</tr>
+<tr>
+<td>Request</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/ServiceRequest.md">Service Request</a></td>
+</tr>
+<tr>
+<td>Task</td>
+<td><a href="https://github.com/IBM/tririga-api/blob/main/markdowns/WorkTask.md">Work Task</a></td>
+</tr>
+</tbody>
+</table>
+<p>In the example below, the API user is able to pull data from the Building Business Object: </p>
+<p><img width="1097" alt="Outbound Business Object" src="https://media.github.ibm.com/user/348712/files/e5633b80-3b58-11ed-81a4-46540898ff50"></p>
+<h5 id="inbound-traffic-to-tas">Inbound traffic to TAS</h5>
+<p>For inbound traffic, Data Access needs to be enabled as well as Application Access permissions to the <strong>triAPIConnect Module</strong> or the individual Objects. To enable an API user to create a building, grant access to the triAPICBuilding Business object as shown below: </p>
+<p><img width="1000" alt="Inbound Traffic Business Object" src="https://media.github.ibm.com/user/348712/files/e5633b80-3b58-11ed-842e-cea368ad86dd"></p>
+<h4 id="date-time-format">Date Time Format</h4>
+<ol>
+<li>The Date Time Format field in the user profile must be in UTC. Navigate to <strong>Portfolio -&gt; People -&gt; My Profile</strong> and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.</li>
+</ol>
+<p><img width="600" alt="TRI-UTC" src="https://media.github.ibm.com/user/348712/files/ec5d1780-3801-11ed-8f32-72fc453558f0">
+<em>Date Time Format Field in My Profile</em></p>
+<h4 id="configure-integration-object">Configure Integration Object</h4>
+<ol>
+<li>Configure the Integration Object - From the main page of TAS, click on <strong>Tools -&gt; System Setup -&gt; Integration -&gt; Integration Object</strong>. Under the <strong>Name</strong> column, type in <strong>apic</strong>, and select the integration object that pertains to the record that is getting sent. </li>
+<li>Click on the object and fill in the credentials in the pop-up box.</li>
+</ol>
+<p><img src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-9ea5-af57b4059a25" alt="TAS End Point">
+<em>TAS End Point</em></p>
+<hr />
+<h2 id="part-4-maximo-configuration">Part 4. Maximo Configuration</h2>
+<blockquote>
+<p><strong>Note 1</strong> If you have not already done so, please import AppConnect Cert to Maximo to enable encrypted communication. </p>
+<p><strong>Note 2</strong>: The following steps and prerequisites are done against a Maximo demo database. The naming conventions may slightly differ from this, but these are the necessary components.</p>
+</blockquote>
+<p>Within Maximo, configure your instance to be ready to receive records from TAS. If these pre-requisites are not completed, the action will not be recorded.</p>
+<h4 id="1-create-an-organization-named-tas">1. Create an Organization named TAS</h4>
+<p>a. Navigate to the <strong>Organizations</strong> page and click the blue + button on the top row.<br>
+b. Fill in the Organization name with TAS and the description as "TAS Organization".<br>
+c. Fill in the remaining required fields as such:</p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base Currency 1</td>
+<td><b>USD</b></td>
+</tr>
+<tr>
+<td>Item Set</td>
+<td><strong>SET1</strong></td>
+</tr>
+<tr>
+<td>Company Set</td>
+<td><strong>COMPSET1</strong></td>
+</tr>
+<tr>
+<td>Default Item Status</td>
+<td><strong>PENDING</strong></td>
+</tr>
+<tr>
+<td>Default Stock Category</td>
+<td><strong>STK</strong></td>
+</tr>
+</tbody>
+</table>
+<p>d. Click <strong>Save Organization</strong> on the left side of the screen under Common Actions. This will be set to Active later once there is a clearing account.</p>
+<h4 id="2-create-a-testing-clearing-account-in-chart-of-accounts">2. Create a Testing clearing account in Chart of Accounts</h4>
+<p><strong>Un-require the GL Account fields</strong></p>
+<p>a. Navigate to <strong>Financial</strong> -&gt; <strong>Chart of Accounts</strong> and click on the previously created TAS org in the Organizations table. Currently, there should be no GL Accounts for TAS present. <br>
+b. Click <strong>GL Component Maintenance</strong> on the left side under More Actions and add a New Row with the following values:</p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GL Component Value</td>
+<td><strong>1001</strong></td>
+</tr>
+<tr>
+<td>Description</td>
+<td><strong>Testing</strong></td>
+</tr>
+<tr>
+<td>Active?</td>
+<td><strong>Yes</strong></td>
+</tr>
+</tbody>
+</table>
+<p>c. Click <strong>OK</strong>. Click <strong>New Row</strong> under GL Accounts for TAS and click the magnifying glass to search for that GL Component. Select it and it should populate in the GL Account and Description fields. The Active Date field should auto populate to the current date.<br>
+d. Now that this account is present, head back to <strong>Organizations</strong> and update the TAS organization to show the just created Clearing Account, tick the Active box, and click <strong>Save Organization</strong>.<br></p>
+<h4 id="3-create-a-site-trimain-and-set-it-to-active">3. Create a site TRIMAIN and set it to active</h4>
+<p>a. On the Organization page, click on the <strong>Sites</strong> tab at the top of the page.<br>
+  b. Click <strong>New Row</strong> under <strong>Sites</strong> and enter TRIMAIN for Site and MAIN Site for Description. Set the site to Active.<br>
+  c. Click <strong>Save Organization</strong>.</p>
+<h4 id="4-api-key">4. API Key</h4>
+<h5 id="mas">MAS</h5>
+<ul>
+<li>Navigate to <strong>Integration -&gt; API Keys</strong>.<br></li>
+<li>Click on the button that reads <strong>Add API key</strong><br></li>
+<li>Select user <strong>MXINTADM</strong> and click the <strong>Add</strong> button to generate an API key for this user. Securely store this API key for later use.</li>
+</ul>
+<h5 id="maximo-7612_1">Maximo 7.6.1.2</h5>
+<ul>
+<li>Navigate to <strong>Administration -&gt; Administration</strong> and a new tab/window should open with the Maximo-X application.<br></li>
+<li>You should be on a page titled 'Integration'. Click on the tab at the top of the page that says API Keys and click on the button with the blue plus sign that reads <strong>Add API key</strong><br></li>
+<li>Select user <strong>MXINTADM</strong> and click the <strong>Add</strong> button to generate an API key for this user. Securely store this API key for later use.</li>
+</ul>
+<h4 id="5-integration-controls">5. Integration Controls</h4>
+<p>a. Head to <strong>Enterprise Services</strong> and click on <strong>Create Integration Controls</strong>. These integration controls help translate specific external values into values Maximo understands. The following tables contain values to set up this demo, but can be customized to fit your TAS and Maximo naming conventions. There should be 5 X-Ref Integration Controls created with the following associations:</p>
+<table>
+<thead>
+<tr>
+<th>Integration Control</th>
+<th>MAXIMO Value</th>
+<th>External Value</th>
+<th>Description</th>
+<th>Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PLUSILOCSTATUS</td>
+<td>ACTIVE</td>
+<td>ACTIVE</td>
+<td>TAS Location Status mapping for inbound flows</td>
+<td>LOCASSETSTATUS</td>
+</tr>
+<tr>
+<td>PLUSILOCSTATUS</td>
+<td>INACTIVE</td>
+<td>REVIEW IN PROGRESS</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSILOCSTATUS</td>
+<td>OPERATING</td>
+<td>OPERATING</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSIORG</td>
+<td>TRIMAIN</td>
+<td>IBM</td>
+<td>Organization mapping for TAS</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSIORG</td>
+<td>TAS</td>
+<td>TAS</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSIORGEN</td>
+<td>TAS</td>
+<td>EAGLENA</td>
+<td>TAS Organization mapping for Inbound flow</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSIORGEN</td>
+<td>TAS</td>
+<td>IBM</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSIORGEN</td>
+<td>TAS</td>
+<td>MAXIMO ORG</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSIORGEN</td>
+<td>TAS</td>
+<td>TAS</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSIPRIORITY</td>
+<td>1</td>
+<td>High</td>
+<td>Priority mapping for TAS</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSIPRIORITY</td>
+<td>2</td>
+<td>Medium</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSIPRIORITY</td>
+<td>3</td>
+<td>Low</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSISITEEN</td>
+<td>TRIMAIN</td>
+<td>BEDFORD</td>
+<td>TAS Location mapping for inbound flows</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSISITEEN</td>
+<td>TRIMAIN</td>
+<td>SPACE 01</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSISITEEN</td>
+<td>TRIMAIN</td>
+<td>TRIMAIN</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p>b. Once these Integration Controls are created, associate them in both the created Enterprise Services and Publish Channels by using the following two tables</p>
+<table>
+<thead>
+<tr>
+<th>Enterprise Service</th>
+<th>Control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PLUSIASSET</td>
+<td>PLUSIORGEN</td>
+</tr>
+<tr>
+<td>PLUSIASSET</td>
+<td>PLUSIPRIORITY</td>
+</tr>
+<tr>
+<td>PLUSIASSET</td>
+<td>PLUSISITEEN</td>
+</tr>
+<tr>
+<td>PLUSILOCATION</td>
+<td>PLUSILOCSTATUS</td>
+</tr>
+<tr>
+<td>PLUSILOCATION</td>
+<td>PLUSISITEEN</td>
+</tr>
+<tr>
+<td>PLUSILOCATION</td>
+<td>PLUSISTATUS</td>
+</tr>
+<tr>
+<td>PLUSIPERSON</td>
+<td>PLUSIORGEN</td>
+</tr>
+<tr>
+<td>PLUSIPERSON</td>
+<td>PLUSISITEEN</td>
+</tr>
+<tr>
+<td>PLUSIWO</td>
+<td>PLUSIWOPRIORITY</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Publish Channel</th>
+<th>Control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PLUSIASSET</td>
+<td>PLUSIPRIORITY</td>
+</tr>
+<tr>
+<td>PLUSILOCATION</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSIPERSON</td>
+<td>PLUSIORG</td>
+</tr>
+<tr>
+<td>PLUSISR</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>PLUSIWO</td>
+<td>PLUSIWOPRIORITY</td>
+</tr>
+<tr>
+<td>PLUSIWO</td>
+<td>PLUSIWOSTART</td>
+</tr>
+</tbody>
+</table>
+<p>c. Return to the PLUSITRIRIGA External System. On the left side of the External Systems page, select <strong>Setup Integration Controls</strong> under <strong>More Actions</strong> and make sure that all 5 Integration Controls are showing as present.</p>
+<h4 id="6-enable-object-structure-security">6. Enable Object Structure Security</h4>
+<p>The user needs to be able to transact against the specific object structureS in Manage. Navigate to Object Structures and search for MXPERSON. On the left side of the MXPERSON screen select <strong>Configure Object Structure Storage</strong> and turn on the button underneath <strong>Use Object Structure for Authorization Name?</strong></p>
+<p><img width="1788" alt="Configure Object Security" src="https://media.github.ibm.com/user/348712/files/f1affe00-48a5-11ed-8488-a41686aafba5">
+<em>Configure Object Security Screen</em></p>
+<p>The structure should save. Complete this process for the following objects:</p>
+<ul>
+<li>MXASSET</li>
+<li>MXOPERLOC</li>
+<li>MXSR</li>
+<li>MXWO</li>
+<li>MXDOMAIN</li>
+</ul>
+<p>Next, navigate to <strong>Security -&gt; Security Groups</strong> and select the security group the current user is apart of. Click the <strong>Object Structures</strong> tab and filter search for MXPERSON. Once selected, click <strong>Grant Listed Options for This Object Structure</strong> and Save the Group. </p>
+<p><img width="1785" alt="Security Group Page" src="https://media.github.ibm.com/user/348712/files/f2489480-48a5-11ed-8833-fc3297fb7881">
+<em>Security Group Page</em></p>
+<blockquote>
+<p><strong>Note</strong>
+Repeat this process for the other changed structures.</p>
+</blockquote>
+<h3 id="7-application-designer-changes">7. Application Designer Changes</h3>
+<!-- <img width="1788" alt="App-Designer" src="https://media.github.ibm.com/user/348712/files/457a7a80-3805-11ed-9484-133899bdfac4"> -->
+
+<p>Go to <strong>System Configuration -&gt; Platform Configuration -&gt; Application Designer</strong></p>
+<h4 id="person">Person</h4>
+<ol>
+<li>Search for <strong>PERSON</strong>, switch to the <strong>Person</strong> Tab and select a section to add three new boxes.</li>
+<li>At the top, click the icon labeled <strong>Control Palette</strong> and add a Multipart Textbox at the bottom of the section. Add the values from the below table within the properties of the Multipart Textbox and click <strong>Save Definition</strong> <blockquote>
+<p><strong>Note</strong>
+<em>Be sure that the Attributes are taken from the PERSON Object.</em></p>
+</blockquote>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Type of Control</th>
+<th>Label</th>
+<th>Attribute</th>
+<th>Attribute for Part 2 (<em>If Multipart Textbox</em>)</th>
+<th>Lookup</th>
+<th>Input Mode for Part 2 (<em>If Multipart Textbox</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multipart Textbox</td>
+<td>TAS Location Path</td>
+<td>PLUSIPRIMARYLOCPATH</td>
+<td>PLUSILOCATIONPATH.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Multipart Textbox</td>
+<td>TAS Primary Organization</td>
+<td>PLUSIORGPATH</td>
+<td>PLUSIORGANIZATIONPATH.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Textbox</td>
+<td>TAS Record ID</td>
+<td>EXTERNALREFID (<em>From the Person Object</em>)</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p>Follow the same directions using the following information for the other objects that will be used in the integration</p>
+<h4 id="asset">Asset</h4>
+<p>Search for <strong>ASSET</strong> in Application Designer</p>
+<blockquote>
+<p><strong>Note</strong>
+<em>Be sure that the Attributes are taken from the ASSET Object.</em></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Type of Control</th>
+<th>Label</th>
+<th>Attribute</th>
+<th>Attribute for Part 2 (<em>If Multipart Textbox</em>)</th>
+<th>Lookup</th>
+<th>Input Mode for Part 2 (<em>If Multipart Textbox</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multipart Textbox</td>
+<td>TAS Building Equipment Spec</td>
+<td>PLUSIASSETSPECNAME</td>
+<td>PLUSIASSETSPECCLASS.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Multipart Textbox</td>
+<td>TAS Primary Organization</td>
+<td>PLUSIORGPATH</td>
+<td>PLUSIORGANIZATIONPATH.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Multipart Textbox</td>
+<td>TAS Location Path</td>
+<td>PLUSILOCPATH</td>
+<td>PLUSILOCATIONPATH.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Textbox</td>
+<td>TAS Record ID</td>
+<td>EXTERNALREFID (<em>From the Asset Object</em>)</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h4 id="location">Location</h4>
+<p>Search for <strong>LOCATION</strong> in Application Designer</p>
+<blockquote>
+<p><strong>Note</strong>
+<em>Be sure that the Attributes are taken from the LOCATION Object.</em></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Type of Control</th>
+<th>Label</th>
+<th>Attribute</th>
+<th>Attribute for Part 2 (<em>If Multipart Textbox</em>)</th>
+<th>Lookup</th>
+<th>Input Mode for Part 2 (<em>If Multipart Textbox</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multipart Textbox</td>
+<td>TAS Space Classification</td>
+<td>PLUSISPACECLASSIFICATION</td>
+<td>PLUSISPCCLASSIFICATION.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Multipart Textbox</td>
+<td>TAS Parent Location</td>
+<td>PLUSIPARENTLOCATION</td>
+<td>PLUSIPARENTPATH.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Textbox</td>
+<td>TAS Record ID</td>
+<td>EXTERNALREFID (<em>From the Location Object</em>)</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h4 id="service-request">Service Request</h4>
+<p>Search for <strong>SR</strong> in Application Designer</p>
+<blockquote>
+<p><strong>Note</strong>
+Be sure that the PLUSIREQCLASSID Attribute is taken from the TICKET Object.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Type of Control</th>
+<th>Label</th>
+<th>Attribute</th>
+<th>Attribute for Part 2 (<em>If Multipart Textbox</em>)</th>
+<th>Lookup</th>
+<th>Input Mode for Part 2 (<em>If Multipart Textbox</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multipart Textbox</td>
+<td>TAS Request Classification</td>
+<td>PLUSIREQCLASSID</td>
+<td>PLUSIREQCLASS.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Multipart Textbox</td>
+<td>TAS Space Classification</td>
+<td>PLUSISPACECLASSIFICATION</td>
+<td>PLUSISPCCLASSIFICATION.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Multipart Textbox</td>
+<td>TAS Parent Location</td>
+<td>PLUSIPARENTLOCATION</td>
+<td>PLUSIPARENTPATH.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Textbox</td>
+<td>TAS Record ID</td>
+<td>EXTERNALREFID (<em>From the Ticket Object</em>)</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p>e. Click <strong>Save Definition</strong> after the changes are added.</p>
+<h4 id="work-order">Work Order</h4>
+<p>Search for <strong>WOTRACK</strong> in Application Designer</p>
+<blockquote>
+<p><strong>Note</strong>
+Be sure that the PLUSIREQCLASSID Attribute is taken from the WORKORDER Object.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Type of Control</th>
+<th>Label</th>
+<th>Attribute</th>
+<th>Attribute for Part 2 (<em>If Multipart Textbox</em>)</th>
+<th>Lookup</th>
+<th>Input Mode for Part 2 (<em>If Multipart Textbox</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multipart Textbox</td>
+<td>TAS Location Path</td>
+<td>PLUSILOCPATH</td>
+<td>PLUSILOCATIONPATH.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Multipart Textbox</td>
+<td>TAS Primary Organization</td>
+<td>PLUSIORGPATH</td>
+<td>PLUSIORGANIZATIONPATH.DESCRIPTION</td>
+<td>VALUELIST</td>
+<td>Readonly</td>
+</tr>
+<tr>
+<td>Textbox</td>
+<td>External Ref ID</td>
+<td>EXTERNALREFID (<em>From the WorkOrder Object</em>)</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p>Click <strong>Save Definition</strong> after the changes are added.</p>
+<hr />
+<h2 id="part-5-testing">Part 5: Testing</h2>
+<p>To test that the configuration is complete, send a test payload in order to test connectivity.</p>
+<h3 id="maximo">Maximo</h3>
+<ol>
+<li>Go to the <strong>End Points</strong> application and click <strong>Test</strong> at the bottom of the integration you would like to test.</li>
+<li>Send a test payload that is a valid object. <code>{"Hello":"World"}</code> would work.</li>
+<li>If the response is anything other than <strong>Bad Request</strong>, see <a href="#testing-the-end-point">what might be causing the error</a></li>
+</ol>
+<h3 id="tas">TAS</h3>
+<p>Use a tool like POSTMan to test the connectivity of the App Connect flow. You can use a Sample JSON Payload from this <a href="https://github.com/IBM/tririga-api">open source repository</a>. </p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>Depending on the direction of the flow, cross-referencing errors from two systems can help identify the root cause of an issue with the integration. For example:</p>
+<ul>
+<li>If there is a Not Found error in Maximo Message Reprocessing when running the flow, double check the logs in App Connect to see if there is a corresponding error. If there is, the root cause might be related to what is being sent out of Maximo. If there isn't, then the message never left Maximo and the flow should be checked to make sure it is running.</li>
+</ul>
+<h3 id="where-to-find-logs-in-app-connect">Where to find logs in App Connect</h3>
+<h4 id="app-connect-enterprise">App Connect Enterprise</h4>
+<p>The logs in App Connect Enterprise are found in the Integration Server pod. If running from App Connect Designer, this integration server is found in the App Connect namespace in OpenShift. Typically the Designer integration server has 4 pods and the logs can be found in the pod with a similar naming convention to <code>des-01-quickstart-ma-designer-designer-flows</code>.</p>
+<p><img src="https://media.github.ibm.com/user/348712/files/259886b8-45d5-4fff-9d31-18145cf61c03" alt="App Connect Enterprise">
+<em>App Connect Enterprise</em></p>
+<h4 id="app-connect-saas-aws">App Connect SaaS &amp; AWS</h4>
+<p>The logs in App Connect SaaS and AWS can be found within the application itself by clicking on the clipboard icon on the left side task bar.</p>
+<p><img src="https://media.github.ibm.com/user/348712/files/32ea395f-a001-4529-ae96-8615a35bd5c1" alt="App Connect SaaS or AWS">
+<em>App Connect SaaS or AWS</em></p>
+<h3 id="common-errors-that-arise-from-maximo">Common errors that arise from Maximo</h3>
+<h4 id="testing-the-end-point">Testing the End Point</h4>
+<p>When testing that the end point is entered correctly on the <strong>End Points</strong> application, there are two common errors:</p>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Response code received from the HTTP request from the endpoint is not successful</td>
+<td>Invalid URL in the Integration Object</td>
+<td>Double check the URL that all of the components are entered correctly. Make sure there are no accidental spaces at the beginning or the end in event of a copy/paste.</td>
+</tr>
+<tr>
+<td>404: Not Found</td>
+<td>Flow is not Running</td>
+<td>Make sure the flow is Running before starting the cron tasks</td>
+</tr>
+<tr>
+<td>PKSync error</td>
+<td>Certificate error</td>
+<td>Confirm the certificate is configured correctly</td>
+</tr>
+</tbody>
+</table>
+<h4 id="message-reprocessing">Message Reprocessing</h4>
+<p>Errors in Maximo can be found in <strong>Message Reprocessing</strong></p>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bad Request error</td>
+<td>Either the payload being sent out is incorrect or the account configurations are wrong</td>
+<td>Double check to make sure the Accounts from the App Connect pre-requisite section are correct and that the item in Maximo has all of the mapped fields</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-errors-that-arise-from-tas">Common errors that arise from TAS</h3>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>404 - Not Found: Cannot POST</td>
+<td>Invalid URL in the Integration Object</td>
+<td>Double check the URL in the specific Integration Object that all of the components are entered correctly</td>
+</tr>
+<tr>
+<td>404 - API doesn't exist</td>
+<td>Flow is not running</td>
+<td>Double check that the flow is Active in App Connect</td>
+</tr>
+<tr>
+<td>404 - The HTTP request returned with an error 404 "Not Found"</td>
+<td>Incorrect App Connect connector config</td>
+<td>Double check that the credentials being used in the HTTP post node in App Connect are correct</td>
+</tr>
+<tr>
+<td>401 - Authorization error</td>
+<td>Too many user sessions open in TAS</td>
+<td>Open the Admin dashboard on the TAS environment and check the Users logged in. This issue can arise after a number of requests are made to TAS and then gives a 401 error even with the proper credentials. Clear the users logged in and the issue should clear.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Clear OSLC Cache in TAS Admin Console in case the integrations do not work in intended manner.</li>
+</ul>
+<h2 id="reference-for-pre-requisite">Reference for Pre-requisite</h2>
+<h3 id="pre-requisite-add-an-app-connect-certificate-in-mas-89"><strong>Pre-requisite: add an App Connect Certificate in MAS 8.9+</strong></h3>
+<ol>
+<li>
+<p>Extract the App Connect certificate from an imported flow URL. Navigate to the flow's page and click on <strong>Test</strong> and then <strong>Try It</strong> to get the proper URL.</p>
+</li>
+<li>
+<p>Navigate to the Admin dashboard for MAS and go to the workspace where Manage is deployed.</p>
+</li>
+<li>
+<p>Update the configuration and scroll down to <strong>Imported Certificates</strong>. Untick the <strong>System managed</strong> button and fill in the extracted certificate in the fields.</p>
+</li>
+<li>
+<p>Click <strong>Apply Changes</strong> at the top of the page and MAS will update the truststore with the new certificate.</p>
+</li>
+</ol>
+<p><img width="600" alt="Manage-Workspace" src="https://media.github.ibm.com/user/348712/files/33502d00-43fe-11ed-801b-a454fa4b8f7e"></p>
+<p><em>Step 2: Manage Workspace</em></p>
+<p><img width="600" alt="Imported-Certificates" src="https://media.github.ibm.com/user/348712/files/33e8c380-43fe-11ed-91b9-68b37462c897"></p>
+<p><em>Step 3: Imported Certificates</em></p>
+<h3 id="pre-requisite-add-an-app-connect-certificate-in-maximo-7612">Pre-requisite: add an App Connect Certificate in Maximo 7.6.1.2+:</h3>
+<p>Configure WebSphere Certificates. This makes a test connection to a Secure Sockets Layer (SSL) port and retrieves the signer from the server during the handshake.</p>
 <ol>
 <li>
 <p>Log into the WebSphere console that is hosting the Maximo server.</p>
@@ -183,391 +1440,50 @@
 </table>
 </li>
 <li>
-<p>Once all three have been entered in, click <strong>Retrieve signer information</strong> and the information from the url will populate on screen. Click <strong>Save</strong> in the box at the top and then repeat the process for <strong>NodeDefaultTrustStore</strong>.</p>
+<p>Once all three have been entered in, click <strong>Retrieve signer information</strong> and the information from the URL will populate on screen. Click <strong>Save</strong> in the box at the top and then repeat the process for <strong>NodeDefaultTrustStore</strong>.</p>
 </li>
 </ol>
-<p><img width="1280" alt="Websphere-Home" src="https://media.github.ibm.com/user/348712/files/ee26db00-3801-11ed-8365-8604ad0a66df"></p>
+<p><img width="600" alt="Websphere-Home" src="https://media.github.ibm.com/user/348712/files/ee26db00-3801-11ed-8365-8604ad0a66df"></p>
 <p><em>Step 2: WebSphere Homepage</em></p>
-<p><img width="1282" alt="Websphere-Keystores" src="https://media.github.ibm.com/user/348712/files/eebf7180-3801-11ed-9253-85d4e8bed0ea"></p>
+<p><img width="600" alt="Websphere-Keystores" src="https://media.github.ibm.com/user/348712/files/eebf7180-3801-11ed-9253-85d4e8bed0ea"></p>
 <p><em>Step 3: Websphere Keystores</em></p>
-<p><img width="1283" alt="Websphere-Signercerts" src="https://media.github.ibm.com/user/348712/files/f121cb80-3801-11ed-9833-65fe541bcef5"></p>
+<p><img width="600" alt="Websphere-Signercerts" src="https://media.github.ibm.com/user/348712/files/f121cb80-3801-11ed-9833-65fe541bcef5"></p>
 <p><em>Step 4: Websphere Signer Certs</em></p>
-<h4 id="mas-88">MAS 8.8+</h4>
-<ol>
-<li>
-<p>Extract the App Connect certificate from an imported flow URL. Navigate to the flow's page and click on <strong>Test</strong> and then <strong>Try It</strong> to get the proper url.</p>
-</li>
-<li>
-<p>Navigate to the Admin dashboard for MAS and go to the workspace where Manage is deployed.</p>
-</li>
-<li>
-<p>Update the configuration and scroll down to <strong>Imported Certificates</strong>. Untick the <strong>System managed</strong> button and fill in the extracted certificate in the fields.</p>
-</li>
-<li>
-<p>Click <strong>Apply Changes</strong> at the top of the page and MAS will update the truststore with the new certificate.</p>
-</li>
-</ol>
-<p><img width="1280" alt="Manage-Workspace" src="https://media.github.ibm.com/user/348712/files/33502d00-43fe-11ed-801b-a454fa4b8f7e"></p>
-<p><em>Step 2: Manage Workspace</em></p>
-<p><img width="1280" alt="Imported-Certificates" src="https://media.github.ibm.com/user/348712/files/33e8c380-43fe-11ed-91b9-68b37462c897"></p>
-<p><em>Step 3: Imported Certificates</em></p>
-<h3 id="certificates-for-tririga">Certificates for TRIRIGA</h3>
-<p><em>To be filled in with proper information</em>
-<br></p>
-<hr>
+<h3 id="pre-requisite-update-tas-custom-resource-with-app-connect-certificates">Pre-Requisite: Update TAS Custom Resource with App Connect Certificates:</h3>
+<p>In OpenShift, import the following yaml with the App Connect certificates added under the spec.alias.crt section:</p>
+<pre><code>cat &lt;&lt;EOF | oc create -f -
+apiVersion: truststore-mgr.ibm.com/v1
+kind: Truststore
+metadata:
+    name: my-tas-truststore
+spec:
+    license:
+        accept: true
+    includeDefaultCAs: true
+    servers:
+    - &quot;example.com:443&quot;
+    certificates:
+    - alias: alias_1 
+      crt: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        Certificate 1   
+        ...
+        -----END CERTIFICATE-----
 
-<p>See below for the pre-requisites of each system:</p>
-<h3 id="maximo">Maximo</h3>
-<p><strong>Credentials and access to an instance of Maximo as well as the WebSphere application which hosts Maximo are required. This code pattern has been tested on Maximo 7.6.1.2 as well as MAS 8.6</strong> </p>
-<p>The following steps and prerequisites are done against a Maximo demo database. The naming conventions may slightly differ from this, but these are the necessary components. </p>
-<p>Within Maximo, configure your instance to be ready to receive records from TRIRIGA. If these pre-requisites are not completed, the action will not be recorded.</p>
-<h4 id="1-create-an-organization-named-tririga">1. Create an Organization named TRIRIGA</h4>
-<p>a. Navigate to the <strong>Organizations</strong> page and click the blue + button on the top row.</p>
-<p>b. Fill in the Organization name with TRIRIGA and the description as "TRIRIGA Organization".</p>
-<p>c. Fill in the remaining required fields as such:</p>
-<table>
-<thead>
-<tr>
-<th>Field Name</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Base Currency 1</td>
-<td><b>USD</b></td>
-</tr>
-<tr>
-<td>Item Set</td>
-<td><strong>SET1</strong></td>
-</tr>
-<tr>
-<td>Company Set</td>
-<td><strong>COMPSET1</strong></td>
-</tr>
-<tr>
-<td>Default Item Status</td>
-<td><strong>PENDING</strong></td>
-</tr>
-<tr>
-<td>Default Stock Category</td>
-<td><strong>STK</strong></td>
-</tr>
-</tbody>
-</table>
-<p>d. Click <strong>Save Organization</strong> on the left side of the screen under Common Actions. This will be set to Active later once there is a clearing account.</p>
-<h4 id="2-create-a-testing-clearing-account-in-chart-of-accounts">2. Create a Testing clearing account in Chart of Accounts</h4>
-<p>a. Navigate to <strong>Financial</strong> -&gt; <strong>Chart of Accounts</strong> and click on the previously created TRIRIGA org in the Organizations table. Currently, there should be no GL Accounts for TRIRIGA present. <br></p>
-<p>b. Click <strong>GL Component Maintenance</strong> on the left side under More Actions and add a New Row with the following values:</p>
-<table>
-<thead>
-<tr>
-<th>Field Name</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GL Component Value</td>
-<td><strong>1001</strong></td>
-</tr>
-<tr>
-<td>Description</td>
-<td><strong>Testing</strong></td>
-</tr>
-<tr>
-<td>Active?</td>
-<td><strong>Yes</strong></td>
-</tr>
-</tbody>
-</table>
-<p>c. Click <strong>OK</strong>. Click <strong>New Row</strong> under GL Accounts for TRIRIGA and click the magnifying glass to search for that GL Component. Select it and it should populate in the GL Account and Description fields. The Active Date field should auto populate to the current date.<br></p>
-<p>d. Now that this account is present, head back to <strong>Organizations</strong> and update the TRIRIGA organization to show the just created Clearing Account, tick the Active box, and click <strong>Save Organization</strong>.<br></p>
-<h4 id="3-create-a-site-trimain-and-set-it-to-active">3. Create a site TRIMAIN and set it to active</h4>
-<p>a. On the Organization page, click on the <strong>Sites</strong> tab at the top of the page.</p>
-<p>b. Click <strong>New Row</strong> under <strong>Sites</strong> and enter TRIMAIN for Site and MAIN Site for Description. Set the site to Active.</p>
-<p>c. Click <strong>Save Organization</strong>.</p>
-<h4 id="4-api-key">4. API Key</h4>
-<p><em>Check to see if the version of Maximo comes with Maximo-X.</em> </p>
-<p><strong>a. Maximo-X<br></strong>
-  - Navigate to <strong>Administration -&gt; Administration</strong> and a new tab/window should open with the Maximo-X application.<br>
-  - You should be on a page titled 'Integration'. Click on the tab at the top of the page that says API Keys and click on the button with the blue plus sign that reads <strong>Add API key</strong><br>
-  - Select user <strong>MXINTADM</strong> and click the <strong>Add</strong> button to generate an API key for this user. Securely store this API key for later use.</p>
-<p><strong>b. No Maximo-X<br></strong>
-  - Follow the steps in <a href="https://www.ibm.com/docs/en/mam/7.6.1.2?topic=components-api-keys">this documentation</a> to generate an API key for the user</p>
-<h4 id="5-integration-controls">5. Integration Controls</h4>
-<p>a. Head to <strong>Enterprise Services</strong> and click on <strong>Create Integration Controls</strong>. There should be 5 X-Ref Integration Controls created with the following associations:</p>
-<table>
-<thead>
-<tr>
-<th>Integration Control</th>
-<th>MAXIMO Value</th>
-<th>External Value</th>
-<th>Description</th>
-<th>Domain</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PLUSILOCSTATUS</td>
-<td>ACTIVE</td>
-<td>ACTIVE</td>
-<td>Tririga Location Status mapping for inbound flows</td>
-<td>LOCASSETSTATUS</td>
-</tr>
-<tr>
-<td>""</td>
-<td>INACTIVE</td>
-<td>REVIEW IN PROGRESS</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>""</td>
-<td>OPERATING</td>
-<td>OPERATING</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>PLUSIORG</td>
-<td>TRIMAIN</td>
-<td>IBM</td>
-<td>Organization mapping for Tririga</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>""</td>
-<td>TRIRIGA</td>
-<td>TRIRIGA</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>PLUSIORGEN</td>
-<td>TRIRIGA</td>
-<td>EAGLENA</td>
-<td>Tririga Organization mapping for Inbound flow</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>""</td>
-<td>TRIRIGA</td>
-<td>IBM</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>""</td>
-<td>TRIRIGA</td>
-<td>MAXIMO ORG</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>""</td>
-<td>TRIRIGA</td>
-<td>TEST</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>""</td>
-<td>TRIRIGA</td>
-<td>TRIRIGA</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>PLUSIPRIORITY</td>
-<td>1</td>
-<td>High</td>
-<td>Priority mapping for Tririga</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>""</td>
-<td>2</td>
-<td>Medium</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>""</td>
-<td>3</td>
-<td>Low</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>PLUSISITEEN</td>
-<td>TRIMAIN</td>
-<td>BEDFORD</td>
-<td>Tririga Location mapping for inbound flows</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>""</td>
-<td>TRIMAIN</td>
-<td>SPACE 01</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>""</td>
-<td>TRIMAIN</td>
-<td>TEST</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>""</td>
-<td>TRIMAIN</td>
-<td>TRIMAIN</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-</tbody>
-</table>
-<p>b. Once these Integration Controls are created, associate them in both the created Enterprise Services and Publish Channels by using the following two tables</p>
-<table>
-<thead>
-<tr>
-<th>Enterprise Service</th>
-<th>Control</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PLUSIMXASSETInterface</td>
-<td>PLUSIORGEN</td>
-</tr>
-<tr>
-<td>""</td>
-<td>PLUSIPRIORITY</td>
-</tr>
-<tr>
-<td>""</td>
-<td>PLUSISITEEN</td>
-</tr>
-<tr>
-<td>PLUSIMXOPERLOCInterface</td>
-<td>PLUSILOCSTATUS</td>
-</tr>
-<tr>
-<td>""</td>
-<td>PLUSISITEEN</td>
-</tr>
-<tr>
-<td>""</td>
-<td>PLUSISTATUS</td>
-</tr>
-<tr>
-<td>PLUSIMXPERSONInterface</td>
-<td>PLUSIORGEN</td>
-</tr>
-<tr>
-<td>""</td>
-<td>PLUSISITEEN</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Publish Channel</th>
-<th>Control</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PLUSIMXASSETInterface</td>
-<td>PLUSIPRIORITY</td>
-</tr>
-<tr>
-<td>PLUSIMXOPERLOCInterface</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>PLUSIMXPERSONInterface</td>
-<td>PLUSIORG</td>
-</tr>
-</tbody>
-</table>
-<p>c. Return to the PLUSITRIRIGA External System. On the left side of the External Systems page, select <strong>Setup Integration Controls</strong> under <strong>More Actions</strong> and make sure that all 5 Integration Controls are showing as present.</p>
-<h4 id="6-enable-object-structure-security">6. Enable Object Structure Security</h4>
-<p>The user needs to be able to transact against the specific object structure in Manage. Navigate to Object Structures and search for MXPERSON. On the left side of the MXPERSON screen select <strong>Configure Object Structure Storage</strong> and turn on the button underneath <strong>Use Object Structure for Authorization Name?</strong></p>
-<p><img width="1788" alt="Configure Object Security" src="https://media.github.ibm.com/user/348712/files/f1affe00-48a5-11ed-8488-a41686aafba5"></p>
-<p><em>Configure Object Security Screen</em></p>
-<p>The structure should save. Complete this process for the following objects:</p>
-<ul>
-<li>MXASSET</li>
-<li>MXOPERLOC</li>
-<li>MXSR</li>
-<li>MXWO</li>
-<li>MXDOMAIN</li>
-</ul>
-<p>Next, navigate to <strong>Security -&gt; Security Groups</strong> and select the security group the current user is apart of. Click the <strong>Object Structures</strong> tab and filter search for MXPERSON. Once selected, click <strong>Grant Listed Options for This Object Structure</strong> and Save the Group. </p>
-<p><img width="1785" alt="Security Group Page" src="https://media.github.ibm.com/user/348712/files/f2489480-48a5-11ed-8833-fc3297fb7881"></p>
-<p><em>Security Group Page</em></p>
-<p>Repeat this process for the other changed structures.</p>
-<h3 id="app-connect">App Connect</h3>
-<p><strong> Access to an instance of App Connect with a deployed instance of a Designer is required. This code pattern has been tested with App Connect version 3.0. </strong></p>
-<ol>
-<li>
-<p>Two accounts need to be created from the <strong>Catalog</strong> tab in order to connect the applications. Once all of the connectors have loaded, type in <strong>http</strong> to find the HTTP Application.</p>
-</li>
-<li>
-<p>If this is the first account, select <strong>Connect</strong> to begin setting up the initial HTTP account. If this is not the first account, make sure to take note if there are any other generic account names present because the number of the one created will depend on what has already been created. App Connect creates an account with a generic name in sequential order (Example: if Account 1 and Account 2 are present, the new account will be Account 3).</p>
-</li>
-<li>
-<p>Use the below table to associate the proper credentials for the accounts.</p>
-</li>
-<li>Once the account is connected, head back to the HTTP Application on the Catalog page and rename the new account according to the Account Name column in the above table.</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>Flow</th>
-<th>Account Name</th>
-<th>Username</th>
-<th>Password</th>
-<th>API key</th>
-<th>API location</th>
-<th>API key name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Max -&gt; Tri</td>
-<td>mxtririga</td>
-<td>Your TRIRIGA Username</td>
-<td>Your TRIRIGA Password</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>Tri -&gt; Max</td>
-<td>trimaximo</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Your Maximo apikey</td>
-<td>header</td>
-<td>apikey</td>
-</tr>
-</tbody>
-</table>
-<p><img src="https://media.github.ibm.com/user/348712/files/e23b1900-3801-11ed-8ab4-a5234d64325d" alt="App Connect Catalog"></p>
-<p><em>App Connect catalog</em></p>
-<h3 id="tririga">TRIRIGA</h3>
-<ol>
-<li>Download the latest <a href="https://github.com/IBM/tririga-api/tree/main/docs/ompackages">OM Package</a>.</li>
-<li>Navigate to <strong>Tools -&gt; Object Migration</strong> and import the package into the instance of TRIRIGA.</li>
-<li>The Date Time Format field in the user profile must be in UTC. Navigate to <strong>Portfolio -&gt; People -&gt; My Profile</strong> and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.</li>
-</ol>
-<p><img width="1792" alt="TRI-UTC" src="https://media.github.ibm.com/user/348712/files/ec5d1780-3801-11ed-8f32-72fc453558f0"></p>
-<p><em>Date Time Format Field in My Profile</em></p>
+        ...
+
+    - alias: alias_n 
+      crt: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        Certificate n   
+        ...
+        -----END CERTIFICATE-----
+EOF        
+
+</code></pre>
+<p>If there is already a truststore for TAS, update the truststore with the App Connect certificate.</p>
               
             </div>
           </div><footer>
@@ -599,7 +1515,7 @@
       <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../mas-tas/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../max-envizi-index/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

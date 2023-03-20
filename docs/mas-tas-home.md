@@ -4,15 +4,15 @@ The **TRIRIGA - Maximo Connector** is released in TAS under the name *"TAS Conne
 This connector supports the following capabilities through a collection of App Connect flows:
 
 - Bi-directional loading, and continuous synchronization of portfolio data such as People, Locations and Assets.
-- Bi-directional routing of service requests between TRIRIGA and Maximo
-- Automatic shadowing of TRIRIGA Work Tasks with Maximo Work Orders to enable Facility teams to do planing, budgeting and project management in TRIRIGA while work tasks get reflected in Maximo as Work Orders for execution.
+- Bi-directional routing of service requests between TAS and Maximo
+- Automatic shadowing of TAS Work Tasks with Maximo Work Orders to enable Facility teams to do planing, budgeting and project management in TAS while work tasks get reflected in Maximo as Work Orders for execution.
 
 ***
 ## Use case examples
    
-   1. TRIRIGA is the system of record for People and Space data while Maximo is the system of record for Assets. The Maintenance team wants consistent reports across the entire organization and more streamlined operations. The Spaces flows provided can be used to bulk-load all Spaces data from TRIRIGA into Maximo Locations, and then continuously keep the data in sync as it gets updated in TRIRIGA by a Facility Management team. This can apply to Assets, or People data in both directions. 
-   2. Employees use Request Central to submit a Service Request for a broken elevator. Since elevators are maintained in Maximo, the flow will create a corresponding Service Request in Maximo that will be assigned to technicians and resolved. As the Maximo Service Request gets updated, the changes are automatically reflected in the TRIRIGA Service request so the originator of the request remains informed of its status. This flow can operate in reverse as well if a Service Request originates from Maximo against a maintenance operation that should be tracked in TRIRIGA.
-   3. Facility Management team have a capital project in TRIRIGA to upgrade all the lights to LEDs. The project has the budget, scope and tasks already defined. The flow can then create corresponding Work Orders in Maximo for each task to get executed by technicians using the Maximo Manage and Mobile applications. As the tasks get updated in Maximo, those updates flow back into TRIRIGA to reflect in the project plan.
+   1. TAS is the system of record for People and Space data while Maximo is the system of record for Assets. The Maintenance team wants consistent reports across the entire organization and more streamlined operations. The Spaces flows provided can be used to bulk-load all Spaces data from TAS into Maximo Locations, and then continuously keep the data in sync as it gets updated in TAS by a Facility Management team. This can apply to Assets, or People data in both directions. 
+   2. Employees use Request Central to submit a Service Request for a broken elevator. Since elevators are maintained in Maximo, the flow will create a corresponding Service Request in Maximo that will be assigned to technicians and resolved. As the Maximo Service Request gets updated, the changes are automatically reflected in the TAS Service request so the originator of the request remains informed of its status. This flow can operate in reverse as well if a Service Request originates from Maximo against a maintenance operation that should be tracked in TAS.
+   3. Facility Management team have a capital project in TAS to upgrade all the lights to LEDs. The project has the budget, scope and tasks already defined. The flow can then create corresponding Work Orders in Maximo for each task to get executed by technicians using the Maximo Manage and Mobile applications. As the tasks get updated in Maximo, those updates flow back into TAS to reflect in the project plan.
 
 ***
 
@@ -21,7 +21,7 @@ This connector supports the following capabilities through a collection of App C
 
 **App Connect Flows** enable specific integration use cases by connecting to predefined APIs to route and map data. Mapping has been pre-defined, but it can be customized.
 
-**Native API framework** is used for Maximo and TRIRIGA and enabled thorugh provided packages that can be imported.
+**Native API framework** is used for Maximo and TAS and enabled thorugh provided packages that can be imported.
 
 
 
@@ -42,7 +42,7 @@ The image below illustrates the record types that are available the APIs and App
 
 ## App Connect Flows
 
-Included with this connector are 20+ flows that map TRIRIGA records to Maximo, and vice versa, along with all the required fields they contain. The table below shows all the flows you can use in differnet combinations to implement your desired integration use cases. For a more detailed mapping of all the fields please review the [data mapping spreadsheet](https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/TRIMAS-Updates/site/Resources/TRIRIGA_Maximo_Field_Mapping-Final.xlsx). 
+Included with this connector are 20+ flows that map TAS records to Maximo, and vice versa, along with all the required fields they contain. The table below shows all the flows you can use in differnet combinations to implement your desired integration use cases. For a more detailed mapping of all the fields please review the [data mapping spreadsheet](https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/TRIMAS-Updates/site/Resources/TRIRIGA_Maximo_Field_Mapping-Final.xlsx). 
 
 File | Flow | Destination | Operation
 -- | -- |--|--
@@ -78,7 +78,7 @@ PLUSITRIASSETBATCH_v1_0_0.yaml | Batch Assets | TRI to Max | Batch
 
 ## Installation & Configuration Guide
 
->## Before you begin you will need:
+>### Before you begin you will need:
 >
 >1. An instance of App Connect Enterprise or App Connect Pro with the Designer component.
 >2. Admin access to your Maximo instance with an API key generated for this integration
@@ -86,6 +86,10 @@ PLUSITRIASSETBATCH_v1_0_0.yaml | Batch Assets | TRI to Max | Batch
 >4. Secure connection between TRIRIGA, App Connect, and Maximo. If required IBM does provides a product that accomplishes this: Secure Gateway. Learn more about getting started with [Secure Gateway.](https://cloud.ibm.com/docs/SecureGateway?topic=SecureGateway-getting-started-with-sg)
 >5. [Import AppConnect Cert to Maximo](#pre-requisite-add-an-app-connect-certificate-in-mas-89) to enable encrypted communication
 >6. [Import AppConnect Cert to TRIRIGA](#pre-requisite-add-certificate-in-tririga) to enable encrypted communication
+
+## Downloadable Resources
+
+Download the [zip file](https://github.com/IBM/mas-tas-appconnect-flows/releases/tag/v1.0.0) that has all of the flows and configuration files.
 
 ***
 
@@ -108,31 +112,10 @@ PLUSITRIASSETBATCH_v1_0_0.yaml | Batch Assets | TRI to Max | Batch
 
 ## Part 1. Install Connector
 
-### MAS 8.9
-The MAS Connector to TAS in Manage can be installed by using the proper customization .zip file provided from Passport Advantage. This .zip file will have all of the configurations necessary to complete step 4 in the Installation process. To apply this to the instance of Manage:
-
-1. Head to the admin dashboard and click on **Catalog** and then **Manage**.
-
-2. Click on **View deployment details** and then **Go to workspace details page** at the bottom of the Manage status page. At the top right corner of the page under **Actions**, select **Update configuration**. From the right side of the pop up under **Configurations**, select **Customization**.
-
-3. Un-select the **System managed** button and add the File address for the file. Be sure to leave the Alias as the default value or else this process will not work properly. Once added, scroll to the top and click **Apply Changes** and **Confirm** on the next window.
-
-<img src="https://media.github.ibm.com/user/348712/files/9c466a39-45d4-4811-bed5-f80e208757bc" alt="Manage dashboard">
-*Step 1: Manage dashboard*
-
-<img src="https://media.github.ibm.com/user/348712/files/4db55bcb-53ff-4cf3-a9c1-3ab760174406" alt="Configuration Page">
-*Step 2: Navigate to Configuration page*
-
-<img src="https://media.github.ibm.com/user/348712/files/2a7f4f27-5c7a-4f87-858b-13ea68363879" alt="Add Customization">
-*Step 3: Add Customization to Manage instance*
-
-The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created `build` pods in the Manage namespace in the OpenShift cluster to see the progress.
-
-### MAS 8.10
+### MAS 8.10+
 The MAS Connector to TAS in Manage can be installed on the MAS administration dashboard through the tile. 
 
 1. Search for TRIRIGA from the Catalog page and select the **TRIRIGA Connector** tile.
-
 2. On the tile page, click **Configure** and it will take you to the update configuration page. Select the latest version of the connector under the **Components** section and then click **Apply Changes** at the top of the page and **Confirm** on the next window.
 
 <img src="https://media.github.ibm.com/user/348712/files/aff7df19-4804-4407-9994-bb82fedd1c6e" alt="Tile dashboard">
@@ -142,6 +125,40 @@ The MAS Connector to TAS in Manage can be installed on the MAS administration da
 *Step 2: Apply Changes for Connector*
 
 The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created `build` pods in the Manage namespace in the OpenShift cluster to see the progress.
+
+### MAS 8.8 & 8.9
+
+The MAS Connector to TAS in Manage can be installed by using the proper customization .zip file provided from Passport Advantage. This .zip file will have all of the configurations necessary to complete step 4 in the Installation process.
+
+1. Navigate to the Admin dashboard of the instance of Manage within MAS.
+2. Select the workspace the instance is deployed on and update the configuration. 
+3. Scroll down to **Customization** and link to the location of the .zip file in the field ([Additional details](https://www.ibm.com/docs/en/maximo-manage/continuous-delivery?topic=manage-setting-customizations) on setting customizations)
+4. Click **Apply Changes** and Manage will update the instance with the customization.
+
+The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created `build` pods in the Manage namespace in the OpenShift cluster to see the progress.
+
+#### Maximo 7.6.1.2+
+
+1. On the Maximo Admin workstation, overlay the Maximo SMP directory (`/opt/IBM/SMP/maximo`) with the contents from the solution zip file that is provided. This will lay down the Java Classes and .dbc files provided with the solution.
+
+2. Shutdown the MXServer
+
+3. Run UpdateDB command to install the solution components<br>
+    a. Navigate to `/opt/IBM/SMP/maximo/tools/maximo`<br>
+    b. Run `./updatedb.sh`
+
+4. Build the Maximo EAR file<br>
+    a. Navigate to `/opt/IBM/SMP/maximo/deployment`<br>
+    b. Run `./buildmaximoear.sh`
+
+5. Deploy the new Maximo EAR File on all Maximo servers<br>
+    a. In WebSphere console, navigate to **Applications->Application types->Websphere enterprise applications**<br>
+    b. Select **MAXIMO** and then hit **Update** button<br>
+    c. Select **Browse** and select the EAR file from Step 4<br>
+    d. Hit **Next** and accept defaults from all pages<br>
+    e. After deployment, click on **Save**<br>
+
+6. Start the applications and MXServer
 
 ## Part 2. Configure App Connect
 
@@ -159,7 +176,7 @@ The process can take anywhere between 20 minutes to 1-2 hours depending on the c
 
 Flow | Account Name | Username | Password | API key | API location | API key name
 ---|---|---|---|---|---|---
-Max -> Tri | mxtririga | Your TRIRIGA Username | Your TRIRIGA Password | N/A | N/A | N/A
+Max -> Tri | mxtririga | Your TAS Username | Your TAS Password | N/A | N/A | N/A
 Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey 
 
 
@@ -172,7 +189,7 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
 2. Import the Selected Flows into **App Connect Enterprise**, or **App Connect SaaS on IBM Cloud** using the instructions below
 
 
-#### Import Steps (App Connect Enterprise & App Connect AWS)
+#### Import Steps - App Connect Enterprise (CP4I) & App Connect SaaS (AWS)
 
   1. From the App Connect Dashboard, click **New** and select **Import Flow** from the drop down menu.
   2. Either drag and drop or select the flow for import. In this example, the MX2TRI Person flow will be used.
@@ -195,7 +212,7 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
   <img src="https://media.github.ibm.com/user/348712/files/e49d7300-3801-11ed-83f4-a6fd5e41a3da" alt="App Connect Config Full" >
   *Step 5: Try It*
 
-#### Import Steps (App Connect SaaS)
+#### Import Steps - App Connect SaaS (IBM Cloud)
   1. If your instance of AppConnect is through the cloud, your page will look a bit different.
   2. The interface is mostly the same, but instead of **Try It** you'll see a tab called **Manage**. This page contains a few important pieces of information that you'll need to complete the configuration. First, at the top of the page under **API Info** you'll see a field called **Route**. Piece this together with the correct path of the flow that you're implementing in order to create the proper flow URL.
   3. Collect the API key at the bottom of the page from a field called **Sharing outside of Cloud Foundry organization**. Click on **Create API key and documentation link**. Provide a name and it will generate an apikey for you to use with this flow along with a documentation link that looks like the **Test** page from the on-prem configuration.
@@ -217,19 +234,20 @@ Tri -> Max | trimaximo | N/A | N/A | Your Maximo apikey | header | apikey
 
 #### Running in Production
 
-Once the configuration of the below applications is complete and the connectivity between systems is working as expected, you will need to deploy the flow as an integration server via the App Connect Dashboard. From the dashboard view of the Designer application, click the three dots on the flow's tile, select **Export**, and then **Runtime flow asset (BAR)**.
+Once the configuration of the below applications is complete and the connectivity between systems is working as expected, you will need to deploy the flow as an integration server via the App Connect Dashboard. 
+
+1. From the dashboard view of the Designer application, click the three dots on the flow's tile, select **Export**, and then **Runtime flow asset (BAR)**.
+
+2. In the App Connect Dashboard instance, select **Create Server** and then the type of integration you would like to run. The flows work with all types of integration sizes, so pick the one that is right for your deployment. Import the bar file you just downloaded into the section on the **Integrations** tab.
+3. On the Configuration screen, refer to [securing a REST-based integration](https://www.ibm.com/docs/en/app-connect/containers_cd?topic=examples-securing-rest-based-integration-in-app-connect) to properly secure the server.
+
+4. Give the intended details of the server such as the name, version, and correct license to use. Click **Create** when you're ready to deploy. It may take upwards of 5-10 minutes for the server to be up and running.
 
 <img src="https://media.github.ibm.com/user/348712/files/100feeb6-e960-43b0-abc1-ac9b5568a150" alt="Export Bar file" >
 *Step 1: Export Bar file*
 
-In the App Connect Dashboard instance, select **Create Server** and then the type of integration you would like to run. The flows work with all types of integration sizes, so pick the one that is right for your deployment. Import the bar file you just downloaded into the section on the **Integrations** tab.
-
 <img src="https://media.github.ibm.com/user/348712/files/d81a2a41-5d31-4c0b-9b7d-24ff3286810b" alt="Create Integration Server" >
 *Step 2: Create Integration Server*
-
-On the Configuration screen, refer to the [IBM® documentation](https://www.ibm.com/docs/en/app-connect/containers_cd?topic=examples-securing-rest-based-integration-in-app-connect) to properly secure the server.
-
-Finally, give the intended details of the server such as the name, version, and correct license to use. Click **Create** when you're ready to deploy. After 5-10 minutes the server should be up and running
 
 <img src="https://media.github.ibm.com/user/348712/files/6e75ff15-92fc-4829-9198-6fb378c75c3a" alt="Details Page" >
 *Step 3: Final details*
@@ -239,22 +257,21 @@ Finally, give the intended details of the server such as the name, version, and 
 #### Import Object Migration Package
 
 1. Import the OM Package labeled *APIConnector* into the TAS instance. Go to **Tools -> Administration -> Object Migration** and select **New Import Package** to begin the import process.
-**Refer to the [IBM® TAS documentation](https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview ) for more information on Object Migration**
+**Refer to the [Object Migration Overview](https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview ) for more information on Object Migration**
 
-2. The Date Time Format field in the user profile must be in UTC. Navigate to **Portfolio -> People -> My Profile** and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.
+#### TAS API User Access
 
-<img width="600" alt="TRI-UTC" src="https://media.github.ibm.com/user/348712/files/ec5d1780-3801-11ed-8f32-72fc453558f0">
-*Date Time Format Field in My Profile*
+In order for App Connect to be able to use TAS APIs, it will need a user with certain permissions. These user's credentials will be configured in App Connect.
 
-#### Configure Integration Object
-4. Configure the Integration Object - From the main page of TAS, click on **Tools -> System Setup -> Integration -> Integration Object**. Under the **Name** column, type in **apic**, and select the integration object that pertains to the record that is getting sent. 
-5. Click on the object and fill in the credentials in the pop-up box.
- 
-<img src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-9ea5-af57b4059a25" alt="TAS End Point">
-*TAS End Point*
+1. Create an integration user by following the steps given in [Chapter 2](https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf). This user should be a non-admin user and not part of the Admin security group.
 
-#### Outbound Traffic from TAS
+- Assign that user to a new or existing group for the integration. If you need to create a new security group, follow the steps given in [Chapter 1](https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf).
 
+- Add the "TAS Base License" to the **License Details** section on the user Profile.
+
+- Select the newly created group or desired existing group and switch to the **Access** tab and add the appropriate access for the integration.
+
+##### Outbound Traffic from TAS
 For outbound traffic from TAS, grant at least READ access on the Business Objects that will be used. The table below shows the various supported business Objects the API can pull from: 
 
 Module | Business Object Label
@@ -276,11 +293,25 @@ In the example below, the API user is able to pull data from the Building Busine
 
 <img width="1097" alt="Outbound Business Object" src="https://media.github.ibm.com/user/348712/files/e5633b80-3b58-11ed-81a4-46540898ff50">
 
-#### Inbound traffic to TAS
+##### Inbound traffic to TAS
 
 For inbound traffic, Data Access needs to be enabled as well as Application Access permissions to the **triAPIConnect Module** or the individual Objects. To enable an API user to create a building, grant access to the triAPICBuilding Business object as shown below: 
 
 <img width="1000" alt="Inbound Traffic Business Object" src="https://media.github.ibm.com/user/348712/files/e5633b80-3b58-11ed-842e-cea368ad86dd">
+
+#### Date Time Format
+
+2. The Date Time Format field in the user profile must be in UTC. Navigate to **Portfolio -> People -> My Profile** and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.
+
+<img width="600" alt="TRI-UTC" src="https://media.github.ibm.com/user/348712/files/ec5d1780-3801-11ed-8f32-72fc453558f0">
+*Date Time Format Field in My Profile*
+
+#### Configure Integration Object
+4. Configure the Integration Object - From the main page of TAS, click on **Tools -> System Setup -> Integration -> Integration Object**. Under the **Name** column, type in **apic**, and select the integration object that pertains to the record that is getting sent. 
+5. Click on the object and fill in the credentials in the pop-up box.
+ 
+<img src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-9ea5-af57b4059a25" alt="TAS End Point">
+*TAS End Point*
 
 ***
 
@@ -291,12 +322,12 @@ For inbound traffic, Data Access needs to be enabled as well as Application Acce
 
 >**Note 2**: The following steps and prerequisites are done against a Maximo demo database. The naming conventions may slightly differ from this, but these are the necessary components.
 
-Within Maximo, configure your instance to be ready to receive records from TRIRIGA. If these pre-requisites are not completed, the action will not be recorded.
+Within Maximo, configure your instance to be ready to receive records from TAS. If these pre-requisites are not completed, the action will not be recorded.
 
-#### 1. Create an Organization named TRIRIGA
+#### 1. Create an Organization named TAS
  
 a. Navigate to the **Organizations** page and click the blue + button on the top row.<br>
-b. Fill in the Organization name with TRIRIGA and the description as "TRIRIGA Organization".<br>
+b. Fill in the Organization name with TAS and the description as "TAS Organization".<br>
 c. Fill in the remaining required fields as such:
   
   Field Name | Value
@@ -314,7 +345,7 @@ d. Click **Save Organization** on the left side of the screen under Common Actio
   
 **Un-require the GL Account fields**
 
-a. Navigate to **Financial** -> **Chart of Accounts** and click on the previously created TRIRIGA org in the Organizations table. Currently, there should be no GL Accounts for TRIRIGA present. <br>
+a. Navigate to **Financial** -> **Chart of Accounts** and click on the previously created TAS org in the Organizations table. Currently, there should be no GL Accounts for TAS present. <br>
 b. Click **GL Component Maintenance** on the left side under More Actions and add a New Row with the following values:
 
 Field Name | Value
@@ -323,8 +354,8 @@ GL Component Value| **1001**
 Description| **Testing**
 Active?| **Yes**
 
-c. Click **OK**. Click **New Row** under GL Accounts for TRIRIGA and click the magnifying glass to search for that GL Component. Select it and it should populate in the GL Account and Description fields. The Active Date field should auto populate to the current date.<br>
-d. Now that this account is present, head back to **Organizations** and update the TRIRIGA organization to show the just created Clearing Account, tick the Active box, and click **Save Organization**.<br>
+c. Click **OK**. Click **New Row** under GL Accounts for TAS and click the magnifying glass to search for that GL Component. Select it and it should populate in the GL Account and Description fields. The Active Date field should auto populate to the current date.<br>
+d. Now that this account is present, head back to **Organizations** and update the TAS organization to show the just created Clearing Account, tick the Active box, and click **Save Organization**.<br>
  
 #### 3. Create a site TRIMAIN and set it to active 
  
@@ -334,35 +365,37 @@ d. Now that this account is present, head back to **Organizations** and update t
 
 #### 4. API Key
  
-*Check to see if the version of Maximo comes with Maximo-X.* 
+##### MAS
 
-**a. Maximo-X<br>**
+  - Navigate to **Integration -> API Keys**.<br>
+  - Click on the button that reads **Add API key**<br>
+  - Select user **MXINTADM** and click the **Add** button to generate an API key for this user. Securely store this API key for later use.
+
+##### Maximo 7.6.1.2
+
   - Navigate to **Administration -> Administration** and a new tab/window should open with the Maximo-X application.<br>
   - You should be on a page titled 'Integration'. Click on the tab at the top of the page that says API Keys and click on the button with the blue plus sign that reads **Add API key**<br>
   - Select user **MXINTADM** and click the **Add** button to generate an API key for this user. Securely store this API key for later use.
-
-**b. No Maximo-X<br>**
-  - Follow the steps in [this documentation](https://www.ibm.com/docs/en/mam/7.6.1.2?topic=components-api-keys) to generate an API key for the user
  
 #### 5. Integration Controls
  
-  a. Head to **Enterprise Services** and click on **Create Integration Controls**. These integration controls help translate specific external values into values Maximo understands. The following tables contain values to set up this demo, but can be customized to fit your TRIRIGA and Maximo naming conventions. There should be 5 X-Ref Integration Controls created with the following associations:
+  a. Head to **Enterprise Services** and click on **Create Integration Controls**. These integration controls help translate specific external values into values Maximo understands. The following tables contain values to set up this demo, but can be customized to fit your TAS and Maximo naming conventions. There should be 5 X-Ref Integration Controls created with the following associations:
  
   Integration Control | MAXIMO Value | External Value | Description | Domain
   ---|---|---|---|---
-  PLUSILOCSTATUS | ACTIVE | ACTIVE | Tririga Location Status mapping for inbound flows | LOCASSETSTATUS
+  PLUSILOCSTATUS | ACTIVE | ACTIVE | TAS Location Status mapping for inbound flows | LOCASSETSTATUS
   PLUSILOCSTATUS | INACTIVE | REVIEW IN PROGRESS | N/A | N/A
   PLUSILOCSTATUS | OPERATING | OPERATING | N/A | N/A
-  PLUSIORG | TRIMAIN | IBM | Organization mapping for Tririga | N/A
-  PLUSIORG | TRIRIGA | TRIRIGA | N/A | N/A
-  PLUSIORGEN | TRIRIGA | EAGLENA | Tririga Organization mapping for Inbound flow | N/A
-  PLUSIORGEN | TRIRIGA | IBM | N/A | N/A
-  PLUSIORGEN | TRIRIGA | MAXIMO ORG | N/A | N/A
-  PLUSIORGEN | TRIRIGA | TRIRIGA | N/A | N/A
-  PLUSIPRIORITY | 1 | High | Priority mapping for Tririga | N/A
+  PLUSIORG | TRIMAIN | IBM | Organization mapping for TAS | N/A
+  PLUSIORG | TAS | TAS | N/A | N/A
+  PLUSIORGEN | TAS | EAGLENA | TAS Organization mapping for Inbound flow | N/A
+  PLUSIORGEN | TAS | IBM | N/A | N/A
+  PLUSIORGEN | TAS | MAXIMO ORG | N/A | N/A
+  PLUSIORGEN | TAS | TAS | N/A | N/A
+  PLUSIPRIORITY | 1 | High | Priority mapping for TAS | N/A
   PLUSIPRIORITY | 2 | Medium | N/A | N/A
   PLUSIPRIORITY | 3 | Low | N/A | N/A
-  PLUSISITEEN | TRIMAIN | BEDFORD | Tririga Location mapping for inbound flows | N/A
+  PLUSISITEEN | TRIMAIN | BEDFORD | TAS Location mapping for inbound flows | N/A
   PLUSISITEEN | TRIMAIN | SPACE 01 | N/A | N/A
   PLUSISITEEN | TRIMAIN | TRIMAIN | N/A | N/A |
     
@@ -431,9 +464,9 @@ Go to **System Configuration -> Platform Configuration -> Application Designer**
 
 |Type of Control | Label | Attribute | Attribute for Part 2 (*If Multipart Textbox*) | Lookup | Input Mode for Part 2 (*If Multipart Textbox*)
 |--|--|--|--|--|--|
-| Multipart Textbox |TRIRIGA Location Path | PLUSIPRIMARYLOCPATH | PLUSILOCATIONPATH.DESCRIPTION | VALUELIST | Readonly
-| Multipart Textbox | TRIRIGA Primary Organization | PLUSIORGPATH | PLUSIORGANIZATIONPATH.DESCRIPTION | VALUELIST | Readonly
-|Textbox | TRIRIGA Record ID | EXTERNALREFID (*From the Person Object*) | N/A | N/A | N/A
+| Multipart Textbox |TAS Location Path | PLUSIPRIMARYLOCPATH | PLUSILOCATIONPATH.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox | TAS Primary Organization | PLUSIORGPATH | PLUSIORGANIZATIONPATH.DESCRIPTION | VALUELIST | Readonly
+|Textbox | TAS Record ID | EXTERNALREFID (*From the Person Object*) | N/A | N/A | N/A
 
 
 Follow the same directions using the following information for the other objects that will be used in the integration
@@ -446,10 +479,10 @@ Search for **ASSET** in Application Designer
 
 |Type of Control | Label | Attribute | Attribute for Part 2 (*If Multipart Textbox*) | Lookup | Input Mode for Part 2 (*If Multipart Textbox*)
 |--|--|--|--|--|--|
-| Multipart Textbox |TRIRIGA Building Equipment Spec | PLUSIASSETSPECNAME | PLUSIASSETSPECCLASS.DESCRIPTION | VALUELIST | Readonly
-| Multipart Textbox | TRIRIGA Primary Organization | PLUSIORGPATH | PLUSIORGANIZATIONPATH.DESCRIPTION | VALUELIST | Readonly
-| Multipart Textbox | TRIRIGA Location Path | PLUSILOCPATH | PLUSILOCATIONPATH.DESCRIPTION | VALUELIST | Readonly
-|Textbox | TRIRIGA Record ID | EXTERNALREFID (*From the Asset Object*) | N/A | N/A | N/A
+| Multipart Textbox |TAS Building Equipment Spec | PLUSIASSETSPECNAME | PLUSIASSETSPECCLASS.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox | TAS Primary Organization | PLUSIORGPATH | PLUSIORGANIZATIONPATH.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox | TAS Location Path | PLUSILOCPATH | PLUSILOCATIONPATH.DESCRIPTION | VALUELIST | Readonly
+|Textbox | TAS Record ID | EXTERNALREFID (*From the Asset Object*) | N/A | N/A | N/A
 
 #### Location
 
@@ -459,9 +492,9 @@ Search for **LOCATION** in Application Designer
 
 |Type of Control | Label | Attribute | Attribute for Part 2 (*If Multipart Textbox*) | Lookup | Input Mode for Part 2 (*If Multipart Textbox*)
 |--|--|--|--|--|--|
-| Multipart Textbox |TRIRIGA Space Classification | PLUSISPACECLASSIFICATION | PLUSISPCCLASSIFICATION.DESCRIPTION | VALUELIST | Readonly
-| Multipart Textbox | TRIRIGA Parent Location | PLUSIPARENTLOCATION | PLUSIPARENTPATH.DESCRIPTION | VALUELIST | Readonly
-|Textbox | TRIRIGA Record ID | EXTERNALREFID (*From the Location Object*) | N/A | N/A | N/A
+| Multipart Textbox |TAS Space Classification | PLUSISPACECLASSIFICATION | PLUSISPCCLASSIFICATION.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox | TAS Parent Location | PLUSIPARENTLOCATION | PLUSIPARENTPATH.DESCRIPTION | VALUELIST | Readonly
+|Textbox | TAS Record ID | EXTERNALREFID (*From the Location Object*) | N/A | N/A | N/A
 
 #### Service Request
 
@@ -472,10 +505,10 @@ Search for **SR** in Application Designer
 
 |Type of Control | Label | Attribute | Attribute for Part 2 (*If Multipart Textbox*) | Lookup | Input Mode for Part 2 (*If Multipart Textbox*)
 |--|--|--|--|--|--|
-| Multipart Textbox |TRIRIGA Request Classification | PLUSIREQCLASSID | PLUSIREQCLASS.DESCRIPTION | VALUELIST | Readonly
-| Multipart Textbox |TRIRIGA Space Classification | PLUSISPACECLASSIFICATION | PLUSISPCCLASSIFICATION.DESCRIPTION | VALUELIST | Readonly
-| Multipart Textbox | TRIRIGA Parent Location | PLUSIPARENTLOCATION | PLUSIPARENTPATH.DESCRIPTION | VALUELIST | Readonly
-|Textbox | TRIRIGA Record ID | EXTERNALREFID (*From the Ticket Object*) | N/A | N/A | N/A
+| Multipart Textbox |TAS Request Classification | PLUSIREQCLASSID | PLUSIREQCLASS.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox |TAS Space Classification | PLUSISPACECLASSIFICATION | PLUSISPCCLASSIFICATION.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox | TAS Parent Location | PLUSIPARENTLOCATION | PLUSIPARENTPATH.DESCRIPTION | VALUELIST | Readonly
+|Textbox | TAS Record ID | EXTERNALREFID (*From the Ticket Object*) | N/A | N/A | N/A
 
 e. Click **Save Definition** after the changes are added.
 
@@ -487,8 +520,8 @@ Search for **WOTRACK** in Application Designer
 
 |Type of Control | Label | Attribute | Attribute for Part 2 (*If Multipart Textbox*) | Lookup | Input Mode for Part 2 (*If Multipart Textbox*)
 |--|--|--|--|--|--|
-| Multipart Textbox |Tririga Location Path | PLUSILOCPATH | PLUSILOCATIONPATH.DESCRIPTION | VALUELIST | Readonly
-| Multipart Textbox | Tririga Primary Organization | PLUSIORGPATH | PLUSIORGANIZATIONPATH.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox |TAS Location Path | PLUSILOCPATH | PLUSILOCATIONPATH.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox | TAS Primary Organization | PLUSIORGPATH | PLUSIORGANIZATIONPATH.DESCRIPTION | VALUELIST | Readonly
 |Textbox | External Ref ID | EXTERNALREFID (*From the WorkOrder Object*) | N/A | N/A | N/A
 
 Click **Save Definition** after the changes are added.
@@ -504,7 +537,7 @@ To test that the configuration is complete, send a test payload in order to test
 - Send a test payload that is a valid object. ```{"Hello":"World"}``` would work.
 - If the response is anything other than **Bad Request**, see [what might be causing the error](#testing-the-end-point)
 
-### TRIRIGA
+### TAS
 Use a tool like POSTMan to test the connectivity of the App Connect flow. You can use a Sample JSON Payload from this [open source repository](https://github.com/IBM/tririga-api). 
 
 ## Troubleshooting
@@ -549,15 +582,16 @@ Errors in Maximo can be found in **Message Reprocessing**
  -- |-- |--
 Bad Request error | Either the payload being sent out is incorrect or the account configurations are wrong |Double check to make sure the Accounts from the App Connect pre-requisite section are correct and that the item in Maximo has all of the mapped fields
 
-### Common errors that arise from TRIRIGA
+### Common errors that arise from TAS
  
  Error | Cause | Resolution
  -- |-- |--
  404 - Not Found: Cannot POST | Invalid URL in the Integration Object | Double check the URL in the specific Integration Object that all of the components are entered correctly
  404 - API doesn't exist | Flow is not running | Double check that the flow is Active in App Connect
  404 - The HTTP request returned with an error 404 "Not Found" | Incorrect App Connect connector config | Double check that the credentials being used in the HTTP post node in App Connect are correct
+ 401 - Authorization error | Too many user sessions open in TAS | Open the Admin dashboard on the TAS environment and check the Users logged in. This issue can arise after a number of requests are made to TAS and then gives a 401 error even with the proper credentials. Clear the users logged in and the issue should clear.
  
- - Clear OSLC Cache in TRIRIGA Admin Console in case the integrations do not work in intended manner.
+ - Clear OSLC Cache in TAS Admin Console in case the integrations do not work in intended manner.
  
 
 
