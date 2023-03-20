@@ -145,6 +145,14 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#field-mapping">Field Mapping</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#buildings">Buildings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#accounts">Accounts</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -352,10 +360,13 @@
 <p>In order for App Connect to be able to use TAS APIs, it will need a user with certain permissions. These user's credentials will be configured in App Connect.</p>
 <ol>
 <li>
-<p>Create an integration user by following the steps given in <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">Chapter 2</a>.</p>
+<p>Create an integration user by following the steps given in <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">Chapter 2</a>. This user should be a non-admin user and not part of the Admin security group.</p>
 </li>
 <li>
 <p>Assign that user to a new or existing group for the integration. If you need to create a new security group, follow the steps given in <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">Chapter 1</a>.</p>
+</li>
+<li>
+<p>Add the "TAS Base License" to the <strong>License Details</strong> section on the user Profile.</p>
 </li>
 <li>
 <p>Select the newly created group or desired existing group and switch to the <strong>Access</strong> tab and add the appropriate access for the integration.</p>
@@ -568,7 +579,7 @@ call to <strong>triBuilding - Update Envizi fields with defined options</strong>
 <p>When you open the page, the fields will be displayed as Group1/Group2/Group3. By default the values are World Region/Country/City. The field Envizi Hierarchy Path shows how the Envizi groupnames will be configured according to the selected option. </p>
 <p>Enable Envizi checkbox is available too. The Envizi tab will be displayed only when this checkbox is marked</p>
 <p>One more item that must be configured is the Number of levels to be used on the Envizi configuration. Envizi hierarchy path will match this selection.</p>
-<p><img width="900" alt="How-to-use" src="https://media.github.ibm.com/user/348712/files/21cd6380-3a95-11ed-800d-aa0c22556421"></p>
+<p><img width="900" alt="How-to-use" src="https://media.github.ibm.com/user/348712/files/46f543c2-d118-4c98-8445-ed3e945d5dae"></p>
 <p>Also, notice that there is a section named <strong>Active/Retire with missing data</strong> and <strong>Draft/Revision with Missing Data</strong>. This section will list the buildings that don’t have data defined for Envizi group 3, so it means that no Envizi group will be populated on those buildings.</p>
 <p>You can filter to change only the desired records by changing query <strong>cst -triBuilding -Query -Get All Buildings for envizi</strong>. The list of buildings displayed on this query will be the list of buildings that the patch helper will modify.</p>
 <p>To use the tool, just select the desired Envizi group names and click <strong>Save</strong>. On the moment Save is triggered, all buildings will be populated with the desired options. This process may take a few minutes depending on how many buildings you have on your system. After that Envizi groups and path will be updated according to the selections made on Envizi Integration page.</p>
@@ -700,6 +711,141 @@ EOF
 
 </code></pre>
 <p>This must then be added as the truststore to the TAS instance. In the Custom Resource Definition for TAS, update the <code>spec.integration.truststore</code> field to reference the name of the created truststore. If there already is a truststore for TAS, update the Truststore resource to include the certificate with an additional alias.</p>
+<h2 id="field-mapping">Field Mapping</h2>
+<h3 id="buildings">Buildings</h3>
+<table>
+<thead>
+<tr>
+<th>CSV Headers</th>
+<th>TAS Fields</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CITY</td>
+<td>spi:triCityTX</td>
+<td></td>
+</tr>
+<tr>
+<td>COUNTRY</td>
+<td>spi:triCountryTX</td>
+<td></td>
+</tr>
+<tr>
+<td>DESCRIPTION</td>
+<td>spi:triDescriptionTX</td>
+<td></td>
+</tr>
+<tr>
+<td>GROUPNAME1</td>
+<td>spi:cstEnviziParentOneTX</td>
+<td>Value for this field will be available only after Location Hierarchy mapping for Envizi groups is completed on TAS</td>
+</tr>
+<tr>
+<td>GROUPNAME2</td>
+<td>spi:cstEnviziParentTwoTX</td>
+<td>Value for this field will be available only after Location Hierarchy mapping for Envizi groups is completed on TAS</td>
+</tr>
+<tr>
+<td>GROUPNAME3</td>
+<td>spi:cstEnviziParentThreeTX</td>
+<td>Value for this field will be available only after Location Hierarchy mapping for Envizi groups is completed on TAS</td>
+</tr>
+<tr>
+<td>LATITUDEY</td>
+<td>spi:triGisLatitudeNU</td>
+<td></td>
+</tr>
+<tr>
+<td>LOCATION</td>
+<td>spi:triNameTX</td>
+<td></td>
+</tr>
+<tr>
+<td>LOCATIONCLOSEDATE</td>
+<td>spi:triActiveEndDA</td>
+<td></td>
+</tr>
+<tr>
+<td>LOCATIONID</td>
+<td>spi:triIdTX</td>
+<td></td>
+</tr>
+<tr>
+<td>LONGITUDEX</td>
+<td>spi:triGisLongitudeNU</td>
+<td></td>
+</tr>
+<tr>
+<td>POSTALCODE</td>
+<td>spi:triZipPostalTX</td>
+<td></td>
+</tr>
+<tr>
+<td>STATEPROVINCE</td>
+<td>spi:triStateProvTX</td>
+<td></td>
+</tr>
+<tr>
+<td>STREETADDRESS</td>
+<td>spi:triAddressTX</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="accounts">Accounts</h3>
+<table>
+<thead>
+<tr>
+<th>CSV Header</th>
+<th>TAS Field</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACCOUNT</td>
+<td>spi:triIdTX + ("_HEADCOUNT" or "_FLOORAREA")</td>
+<td></td>
+</tr>
+<tr>
+<td>DATATYPE</td>
+<td>"HEADCOUNT" or "FLOORAREA"</td>
+<td></td>
+</tr>
+<tr>
+<td>LOCATION</td>
+<td>spi:triNameTX</td>
+<td></td>
+</tr>
+<tr>
+<td>LOCATIONID</td>
+<td>spi:triIdTX</td>
+<td></td>
+</tr>
+<tr>
+<td>MEASUREUNITID</td>
+<td>spi:triAreaUO</td>
+<td></td>
+</tr>
+<tr>
+<td>METERNAME</td>
+<td>"HEADCOUNT" or "FLOORAREA"</td>
+<td></td>
+</tr>
+<tr>
+<td>READING</td>
+<td>spi:triHeadcountNU or spi:triTotalAreaOccupiedCalcNU</td>
+<td></td>
+</tr>
+<tr>
+<td>READINGDATE</td>
+<td>spi:triModifiedSY</td>
+<td></td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div><footer>

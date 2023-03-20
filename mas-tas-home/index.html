@@ -99,17 +99,23 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#import-object-migration-package">Import Object Migration Package</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tas-api-user-access">TAS API User Access</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#outbound-traffic-from-tas">Outbound Traffic from TAS</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#inbound-traffic-to-tas">Inbound traffic to TAS</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#date-time-format">Date Time Format</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#configure-integration-object">Configure Integration Object</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#outbound-traffic-from-tas">Outbound Traffic from TAS</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#inbound-traffic-to-tas">Inbound traffic to TAS</a>
     </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#part-4-maximo-configuration">Part 4. Maximo Configuration</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#1-create-an-organization-named-tririga">1. Create an Organization named TRIRIGA</a>
+    <li class="toctree-l3"><a class="reference internal" href="#1-create-an-organization-named-tas">1. Create an Organization named TAS</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#2-create-a-testing-clearing-account-in-chart-of-accounts">2. Create a Testing clearing account in Chart of Accounts</a>
     </li>
@@ -147,7 +153,7 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#maximo">Maximo</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#tririga">TRIRIGA</a>
+    <li class="toctree-l3"><a class="reference internal" href="#tas">TAS</a>
     </li>
         </ul>
     </li>
@@ -224,21 +230,21 @@
 This connector supports the following capabilities through a collection of App Connect flows:</p>
 <ul>
 <li>Bi-directional loading, and continuous synchronization of portfolio data such as People, Locations and Assets.</li>
-<li>Bi-directional routing of service requests between TRIRIGA and Maximo</li>
-<li>Automatic shadowing of TRIRIGA Work Tasks with Maximo Work Orders to enable Facility teams to do planing, budgeting and project management in TRIRIGA while work tasks get reflected in Maximo as Work Orders for execution.</li>
+<li>Bi-directional routing of service requests between TAS and Maximo</li>
+<li>Automatic shadowing of TAS Work Tasks with Maximo Work Orders to enable Facility teams to do planing, budgeting and project management in TAS while work tasks get reflected in Maximo as Work Orders for execution.</li>
 </ul>
 <hr />
 <h2 id="use-case-examples">Use case examples</h2>
 <ol>
-<li>TRIRIGA is the system of record for People and Space data while Maximo is the system of record for Assets. The Maintenance team wants consistent reports across the entire organization and more streamlined operations. The Spaces flows provided can be used to bulk-load all Spaces data from TRIRIGA into Maximo Locations, and then continuously keep the data in sync as it gets updated in TRIRIGA by a Facility Management team. This can apply to Assets, or People data in both directions. </li>
-<li>Employees use Request Central to submit a Service Request for a broken elevator. Since elevators are maintained in Maximo, the flow will create a corresponding Service Request in Maximo that will be assigned to technicians and resolved. As the Maximo Service Request gets updated, the changes are automatically reflected in the TRIRIGA Service request so the originator of the request remains informed of its status. This flow can operate in reverse as well if a Service Request originates from Maximo against a maintenance operation that should be tracked in TRIRIGA.</li>
-<li>Facility Management team have a capital project in TRIRIGA to upgrade all the lights to LEDs. The project has the budget, scope and tasks already defined. The flow can then create corresponding Work Orders in Maximo for each task to get executed by technicians using the Maximo Manage and Mobile applications. As the tasks get updated in Maximo, those updates flow back into TRIRIGA to reflect in the project plan.</li>
+<li>TAS is the system of record for People and Space data while Maximo is the system of record for Assets. The Maintenance team wants consistent reports across the entire organization and more streamlined operations. The Spaces flows provided can be used to bulk-load all Spaces data from TAS into Maximo Locations, and then continuously keep the data in sync as it gets updated in TAS by a Facility Management team. This can apply to Assets, or People data in both directions. </li>
+<li>Employees use Request Central to submit a Service Request for a broken elevator. Since elevators are maintained in Maximo, the flow will create a corresponding Service Request in Maximo that will be assigned to technicians and resolved. As the Maximo Service Request gets updated, the changes are automatically reflected in the TAS Service request so the originator of the request remains informed of its status. This flow can operate in reverse as well if a Service Request originates from Maximo against a maintenance operation that should be tracked in TAS.</li>
+<li>Facility Management team have a capital project in TAS to upgrade all the lights to LEDs. The project has the budget, scope and tasks already defined. The flow can then create corresponding Work Orders in Maximo for each task to get executed by technicians using the Maximo Manage and Mobile applications. As the tasks get updated in Maximo, those updates flow back into TAS to reflect in the project plan.</li>
 </ol>
 <hr />
 <h2 id="connector-architecture">Connector architecture</h2>
 <p><strong>IBM App Connect</strong> provides a flexible environment for integration solutions to transform, enrich, route, and process business messages and data. </p>
 <p><strong>App Connect Flows</strong> enable specific integration use cases by connecting to predefined APIs to route and map data. Mapping has been pre-defined, but it can be customized.</p>
-<p><strong>Native API framework</strong> is used for Maximo and TRIRIGA and enabled thorugh provided packages that can be imported.</p>
+<p><strong>Native API framework</strong> is used for Maximo and TAS and enabled thorugh provided packages that can be imported.</p>
 <p><img width="1280" alt="TRI-MAS Architecture" src="https://user-images.githubusercontent.com/20128676/199506541-1f7b96cd-a758-4011-802a-c1ea1a46e60d.png"></p>
 <hr />
 <h2 id="data-mapping">Data Mapping</h2>
@@ -246,7 +252,7 @@ This connector supports the following capabilities through a collection of App C
 <p><img width="1280" alt="TRI-MAS Architecture" src="https://user-images.githubusercontent.com/20128676/199506793-e96635d7-4a18-4f4b-97df-633374c334c5.png"></p>
 <hr />
 <h2 id="app-connect-flows">App Connect Flows</h2>
-<p>Included with this connector are 20+ flows that map TRIRIGA records to Maximo, and vice versa, along with all the required fields they contain. The table below shows all the flows you can use in differnet combinations to implement your desired integration use cases. For a more detailed mapping of all the fields please review the <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/TRIMAS-Updates/site/Resources/TRIRIGA_Maximo_Field_Mapping-Final.xlsx">data mapping spreadsheet</a>. </p>
+<p>Included with this connector are 20+ flows that map TAS records to Maximo, and vice versa, along with all the required fields they contain. The table below shows all the flows you can use in differnet combinations to implement your desired integration use cases. For a more detailed mapping of all the fields please review the <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/TRIMAS-Updates/site/Resources/TRIRIGA_Maximo_Field_Mapping-Final.xlsx">data mapping spreadsheet</a>. </p>
 <table>
 <thead>
 <tr>
@@ -536,8 +542,8 @@ This connector supports the following capabilities through a collection of App C
 <tr>
 <td>Max -&gt; Tri</td>
 <td>mxtririga</td>
-<td>Your TRIRIGA Username</td>
-<td>Your TRIRIGA Password</td>
+<td>Your TAS Username</td>
+<td>Your TAS Password</td>
 <td>N/A</td>
 <td>N/A</td>
 <td>N/A</td>
@@ -618,24 +624,26 @@ This connector supports the following capabilities through a collection of App C
 <h2 id="part-3-configure-tas">Part 3. Configure TAS</h2>
 <h4 id="import-object-migration-package">Import Object Migration Package</h4>
 <ol>
-<li>
-<p>Import the OM Package labeled <em>APIConnector</em> into the TAS instance. Go to <strong>Tools -&gt; Administration -&gt; Object Migration</strong> and select <strong>New Import Package</strong> to begin the import process.
-<strong>Refer to the <a href="https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview">Object Migration Overview</a> for more information on Object Migration</strong></p>
-</li>
-<li>
-<p>The Date Time Format field in the user profile must be in UTC. Navigate to <strong>Portfolio -&gt; People -&gt; My Profile</strong> and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.</p>
-</li>
+<li>Import the OM Package labeled <em>APIConnector</em> into the TAS instance. Go to <strong>Tools -&gt; Administration -&gt; Object Migration</strong> and select <strong>New Import Package</strong> to begin the import process.
+<strong>Refer to the <a href="https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview">Object Migration Overview</a> for more information on Object Migration</strong></li>
 </ol>
-<p><img width="600" alt="TRI-UTC" src="https://media.github.ibm.com/user/348712/files/ec5d1780-3801-11ed-8f32-72fc453558f0">
-<em>Date Time Format Field in My Profile</em></p>
-<h4 id="configure-integration-object">Configure Integration Object</h4>
+<h4 id="tas-api-user-access">TAS API User Access</h4>
+<p>In order for App Connect to be able to use TAS APIs, it will need a user with certain permissions. These user's credentials will be configured in App Connect.</p>
 <ol>
-<li>Configure the Integration Object - From the main page of TAS, click on <strong>Tools -&gt; System Setup -&gt; Integration -&gt; Integration Object</strong>. Under the <strong>Name</strong> column, type in <strong>apic</strong>, and select the integration object that pertains to the record that is getting sent. </li>
-<li>Click on the object and fill in the credentials in the pop-up box.</li>
+<li>
+<p>Create an integration user by following the steps given in <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">Chapter 2</a>. This user should be a non-admin user and not part of the Admin security group.</p>
+</li>
+<li>
+<p>Assign that user to a new or existing group for the integration. If you need to create a new security group, follow the steps given in <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">Chapter 1</a>.</p>
+</li>
+<li>
+<p>Add the "TAS Base License" to the <strong>License Details</strong> section on the user Profile.</p>
+</li>
+<li>
+<p>Select the newly created group or desired existing group and switch to the <strong>Access</strong> tab and add the appropriate access for the integration.</p>
+</li>
 </ol>
-<p><img src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-9ea5-af57b4059a25" alt="TAS End Point">
-<em>TAS End Point</em></p>
-<h4 id="outbound-traffic-from-tas">Outbound Traffic from TAS</h4>
+<h5 id="outbound-traffic-from-tas">Outbound Traffic from TAS</h5>
 <p>For outbound traffic from TAS, grant at least READ access on the Business Objects that will be used. The table below shows the various supported business Objects the API can pull from: </p>
 <table>
 <thead>
@@ -697,19 +705,32 @@ This connector supports the following capabilities through a collection of App C
 </table>
 <p>In the example below, the API user is able to pull data from the Building Business Object: </p>
 <p><img width="1097" alt="Outbound Business Object" src="https://media.github.ibm.com/user/348712/files/e5633b80-3b58-11ed-81a4-46540898ff50"></p>
-<h4 id="inbound-traffic-to-tas">Inbound traffic to TAS</h4>
+<h5 id="inbound-traffic-to-tas">Inbound traffic to TAS</h5>
 <p>For inbound traffic, Data Access needs to be enabled as well as Application Access permissions to the <strong>triAPIConnect Module</strong> or the individual Objects. To enable an API user to create a building, grant access to the triAPICBuilding Business object as shown below: </p>
 <p><img width="1000" alt="Inbound Traffic Business Object" src="https://media.github.ibm.com/user/348712/files/e5633b80-3b58-11ed-842e-cea368ad86dd"></p>
+<h4 id="date-time-format">Date Time Format</h4>
+<ol>
+<li>The Date Time Format field in the user profile must be in UTC. Navigate to <strong>Portfolio -&gt; People -&gt; My Profile</strong> and select the user profile that will be triggering the action. The Date Time Format should be in UTC as shown below.</li>
+</ol>
+<p><img width="600" alt="TRI-UTC" src="https://media.github.ibm.com/user/348712/files/ec5d1780-3801-11ed-8f32-72fc453558f0">
+<em>Date Time Format Field in My Profile</em></p>
+<h4 id="configure-integration-object">Configure Integration Object</h4>
+<ol>
+<li>Configure the Integration Object - From the main page of TAS, click on <strong>Tools -&gt; System Setup -&gt; Integration -&gt; Integration Object</strong>. Under the <strong>Name</strong> column, type in <strong>apic</strong>, and select the integration object that pertains to the record that is getting sent. </li>
+<li>Click on the object and fill in the credentials in the pop-up box.</li>
+</ol>
+<p><img src="https://media.github.ibm.com/user/348712/files/ecf5ae00-3801-11ed-9ea5-af57b4059a25" alt="TAS End Point">
+<em>TAS End Point</em></p>
 <hr />
 <h2 id="part-4-maximo-configuration">Part 4. Maximo Configuration</h2>
 <blockquote>
 <p><strong>Note 1</strong> If you have not already done so, please import AppConnect Cert to Maximo to enable encrypted communication. </p>
 <p><strong>Note 2</strong>: The following steps and prerequisites are done against a Maximo demo database. The naming conventions may slightly differ from this, but these are the necessary components.</p>
 </blockquote>
-<p>Within Maximo, configure your instance to be ready to receive records from TRIRIGA. If these pre-requisites are not completed, the action will not be recorded.</p>
-<h4 id="1-create-an-organization-named-tririga">1. Create an Organization named TRIRIGA</h4>
+<p>Within Maximo, configure your instance to be ready to receive records from TAS. If these pre-requisites are not completed, the action will not be recorded.</p>
+<h4 id="1-create-an-organization-named-tas">1. Create an Organization named TAS</h4>
 <p>a. Navigate to the <strong>Organizations</strong> page and click the blue + button on the top row.<br>
-b. Fill in the Organization name with TRIRIGA and the description as "TRIRIGA Organization".<br>
+b. Fill in the Organization name with TAS and the description as "TAS Organization".<br>
 c. Fill in the remaining required fields as such:</p>
 <table>
 <thead>
@@ -744,7 +765,7 @@ c. Fill in the remaining required fields as such:</p>
 <p>d. Click <strong>Save Organization</strong> on the left side of the screen under Common Actions. This will be set to Active later once there is a clearing account.</p>
 <h4 id="2-create-a-testing-clearing-account-in-chart-of-accounts">2. Create a Testing clearing account in Chart of Accounts</h4>
 <p><strong>Un-require the GL Account fields</strong></p>
-<p>a. Navigate to <strong>Financial</strong> -&gt; <strong>Chart of Accounts</strong> and click on the previously created TRIRIGA org in the Organizations table. Currently, there should be no GL Accounts for TRIRIGA present. <br>
+<p>a. Navigate to <strong>Financial</strong> -&gt; <strong>Chart of Accounts</strong> and click on the previously created TAS org in the Organizations table. Currently, there should be no GL Accounts for TAS present. <br>
 b. Click <strong>GL Component Maintenance</strong> on the left side under More Actions and add a New Row with the following values:</p>
 <table>
 <thead>
@@ -768,8 +789,8 @@ b. Click <strong>GL Component Maintenance</strong> on the left side under More A
 </tr>
 </tbody>
 </table>
-<p>c. Click <strong>OK</strong>. Click <strong>New Row</strong> under GL Accounts for TRIRIGA and click the magnifying glass to search for that GL Component. Select it and it should populate in the GL Account and Description fields. The Active Date field should auto populate to the current date.<br>
-d. Now that this account is present, head back to <strong>Organizations</strong> and update the TRIRIGA organization to show the just created Clearing Account, tick the Active box, and click <strong>Save Organization</strong>.<br></p>
+<p>c. Click <strong>OK</strong>. Click <strong>New Row</strong> under GL Accounts for TAS and click the magnifying glass to search for that GL Component. Select it and it should populate in the GL Account and Description fields. The Active Date field should auto populate to the current date.<br>
+d. Now that this account is present, head back to <strong>Organizations</strong> and update the TAS organization to show the just created Clearing Account, tick the Active box, and click <strong>Save Organization</strong>.<br></p>
 <h4 id="3-create-a-site-trimain-and-set-it-to-active">3. Create a site TRIMAIN and set it to active</h4>
 <p>a. On the Organization page, click on the <strong>Sites</strong> tab at the top of the page.<br>
   b. Click <strong>New Row</strong> under <strong>Sites</strong> and enter TRIMAIN for Site and MAIN Site for Description. Set the site to Active.<br>
@@ -788,7 +809,7 @@ d. Now that this account is present, head back to <strong>Organizations</strong>
 <li>Select user <strong>MXINTADM</strong> and click the <strong>Add</strong> button to generate an API key for this user. Securely store this API key for later use.</li>
 </ul>
 <h4 id="5-integration-controls">5. Integration Controls</h4>
-<p>a. Head to <strong>Enterprise Services</strong> and click on <strong>Create Integration Controls</strong>. These integration controls help translate specific external values into values Maximo understands. The following tables contain values to set up this demo, but can be customized to fit your TRIRIGA and Maximo naming conventions. There should be 5 X-Ref Integration Controls created with the following associations:</p>
+<p>a. Head to <strong>Enterprise Services</strong> and click on <strong>Create Integration Controls</strong>. These integration controls help translate specific external values into values Maximo understands. The following tables contain values to set up this demo, but can be customized to fit your TAS and Maximo naming conventions. There should be 5 X-Ref Integration Controls created with the following associations:</p>
 <table>
 <thead>
 <tr>
@@ -804,7 +825,7 @@ d. Now that this account is present, head back to <strong>Organizations</strong>
 <td>PLUSILOCSTATUS</td>
 <td>ACTIVE</td>
 <td>ACTIVE</td>
-<td>Tririga Location Status mapping for inbound flows</td>
+<td>TAS Location Status mapping for inbound flows</td>
 <td>LOCASSETSTATUS</td>
 </tr>
 <tr>
@@ -825,41 +846,41 @@ d. Now that this account is present, head back to <strong>Organizations</strong>
 <td>PLUSIORG</td>
 <td>TRIMAIN</td>
 <td>IBM</td>
-<td>Organization mapping for Tririga</td>
+<td>Organization mapping for TAS</td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>PLUSIORG</td>
-<td>TRIRIGA</td>
-<td>TRIRIGA</td>
+<td>TAS</td>
+<td>TAS</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>PLUSIORGEN</td>
-<td>TRIRIGA</td>
+<td>TAS</td>
 <td>EAGLENA</td>
-<td>Tririga Organization mapping for Inbound flow</td>
+<td>TAS Organization mapping for Inbound flow</td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>PLUSIORGEN</td>
-<td>TRIRIGA</td>
+<td>TAS</td>
 <td>IBM</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>PLUSIORGEN</td>
-<td>TRIRIGA</td>
+<td>TAS</td>
 <td>MAXIMO ORG</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
 <tr>
 <td>PLUSIORGEN</td>
-<td>TRIRIGA</td>
-<td>TRIRIGA</td>
+<td>TAS</td>
+<td>TAS</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
@@ -867,7 +888,7 @@ d. Now that this account is present, head back to <strong>Organizations</strong>
 <td>PLUSIPRIORITY</td>
 <td>1</td>
 <td>High</td>
-<td>Priority mapping for Tririga</td>
+<td>Priority mapping for TAS</td>
 <td>N/A</td>
 </tr>
 <tr>
@@ -888,7 +909,7 @@ d. Now that this account is present, head back to <strong>Organizations</strong>
 <td>PLUSISITEEN</td>
 <td>TRIMAIN</td>
 <td>BEDFORD</td>
-<td>Tririga Location mapping for inbound flows</td>
+<td>TAS Location mapping for inbound flows</td>
 <td>N/A</td>
 </tr>
 <tr>
@@ -1035,7 +1056,7 @@ Repeat this process for the other changed structures.</p>
 <tbody>
 <tr>
 <td>Multipart Textbox</td>
-<td>TRIRIGA Location Path</td>
+<td>TAS Location Path</td>
 <td>PLUSIPRIMARYLOCPATH</td>
 <td>PLUSILOCATIONPATH.DESCRIPTION</td>
 <td>VALUELIST</td>
@@ -1043,7 +1064,7 @@ Repeat this process for the other changed structures.</p>
 </tr>
 <tr>
 <td>Multipart Textbox</td>
-<td>TRIRIGA Primary Organization</td>
+<td>TAS Primary Organization</td>
 <td>PLUSIORGPATH</td>
 <td>PLUSIORGANIZATIONPATH.DESCRIPTION</td>
 <td>VALUELIST</td>
@@ -1051,7 +1072,7 @@ Repeat this process for the other changed structures.</p>
 </tr>
 <tr>
 <td>Textbox</td>
-<td>TRIRIGA Record ID</td>
+<td>TAS Record ID</td>
 <td>EXTERNALREFID (<em>From the Person Object</em>)</td>
 <td>N/A</td>
 <td>N/A</td>
@@ -1080,7 +1101,7 @@ Repeat this process for the other changed structures.</p>
 <tbody>
 <tr>
 <td>Multipart Textbox</td>
-<td>TRIRIGA Building Equipment Spec</td>
+<td>TAS Building Equipment Spec</td>
 <td>PLUSIASSETSPECNAME</td>
 <td>PLUSIASSETSPECCLASS.DESCRIPTION</td>
 <td>VALUELIST</td>
@@ -1088,7 +1109,7 @@ Repeat this process for the other changed structures.</p>
 </tr>
 <tr>
 <td>Multipart Textbox</td>
-<td>TRIRIGA Primary Organization</td>
+<td>TAS Primary Organization</td>
 <td>PLUSIORGPATH</td>
 <td>PLUSIORGANIZATIONPATH.DESCRIPTION</td>
 <td>VALUELIST</td>
@@ -1096,7 +1117,7 @@ Repeat this process for the other changed structures.</p>
 </tr>
 <tr>
 <td>Multipart Textbox</td>
-<td>TRIRIGA Location Path</td>
+<td>TAS Location Path</td>
 <td>PLUSILOCPATH</td>
 <td>PLUSILOCATIONPATH.DESCRIPTION</td>
 <td>VALUELIST</td>
@@ -1104,7 +1125,7 @@ Repeat this process for the other changed structures.</p>
 </tr>
 <tr>
 <td>Textbox</td>
-<td>TRIRIGA Record ID</td>
+<td>TAS Record ID</td>
 <td>EXTERNALREFID (<em>From the Asset Object</em>)</td>
 <td>N/A</td>
 <td>N/A</td>
@@ -1132,7 +1153,7 @@ Repeat this process for the other changed structures.</p>
 <tbody>
 <tr>
 <td>Multipart Textbox</td>
-<td>TRIRIGA Space Classification</td>
+<td>TAS Space Classification</td>
 <td>PLUSISPACECLASSIFICATION</td>
 <td>PLUSISPCCLASSIFICATION.DESCRIPTION</td>
 <td>VALUELIST</td>
@@ -1140,7 +1161,7 @@ Repeat this process for the other changed structures.</p>
 </tr>
 <tr>
 <td>Multipart Textbox</td>
-<td>TRIRIGA Parent Location</td>
+<td>TAS Parent Location</td>
 <td>PLUSIPARENTLOCATION</td>
 <td>PLUSIPARENTPATH.DESCRIPTION</td>
 <td>VALUELIST</td>
@@ -1148,7 +1169,7 @@ Repeat this process for the other changed structures.</p>
 </tr>
 <tr>
 <td>Textbox</td>
-<td>TRIRIGA Record ID</td>
+<td>TAS Record ID</td>
 <td>EXTERNALREFID (<em>From the Location Object</em>)</td>
 <td>N/A</td>
 <td>N/A</td>
@@ -1176,7 +1197,7 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the TICKET Object.</p>
 <tbody>
 <tr>
 <td>Multipart Textbox</td>
-<td>TRIRIGA Request Classification</td>
+<td>TAS Request Classification</td>
 <td>PLUSIREQCLASSID</td>
 <td>PLUSIREQCLASS.DESCRIPTION</td>
 <td>VALUELIST</td>
@@ -1184,7 +1205,7 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the TICKET Object.</p>
 </tr>
 <tr>
 <td>Multipart Textbox</td>
-<td>TRIRIGA Space Classification</td>
+<td>TAS Space Classification</td>
 <td>PLUSISPACECLASSIFICATION</td>
 <td>PLUSISPCCLASSIFICATION.DESCRIPTION</td>
 <td>VALUELIST</td>
@@ -1192,7 +1213,7 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the TICKET Object.</p>
 </tr>
 <tr>
 <td>Multipart Textbox</td>
-<td>TRIRIGA Parent Location</td>
+<td>TAS Parent Location</td>
 <td>PLUSIPARENTLOCATION</td>
 <td>PLUSIPARENTPATH.DESCRIPTION</td>
 <td>VALUELIST</td>
@@ -1200,7 +1221,7 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the TICKET Object.</p>
 </tr>
 <tr>
 <td>Textbox</td>
-<td>TRIRIGA Record ID</td>
+<td>TAS Record ID</td>
 <td>EXTERNALREFID (<em>From the Ticket Object</em>)</td>
 <td>N/A</td>
 <td>N/A</td>
@@ -1229,7 +1250,7 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the WORKORDER Object.</
 <tbody>
 <tr>
 <td>Multipart Textbox</td>
-<td>Tririga Location Path</td>
+<td>TAS Location Path</td>
 <td>PLUSILOCPATH</td>
 <td>PLUSILOCATIONPATH.DESCRIPTION</td>
 <td>VALUELIST</td>
@@ -1237,7 +1258,7 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the WORKORDER Object.</
 </tr>
 <tr>
 <td>Multipart Textbox</td>
-<td>Tririga Primary Organization</td>
+<td>TAS Primary Organization</td>
 <td>PLUSIORGPATH</td>
 <td>PLUSIORGANIZATIONPATH.DESCRIPTION</td>
 <td>VALUELIST</td>
@@ -1263,7 +1284,7 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the WORKORDER Object.</
 <li>Send a test payload that is a valid object. <code>{"Hello":"World"}</code> would work.</li>
 <li>If the response is anything other than <strong>Bad Request</strong>, see <a href="#testing-the-end-point">what might be causing the error</a></li>
 </ol>
-<h3 id="tririga">TRIRIGA</h3>
+<h3 id="tas">TAS</h3>
 <p>Use a tool like POSTMan to test the connectivity of the App Connect flow. You can use a Sample JSON Payload from this <a href="https://github.com/IBM/tririga-api">open source repository</a>. </p>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>Depending on the direction of the flow, cross-referencing errors from two systems can help identify the root cause of an issue with the integration. For example:</p>
