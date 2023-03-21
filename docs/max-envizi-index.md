@@ -57,26 +57,68 @@ PLUSZMXTOS3_v1_1_0.yaml | Locations and Meter Reading | Max to Envizi | Bulk Loa
 >4. [Import AppConnect Cert to Maximo](#pre-requisite-add-an-app-connect-certificate-in-mas-89) to enable encrypted communication
 >5. [Check that meter data uses supported units of measure](#pre-requisite-pre-check-that-data-is-correct)
 
+
+## Downloadable Resources
+
+Download the [zip file](https://github.com/IBM/maximo-envizi-appconnect-flows/releases/tag/Latest) that has all of the flows and configuration files.
+
 ***
 
 ## Installation Steps Overview
-1. Configure App Connect<br>
+1. Install Connector<br>
+2. Configure App Connect<br>
    a. Import Flows into App Connect<br>
    b. Configure Flows<br>
-2. Configure Maximo<br> 
+3. Configure Maximo<br> 
    a. Upload Configuration File <br>
    b. Categorize existing meters into groups <br>
    c. Set up End Points <br>
    d. Configure Cron Task <br>
-3. Test <br>
+4. Test <br>
    a. MAS outbound connectivity<br>
 
 ***
 
+## Part 1. Install Connector
 
-## Part 1: App Connect Configuration
+### MAS 8.9
+The MAS Connector to Envizi in Manage can be installed by using the proper customization .zip file provided from Passport Advantage. This .zip file will have all of the configurations necessary to complete step 4 in the Installation process. To apply this to the instance of Manage:
 
-*Note: You need IBM Cloud AppConnect Professional or Enterprise to run this flow.*
+1. Head to the admin dashboard and click on **Catalog** and then **Manage**.
+
+2. Click on **View deployment details** and then **Go to workspace details page** at the bottom of the Manage status page. At the top right corner of the page under **Actions**, select **Update configuration**. From the right side of the pop up under **Configurations**, select **Customization**.
+
+3. Un-select the **System managed** button and add the File address for the file. Be sure to leave the Alias as the default value or else this process will not work properly. Once added, scroll to the top and click **Apply Changes** and **Confirm** on the next window.
+
+<img src="https://media.github.ibm.com/user/348712/files/9c466a39-45d4-4811-bed5-f80e208757bc" alt="Manage dashboard">
+*Step 1: Manage dashboard*
+
+<img src="https://media.github.ibm.com/user/348712/files/4db55bcb-53ff-4cf3-a9c1-3ab760174406" alt="Configuration Page">
+*Step 2: Navigate to Configuration page*
+
+<img src="https://media.github.ibm.com/user/348712/files/2a7f4f27-5c7a-4f87-858b-13ea68363879" alt="Add Customization">
+*Step 3: Add Customization to Manage instance*
+
+The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created `build` pods in the Manage namespace in the OpenShift cluster to see the progress.
+
+### MAS 8.10
+The MAS Connector to Envizi in Manage can be installed on the MAS administration dashboard through the tile. 
+
+1. Search for Envizi from the Catalog page and select the **Envizi Connector** tile.
+
+2. On the tile page, click **Configure** and it will take you to the update configuration page. Select the latest version of the connector under the **Components** section and then click **Apply Changes** at the top of the page and **Confirm** on the next window.
+
+<img src="https://media.github.ibm.com/user/348712/files/aff7df19-4804-4407-9994-bb82fedd1c6e" alt="Tile dashboard">
+*Step 1: Select Connector Tile*
+
+<img src="https://media.github.ibm.com/user/348712/files/9c550273-474a-41b4-bf9b-b266c90014ac" alt="Component Section">
+*Step 2: Apply Changes for Connector*
+
+The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created `build` pods in the Manage namespace in the OpenShift cluster to see the progress.
+
+## Part 2: App Connect Configuration
+
+*Note: IBM App Connect Professional or Enterprise is needed to run this flow. The flows have been tested on IBM Cloud App Connect, AWS App Connect, as well as the containerized version of App Connect.*
 
 *Note: The names in the screenshots are generic, other instances will not have the same names during setup.*
 
@@ -174,7 +216,7 @@ It is helpful to use a tool like Postman to test this API prior to testing it fo
 
 ***
 
-## Part 2: Maximo Configuration
+## Part 3: Maximo Configuration
 
 ### Deploying Maximo Build
 

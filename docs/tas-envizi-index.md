@@ -1,14 +1,14 @@
 # IBM TAS Connector for Envizi
 
-The **IBM TAS Connector for Envizi** is released under the name "MAS Connector for Envizi". This connector supports the following capabilities through an App Connect flow:
+The **IBM TAS Connector for Envizi** is released under the name "TAS Connector for Envizi". This connector supports the following capabilities through an App Connect flow:
 
--Automatically sync space and occupancy data from TRIRIGA with Envizi to enable energy usage calculations across entire facility portfolio with advanced analytics by location, by SQF, and by occupant.
+-Automatically sync space and occupancy data from TAS with Envizi to enable energy usage calculations across entire facility portfolio with advanced analytics by location, by SQF, and by occupant.
 
 ***
 
 ## Use Case Examples
 
-Corporate sustainability managers can gather and maintain accurate sustainability data for their entire global real estate portfolio directly from TRIRIGA where those facilities are managed. Location data from TRIRIGA serves as a baseline for all other Sustainability reports in Envizi; space classification, floor space, and headcount data allows Sustainability managers to normalize data (by square meter, or by employee) to enable meaningful comparisons between buildings across the entire portfolio to identify opportunities to reduce environmental impact.
+Corporate sustainability managers can gather and maintain accurate sustainability data for their entire global real estate portfolio directly from TAS where those facilities are managed. Location data from TAS serves as a baseline for all other Sustainability reports in Envizi; space classification, floor space, and headcount data allows Sustainability managers to normalize data (by square meter, or by employee) to enable meaningful comparisons between buildings across the entire portfolio to identify opportunities to reduce environmental impact.
 
 ***
 
@@ -18,11 +18,11 @@ Corporate sustainability managers can gather and maintain accurate sustainabilit
 
 **App Connect Flows** enable specific integration use cases by connecting to predefined APIs to route and map data. Mapping has been pre-defined, but it can be customized.
 
-**Native API framework** is used for Maximo and enabled thorugh provided packages that can be imported.
+**Native API framework** is used for TAS and enabled thorugh provided packages that can be imported.
 
-![TRIRIGA-Envizi Integration](https://media.github.ibm.com/user/348712/files/fdc31706-9350-4aee-a909-e10d2bb0f3c7)
+![TAS-Envizi Integration](https://media.github.ibm.com/user/348712/files/fdc31706-9350-4aee-a909-e10d2bb0f3c7)
 
-*TRIRIGA to Envizi Integration Diagram*
+*TAS to Envizi Integration Diagram*
 
 ***
 
@@ -32,7 +32,7 @@ The image below illustrates the type of data that is being sent by the API and A
 
 <img width="450" height="650" alt="TAS-Envizi Architecture" src="https://media.github.ibm.com/user/348712/files/b21644cd-0b16-450e-aff4-1720bc8cea43">
 
-*TRIRIGA to Envizi Data Map*
+*TAS to Envizi Data Map*
 
 ***
 
@@ -42,8 +42,8 @@ Included with this connector are two flows that export locations and accounts, a
 
 File | Flow | Destination | Operation
 -- | -- |--|--
-TririgaBuildings_Always_On_v1_1_1.yaml | Space Data | TRI to Envizi | Changes Only
-TririgaBuildings_On_Demand_v1_1_1.yaml | Space Data | TRI to Envizi | Bulk Initial Load
+TririgaBuildings_Always_On_v1_1_1.yaml | Space Data | TAS to Envizi | Changes Only
+TririgaBuildings_On_Demand_v1_1_1.yaml | Space Data | TAS to Envizi | Bulk Initial Load
 
 ***
 
@@ -53,34 +53,38 @@ TririgaBuildings_On_Demand_v1_1_1.yaml | Space Data | TRI to Envizi | Bulk Initi
 >## Before you begin you will need:
 >
 >1. An instance of App Connect Enterprise or App Connect Pro with the Designer component.
->2. Admin access to TRIRIGA with user/pw for integration
+>2. Admin access to TAS with user/pw for integration
 >3. Envizi instance with a AWS S3 Bucket
->4. [Import AppConnect Cert to TRIRIGA](#tririga-certificates) to enable encrypted communication
+>4. [Import AppConnect Cert to TAS](#tas-certificates) to enable encrypted communication
 
+
+## Downloadable Resources
+
+Download the [zip file](https://github.com/IBM/tririga-envizi-appconnect-flows/releases/tag/v1.0.1) that has all of the flows and configuration files.
 ***
 
 ## Installation Steps Overview
 1. App Connect Configuration<br>
    a. Import Flows into App Connect<br>
    b. Configure Flows<br>
-2. TRIRIGA <br>
+2. TAS <br>
    a. Security Role Configuration<br>
    b. Group Name Configuration<br>
 3. Test <br>
-   a. TRIRIGA outbound connectivity<br>
+   a. TAS outbound connectivity<br>
 
 ***
 
 ## Part 1: App Connect Configuration
 
-*Note: IBM Cloud App Connect Professional or Enterprise is needed to run this flow.*
+*Note: IBM App Connect Professional or Enterprise is needed to run this flow. The flows have been tested on IBM Cloud App Connect, AWS App Connect, as well as the containerized version of App Connect.*
 
 *Note: The names in the screenshots are generic, the elements in this integration will not have the same names during setup.*
 
 
 ### Adding Accounts
 
-Before importing the flow to App Connect, add Accounts for **Amazon S3** and **HTTP** connectors. While adding the HTTP connector account, include credentials for the TRIRIGA user which can consume the OSLC API.
+Before importing the flow to App Connect, add Accounts for **Amazon S3** and **HTTP** connectors. While adding the HTTP connector account, include credentials for the TAS user which can consume the OSLC API.
 
 1. Navigate to Catalog section of the App Connect instance
 <img width="960" alt="Create Account 1" src="https://media.github.ibm.com/user/375131/files/eb8b5a00-eb1d-11ec-8401-35b47d561ce4">
@@ -94,7 +98,7 @@ Before importing the flow to App Connect, add Accounts for **Amazon S3** and **H
 
 - Enter the necessary details for the connector<br>
     a. For Amazon S3, it will be the Secret Access Key and Access Key ID provided by Envizi.<br>
-    b. For HTTP, it will be the Authentication Key or username and password needed for TRIRIGA.
+    b. For HTTP, it will be the Authentication Key or username and password needed for TAS.
 <img width="960" alt="Create Account 3" src="https://media.github.ibm.com/user/348712/files/07bdaf7e-7538-46e8-aaff-27b6acfb8738">
 *Connect to S3/HTTP*
 
@@ -155,38 +159,27 @@ When importing a flow, it is important to check if the flow is using the right a
 <img width="659" alt="Scheduler configuration 2" src="https://media.github.ibm.com/user/375131/files/00c3d900-01ef-11ed-86aa-29008ff86450">
 *Options for configuration- Daily*
 
-## Part 2: TRIRIGA Configuration
+## Part 2: TAS Configuration
 
-### Step 1: Security Role Configuration
-In order to properly configure TRIRIGA, a user needs to be configured with the proper security access for Object Migration and TRIRIGA APIs
-
-#### Object Migration Access
-
-Object Migration is a task managed by administrators. If a TRIRIGA User needs to have full access to Object Migration in TRIRIGA, access is granted at the group level. Follow the steps given in [Chapter 1](https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf) to create a new security group.
-
-1. Select the newly created group or desired existing group and switch to the **Access** tab and add the appropriate access for importation of Object Migration Packages. There are 2 panes in **Access**: **Object** and **Permissions**. 
-2. Scroll and find the Object Migration Object on the left pane and click **Full Access** on the right pane. The users in this group, granted through the Members tab, will be able to import the TRIRIGA API Object Migration package. 
-
-<img width="1002" alt="Access Permissions" src="https://media.github.ibm.com/user/348712/files/baf46d80-1a45-11ed-924e-acda1e9bfe24">
-
-*Access Permissions*
-
-
-Additional information on [TRIRIGA Security groups](https://www.ibm.com/docs/en/tap/3.6.1?topic=security-groups) 
+### Step 1: Initial TAS Configuration
 
 #### Import OM Package
 
-Import the OM Package labeled *APIConnector* into the TRIRIGA instance. Go to **Tools -> Administration -> Object Migration** and select **New Import Package** to begin the import process.
+Go to **Tools -> Administration -> Object Migration** and select **New Import Package**. Select the OM Package labeled *APIConnector* into the TAS instance. In the pop-up window, select **Validate** to validate that the package can be imported properly and then **Import** to start the import process
 
-Please refer to the [IBM® TRIRIGA documentation](https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview ) for more information on Object Migration.
+Please refer to the [IBM® TAS documentation](https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview ) for more information on Object Migration.
 
-#### TRIRIGA API User Access
+#### TAS API User Access
 
-In order for App Connect to be able to use TRIRIGA APIs, it will need a user with certain permissions. These user's credentials will be configured in App Connect.
+In order for App Connect to be able to use TAS APIs, it will need a user with certain permissions. These user's credentials will be configured in App Connect.
 
-1. Create a new user by following the steps given in [Chapter 2](https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf).
+1. Create an integration user by following the steps given in [Chapter 2](https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf). This user should be a non-admin user and not part of the Admin security group.
 
-- Choose a security group or create a new group (refer to [the above OM Migration steps](#object-migration-access) if a new security group needs to be created) and add the newly created user to it.
+- Assign that user to a new or existing group for the integration. If you need to create a new security group, follow the steps given in [Chapter 1](https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf).
+
+- Add the "TAS Base License" to the **License Details** section on the user Profile.
+
+- Select the newly created group or desired existing group and switch to the **Access** tab and add the appropriate access for the integration.
 
 - Add the permissions below for the new user's group:
 
@@ -194,45 +187,9 @@ In order for App Connect to be able to use TRIRIGA APIs, it will need a user wit
   |---------------|-------------------------|--------------------|
   | Location      |     triBuilding         |     Read           |
   | triAPIConnect |     triAPICTimestamp    | Read and Update    |
-  
-  
-- Follow the steps given in [Chapter 1](https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf) and add **any one of the licenses below** for the new user's group:<br>
-  a. IBM TRIRIGA Portfolio Data Manager<br>
-  b. IBM Facilities and Real Estate Management on Cloud Self Service<br>
-  c. Any other license that grants access to the modules
 
-Please refer to the [TRIRIGA Documentation on Security and Licenses](https://www.ibm.com/docs/en/tap/3.6.1?topic=platform-license-files) for additional information.
-  
-The user will now be able to interact with the proper TRIRIGA Modules.
-
-#### Outbound Traffic from TRIRIGA
-
-For outbound traffic from TRIRIGA, grant at least READ access on the Business Objects that will be used. The table below shows the various supported business Objects the API can pull from: 
-
-Module | Business Object Label
---|--
-Asset | [Building Equipment](https://github.com/IBM/tririga-api/blob/main/markdowns/Asset.md)
-Classification | [Request Class](https://github.com/IBM/tririga-api/blob/main/markdowns/RequestClass.md)
-Classification | [Space Class Current](https://github.com/IBM/tririga-api/blob/main/markdowns/SpaceClass.md)
-Classification | [Asset Spec Class](https://github.com/IBM/tririga-api/blob/main/markdowns/AssetSpecClass.md)
-People | [People](https://github.com/IBM/tririga-api/blob/main/markdowns/People.md)
-Location |[Property](https://github.com/IBM/tririga-api/blob/main/markdowns/Property.md)
-Location |[Building](https://github.com/IBM/tririga-api/blob/main/markdowns/Building.md)
-Location |[Floor](https://github.com/IBM/tririga-api/blob/main/markdowns/Floor.md)
-Location |[Space](https://github.com/IBM/tririga-api/blob/main/markdowns/Space.md)
-Organization |[Organization](https://github.com/IBM/tririga-api/blob/main/markdowns/Organization.md)
-Request |[Service Request](https://github.com/IBM/tririga-api/blob/main/markdowns/ServiceRequest.md)
-Task |[Work Task](https://github.com/IBM/tririga-api/blob/main/markdowns/WorkTask.md)
-
-In the example below, the API user is able to pull data from the Building Business Object: 
-
-<img width="1097" alt="Outbound Business Object" src="https://media.github.ibm.com/user/348712/files/e5633b80-3b58-11ed-81a4-46540898ff50">
-
-#### Inbound traffic to TRIRIGA
-
-For inbound traffic, Data Access needs to be enabled as well as Application Access permissions to the **triAPIConnect Module** or the individual Objects. To enable an API user to create a building, grant access to the triAPICBuilding Business object as shown below: 
-
-<img width="1000" alt="Inbound Traffic Business Object" src="https://media.github.ibm.com/user/348712/files/e5633b80-3b58-11ed-842e-cea368ad86dd">
+ 
+The user will now be able to interact with the proper TAS Modules.
 
 #### Minimum requirements
 
@@ -307,7 +264,7 @@ the **cstEnvizi** tab to the second position and click **Apply**
 
 1. Go to **Tools -> Administration -> Security Manager**
 
-- This application sets who can and cannot access this newly created tab. Click on the desired group, and navigate to the **Access** tab
+- This application sets who can and cannot access this newly created tab. Click on (*Insert new created group name here*) group, and navigate to the **Access** tab
 
 - On this tab select **Location -> triBuilding -> cstEnvizi**
 
@@ -346,7 +303,7 @@ Click on the **Start** task at the top and publish the workflow
 
 #### Navigation Builder
 
-1. Go to **Tools->Builder Tools-> Navigation Builder** and find TRIRIGA Global Menu (or the menu associated to the user that will need access to the app). Select and click **Edit**
+1. Go to **Tools->Builder Tools-> Navigation Builder** and find TAS Global Menu (or the menu associated to the user that will need access to the app). Select and click **Edit**
 <img width="700" alt="Navigation-builder-1" src="https://media.github.ibm.com/user/348712/files/27c34480-3a95-11ed-89ca-17ce43fdeb1d">
 
 - On navigation Items section, expand **Landing Page –Tools -> Menu Group –>System Setup**. Select **Menu group –>Integration** and expand **Navigations Item Library**
@@ -356,24 +313,6 @@ Click on the **Start** task at the top and publish the workflow
 <img width="414" alt="Navigation-builder-3" src="https://media.github.ibm.com/user/348712/files/272aae00-3a95-11ed-8777-57d9809f75dd">
 
 - Click **Save**. Logout and Login again to the system
-
-#### Time Stamp Pre-requisite
-
-The triAPICTimestamp is a TRIRIGA record needed to set the baseline for when API connect runs for the first time. 
-
-To enable this functionality:
-
-1. Go to **My Reports -> System Reports** and search for **Timestamp** in the **Name** section.
-2. Run the system report **triAPICTimestamp – Display – Manager Query** as shown below:
-<img width="1792" alt="Time-Stamp-1" src="https://media.github.ibm.com/user/348712/files/e5fbd200-3b58-11ed-8cb3-21aef581d0d3">
- 
-3. Click **Add**, and create a new record without details, as shown below, and close it
-
-<img width="800" alt="Time-Stamp-2" src="https://media.github.ibm.com/user/348712/files/6a495780-3b4f-11ed-940d-137135ba303d">
-
-The default date and time the record gets automatically applied to the record, and consequent opening of the record shows the default date and time as shown below:
-
-<img width="800" alt="Time-Stamp-3" src="https://media.github.ibm.com/user/348712/files/69b0c100-3b4f-11ed-95fc-1848213524cf">
 
 #### Using the Integration
 
@@ -387,7 +326,7 @@ Enable Envizi checkbox is available too. The Envizi tab will be displayed only w
 
 One more item that must be configured is the Number of levels to be used on the Envizi configuration. Envizi hierarchy path will match this selection.
 
-<img width="900" alt="How-to-use" src="https://media.github.ibm.com/user/348712/files/21cd6380-3a95-11ed-800d-aa0c22556421">
+<img width="900" alt="How-to-use" src="https://media.github.ibm.com/user/348712/files/46f543c2-d118-4c98-8445-ed3e945d5dae">
 
 Also, notice that there is a section named **Active/Retire with missing data** and **Draft/Revision with Missing Data**. This section will list the buildings that don’t have data defined for Envizi group 3, so it means that no Envizi group will be populated on those buildings.
 
@@ -427,7 +366,7 @@ This flow is to keep syncing the data after the initial sync. This flow is meant
 *Fields in the initial Set variable node*
 
 - In **Variable -> config -> customer**, enter the value provided by Envizi
-- In **Variable -> config -> triURL**, enter URL for the TRIRIGA instance. (e.g., https://example.com:9080)
+- In **Variable -> config -> triURL**, enter URL for the TAS instance. (e.g., https://example.com:9080)
 
 
 ### Starting and Stopping the flow
@@ -442,7 +381,7 @@ This flow is to keep syncing the data after the initial sync. This flow is meant
 
 ## Part 3: Testing
 
-A good way to test the TRIRIGA Outbound connectivity is to use the *Always_On* flow.
+A good way to test the TAS Outbound connectivity is to use the *Always_On* flow.
 
 1. Start the *Always_On* flow and add a test building in the system.
 - If configured correctly, the integration should pick up this change and deliver a .csv file with just that test building.
@@ -451,23 +390,24 @@ See [below](#common-errors-that-arise-from-tririga) for any errors that arise in
 
 ## Troubleshooting
 
-### Common errors that arise from TRIRIGA
+### Common errors that arise from TAS
  
 The below errors are found in the App Connect logs.
 
  Error | Cause | Resolution
  -- |-- |--
  404 - The HTTP request returned with an error 404 "Not Found" | Incorrect App Connect connector config | Double check that the credentials being used in the HTTP post node in App Connect are correct
+ 401 - Authorization error | Too many user sessions open in TAS | Open the Admin dashboard on the TAS environment and check the Users logged in. This issue can arise after a number of requests are made to TAS and then gives a 401 error even with the proper credentials. Clear the users logged in and the issue should clear.
  
- - If these do not resolve the issue, try clearing the OSLC Cache in TRIRIGA Admin Console in case the integrations do not work in intended manner.
+ - If these do not resolve the issue, try clearing the OSLC Cache in TAS Admin Console in case the integrations do not work in intended manner.
  
 
 
 ## Reference for Pre-requisite
 
-### TRIRIGA Certificates
+### TAS Certificates
 
-> **Note** If you have not already done so, please import App Connect Cert to TRIRIGA to enable encrypted communication. Provide the Cert from App Connect as a secret to the instance of TAS as such:
+> **Note** If you have not already done so, please import App Connect Cert to TAS to enable encrypted communication. Provide the Cert from App Connect as a secret to the instance of TAS as such:
 
 ```
 cat <<EOF | oc create -f -
@@ -502,3 +442,39 @@ spec:
 EOF        
 
 ```
+This must then be added as the truststore to the TAS instance. In the Custom Resource Definition for TAS, update the `spec.integration.truststore` field to reference the name of the created truststore. If there already is a truststore for TAS, update the Truststore resource to include the certificate with an additional alias.
+
+## Field Mapping
+
+### Buildings
+
+
+| CSV Headers       | TAS Fields             | Comments                                                                                                               |
+|-------------------|----------------------------|------------------------------------------------------------------------------------------------------------------------|
+| CITY              | spi:triCityTX              |                                                                                                                        |
+| COUNTRY           | spi:triCountryTX           |                                                                                                                        |
+| DESCRIPTION       | spi:triDescriptionTX       |                                                                                                                        |
+| GROUPNAME1        | spi:cstEnviziParentOneTX   | Value for this field will be available only after Location Hierarchy mapping for Envizi groups is completed on TAS |
+| GROUPNAME2        | spi:cstEnviziParentTwoTX   | Value for this field will be available only after Location Hierarchy mapping for Envizi groups is completed on TAS |
+| GROUPNAME3        | spi:cstEnviziParentThreeTX | Value for this field will be available only after Location Hierarchy mapping for Envizi groups is completed on TAS |
+| LATITUDEY         | spi:triGisLatitudeNU       |                                                                                                                        |
+| LOCATION          | spi:triNameTX              |                                                                                                                        |
+| LOCATIONCLOSEDATE | spi:triActiveEndDA         |                                                                                                                        |
+| LOCATIONID        | spi:triIdTX                |                                                                                                                        |
+| LONGITUDEX        | spi:triGisLongitudeNU      |                                                                                                                        |
+| POSTALCODE        | spi:triZipPostalTX         |                                                                                                                        |
+| STATEPROVINCE     | spi:triStateProvTX         |                                                                                                                        |
+| STREETADDRESS     | spi:triAddressTX           |                                                                                                                        |
+
+### Accounts
+
+| CSV Header    | TAS Field                                        | Comment |
+|---------------|------------------------------------------------------|---------|
+| ACCOUNT       | spi:triIdTX + ("_HEADCOUNT" or "_FLOORAREA")         |         |
+| DATATYPE      | "HEADCOUNT" or "FLOORAREA"                           |         |
+| LOCATION      | spi:triNameTX                                        |         |
+| LOCATIONID    | spi:triIdTX                                          |         |
+| MEASUREUNITID | spi:triAreaUO                                        |         |
+| METERNAME     | "HEADCOUNT" or "FLOORAREA"                           |         |
+| READING       | spi:triHeadcountNU or spi:triTotalAreaOccupiedCalcNU |         |
+| READINGDATE   | spi:triModifiedSY                                    |         |

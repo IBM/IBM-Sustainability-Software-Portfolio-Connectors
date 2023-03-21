@@ -43,33 +43,20 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                <li class="toctree-l1"><a class="reference internal" href="..">Sustainability Software Portfolio Connectors</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">IBM MAS Connector for TRIRIGA</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">Overview</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas/">Portfolio Data Integration</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request Integration</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../work-order/">Work Order Integration</a>
-                  </li>
+                <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">IBM MAS Connector for TRIRIGA</a>
+                </li>
               </ul>
-              <p class="caption"><span class="caption-text">IBM MAS Connector for Envizi</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../max-envizi-index/">Overview</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../maximo-envizi/">IBM Maximo Application Suite Connector for Envizi</a>
-                  </li>
+                <li class="toctree-l1"><a class="reference internal" href="../max-envizi-index/">IBM MAS Connector for Envizi</a>
+                </li>
               </ul>
-              <p class="caption"><span class="caption-text">IBM TAS Connector for Envizi</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../tas-envizi-index/">Overview</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../tririga-envizi/">IBM Tririga Application Suite Connector for Envizi</a>
-                  </li>
+                <li class="toctree-l1"><a class="reference internal" href="../tas-envizi-index/">IBM TAS Connector for Envizi</a>
+                </li>
               </ul>
       </div>
     </div>
@@ -128,30 +115,58 @@
 <h2 id="security-role-configuration">Security Role Configuration</h2>
 <p>In order to properly configure Tririga, a user needs to be configured with the proper security access for Object Migration and Tririga APIs</p>
 <h3 id="object-migration-access">Object Migration Access</h3>
-<p>Object Migration is a task managed by administrators. If a Tririga User needs to have full access to Object Migration in Tririga, access is granted at the group level. Follow the steps given in Chapter 1 <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">here</a> to create a new security group.</p>
-<p>Select the newly created group or desired existing group and switch to the 'Access' tab and add the appropriate access for importation of Object Migration Packages. There are 2 panes in 'Access': Object and Permissions. Scroll and find the Object Migration Object on the left pane and click 'Full Access' on the right pane.</p>
+<p>Object Migration is a task managed by administrators. If a Tririga User needs to have full access to Object Migration in Tririga, access is granted at the group level. Follow the steps given in <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">Chapter 1</a> to create a new security group.</p>
+<ol>
+<li>Select the newly created group or desired existing group and switch to the <strong>Access</strong> tab and add the appropriate access for importation of Object Migration Packages. There are 2 panes in <strong>Access</strong>: <strong>Object</strong> and <strong>Permissions</strong>. </li>
+<li>Scroll and find the Object Migration Object on the left pane and click <strong>Full Access</strong> on the right pane. The users in this group, granted through the Members tab, will be able to import the Tririga API Object Migration package. </li>
+</ol>
 <p><img width="1002" alt="Access Permissions" src="https://media.github.ibm.com/user/348712/files/baf46d80-1a45-11ed-924e-acda1e9bfe24"></p>
-<p>The users in this group, granted through the Members tab, will be able to import the Tririga API Object Migration package. </p>
-<p>Additional information on Tririga Security groups can be found here: </p>
-<p>https://www.ibm.com/docs/en/tap/3.6.1?topic=security-groups </p>
+<p><em>Access Permissions</em></p>
+<p>Additional information on <a href="https://www.ibm.com/docs/en/tap/3.6.1?topic=security-groups">Tririga Security groups</a> </p>
 <h3 id="import-om-package">Import OM Package</h3>
-<p>Import the most recent <a href="https://github.com/IBM/tririga-api/tree/main/docs/ompackages">OM Package</a> into the Tririga instance. Go to Tools -&gt; Administration -&gt; Object Migration and select 'New Import Package' to begin the import process.</p>
-<p>Please refer to official IBM® Tririga documentation for more information on Object Migration: </p>
-<p>https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview  </p>
+<p>Import the most recent <a href="https://github.com/IBM/tririga-api/tree/main/docs/ompackages">OM Package</a> into the Tririga instance. Go to <strong>Tools -&gt; Administration -&gt; Object Migration</strong> and select <strong>New Import Package</strong> to begin the import process.</p>
+<p>Please refer to <a href="https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview">official IBM® Tririga documentation</a> for more information on Object Migration</p>
 <h3 id="tririga-api-user-access">Tririga API User Access</h3>
-<p>In order for AppConnect to be able to use Tririga APIs, it will need a user with certain permissions. These user's credentials will be configured in AppConnect.</p>
-<p>Create a new user by following the steps given in Chapter 2 <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">here</a>.</p>
+<p>In order for AppConnect to be able to use Tririga APIs, it will need a user with certain permissions. These user's credentials will be configured in App Connect.</p>
+<ol>
+<li>
+<p>Create a new user by following the steps given in <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">Chapter 2</a>.</p>
+</li>
+<li>
 <p>Choose a security group or create a new group (refer to <a href="#object-migration-access">the above OM Migration steps</a> if a new security group needs to be created) and add the newly created user to it.</p>
-<p>Add the permissions below for the new user's group:
-  | Module        |     Business Object     |     Permissions    |
-  |---------------|-------------------------|--------------------|
-  | Location      |     triBuilding         |     Read           |
-  | triAPIConnect |     triAPICTimestamp    | Read and Update    |</p>
-<p>Follow the steps given in Chapter 1 <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">here</a> and add <strong>any one of the licenses below</strong> for the new user's group:
-  - IBM TRIRIGA Portfolio Data Manager
-  - IBM Facilities and Real Estate Management on Cloud Self Service
-  - Any other license that grants access to the modules</p>
-<p>Please refer to the TRIRIGA Documentation on Security and Licenses by following this link: https://www.ibm.com/docs/en/tap/3.6.1?topic=platform-license-files  </p>
+</li>
+<li>
+<p>Add the permissions below for the new user's group:</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Business Object</th>
+<th>Permissions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Location</td>
+<td>triBuilding</td>
+<td>Read</td>
+</tr>
+<tr>
+<td>triAPIConnect</td>
+<td>triAPICTimestamp</td>
+<td>Read and Update</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Follow the steps given in <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">Chapter 1</a> and add <strong>any one of the licenses below</strong> for the new user's group:<br>
+  a. IBM TRIRIGA Portfolio Data Manager<br>
+  b. IBM Facilities and Real Estate Management on Cloud Self Service<br>
+  c. Any other license that grants access to the modules</li>
+</ul>
+<p>Please refer to the <a href="https://www.ibm.com/docs/en/tap/3.6.1?topic=platform-license-files">TRIRIGA Documentation on Security and Licenses</a> for additional information.</p>
 <p>The user will now be able to interact with the proper Tririga Modules.</p>
 <h3 id="outbound-traffic-from-tririga">Outbound Traffic from Tririga</h3>
 <p>For outbound traffic from Tririga, grant at least READ access on the Business Objects that will be used. The table below shows the various supported business Objects the API can pull from: </p>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/tas-envizi-index/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Overview - IBM Sustainability Software Portfolio Connectors</title>
+    <title>IBM TAS Connector for Envizi - IBM Sustainability Software Portfolio Connectors</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Overview";
+        var mkdocs_page_name = "IBM TAS Connector for Envizi";
         var mkdocs_page_input_path = "tas-envizi-index.md";
         var mkdocs_page_url = "/IBM-Sustainability-Software-Portfolio-Connectors/tas-envizi-index/";
       </script>
@@ -43,38 +43,37 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                <li class="toctree-l1"><a class="reference internal" href="..">Sustainability Software Portfolio Connectors</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">IBM MAS Connector for TRIRIGA</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">Overview</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas/">Portfolio Data Integration</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request Integration</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../work-order/">Work Order Integration</a>
-                  </li>
+                <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">IBM MAS Connector for TRIRIGA</a>
+                </li>
               </ul>
-              <p class="caption"><span class="caption-text">IBM MAS Connector for Envizi</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../max-envizi-index/">Overview</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../maximo-envizi/">IBM Maximo Application Suite Connector for Envizi</a>
-                  </li>
+                <li class="toctree-l1"><a class="reference internal" href="../max-envizi-index/">IBM MAS Connector for Envizi</a>
+                </li>
               </ul>
-              <p class="caption"><span class="caption-text">IBM TAS Connector for Envizi</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Overview</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">IBM TAS Connector for Envizi</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    <li class="toctree-l2"><a class="reference internal" href="#use-case-examples">Use Case Examples</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    <li class="toctree-l2"><a class="reference internal" href="#connector-architecture">Connector Architecture</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#tririga-configuration">TRIRIGA Configuration</a>
+    <li class="toctree-l2"><a class="reference internal" href="#data-mapping">Data Mapping</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#app-connect-configuration">App Connect Configuration</a>
+    <li class="toctree-l2"><a class="reference internal" href="#app-connect-flows">App Connect Flows</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-configuration-guide">Installation &amp; Configuration Guide</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#before-you-begin-you-will-need">Before you begin you will need:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#downloadable-resources">Downloadable Resources</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-steps-overview">Installation Steps Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-1-app-connect-configuration">Part 1: App Connect Configuration</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#adding-accounts">Adding Accounts</a>
     </li>
@@ -86,10 +85,76 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-2-tas-configuration">Part 2: TAS Configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#step-1-initial-tas-configuration">Step 1: Initial TAS Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#import-om-package">Import OM Package</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tas-api-user-access">TAS API User Access</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#minimum-requirements">Minimum requirements</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-2-group-name-configuration">Step 2: Group Name Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data-modeler">Data Modeler</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#form-builder">Form Builder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#object-migration">Object Migration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#security-manager">Security Manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#workflow-builder">Workflow Builder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#my-reports-and-oslc">My Reports and OSLC</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#navigation-builder">Navigation Builder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#using-the-integration">Using the Integration</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#operating-the-connector">Operating the Connector</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#on-demand-flow">On-demand Flow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#always-on-flow">Always-On Flow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuring-the-flow-parameters">Configuring the Flow Parameters</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#starting-and-stopping-the-flow">Starting and Stopping the flow</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-3-testing">Part 3: Testing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#common-errors-that-arise-from-tas">Common errors that arise from TAS</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reference-for-pre-requisite">Reference for Pre-requisite</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#tas-certificates">TAS Certificates</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#field-mapping">Field Mapping</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#buildings">Buildings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#accounts">Accounts</a>
+    </li>
+        </ul>
+    </li>
     </ul>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../tririga-envizi/">IBM Tririga Application Suite Connector for Envizi</a>
-                  </li>
+                </li>
               </ul>
       </div>
     </div>
@@ -105,8 +170,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>IBM TAS Connector for Envizi &raquo;</li>
-      <li>Overview</li>
+      <li>IBM TAS Connector for Envizi</li>
     <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/tas-envizi-index.md"
           class="icon icon-github"> Edit on GitHub</a>
@@ -118,20 +182,81 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="ibm-tas-connector-for-envizi">IBM TAS Connector for Envizi</h1>
-<h2 id="overview">Overview</h2>
-<p>Enable on-demand and scheduled synchronization of location data between TRIRIGA and Envizi systems.</p>
-<p><img alt="Tririga-Envizi integration" src="https://media.github.ibm.com/user/375131/files/1a642100-01ed-11ed-8151-31e573db3664" /></p>
-<p><em>TRIRIGA to Envizi Integration Diagram</em></p>
-<h2 id="prerequisites">Prerequisites</h2>
-<p>This integration requires running instances of TRIRIGA, App Connect, and Envizi. </p>
-<h2 id="tririga-configuration">TRIRIGA Configuration</h2>
-<p>Before App Connect flow is configured, the OM package needs to be installed on the TRIRIGA instance.</p>
-<p>Follow the <a href="../tririga-configuration/">documentation</a> for detailed instructions.</p>
-<h2 id="app-connect-configuration">App Connect Configuration</h2>
-<p><em>Note: IBM Cloud App Connect Professional or Enterprise is needed to run this flow.</em></p>
+<p>The <strong>IBM TAS Connector for Envizi</strong> is released under the name "TAS Connector for Envizi". This connector supports the following capabilities through an App Connect flow:</p>
+<p>-Automatically sync space and occupancy data from TAS with Envizi to enable energy usage calculations across entire facility portfolio with advanced analytics by location, by SQF, and by occupant.</p>
+<hr />
+<h2 id="use-case-examples">Use Case Examples</h2>
+<p>Corporate sustainability managers can gather and maintain accurate sustainability data for their entire global real estate portfolio directly from TAS where those facilities are managed. Location data from TAS serves as a baseline for all other Sustainability reports in Envizi; space classification, floor space, and headcount data allows Sustainability managers to normalize data (by square meter, or by employee) to enable meaningful comparisons between buildings across the entire portfolio to identify opportunities to reduce environmental impact.</p>
+<hr />
+<h2 id="connector-architecture">Connector Architecture</h2>
+<p><strong>IBM App Connect</strong> provides a flexible environment for integration solutions to transform, enrich, route, and process business messages and data. </p>
+<p><strong>App Connect Flows</strong> enable specific integration use cases by connecting to predefined APIs to route and map data. Mapping has been pre-defined, but it can be customized.</p>
+<p><strong>Native API framework</strong> is used for TAS and enabled thorugh provided packages that can be imported.</p>
+<p><img alt="TAS-Envizi Integration" src="https://media.github.ibm.com/user/348712/files/fdc31706-9350-4aee-a909-e10d2bb0f3c7" /></p>
+<p><em>TAS to Envizi Integration Diagram</em></p>
+<hr />
+<h2 id="data-mapping">Data Mapping</h2>
+<p>The image below illustrates the type of data that is being sent by the API and App Connect Flows.</p>
+<p><img width="450" height="650" alt="TAS-Envizi Architecture" src="https://media.github.ibm.com/user/348712/files/b21644cd-0b16-450e-aff4-1720bc8cea43"></p>
+<p><em>TAS to Envizi Data Map</em></p>
+<hr />
+<h2 id="app-connect-flows">App Connect Flows</h2>
+<p>Included with this connector are two flows that export locations and accounts, along with all the required fields they contain. The table below shows the naming convention for these flows and the current integration use case.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Flow</th>
+<th>Destination</th>
+<th>Operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TririgaBuildings_Always_On_v1_1_1.yaml</td>
+<td>Space Data</td>
+<td>TAS to Envizi</td>
+<td>Changes Only</td>
+</tr>
+<tr>
+<td>TririgaBuildings_On_Demand_v1_1_1.yaml</td>
+<td>Space Data</td>
+<td>TAS to Envizi</td>
+<td>Bulk Initial Load</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="installation-configuration-guide">Installation &amp; Configuration Guide</h2>
+<blockquote>
+<h2 id="before-you-begin-you-will-need">Before you begin you will need:</h2>
+<ol>
+<li>An instance of App Connect Enterprise or App Connect Pro with the Designer component.</li>
+<li>Admin access to TAS with user/pw for integration</li>
+<li>Envizi instance with a AWS S3 Bucket</li>
+<li><a href="#tas-certificates">Import AppConnect Cert to TAS</a> to enable encrypted communication</li>
+</ol>
+</blockquote>
+<h2 id="downloadable-resources">Downloadable Resources</h2>
+<p>Download the <a href="https://github.com/IBM/tririga-envizi-appconnect-flows/releases/tag/v1.0.1">zip file</a> that has all of the flows and configuration files.</p>
+<hr />
+<h2 id="installation-steps-overview">Installation Steps Overview</h2>
+<ol>
+<li>App Connect Configuration<br>
+   a. Import Flows into App Connect<br>
+   b. Configure Flows<br></li>
+<li>TAS <br>
+   a. Security Role Configuration<br>
+   b. Group Name Configuration<br></li>
+<li>Test <br>
+   a. TAS outbound connectivity<br></li>
+</ol>
+<hr />
+<h2 id="part-1-app-connect-configuration">Part 1: App Connect Configuration</h2>
+<p><em>Note: IBM App Connect Professional or Enterprise is needed to run this flow. The flows have been tested on IBM Cloud App Connect, AWS App Connect, as well as the containerized version of App Connect.</em></p>
 <p><em>Note: The names in the screenshots are generic, the elements in this integration will not have the same names during setup.</em></p>
 <h3 id="adding-accounts">Adding Accounts</h3>
-<p>Before importing the flow to App Connect, add Accounts for "Amazon S3" and "HTTP" connectors. While adding the HTTP connector account, include credentials for the Tririga user which can consume the OSLC API.</p>
+<p>Before importing the flow to App Connect, add Accounts for <strong>Amazon S3</strong> and <strong>HTTP</strong> connectors. While adding the HTTP connector account, include credentials for the TAS user which can consume the OSLC API.</p>
 <ol>
 <li>
 <p>Navigate to Catalog section of the App Connect instance
@@ -142,24 +267,19 @@
 <p>In the <strong>Search application</strong> field, type name of the connector.</p>
 </li>
 <li>
-<p>If the App Connect instance does not have an account for the connector, click on <strong>Connect</strong> to create a new account
-<img width="960" alt="Create Account 2a" src="https://media.github.ibm.com/user/375131/files/ec23f080-eb1d-11ec-9f62-af1addec3fd3">
-<em>Create Account 2</em></p>
-</li>
-<li>
-<p>Else, open the account selection drop down, and click on <strong>Add a new account ...</strong>
-<img width="948" alt="Create Account 2b" src="https://media.github.ibm.com/user/375131/files/ecbc8700-eb1d-11ec-9693-4ce83ffda2e6">
+<p>If the App Connect instance does not have an account for the connector, click on <strong>Connect</strong> to create a new account. Else, open the account selection drop down, and click on <strong>Add a new account ...</strong>
+<img width="948" alt="Create Account 2b" src="https://media.github.ibm.com/user/348712/files/02ef8867-555d-4949-a87b-5ffc68d5dca2">
 <em>Add a New Account</em></p>
 </li>
 <li>
 <p>Enter the necessary details for the connector<br>
     a. For Amazon S3, it will be the Secret Access Key and Access Key ID provided by Envizi.<br>
-    b. For HTTP, it will be the Authentication Key or username and password needed for Tririga.
-<img width="960" alt="Create Account 3" src="https://media.github.ibm.com/user/375131/files/ed551d80-eb1d-11ec-9894-350e87fbb2b2">
+    b. For HTTP, it will be the Authentication Key or username and password needed for TAS.
+<img width="960" alt="Create Account 3" src="https://media.github.ibm.com/user/348712/files/07bdaf7e-7538-46e8-aaff-27b6acfb8738">
 <em>Connect to S3/HTTP</em></p>
 </li>
 <li>
-<p>Click on Connect
+<p>Click on <strong>Connect</strong>
 <img width="960" alt="Create Account 4" src="https://media.github.ibm.com/user/375131/files/ed551d80-eb1d-11ec-983c-c276d43e0654">
 <em>Connect the Account</em></p>
 </li>
@@ -168,7 +288,7 @@
 </li>
 <li>
 <p>Click on the kebab menu (three dots) and select <strong>Rename Account</strong>
-<img width="960" alt="Create Account 5" src="https://media.github.ibm.com/user/375131/files/ededb400-eb1d-11ec-9a29-fd9fa65dbf8b">
+<img width="960" alt="Create Account 5" src="https://media.github.ibm.com/user/348712/files/f0d73883-70c5-4892-a996-fae0cd33a00f">
 <em>Rename the Account step 1</em></p>
 </li>
 <li>
@@ -207,12 +327,12 @@
 </li>
 <li>
 <p>To change the account for any connector, select the connector and click on the dropdown icon next to the Account's name
-<img width="960" alt="Select Account 1" src="https://media.github.ibm.com/user/375131/files/11186380-eb1e-11ec-9c92-5f892df61a57">
+<img width="960" alt="Select Account 1" src="https://media.github.ibm.com/user/348712/files/e61b9ed4-61ab-4782-b0c4-a42bb432467b">
 <em>Change associated Account</em></p>
 </li>
 <li>
 <p>Select the account name to use from the list
-<img width="659" alt="Select Account 2" src="https://media.github.ibm.com/user/375131/files/11b0fa00-eb1e-11ec-88fd-8e4998f6304a">
+<img width="659" alt="Select Account 2" src="https://media.github.ibm.com/user/348712/files/52de25b1-d449-4aa8-a1d7-2b6af7e8b24e">
 <em>Select desired Account</em></p>
 </li>
 </ol>
@@ -231,6 +351,501 @@
 <em>Options for configuration- Hourly</em>
 <img width="659" alt="Scheduler configuration 2" src="https://media.github.ibm.com/user/375131/files/00c3d900-01ef-11ed-86aa-29008ff86450">
 <em>Options for configuration- Daily</em></p>
+<h2 id="part-2-tas-configuration">Part 2: TAS Configuration</h2>
+<h3 id="step-1-initial-tas-configuration">Step 1: Initial TAS Configuration</h3>
+<h4 id="import-om-package">Import OM Package</h4>
+<p>Go to <strong>Tools -&gt; Administration -&gt; Object Migration</strong> and select <strong>New Import Package</strong>. Select the OM Package labeled <em>APIConnector</em> into the TAS instance. In the pop-up window, select <strong>Validate</strong> to validate that the package can be imported properly and then <strong>Import</strong> to start the import process</p>
+<p>Please refer to the <a href="https://www.ibm.com/docs/en/tap/3.6.1?topic=objects-object-migration-overview">IBM® TAS documentation</a> for more information on Object Migration.</p>
+<h4 id="tas-api-user-access">TAS API User Access</h4>
+<p>In order for App Connect to be able to use TAS APIs, it will need a user with certain permissions. These user's credentials will be configured in App Connect.</p>
+<ol>
+<li>
+<p>Create an integration user by following the steps given in <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">Chapter 2</a>. This user should be a non-admin user and not part of the Admin security group.</p>
+</li>
+<li>
+<p>Assign that user to a new or existing group for the integration. If you need to create a new security group, follow the steps given in <a href="https://www.ibm.com/docs/en/SSFCZ3_11.2/pdf/pdf_tri_app_admin.pdf">Chapter 1</a>.</p>
+</li>
+<li>
+<p>Add the "TAS Base License" to the <strong>License Details</strong> section on the user Profile.</p>
+</li>
+<li>
+<p>Select the newly created group or desired existing group and switch to the <strong>Access</strong> tab and add the appropriate access for the integration.</p>
+</li>
+<li>
+<p>Add the permissions below for the new user's group:</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Business Object</th>
+<th>Permissions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Location</td>
+<td>triBuilding</td>
+<td>Read</td>
+</tr>
+<tr>
+<td>triAPIConnect</td>
+<td>triAPICTimestamp</td>
+<td>Read and Update</td>
+</tr>
+</tbody>
+</table>
+<p>The user will now be able to interact with the proper TAS Modules.</p>
+<h4 id="minimum-requirements">Minimum requirements</h4>
+<p>For users to pull from these URLs, the minimum requirements are:</p>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET /oslc/spq/triAPICOutboundBuildingQC</td>
+<td>READ access to triBuilding Business object</td>
+</tr>
+<tr>
+<td>GET /oslc/spq/triAPICTimeStampQC</td>
+<td>READ access to triAPICTimestamp Business Object</td>
+</tr>
+<tr>
+<td>POST /oslc/so/triAPICTimeStampRS/<ID></td>
+<td>Write access to triAPICTimestamp Business Object</td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-2-group-name-configuration">Step 2: Group Name Configuration</h3>
+<p>The following steps outline the necessary configurations for the Envizi Group Name Configuration page.</p>
+<h4 id="data-modeler">Data Modeler</h4>
+<ol>
+<li>
+<p>Go to <strong>Tools -&gt; Builder Tools -&gt; Data Modeler</strong> and using the Object Browser navigate to <strong>Location-&gt;triBuilding</strong>.</p>
+</li>
+<li>
+<p>Revise the BO and add four fields: <strong>cstEnviziParentOneTX</strong>, <strong>cstEnviziParentTwoTX</strong>,
+<strong>cstEnviziParentThreeTX</strong> and <strong>cstEnviziGroupNamePathTX</strong></p>
+</li>
+</ol>
+<p><img width="512" alt="Data Modeler Fields" src="https://media.github.ibm.com/user/348712/files/3ddd5780-09b5-11ed-9014-fbd85b21e6eb"></p>
+<p>Name and Label should be the following:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cstEnviziParentOneTX</td>
+<td>Envizi Group 1</td>
+</tr>
+<tr>
+<td>cstEnviziParentTwoTX</td>
+<td>Envizi Group 2</td>
+</tr>
+<tr>
+<td>cstEnviziParentThreeTX</td>
+<td>Envizi Group 3</td>
+</tr>
+<tr>
+<td>cstEnviziGroupNamePathTX</td>
+<td>Envizi Path</td>
+</tr>
+</tbody>
+</table>
+<p>After entering these values, click <strong>Publish</strong> to publish the BO</p>
+<h4 id="form-builder">Form Builder</h4>
+<ol>
+<li>
+<p>Under <strong>Tools -&gt; Builder Tools -&gt; Form Builder</strong>, click on the Location module on the left side of the screen and then click on <strong>triBuilding</strong>.</p>
+</li>
+<li>
+<p>Revise the triBuilding form by clicking <strong>Revise</strong> in the top right corner of the pop-up</p>
+</li>
+<li>
+<p>In the Navigation pane on the left side of the screen, click on <strong>triBuilding</strong> and then <strong>Add Tab</strong>. Enter <strong>cstEnvizi</strong> as the <strong>Name</strong> and <strong>Envizi</strong> as the Label. Click <strong>Apply</strong></p>
+</li>
+<li>
+<p>Select this new tab and click on <strong>Add Section</strong></p>
+</li>
+<li>
+<p>Enter <strong>cstEnviziDetails</strong> as the <strong>Name</strong> and <strong>Envizi Details</strong> as the <strong>Label</strong>. Click <strong>Apply</strong>.</p>
+</li>
+<li>
+<p>Now click on the newly created Section and select <strong>Add Field</strong>. Select each of the four created business objects from the previous step as fields under <strong>Envizi Details</strong>.</p>
+</li>
+<li>
+<p>Select <strong>cstEnviziGroupNamePathTX</strong> and modify <strong>Start Row</strong> to 3 and <strong>Col Span</strong> to 2 on the
+properties window. Mark this field as <strong>ReadOnly</strong> and click <strong>Apply</strong>. The form should look like this:</p>
+</li>
+</ol>
+<p><img width="1028" alt="Form Builder" src="https://media.github.ibm.com/user/348712/files/4f266400-09b5-11ed-9ca4-4253b2fa9baa">
+8. Click on <strong>triBuilding</strong> on the left panel and then click on <strong>Sort Tab</strong>. Move
+the <strong>cstEnvizi</strong> tab to the second position and click <strong>Apply</strong></p>
+<p><img width="256" alt="Form Builder Properties" src="https://media.github.ibm.com/user/348712/files/4f266400-09b5-11ed-8a73-f526a24a86db">
+9. Publish the form</p>
+<h4 id="object-migration">Object Migration</h4>
+<ol>
+<li>
+<p>Go to <strong>Import Migration</strong> and import package EnviziConfig.zip</p>
+</li>
+<li>
+<p>To do that, click on New Import Package, and select the zip file and click Ok.</p>
+</li>
+<li>
+<p>A new window will be displayed. If it is not displayed, just select the package from the list.</p>
+</li>
+<li>
+<p>On this package, click on <strong>Validate</strong> and wait for the validation to complete. If no errors are displayed, import the package.</p>
+</li>
+</ol>
+<h4 id="security-manager">Security Manager</h4>
+<ol>
+<li>
+<p>Go to <strong>Tools -&gt; Administration -&gt; Security Manager</strong></p>
+</li>
+<li>
+<p>This application sets who can and cannot access this newly created tab. Click on (<em>Insert new created group name here</em>) group, and navigate to the <strong>Access</strong> tab</p>
+</li>
+<li>
+<p>On this tab select <strong>Location -&gt; triBuilding -&gt; cstEnvizi</strong></p>
+</li>
+<li>
+<p>Choose the access level for the group and <strong>Save</strong></p>
+</li>
+</ol>
+<p><img width="423" alt="Security Manager Access" src="https://media.github.ibm.com/user/348712/files/4fbefa80-09b5-11ed-99e5-b92fca943ddf"></p>
+<h4 id="workflow-builder">Workflow Builder</h4>
+<ol>
+<li>
+<p>Go to <strong>Tools -&gt; Builder Tools -&gt; Workflow Builder</strong>. Select <strong>Location -&gt; triBuilding</strong>.</p>
+</li>
+<li>
+<p>Within the Location object, search for the existing Workflow <strong>triBuilding - Synchronous - Permanent Save Validation</strong>.</p>
+</li>
+<li>
+<p>Revise this workflow and after Call Module Level Validation add a new WF
+call to <strong>triBuilding - Update Envizi fields with defined options</strong> like displayed below:</p>
+</li>
+</ol>
+<p><img width="736" alt="WF call in Update Envizi Path" src="https://media.github.ibm.com/user/348712/files/374fdf80-09b7-11ed-8f47-3c588b667a58"></p>
+<p>It will be defined as the image below:</p>
+<p><img width="1062" alt="Call Envizi" src="https://media.github.ibm.com/user/348712/files/478e2400-4e19-11ed-81eb-e5462bbcdff1"></p>
+<p>Click on the <strong>Start</strong> task at the top and publish the workflow</p>
+<h4 id="my-reports-and-oslc">My Reports and OSLC</h4>
+<ol>
+<li>
+<p>Go to <strong>My Reports</strong> and navigate to <strong>System Reports</strong>. Add those four new fields to the existing query
+<strong>triAPICBuilding - OSLC -- Outbound</strong> by clicking the <strong>Columns</strong> tab and adding the four fields like below:
+<img width="800" alt="System-Report-Columns" src="https://media.github.ibm.com/user/348712/files/f0d51a00-4e19-11ed-9e28-a658b12af215"></p>
+</li>
+<li>
+<p>Save the report.</p>
+</li>
+<li>
+<p>Open <strong>Tools -&gt; System Setup -&gt; Integration -&gt; OSLC Resource manager</strong> and search for <strong>triAPICOutboundBuildingRS</strong>. On this resource, add the four new fields either individually or using <strong>Import all Fields</strong></p>
+</li>
+</ol>
+<p><img width="683" alt="OSLC Manager" src="https://media.github.ibm.com/user/348712/files/73387400-09ba-11ed-912f-569fce1dc420"></p>
+<h4 id="navigation-builder">Navigation Builder</h4>
+<ol>
+<li>
+<p>Go to <strong>Tools-&gt;Builder Tools-&gt; Navigation Builder</strong> and find TAS Global Menu (or the menu associated to the user that will need access to the app). Select and click <strong>Edit</strong>
+<img width="700" alt="Navigation-builder-1" src="https://media.github.ibm.com/user/348712/files/27c34480-3a95-11ed-89ca-17ce43fdeb1d"></p>
+</li>
+<li>
+<p>On navigation Items section, expand <strong>Landing Page –Tools -&gt; Menu Group –&gt;System Setup</strong>. Select <strong>Menu group –&gt;Integration</strong> and expand <strong>Navigations Item Library</strong>
+<img width="700" alt="Navigation-builder-2" src="https://media.github.ibm.com/user/348712/files/272aae00-3a95-11ed-85a2-1cb9a42d6900"></p>
+</li>
+<li>
+<p>Search for Envizi, select the item and click on <strong>Add to Collection</strong>
+<img width="414" alt="Navigation-builder-3" src="https://media.github.ibm.com/user/348712/files/272aae00-3a95-11ed-8777-57d9809f75dd"></p>
+</li>
+<li>
+<p>Click <strong>Save</strong>. Logout and Login again to the system</p>
+</li>
+</ol>
+<h4 id="using-the-integration">Using the Integration</h4>
+<p>This tool will allow user to make changes on this new Envizi group name fields. But we must consider the existing records too. If you want those records to be populated, there is a patch helper workflow that can handle that.</p>
+<p>The first thing that must be defined is which fields will be used to populate groups 1, 2 and 3 to be used on Envizi. To access the Envizi tool, go to <strong>Tools -&gt; System Setup -&gt; Integration -&gt; Envizi Integation</strong>.</p>
+<p>When you open the page, the fields will be displayed as Group1/Group2/Group3. By default the values are World Region/Country/City. The field Envizi Hierarchy Path shows how the Envizi groupnames will be configured according to the selected option. </p>
+<p>Enable Envizi checkbox is available too. The Envizi tab will be displayed only when this checkbox is marked</p>
+<p>One more item that must be configured is the Number of levels to be used on the Envizi configuration. Envizi hierarchy path will match this selection.</p>
+<p><img width="900" alt="How-to-use" src="https://media.github.ibm.com/user/348712/files/46f543c2-d118-4c98-8445-ed3e945d5dae"></p>
+<p>Also, notice that there is a section named <strong>Active/Retire with missing data</strong> and <strong>Draft/Revision with Missing Data</strong>. This section will list the buildings that don’t have data defined for Envizi group 3, so it means that no Envizi group will be populated on those buildings.</p>
+<p>You can filter to change only the desired records by changing query <strong>cst -triBuilding -Query -Get All Buildings for envizi</strong>. The list of buildings displayed on this query will be the list of buildings that the patch helper will modify.</p>
+<p>To use the tool, just select the desired Envizi group names and click <strong>Save</strong>. On the moment Save is triggered, all buildings will be populated with the desired options. This process may take a few minutes depending on how many buildings you have on your system. After that Envizi groups and path will be updated according to the selections made on Envizi Integration page.</p>
+<p><img width="900" alt="How-to-use-2" src="https://media.github.ibm.com/user/348712/files/27c34480-3a95-11ed-9dc8-b6347de21bee"></p>
+<p>Also, every time a building is saved and there are changes on the defined fields, or a new building is created, the Envizi groups and path will be modified according to the selected options. You can find the groups on tab Envizi on the building record</p>
+<h2 id="operating-the-connector">Operating the Connector</h2>
+<h4 id="on-demand-flow">On-demand Flow</h4>
+<p>This flow is for the initial sync or to sync data that was added/updated between specific dates. This flow is meant to be executed just once whenever needed and then stopped.</p>
+<ol>
+<li>The following parameters in the initial <strong>Set variable</strong> node need to be configured in order to use this flow:
+<img alt="Set variable configuration" src="https://media.github.ibm.com/user/375131/files/06799700-0932-11ed-90c4-5842714c7033" />
+<em>Override Dates in Set Variable</em></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OverrideFromDate</td>
+<td>The start timestamp of the window between which the data will be pulled from. e.g., <code>2022-06-26T23:09:30-07:00</code></td>
+</tr>
+<tr>
+<td>OverrideToDate</td>
+<td>The end timestamp of the window between which the data will be pulled from. e.g., <code>2023-06-26T23:09:30-07:00</code></td>
+</tr>
+</tbody>
+</table>
+<p><i><strong>These dates must be specified in ISO 8601 format</strong></i></p>
+<h4 id="always-on-flow">Always-On Flow</h4>
+<p>This flow is to keep syncing the data after the initial sync. This flow is meant to be kept running and will only sync the data that has been added or updated after its previous execution event. For example, if the flow executes at 2 PM and it's previous execution was at 1 PM, the flow will pull data that has been added or updated after 1 PM.</p>
+<h4 id="configuring-the-flow-parameters">Configuring the Flow Parameters</h4>
+<ol>
+<li>
+<p>Click on the initial <strong>Set variable</strong> node
+<img alt="Set variable configuration" src="https://media.github.ibm.com/user/375131/files/06799700-0932-11ed-90c4-5842714c7033" />
+<em>Fields in the initial Set variable node</em></p>
+</li>
+<li>
+<p>In <strong>Variable -&gt; config -&gt; customer</strong>, enter the value provided by Envizi</p>
+</li>
+<li>In <strong>Variable -&gt; config -&gt; triURL</strong>, enter URL for the TAS instance. (e.g., https://example.com:9080)</li>
+</ol>
+<h3 id="starting-and-stopping-the-flow">Starting and Stopping the flow</h3>
+<ol>
+<li>
+<p>Click on the kebab menu (three dots) on either the flow's tile or the specific flow page.
+<img width="656" alt="Flow start 1" src="https://media.github.ibm.com/user/375131/files/5be4ac00-eb1b-11ec-85b0-b7b2d400a7e1">
+<em>Start the flow from the dashboard</em>
+<img width="959" alt="Flow start 2" src="https://media.github.ibm.com/user/375131/files/5be4ac00-eb1b-11ec-93f2-4031220e144f">
+<em>Start the flow from the page</em></p>
+</li>
+<li>
+<p>Click on <strong>Start API</strong> or <strong>Stop API</strong> depending on which action is desired.</p>
+</li>
+</ol>
+<h2 id="part-3-testing">Part 3: Testing</h2>
+<p>A good way to test the TAS Outbound connectivity is to use the <em>Always_On</em> flow.</p>
+<ol>
+<li>Start the <em>Always_On</em> flow and add a test building in the system.</li>
+<li>If configured correctly, the integration should pick up this change and deliver a .csv file with just that test building.</li>
+</ol>
+<p>See <a href="#common-errors-that-arise-from-tririga">below</a> for any errors that arise in App Connect.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-errors-that-arise-from-tas">Common errors that arise from TAS</h3>
+<p>The below errors are found in the App Connect logs.</p>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>404 - The HTTP request returned with an error 404 "Not Found"</td>
+<td>Incorrect App Connect connector config</td>
+<td>Double check that the credentials being used in the HTTP post node in App Connect are correct</td>
+</tr>
+<tr>
+<td>401 - Authorization error</td>
+<td>Too many user sessions open in TAS</td>
+<td>Open the Admin dashboard on the TAS environment and check the Users logged in. This issue can arise after a number of requests are made to TAS and then gives a 401 error even with the proper credentials. Clear the users logged in and the issue should clear.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>If these do not resolve the issue, try clearing the OSLC Cache in TAS Admin Console in case the integrations do not work in intended manner.</li>
+</ul>
+<h2 id="reference-for-pre-requisite">Reference for Pre-requisite</h2>
+<h3 id="tas-certificates">TAS Certificates</h3>
+<blockquote>
+<p><strong>Note</strong> If you have not already done so, please import App Connect Cert to TAS to enable encrypted communication. Provide the Cert from App Connect as a secret to the instance of TAS as such:</p>
+</blockquote>
+<pre><code>cat &lt;&lt;EOF | oc create -f -
+apiVersion: truststore-mgr.ibm.com/v1
+kind: Truststore
+metadata:
+    name: my-tas-truststore
+spec:
+    license:
+        accept: true
+    includeDefaultCAs: true
+    servers:
+    - &quot;example.com:443&quot;
+    certificates:
+    - alias: alias_1 
+      crt: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        Certificate 1   
+        ...
+        -----END CERTIFICATE-----
+
+        ...
+
+    - alias: alias_n 
+      crt: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        Certificate n   
+        ...
+        -----END CERTIFICATE-----
+EOF        
+
+</code></pre>
+<p>This must then be added as the truststore to the TAS instance. In the Custom Resource Definition for TAS, update the <code>spec.integration.truststore</code> field to reference the name of the created truststore. If there already is a truststore for TAS, update the Truststore resource to include the certificate with an additional alias.</p>
+<h2 id="field-mapping">Field Mapping</h2>
+<h3 id="buildings">Buildings</h3>
+<table>
+<thead>
+<tr>
+<th>CSV Headers</th>
+<th>TAS Fields</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CITY</td>
+<td>spi:triCityTX</td>
+<td></td>
+</tr>
+<tr>
+<td>COUNTRY</td>
+<td>spi:triCountryTX</td>
+<td></td>
+</tr>
+<tr>
+<td>DESCRIPTION</td>
+<td>spi:triDescriptionTX</td>
+<td></td>
+</tr>
+<tr>
+<td>GROUPNAME1</td>
+<td>spi:cstEnviziParentOneTX</td>
+<td>Value for this field will be available only after Location Hierarchy mapping for Envizi groups is completed on TAS</td>
+</tr>
+<tr>
+<td>GROUPNAME2</td>
+<td>spi:cstEnviziParentTwoTX</td>
+<td>Value for this field will be available only after Location Hierarchy mapping for Envizi groups is completed on TAS</td>
+</tr>
+<tr>
+<td>GROUPNAME3</td>
+<td>spi:cstEnviziParentThreeTX</td>
+<td>Value for this field will be available only after Location Hierarchy mapping for Envizi groups is completed on TAS</td>
+</tr>
+<tr>
+<td>LATITUDEY</td>
+<td>spi:triGisLatitudeNU</td>
+<td></td>
+</tr>
+<tr>
+<td>LOCATION</td>
+<td>spi:triNameTX</td>
+<td></td>
+</tr>
+<tr>
+<td>LOCATIONCLOSEDATE</td>
+<td>spi:triActiveEndDA</td>
+<td></td>
+</tr>
+<tr>
+<td>LOCATIONID</td>
+<td>spi:triIdTX</td>
+<td></td>
+</tr>
+<tr>
+<td>LONGITUDEX</td>
+<td>spi:triGisLongitudeNU</td>
+<td></td>
+</tr>
+<tr>
+<td>POSTALCODE</td>
+<td>spi:triZipPostalTX</td>
+<td></td>
+</tr>
+<tr>
+<td>STATEPROVINCE</td>
+<td>spi:triStateProvTX</td>
+<td></td>
+</tr>
+<tr>
+<td>STREETADDRESS</td>
+<td>spi:triAddressTX</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="accounts">Accounts</h3>
+<table>
+<thead>
+<tr>
+<th>CSV Header</th>
+<th>TAS Field</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACCOUNT</td>
+<td>spi:triIdTX + ("_HEADCOUNT" or "_FLOORAREA")</td>
+<td></td>
+</tr>
+<tr>
+<td>DATATYPE</td>
+<td>"HEADCOUNT" or "FLOORAREA"</td>
+<td></td>
+</tr>
+<tr>
+<td>LOCATION</td>
+<td>spi:triNameTX</td>
+<td></td>
+</tr>
+<tr>
+<td>LOCATIONID</td>
+<td>spi:triIdTX</td>
+<td></td>
+</tr>
+<tr>
+<td>MEASUREUNITID</td>
+<td>spi:triAreaUO</td>
+<td></td>
+</tr>
+<tr>
+<td>METERNAME</td>
+<td>"HEADCOUNT" or "FLOORAREA"</td>
+<td></td>
+</tr>
+<tr>
+<td>READING</td>
+<td>spi:triHeadcountNU or spi:triTotalAreaOccupiedCalcNU</td>
+<td></td>
+</tr>
+<tr>
+<td>READINGDATE</td>
+<td>spi:triModifiedSY</td>
+<td></td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div><footer>
@@ -259,10 +874,8 @@
         </span>
     
     
-      <span><a href="../maximo-envizi/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../max-envizi-index/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../tririga-envizi/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

@@ -43,81 +43,20 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                <li class="toctree-l1"><a class="reference internal" href="..">Sustainability Software Portfolio Connectors</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">IBM MAS Connector for TRIRIGA</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">Overview</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../mas-tas/">Portfolio Data Integration</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../service-request/">Service Request Integration</a>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Work Order Integration</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#description">Description</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pre-requisites">Pre-requisites</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#maximo">Maximo</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#1-application-designer">1. Application Designer</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#app-connect">App Connect</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#tririga">TRIRIGA</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-1-create-a-work-order">Step 1. Create a Work Order</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#maximo-to-tririga">Maximo to TRIRIGA</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#a-labor">A. Labor</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#b-materials">B. Materials</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#c-services">C. Services</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#d-tools">D. Tools</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#tririga-to-maximo">TRIRIGA to Maximo</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#maximo_1">Maximo</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#app-connect_1">App Connect</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#tririga_1">TRIRIGA</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">IBM MAS Connector for Envizi</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../max-envizi-index/">Overview</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../maximo-envizi/">IBM Maximo Application Suite Connector for Envizi</a>
-                  </li>
+                <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">IBM MAS Connector for TRIRIGA</a>
+                </li>
               </ul>
-              <p class="caption"><span class="caption-text">IBM TAS Connector for Envizi</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../tas-envizi-index/">Overview</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../tririga-envizi/">IBM Tririga Application Suite Connector for Envizi</a>
-                  </li>
+                <li class="toctree-l1"><a class="reference internal" href="../max-envizi-index/">IBM MAS Connector for Envizi</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tas-envizi-index/">IBM TAS Connector for Envizi</a>
+                </li>
               </ul>
       </div>
     </div>
@@ -133,7 +72,6 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>IBM MAS Connector for TRIRIGA &raquo;</li>
       <li>Work Order Integration</li>
     <li class="wy-breadcrumbs-aside">
         <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/work-order.md"
@@ -167,7 +105,7 @@
 <p>This configuration assumes the completion of the pre-requisites and steps outlined in the <a href="https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/mas-tas-home/">Maximo &lt;-&gt; TRIRIGA code pattern</a> for those steps.</p>
 <h3 id="maximo">Maximo</h3>
 <p>Within Maximo, a change to the Work Order Application is needed to see additional fields.</p>
-<h4 id="1-application-designer">1. Application Designer</h4>
+<h4 id="work-order">Work Order</h4>
 <p><img src="https://media.github.ibm.com/user/348712/files/f46b8600-3806-11ed-8a5d-43e6c8db4760" alt="App Designer" ></p>
 <p><em>Work Order Application Designer</em></p>
 <p>Go to <strong>System Configuration -&gt; Platform Configuration -&gt; Application Designer</strong></p>
@@ -417,10 +355,6 @@
         </span>
     
     
-      <span><a href="../service-request/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../max-envizi-index/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
