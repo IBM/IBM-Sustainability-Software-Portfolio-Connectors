@@ -81,7 +81,7 @@ PLUSITRIASSETBATCH_v1_0_0.yaml | Batch Assets | TRI to Max | Batch
 >### Before you begin you will need:
 >
 >1. An instance of App Connect Enterprise or App Connect Pro with the Designer component.
->2. Admin access to your Maximo instance with an API key generated for this integration
+>2. Admin access to your Maximo instance with an API key generated for this integration. Storage will need to be properly configured to store the images as they are coming in. Refer to the [Doclinks](https://www.ibm.com/docs/en/maximo-manage/continuous-delivery?topic=documents-configuring-system-properties-persistent-storage) setup page
 >3. TRIRIGA with dedicated user/pw for this integration
 >4. Secure connection between TRIRIGA, App Connect, and Maximo. If required IBM does provides a product that accomplishes this: Secure Gateway. Learn more about getting started with [Secure Gateway.](https://cloud.ibm.com/docs/SecureGateway?topic=SecureGateway-getting-started-with-sg)
 >5. [Import AppConnect Cert to Maximo](#pre-requisite-add-an-app-connect-certificate-in-mas-89) to enable encrypted communication
@@ -525,6 +525,16 @@ Search for **WOTRACK** in Application Designer
 |Textbox | External Ref ID | EXTERNALREFID (*From the WorkOrder Object*) | N/A | N/A | N/A
 
 Click **Save Definition** after the changes are added.
+
+### 8. Service Request Attachment Changes
+
+As part of the MAS 8.11 release, the Service Request integration supports Attachments from TAS. This includes pictures or images that are attached as either Comments or Attachments in TAS.
+
+Some configuration will need to be done in order to allow for this.
+
+1. 
+2. 
+3. 
 
 ***
 
