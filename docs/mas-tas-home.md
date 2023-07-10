@@ -550,6 +550,30 @@ To test that the configuration is complete, send a test payload in order to test
 ### TAS
 Use a tool like POSTMan to test the connectivity of the App Connect flow. You can use a Sample JSON Payload from this [open source repository](https://github.com/IBM/tririga-api). 
 
+## Part 6: Using the Integration
+
+Now that the configuration is complete, the integration is able to be used. In order for the integrations to work properly, certain data must be present on the environment for the payloads to be sent properly.
+
+### Maximo to TAS
+
+Integration | Pre-requisite flow data needed | Flows to run 
+--|--|--
+MXPerson2TRI | A person needs to belong to an organization and a location within TRIRIGA |TRISpace2MX, TRILocPath2MX, TRIOrg2MX
+MXAsset2TRI | An asset needs to belong to an organization and a location within TRIRIGA as well as have an asset specification | TRISpace2MX, TRILocPath2MX, TRIOrg2MX, TRIAssetSpec2MX
+MXLocation2TRI | A location needs to belong to an floor within TRIRIGA as well as have an space classification | TRILocPath2MX, TRISpaceClass2MX
+MXServiceReq2TRI | A service request needs a location, a requested by/for user, as well as a request classification | TRILocPath2MX, TRIReqClass2MX, TRIPerson2MX
+MXWorkOrder2TRI | A work order needs a location and an organization | TRILocPath2MX, TRIOrg2MX
+
+### TAS to Maximo
+
+Integration | Pre-requisite flow data needed | Flows to run 
+--|--|--
+TRIPerson2MX | A person needs to belong to a valid organization and a location within Maximo domains | TRISpace2MX, TRILocPath2MX, TRIOrg2MX
+TRIAsset2MX | An asset needs to belong to an organization and a location within Maximo domains as well as have an asset specification | TRISpace2MX, TRILocPath2MX, TRIOrg2MX, TRIAssetSpec2MX
+TRISpace2MX | A location needs to belong to an floor within TRIRIGA as well as have an space classification | TRILocPath2MX, TRISpaceClass2MX
+TRIServiceReq2MX | A service request needs a location, a requested by/for user, as well as a request classification | TRILocPath2MX, TRIReqClass2MX, TRIPerson2MX
+TRIWorkOrder2MX | A work order needs a location and an organization | TRILocPath2MX, TRIOrg2MX
+
 ## Troubleshooting
 
 Depending on the direction of the flow, cross-referencing errors from two systems can help identify the root cause of an issue with the integration. For example:
