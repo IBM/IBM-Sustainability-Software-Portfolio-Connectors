@@ -526,15 +526,36 @@ Search for **WOTRACK** in Application Designer
 
 Click **Save Definition** after the changes are added.
 
-### 8. Service Request Attachment Changes
+### 8. TAS to Maximo Service Request Comment & Attachment Support
 
-As part of the MAS 8.11 release, the Service Request integration supports Attachments from TAS. This includes pictures or images that are attached as either Comments or Attachments in TAS.
+The PLUSITRIServiceRequest2MX_v_1_1_0 integration supports both Comments and Attachments from TAS. This includes pictures or images that are attached as either Comments or Attachments in TAS.
 
 Some configuration will need to be done in order to allow for this.
 
-1. 
-2. 
-3. 
+#### DB Config
+
+1. Go to Database Configuration and pull up the WORKLOG object.
+- Add 'EXTERNALREFID' as an Attribute with a type ALN and 50 length.
+- Turn on Admin Mode and Run Database Configuration for this change as it will need to be referenced in the Index.
+- Once EXTERNALREFID has been added, navigate to Indexes and add the index 'PLUSIEXTREF'. Under the Columns table make sure to reference the EXTERNALREFID that was just created as well as to leave 'Enforce Uniqueness' unchecked.
+- Turn on Admin Mode and run Database Configuration again to have these changes take effect.
+
+#### Object Structure
+
+1. Navigate to Object Structure and find MXSR. Duplicate this Object Structure and rename it PLUSISRDOCS.
+- Add two new Source Objects to the Structure underneath SR: "DOCLINKS" and "WORKLOG". Make sure the Relationships match with the following image.
+
+<img>
+- Select the WORKLOG Source Object and in the 'Details' section add the 'PLUSIEXTREF' Index to the Alternate Key field. Then navigate to Exclude/Include Fields. Click on Non-Persistent Fields in the window and make sure 'Description_LongDescription' is selected as Included.
+
+#### Enterprise Services
+
+1. Now that the changes are made in database and object structure level, they need to be referenced by the Enterprise Service. To do this, duplicate the Default PLUSISR Enterprise Service and name this new one 'PLUSISRDOCS' that references the newly created Object Structure.
+- Remove the default PLUSISR Enterprise Service from the PLUSITRIRIGA External System in order to Delete the Enterprise Service. Once deleted, duplicate PLUSISRDOCS and name it PLUSISR to replace the deleted Enterprise Service.
+- Add the new PLUSISR back into the External System.
+
+
+Now when a Service Request comes in with a comment or attachment, Maximo will keep track of the comments in the Worklog and images/documents in the Attachments.
 
 ***
 
@@ -550,29 +571,31 @@ To test that the configuration is complete, send a test payload in order to test
 ### TAS
 Use a tool like POSTMan to test the connectivity of the App Connect flow. You can use a Sample JSON Payload from this [open source repository](https://github.com/IBM/tririga-api). 
 
-## Part 6: Using the Integration
+## Part 6: Data Pre-requisites for the Integrations
 
-Now that the configuration is complete, the integration is able to be used. In order for the integrations to work properly, certain data must be present on the environment for the payloads to be sent properly.
+Because of internal references within the TRIRIGA and Maximo data models some flows depend on other flows to function. The following tables describe these relationships. You will need to run the pre-requisite flows first before running the main flows.
 
 ### Maximo to TAS
 
-Integration | Pre-requisite flow data needed | Flows to run 
---|--|--
-MXPerson2TRI | A person needs to belong to an organization and a location within TRIRIGA |TRISpace2MX, TRILocPath2MX, TRIOrg2MX
-MXAsset2TRI | An asset needs to belong to an organization and a location within TRIRIGA as well as have an asset specification | TRISpace2MX, TRILocPath2MX, TRIOrg2MX, TRIAssetSpec2MX
-MXLocation2TRI | A location needs to belong to an floor within TRIRIGA as well as have an space classification | TRILocPath2MX, TRISpaceClass2MX
-MXServiceReq2TRI | A service request needs a location, a requested by/for user, as well as a request classification | TRILocPath2MX, TRIReqClass2MX, TRIPerson2MX
-MXWorkOrder2TRI | A work order needs a location and an organization | TRILocPath2MX, TRIOrg2MX
+Flow | Flows to run first
+--|--
+MXPerson2TRI | TRISpace2MX, TRILocPath2MX, TRIOrg2MX
+MXAsset2TRI | TRISpace2MX, TRILocPath2MX, TRIOrg2MX, TRIAssetSpec2MX
+MXLocation2TRI | TRILocPath2MX, TRISpaceClass2MX
+MXServiceReq2TRI | TRILocPath2MX, TRIReqClass2MX, TRIPerson2MX
+MXWorkOrder2TRI | TRILocPath2MX, TRIOrg2MX
 
 ### TAS to Maximo
 
-Integration | Pre-requisite flow data needed | Flows to run 
---|--|--
-TRIPerson2MX | A person needs to belong to a valid organization and a location within Maximo domains | TRISpace2MX, TRILocPath2MX, TRIOrg2MX
-TRIAsset2MX | An asset needs to belong to an organization and a location within Maximo domains as well as have an asset specification | TRISpace2MX, TRILocPath2MX, TRIOrg2MX, TRIAssetSpec2MX
-TRISpace2MX | A location needs to belong to an floor within TRIRIGA as well as have an space classification | TRILocPath2MX, TRISpaceClass2MX
-TRIServiceReq2MX | A service request needs a location, a requested by/for user, as well as a request classification | TRILocPath2MX, TRIReqClass2MX, TRIPerson2MX
-TRIWorkOrder2MX | A work order needs a location and an organization | TRILocPath2MX, TRIOrg2MX
+Flow |  Flows to run first
+--|--
+TRIPerson2MX | TRISpace2MX, TRILocPath2MX, TRIOrg2MX
+TRIAsset2MX | TRISpace2MX, TRILocPath2MX, TRIOrg2MX, TRIAssetSpec2MX
+TRISpace2MX | TRILocPath2MX, TRISpaceClass2MX
+TRIServiceReq2MX | TRILocPath2MX, TRIReqClass2MX, TRIPerson2MX
+TRIWorkOrder2MX | TRILocPath2MX, TRIOrg2MX
+
+
 
 ## Troubleshooting
 
