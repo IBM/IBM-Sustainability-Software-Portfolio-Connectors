@@ -324,10 +324,10 @@ For inbound traffic, Data Access needs to be enabled as well as Application Acce
 
 Within Maximo, configure your instance to be ready to receive records from TAS. If these pre-requisites are not completed, the action will not be recorded.
 
-#### 1. Create an Organization named TAS
+#### 1. Create an Organization named TRIRIGA
  
 a. Navigate to the **Organizations** page and click the blue + button on the top row.<br>
-b. Fill in the Organization name with TAS and the description as "TAS Organization".<br>
+b. Fill in the Organization name with TRIRIGA and the description as "TAS Organization".<br>
 c. Fill in the remaining required fields as such:
   
   Field Name | Value
@@ -354,8 +354,8 @@ GL Component Value| **1001**
 Description| **Testing**
 Active?| **Yes**
 
-c. Click **OK**. Click **New Row** under GL Accounts for TAS and click the magnifying glass to search for that GL Component. Select it and it should populate in the GL Account and Description fields. The Active Date field should auto populate to the current date.<br>
-d. Now that this account is present, head back to **Organizations** and update the TAS organization to show the just created Clearing Account, tick the Active box, and click **Save Organization**.<br>
+c. Click **OK**. Click **New Row** under GL Accounts for TRIRIGA and click the magnifying glass to search for that GL Component. Select it and it should populate in the GL Account and Description fields. The Active Date field should auto populate to the current date.<br>
+d. Now that this account is present, head back to **Organizations** and update the TRIRIGA organization to show the just created Clearing Account, tick the Active box, and click **Save Organization**.<br>
  
 #### 3. Create a site TRIMAIN and set it to active 
  
@@ -506,7 +506,7 @@ Search for **SR** in Application Designer
 |Type of Control | Label | Attribute | Attribute for Part 2 (*If Multipart Textbox*) | Lookup | Input Mode for Part 2 (*If Multipart Textbox*)
 |--|--|--|--|--|--|
 | Multipart Textbox |TAS Request Classification | PLUSIREQCLASSID | PLUSIREQCLASS.DESCRIPTION | VALUELIST | Readonly
-| Multipart Textbox |TAS Space Classification | PLUSISPACECLASSIFICATION | PLUSISPCCLASSIFICATION.DESCRIPTION | VALUELIST | Readonly
+| Multipart Textbox |TAS Primary Organization | PLUSIORGPATH | PLUSIORGANIZATIONPATH.DESCRIPTION | VALUELIST | Readonly
 | Multipart Textbox | TAS Parent Location | PLUSIPARENTLOCATION | PLUSIPARENTPATH.DESCRIPTION | VALUELIST | Readonly
 |Textbox | TAS Record ID | EXTERNALREFID (*From the Ticket Object*) | N/A | N/A | N/A
 
@@ -594,7 +594,9 @@ TRIAsset2MX | TRISpace2MX, TRILocPath2MX, TRIOrg2MX, TRIAssetSpec2MX
 TRISpace2MX | TRILocPath2MX, TRISpaceClass2MX
 TRIServiceReq2MX | TRILocPath2MX, TRIReqClass2MX, TRIPerson2MX
 TRIWorkOrder2MX | TRILocPath2MX, TRIOrg2MX
-
+PeopleBatch | TRISpace2MX, TRILocPath2MX, TRIOrg2MX
+AssetBatch | TRISpace2MX, TRILocPath2MX, TRIOrg2MX, TRIAssetSpec2MX
+SpaceBatch | TRILocPath2MX, TRISpaceClass2MX
 
 
 ## Troubleshooting
