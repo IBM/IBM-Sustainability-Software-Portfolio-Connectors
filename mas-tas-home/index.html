@@ -115,7 +115,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#part-4-maximo-configuration">Part 4. Maximo Configuration</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#1-create-an-organization-named-tas">1. Create an Organization named TAS</a>
+    <li class="toctree-l3"><a class="reference internal" href="#1-create-an-organization-named-tririga">1. Create an Organization named TRIRIGA</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#2-create-a-testing-clearing-account-in-chart-of-accounts">2. Create a Testing clearing account in Chart of Accounts</a>
     </li>
@@ -147,6 +147,16 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8-tas-to-maximo-service-request-comment-attachment-support">8. TAS to Maximo Service Request Comment &amp; Attachment Support</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#db-config">DB Config</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#object-structure">Object Structure</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#enterprise-services">Enterprise Services</a>
+    </li>
+        </ul>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#part-5-testing">Part 5: Testing</a>
@@ -154,6 +164,14 @@
     <li class="toctree-l3"><a class="reference internal" href="#maximo">Maximo</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#tas">TAS</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-6-data-pre-requisites-for-the-integrations">Part 6: Data Pre-requisites for the Integrations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#maximo-to-tas">Maximo to TAS</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tas-to-maximo">TAS to Maximo</a>
     </li>
         </ul>
     </li>
@@ -198,10 +216,6 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../tas-envizi-index/">IBM TAS Connector for Envizi</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../turbonomic-envizi/">IBM Turbonomic Connector for Envizi</a>
                 </li>
               </ul>
       </div>
@@ -437,7 +451,7 @@ This connector supports the following capabilities through a collection of App C
 <h3 id="before-you-begin-you-will-need">Before you begin you will need:</h3>
 <ol>
 <li>An instance of App Connect Enterprise or App Connect Pro with the Designer component.</li>
-<li>Admin access to your Maximo instance with an API key generated for this integration</li>
+<li>Admin access to your Maximo instance with an API key generated for this integration. Storage will need to be properly configured to store the images as they are coming in. Refer to the <a href="https://www.ibm.com/docs/en/maximo-manage/continuous-delivery?topic=documents-configuring-system-properties-persistent-storage">Doclinks</a> setup page</li>
 <li>TRIRIGA with dedicated user/pw for this integration</li>
 <li>Secure connection between TRIRIGA, App Connect, and Maximo. If required IBM does provides a product that accomplishes this: Secure Gateway. Learn more about getting started with <a href="https://cloud.ibm.com/docs/SecureGateway?topic=SecureGateway-getting-started-with-sg">Secure Gateway.</a></li>
 <li><a href="#pre-requisite-add-an-app-connect-certificate-in-mas-89">Import AppConnect Cert to Maximo</a> to enable encrypted communication</li>
@@ -445,7 +459,7 @@ This connector supports the following capabilities through a collection of App C
 </ol>
 </blockquote>
 <h2 id="downloadable-resources">Downloadable Resources</h2>
-<p>Download the latest "mas_tri_connector" <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/releases/tag/release">zip file</a> that has all of the flows and configuration files.</p>
+<p>Download the <a href="https://github.com/IBM/mas-tas-appconnect-flows/releases/tag/v1.0.0">zip file</a> that has all of the flows and configuration files.</p>
 <hr />
 <h2 id="installation-steps-overview">Installation Steps Overview</h2>
 <ol>
@@ -732,9 +746,9 @@ This connector supports the following capabilities through a collection of App C
 <p><strong>Note 2</strong>: The following steps and prerequisites are done against a Maximo demo database. The naming conventions may slightly differ from this, but these are the necessary components.</p>
 </blockquote>
 <p>Within Maximo, configure your instance to be ready to receive records from TAS. If these pre-requisites are not completed, the action will not be recorded.</p>
-<h4 id="1-create-an-organization-named-tas">1. Create an Organization named TAS</h4>
+<h4 id="1-create-an-organization-named-tririga">1. Create an Organization named TRIRIGA</h4>
 <p>a. Navigate to the <strong>Organizations</strong> page and click the blue + button on the top row.<br>
-b. Fill in the Organization name with TAS and the description as "TAS Organization".<br>
+b. Fill in the Organization name with TRIRIGA and the description as "TAS Organization".<br>
 c. Fill in the remaining required fields as such:</p>
 <table>
 <thead>
@@ -793,8 +807,8 @@ b. Click <strong>GL Component Maintenance</strong> on the left side under More A
 </tr>
 </tbody>
 </table>
-<p>c. Click <strong>OK</strong>. Click <strong>New Row</strong> under GL Accounts for TAS and click the magnifying glass to search for that GL Component. Select it and it should populate in the GL Account and Description fields. The Active Date field should auto populate to the current date.<br>
-d. Now that this account is present, head back to <strong>Organizations</strong> and update the TAS organization to show the just created Clearing Account, tick the Active box, and click <strong>Save Organization</strong>.<br></p>
+<p>c. Click <strong>OK</strong>. Click <strong>New Row</strong> under GL Accounts for TRIRIGA and click the magnifying glass to search for that GL Component. Select it and it should populate in the GL Account and Description fields. The Active Date field should auto populate to the current date.<br>
+d. Now that this account is present, head back to <strong>Organizations</strong> and update the TRIRIGA organization to show the just created Clearing Account, tick the Active box, and click <strong>Save Organization</strong>.<br></p>
 <h4 id="3-create-a-site-trimain-and-set-it-to-active">3. Create a site TRIMAIN and set it to active</h4>
 <p>a. On the Organization page, click on the <strong>Sites</strong> tab at the top of the page.<br>
   b. Click <strong>New Row</strong> under <strong>Sites</strong> and enter TRIMAIN for Site and MAIN Site for Description. Set the site to Active.<br>
@@ -1209,9 +1223,9 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the TICKET Object.</p>
 </tr>
 <tr>
 <td>Multipart Textbox</td>
-<td>TAS Space Classification</td>
-<td>PLUSISPACECLASSIFICATION</td>
-<td>PLUSISPCCLASSIFICATION.DESCRIPTION</td>
+<td>TAS Primary Organization</td>
+<td>PLUSIORGPATH</td>
+<td>PLUSIORGANIZATIONPATH.DESCRIPTION</td>
 <td>VALUELIST</td>
 <td>Readonly</td>
 </tr>
@@ -1279,6 +1293,31 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the WORKORDER Object.</
 </tbody>
 </table>
 <p>Click <strong>Save Definition</strong> after the changes are added.</p>
+<h3 id="8-tas-to-maximo-service-request-comment-attachment-support">8. TAS to Maximo Service Request Comment &amp; Attachment Support</h3>
+<p>The PLUSITRIServiceRequest2MX_v_1_1_0 integration supports both Comments and Attachments from TAS. This includes pictures or images that are attached as either Comments or Attachments in TAS.</p>
+<p>Some configuration will need to be done in order to allow for this.</p>
+<h4 id="db-config">DB Config</h4>
+<ol>
+<li>Go to Database Configuration and pull up the WORKLOG object.</li>
+<li>Add 'EXTERNALREFID' as an Attribute with a type ALN and 50 length.</li>
+<li>Turn on Admin Mode and Run Database Configuration for this change as it will need to be referenced in the Index.</li>
+<li>Once EXTERNALREFID has been added, navigate to Indexes and add the index 'PLUSIEXTREF'. Under the Columns table make sure to reference the EXTERNALREFID that was just created as well as to leave 'Enforce Uniqueness' unchecked.</li>
+<li>Turn on Admin Mode and run Database Configuration again to have these changes take effect.</li>
+</ol>
+<h4 id="object-structure">Object Structure</h4>
+<ol>
+<li>Navigate to Object Structure and find MXSR. Duplicate this Object Structure and rename it PLUSISRDOCS.</li>
+<li>Add two new Source Objects to the Structure underneath SR: "DOCLINKS" and "WORKLOG". Make sure the Relationships match with the following image.</li>
+</ol>
+<p><img>
+- Select the WORKLOG Source Object and in the 'Details' section add the 'PLUSIEXTREF' Index to the Alternate Key field. Then navigate to Exclude/Include Fields. Click on Non-Persistent Fields in the window and make sure 'Description_LongDescription' is selected as Included.</p>
+<h4 id="enterprise-services">Enterprise Services</h4>
+<ol>
+<li>Now that the changes are made in database and object structure level, they need to be referenced by the Enterprise Service. To do this, duplicate the Default PLUSISR Enterprise Service and name this new one 'PLUSISRDOCS' that references the newly created Object Structure.</li>
+<li>Remove the default PLUSISR Enterprise Service from the PLUSITRIRIGA External System in order to Delete the Enterprise Service. Once deleted, duplicate PLUSISRDOCS and name it PLUSISR to replace the deleted Enterprise Service.</li>
+<li>Add the new PLUSISR back into the External System.</li>
+</ol>
+<p>Now when a Service Request comes in with a comment or attachment, Maximo will keep track of the comments in the Worklog and images/documents in the Attachments.</p>
 <hr />
 <h2 id="part-5-testing">Part 5: Testing</h2>
 <p>To test that the configuration is complete, send a test payload in order to test connectivity.</p>
@@ -1290,6 +1329,82 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the WORKORDER Object.</
 </ol>
 <h3 id="tas">TAS</h3>
 <p>Use a tool like POSTMan to test the connectivity of the App Connect flow. You can use a Sample JSON Payload from this <a href="https://github.com/IBM/tririga-api">open source repository</a>. </p>
+<h2 id="part-6-data-pre-requisites-for-the-integrations">Part 6: Data Pre-requisites for the Integrations</h2>
+<p>Because of internal references within the TRIRIGA and Maximo data models some flows depend on other flows to function. The following tables describe these relationships. You will need to run the pre-requisite flows first before running the main flows.</p>
+<h3 id="maximo-to-tas">Maximo to TAS</h3>
+<table>
+<thead>
+<tr>
+<th>Flow</th>
+<th>Flows to run first</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MXPerson2TRI</td>
+<td>TRISpace2MX, TRILocPath2MX, TRIOrg2MX</td>
+</tr>
+<tr>
+<td>MXAsset2TRI</td>
+<td>TRISpace2MX, TRILocPath2MX, TRIOrg2MX, TRIAssetSpec2MX</td>
+</tr>
+<tr>
+<td>MXLocation2TRI</td>
+<td>TRILocPath2MX, TRISpaceClass2MX</td>
+</tr>
+<tr>
+<td>MXServiceReq2TRI</td>
+<td>TRILocPath2MX, TRIReqClass2MX, TRIPerson2MX</td>
+</tr>
+<tr>
+<td>MXWorkOrder2TRI</td>
+<td>TRILocPath2MX, TRIOrg2MX</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tas-to-maximo">TAS to Maximo</h3>
+<table>
+<thead>
+<tr>
+<th>Flow</th>
+<th>Flows to run first</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TRIPerson2MX</td>
+<td>TRISpace2MX, TRILocPath2MX, TRIOrg2MX</td>
+</tr>
+<tr>
+<td>TRIAsset2MX</td>
+<td>TRISpace2MX, TRILocPath2MX, TRIOrg2MX, TRIAssetSpec2MX</td>
+</tr>
+<tr>
+<td>TRISpace2MX</td>
+<td>TRILocPath2MX, TRISpaceClass2MX</td>
+</tr>
+<tr>
+<td>TRIServiceReq2MX</td>
+<td>TRILocPath2MX, TRIReqClass2MX, TRIPerson2MX</td>
+</tr>
+<tr>
+<td>TRIWorkOrder2MX</td>
+<td>TRILocPath2MX, TRIOrg2MX</td>
+</tr>
+<tr>
+<td>PeopleBatch</td>
+<td>TRISpace2MX, TRILocPath2MX, TRIOrg2MX</td>
+</tr>
+<tr>
+<td>AssetBatch</td>
+<td>TRISpace2MX, TRILocPath2MX, TRIOrg2MX, TRIAssetSpec2MX</td>
+</tr>
+<tr>
+<td>SpaceBatch</td>
+<td>TRILocPath2MX, TRISpaceClass2MX</td>
+</tr>
+</tbody>
+</table>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>Depending on the direction of the flow, cross-referencing errors from two systems can help identify the root cause of an issue with the integration. For example:</p>
 <ul>
