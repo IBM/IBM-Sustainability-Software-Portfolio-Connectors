@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm.github.io/IBM-Sustainability-Software-Portfolio-Connectors/turbonomic-envizi/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>IBM Turbonomic Connector for Envizi - IBM Sustainability Software Portfolio Connectors</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IBM Turbonomic Connector for Envizi";
+        var mkdocs_page_input_path = "turbonomic-envizi.md";
+        var mkdocs_page_url = "/IBM-Sustainability-Software-Portfolio-Connectors/turbonomic-envizi/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> IBM Sustainability Software Portfolio Connectors
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Sustainability Software Portfolio Connectors</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">IBM MAS Connector for TRIRIGA</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../max-envizi-index/">IBM MAS Connector for Envizi</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tas-envizi-index/">IBM TAS Connector for Envizi</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">IBM Turbonomic Connector for Envizi</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#use-case-example">Use Case Example</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#connector-architecture">Connector Architecture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-mapping">Data Mapping</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#app-connect-flows">App Connect Flows</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-configuration-guide">Installation &amp; Configuration Guide</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#before-you-begin-you-will-need">&nbsp; Before you begin you will need:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-steps-overview">Installation Steps Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-1-app-connect-configuration">Part 1. App Connect Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-2-turbonomic-configuration">Part 2. Turbonomic Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#operating-the-connector">Operating the connector</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#on-demand-data-pull">On-demand Data Pull</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#part-3-testing-and-verification">Part 3. Testing and Verification</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">IBM Sustainability Software Portfolio Connectors</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>IBM Turbonomic Connector for Envizi</li>
+    <li class="wy-breadcrumbs-aside">
+        <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/turbonomic-envizi.md"
+          class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="turbonomic-envizi-integration">Turbonomic - Envizi Integration</h1>
+<h2 id="table-of-contents">Table of contents</h2>
+<!--ts-->
+<ul>
+<li><a href="#use-case-example">Use Case Example</a></li>
+<li><a href="#connector-architecture">Connector Architecture</a></li>
+<li><a href="#data-mapping">Data Mapping</a></li>
+<li><a href="#app-connect-flows">App Connect Flows</a></li>
+<li><a href="#installation--configuration-guide">Installation &amp; Configuration Guide</a></li>
+<li><a href="#-before-you-begin-you-will-need">Before you begin you will need:</a></li>
+<li><a href="#installation-steps-overview">Installation Steps Overview</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+<!--te-->
+<hr />
+<h2 id="use-case-example">Use Case Example</h2>
+<p>Sustainability Manager can view and compare the energy usage of all data centres within Envizi. They can understand energy efficiency among their data centres by number of active hosts, by number of VMs. They can understand the density of VMs to Hosts in each data centre to identify opportunities to optimize efficiency.</p>
+<hr />
+<h2 id="connector-architecture">Connector Architecture</h2>
+<p><img alt="Turbonomic Connector Architecture" src="https://media.github.ibm.com/user/375131/files/95555e06-3639-47bb-83ab-03bb152fadd6" /></p>
+<hr />
+<h2 id="data-mapping">Data Mapping</h2>
+<p>The image below illustrates the type of data that is being sent by the API and App Connect Flows.</p>
+<p><img alt="Turbonomic Data Mapping" src="https://media.github.ibm.com/user/375131/files/25557ce0-3cd5-435f-8228-407f1de5f1d7" /></p>
+<hr />
+<h2 id="app-connect-flows">App Connect Flows</h2>
+<ul>
+<li>Included with this connector are two flows that export locations and accounts, along with all the required fields they contain. </li>
+<li>The table below shows the naming convention for these flows and the current integration use case.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Flow</th>
+<th>Destination</th>
+<th>Operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TurbonomicLocations.yaml</td>
+<td>Locations</td>
+<td>Turbonomics to Envizi</td>
+<td>Depending on configuration Changes only or Bulk initial load</td>
+</tr>
+<tr>
+<td>TurbonomicAccounts.yaml</td>
+<td>Accounts</td>
+<td>Turbonomics to Envizi</td>
+<td>Depending on configuration Changes only or Bulk initial load</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="installation-configuration-guide">Installation &amp; Configuration Guide</h2>
+<h2 id="before-you-begin-you-will-need">&nbsp; Before you begin you will need:</h2>
+<ul>
+<li>Turbonomic version 8.6.6 or higher</li>
+<li>An instance of App Connect with the Designer component.</li>
+</ul>
+<h2 id="installation-steps-overview">Installation Steps Overview</h2>
+<ol>
+<li>
+<p>App Connect Configuration<br>
+   a. Add Accounts (<a href="https://www.ibm.com/docs/en/app-connect/containers_cd?topic=scratch-connecting-accounts">reference document</a>)<br>
+   b. Importing Flow in App Connect (<a href="https://www.ibm.com/docs/en/app-connect/containers_cd?topic=designer-exporting-importing-flows#importingflow">reference document</a>)<br></p>
+</li>
+<li>
+<p>Turbonomics Configuration<br>
+   a. Create user <br>
+   b. Configure tags <br></p>
+</li>
+</ol>
+<h2 id="part-1-app-connect-configuration">Part 1. App Connect Configuration</h2>
+<p><em><strong>Note</strong>: When configuring App Connect you will have the option to set up a secure connection with a self-signed certificates, a private network, or both.</em></p>
+<ol>
+<li>Add Account for "Amazon S3" connector<ul>
+<li>Credentials will be given by Envizi</li>
+</ul>
+</li>
+<li>
+<p>Add an Account for "HTTP" connector</p>
+<ul>
+<li>This account will be used for Authentication<ul>
+<li><strong>API Key</strong>: Enter the Turbonomic credentials in this format <code>&lt;USERNAME&gt;&amp;password=&lt;PASSWORD&gt;</code><ul>
+<li>e.g., If the username is <code>johndoe</code> and the password is <code>TheCakeIsALie</code>, enter <code>johndoe&amp;password=TheCakeIsALie</code></li>
+</ul>
+</li>
+<li><strong>API Key Location</strong>: Select "body URL encoded"</li>
+<li><strong>API Key Name</strong>: Enter the text <code>username</code> and <strong>not</strong> your actual username.
+ <img alt="Account Configuration example" src="https://media.github.ibm.com/user/375131/files/c26d7c80-5142-11ed-87b2-d32c7d2798b8" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Add another Account for "HTTP" connector</p>
+<ul>
+<li>This account will be used for other API calls</li>
+<li>Leave all authentication related fields empty</li>
+</ul>
+</li>
+<li>Import the flows
+        - Navigate to the flows below and use the link to their raw files for importing in App Connect:
+        - <a href="./AppConnect%20Flows/TurbonomicLocations.yaml">TurbonomicLocations</a>
+        - <a href="./AppConnect%20Flows/TurbonomicAccounts.yaml">TurbonomicAccounts</a></li>
+<li>Configure the flow to use the right accounts
+        - For all Amazon S3 nodes in the flow, select the account created in Step 1 
+        - For the first HTTP node in the flow, select the account created in Step 2
+        - For all other HTTP nodes in the flow, select the account created in Step 3</li>
+<li>
+<p>Configure the scheduler
+        - Click on the "Scheduler" node</p>
+<pre><code>    &lt;img width="659" alt="Scheduler node" src="https://media.github.ibm.com/user/375131/files/ea694d80-01ed-11ed-8852-16b625339675"&gt;
+
+- Configure the schedule as needed
+
+    &lt;img width="659" alt="Scheduler configuration 2" src="https://media.github.ibm.com/user/375131/files/00c3d900-01ef-11ed-86aa-29008ff86450"&gt;
+</code></pre>
+<ul>
+<li>The TurbonomicAccounts flow must be executed daily, preferably at UTC midnight between 00:05 and 00:30</li>
+<li>The TurbonomicLocations flow can be configured to run once a month or even On-demand as described <a href="#on-demand-data-pull">here</a></li>
+<li><strong>Note:</strong> By default, the flow will run when it is started. To change this behavior, untick the below checkbox in the "Scheduler" node. It is recommended to keep this checked for On-demand data pull</li>
+</ul>
+<p><img alt="Run on Start checkbox" src="https://media.github.ibm.com/user/375131/files/f010f080-5157-11ed-8325-66c9c74f6243" /></p>
+</li>
+<li>
+<p>Configure the flow parameters
+        - Click on the "Set variable" node
+     <img alt="Set variable configuration" src="https://media.github.ibm.com/user/375131/files/09576580-50a2-11ed-8f46-b3beb969f206" /></p>
+<pre><code>- In Variable &gt; config &gt; customer, enter the value provided by Envizi
+- In Variable &gt; config &gt; url, enter URL for the Turbonomic instance
+     - e.g., https://example.com:9080
+
+- Scroll to the Amazon S3 node and click on it to open the configuration
+ ![S3 Configuration](https://media.github.ibm.com/user/375131/files/56c06800-4bb4-11ed-9aa6-c6758d61300a)
+
+- From the bucket dropdown, select the bucket name provided by Envizi
+- Perform these actions on all Amazon S3 nodes in the flow
+</code></pre>
+<ol>
+<li>Start the flow<ul>
+<li>Once the flow it started, it will run as configured in scheduler. However, the flow will only collect data from the day it has been started.</li>
+<li>In order to pull any historical data, additional configurations described in <a href="#on-demand-data-pull">On-demand Data Pull</a> need to be done.</li>
+</ul>
+</li>
+</ol>
+<h2 id="part-2-turbonomic-configuration">Part 2. Turbonomic Configuration</h2>
+</li>
+<li>
+<p>Turbonomic v8.6.6 or higher is required for this integration to work</p>
+</li>
+<li>Create a user in Turbonomic with "Observer" role. The App Connect will be configured to use this user's credentials to fetch the necessary data.</li>
+<li>
+<p>For accurate emission calculations from Envizi, add the following Tag Categories in vCenter and add their values as tags to the Data Centers:</p>
+<ul>
+<li><code>Country</code>: Name of Country</li>
+<li><code>Latitude</code>: Latitude in Decimal Degrees format</li>
+<li><code>Longitude</code>: Longitude in Decimal Degrees format</li>
+</ul>
+<p><img alt="vCenter Tags" src="https://media.github.ibm.com/user/375131/files/0eb7bd00-5141-11ed-9b2c-4bde7c361f33" />
+- By default, Envizi will use the Data Center name configured in Turbonomic/vCenter. To change this, Tag Category <code>EnviziAlternateName</code> can be added with the desired display name as its value.
+- Envizi Locations (Data Centers in this case) need unique display names. If there are any Data Centers with same names, they should be changed from vCenter or Tag Category <code>EnviziAlternateName</code> should be added to the Data Center(s) with different name(s)</p>
+</li>
+</ol>
+<p><em><strong>Note:</strong> Tags sync from vCenter to Turbonomic might take upto 20 minutes.</em></p>
+<h2 id="operating-the-connector">Operating the connector</h2>
+<h3 id="on-demand-data-pull">On-demand Data Pull</h3>
+<p>Use the on-demand data pull when there is historical energy related data that needs to be loaded from Turbonomic to Envizi.</p>
+<ul>
+<li>This method is for the initial sync or to sync data that was added/updated between specific dates.</li>
+<li>This method is meant to be executed just once whenever needed and then stopped.</li>
+<li>
+<p>App Connect logs will show when On-demand load has been completed successfully or that it can be stopped.</p>
+</li>
+<li>
+<p>For TurbonomicLocations, no additional configuration is needed.</p>
+</li>
+<li>
+<p>To use this method in flows other than TurbonomicLocations, the following parameters in "Set variable" node need to be configured:</p>
+</li>
+<li>Variable &gt; config &gt; OverrideStartDate:<ul>
+<li>The start timestamp of the window between which the data will be pulled from.</li>
+<li>The date must be specified in yyyy-mm-dd format.</li>
+<li>e.g., <code>2022-06-26</code></li>
+</ul>
+</li>
+<li>Variable &gt; config &gt; OverrideEndDate:<ul>
+<li>The end timestamp of the window between which the data will be pulled from.</li>
+<li>The date must be specified in yyyy-mm-dd format.</li>
+<li>e.g., <code>2022-06-27</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Note:</strong> The dates configured here will be considered as UTC</p>
+<p><img alt="Set variable configuration" src="https://media.github.ibm.com/user/375131/files/09576580-50a2-11ed-8f46-b3beb969f206" /></p>
+</li>
+</ul>
+<h2 id="part-3-testing-and-verification">Part 3. Testing and Verification</h2>
+<ol>
+<li>Set the OverrideStartDate and OverrideEndDate in the flow to a date that you know the data exists for.<ul>
+<li>Preferably keep it a single date.</li>
+<li>Refer to the <a href="#on-demand-data-pull">On-demand Data Pull</a> section for more details</li>
+</ul>
+</li>
+<li>Make sure "Also run the flow when it's switched on" is selected in the "Scheduler" node</li>
+<li>Start the flow</li>
+<li>Open App Connect logs from the left side bar</li>
+<li>Keep refreshing the logs until you see a message that says "Flow <FlowName> completed successfully".</li>
+<li>If you get an error message, refer to the <a href="#troubleshooting">Troubleshooting</a> section</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>The below errors are found in the App Connect logs.</p>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The HTTP request returned with an error: 400 "Bad Request"</td>
+<td>No configuration for first HTTP Node</td>
+<td>Please configure the HTTP node with the exact same configurations as mentioned in the Step 5 of <a href="#part-1-appconnect-configuration">App Connect Configuration</a></td>
+</tr>
+<tr>
+<td>The HTTP request returned with an error: 400 "Bad Request"</td>
+<td>Invalid API Key name</td>
+<td>Enter the text <code>username</code> and <strong>not</strong> your actual username.</td>
+</tr>
+<tr>
+<td>The HTTP request returned with an error: 400 "Bad Request"</td>
+<td>Invalid API Key location</td>
+<td>Select "body URL encoded" in API Key Location</td>
+</tr>
+<tr>
+<td>The HTTP request returned with an error: 401 "Unauthorized"</td>
+<td>Invalid API Key in HTTP Account</td>
+<td>Enter the correct Turbonomic credentials in this format <code>&lt;USERNAME&gt;&amp;password=&lt;PASSWORD&gt;</code></td>
+</tr>
+<tr>
+<td>The HTTP request returned with an error: 500 "Internal Server Error"</td>
+<td>Invalid URL in Set Variable</td>
+<td>Configure the correct URL of the Turbonomic instance</td>
+</tr>
+<tr>
+<td>The HTTP request returned with an error: 404 "Not Found”</td>
+<td>If / is appended at the end of the valid URL</td>
+<td>Configure the correct URL of the Turbonomic instance and do not append / at the end of the URL</td>
+</tr>
+<tr>
+<td>Your Amazon S3 account doesn't have the required permissions to complete the isObjectPresent action on the object object: 403 "Forbidden"</td>
+<td>Invalid customer</td>
+<td>Configure the customer name in set variable exactly as provided by Envizi</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../tas-envizi-index/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" defer></script>
+      <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
