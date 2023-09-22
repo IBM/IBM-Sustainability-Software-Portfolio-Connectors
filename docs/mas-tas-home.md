@@ -543,10 +543,10 @@ Some configuration will need to be done in order to allow for this.
 #### Object Structure
 
 1. Navigate to Object Structure and find MXSR. Duplicate this Object Structure and rename it PLUSISRDOCS.
-- Add two new Source Objects to the Structure underneath SR: "DOCLINKS" and "WORKLOG". Make sure the Relationships match with the following image.
+2. Add two new Source Objects to the Structure underneath SR: "DOCLINKS" and "WORKLOG". Make sure the Relationships match with the following image.
 
-<img>
-- Select the WORKLOG Source Object and in the 'Details' section add the 'PLUSIEXTREF' Index to the Alternate Key field. Then navigate to Exclude/Include Fields. Click on Non-Persistent Fields in the window and make sure 'Description_LongDescription' is selected as Included.
+<img width="1785" alt="SR Object Structure" src="https://media.github.ibm.com/user/348712/files/ccd462ca-1ca7-43d8-85e1-bb2d44bebbe0">
+3. Select the WORKLOG Source Object and in the 'Details' section add the 'PLUSIEXTREF' Index to the Alternate Key field. Then navigate to Exclude/Include Fields. Click on Non-Persistent Fields in the window and make sure 'Description_LongDescription' is selected as Included.
 
 #### Enterprise Services
 
