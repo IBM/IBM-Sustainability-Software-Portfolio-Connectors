@@ -8,7 +8,7 @@
     <title>IBM MAS Connector for TRIRIGA - IBM Sustainability Software Portfolio Connectors</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
     
       <script>
@@ -18,13 +18,12 @@
         var mkdocs_page_url = "/IBM-Sustainability-Software-Portfolio-Connectors/mas-tas-home/";
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -36,7 +35,7 @@
           <a href=".." class="icon icon-home"> IBM Sustainability Software Portfolio Connectors
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -47,7 +46,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">IBM MAS Connector for TRIRIGA</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">IBM MAS Connector for TRIRIGA</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#use-case-examples">Use case examples</a>
     </li>
@@ -222,6 +221,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../turbonomic-envizi/">IBM Turbonomic Connector for Envizi</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mas-workday-home/">IBM Workday Connector</a>
+                </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -235,11 +238,10 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>IBM MAS Connector for TRIRIGA</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">IBM MAS Connector for TRIRIGA</li>
     <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/mas-tas-home.md"
-          class="icon icon-github"> Edit on GitHub</a>
+          <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/mas-tas-home.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
@@ -1313,8 +1315,8 @@ Be sure that the PLUSIREQCLASSID Attribute is taken from the WORKORDER Object.</
 <li>Navigate to Object Structure and find MXSR. Duplicate this Object Structure and rename it PLUSISRDOCS.</li>
 <li>Add two new Source Objects to the Structure underneath SR: "DOCLINKS" and "WORKLOG". Make sure the Relationships match with the following image.</li>
 </ol>
-<p><img>
-- Select the WORKLOG Source Object and in the 'Details' section add the 'PLUSIEXTREF' Index to the Alternate Key field. Then navigate to Exclude/Include Fields. Click on Non-Persistent Fields in the window and make sure 'Description_LongDescription' is selected as Included.</p>
+<p><img width="1785" alt="SR Object Structure" src="https://media.github.ibm.com/user/348712/files/ccd462ca-1ca7-43d8-85e1-bb2d44bebbe0">
+3. Select the WORKLOG Source Object and in the 'Details' section add the 'PLUSIEXTREF' Index to the Alternate Key field. Then navigate to Exclude/Include Fields. Click on Non-Persistent Fields in the window and make sure 'Description_LongDescription' is selected as Included.</p>
 <h4 id="enterprise-services">Enterprise Services</h4>
 <ol>
 <li>Now that the changes are made in database and object structure level, they need to be referenced by the Enterprise Service. To do this, duplicate the Default PLUSISR Enterprise Service and name this new one 'PLUSISRDOCS' that references the newly created Object Structure.</li>
@@ -1642,16 +1644,17 @@ EOF
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" defer></script>
-      <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
