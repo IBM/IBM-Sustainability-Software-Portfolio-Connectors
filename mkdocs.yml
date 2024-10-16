@@ -19,6 +19,7 @@ nav:
   #  - 'IBM Maximo Application Suite Connector for Envizi': maximo-envizi.md
   #- 'IBM TAS Connector for Envizi': 
   - 'IBM TAS Connector for Envizi': tas-envizi-index.md
+  - 'IBM Turbonomic Connector for Envizi': turbonomic-envizi.md
   #  - 'IBM Tririga Application Suite Connector for Envizi': tririga-envizi.md
 
 theme:
