@@ -105,10 +105,6 @@
                 <li class="toctree-l1"><a class="reference internal" href="../tas-envizi-index/">IBM TAS Connector for Envizi</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../turbonomic-envizi/">IBM Turbonomic Connector for Envizi</a>
-                </li>
-              </ul>
       </div>
     </div>
     </nav>
@@ -156,24 +152,24 @@ activities independent of the ERP (Workday) system.</li>
 <p>To support a full supply chain cycle, the integration provides App Connect flows and Maximo Integration Framework (MIF) artifacts.  These work in conjunction with Workday-provided public APIs to transfer data between applications.</p>
 <p>On the Maximo side, the solution includes all of the necessary integration artifacts that define the External System, Endpoints, Enterprise Services, Publish Channels, and associated integration controls, database changes, and business rules.  A number of new cron tasks are also provided to schedule the data synchronization.</p>
 <p>App Connect layer provides message transformation and communication with Workday SOAP APIs.  Workday provides numerous SOAP APIs to import and fetch data from their system.</p>
-<p><img width="1280" alt="MAS-Workday Architecture" src="https://media.github.ibm.com/user/348712/files/dfe05443-6e68-40d4-a448-9d9610101ba6"></p>
+<p><img width="1280" alt="MAS-Workday Architecture" src="https://media.github.ibm.com/user/348712/files/f087d1a2-bc68-4803-a87c-2aa842166e9a?token=AACVEKBG6G5KVX36JES4L4THHOTGI"></p>
 <p>As part of the normal cycle of maintaining assets, resources such as spare parts, labor, tools, and materials are required.  While IBM Manage has built-in capabilities to source and manage these resources, many customers prefer to use their ERP system to perform these business processes.  </p>
 <p>They may have implemented complex procurement business processes, rules, and departmental limits that they would like to enforce for all Material/Repair/Operational (MRO) logistics and prefer not to reproduce the same rules in other systems.  </p>
 <p>The adapter supports Supply Chain master data (such as Suppliers, Purchase Items, and Purchase Contracts), as well as transactional data (Requisitions, Orders, Receipts and Invoices).</p>
-<p><img width="1280" alt="MAS-Workday Purchasing Cycle Image" src="https://media.github.ibm.com/user/348712/files/0d98b30d-3bcb-4d05-8ef5-83c62f00b888"></p>
+<p><img width="1280" alt="MAS-Workday Purchasing Cycle Image" src="https://media.github.ibm.com/user/348712/files/4d0f1856-4956-4917-a984-d478e5cb598f?token=AACVEKFGPB7F2TCXJOT5LN3HHOUGA"></p>
 <hr />
 <h2 id="inventory-master-data">Inventory: Master Data</h2>
 <p>The following sections detail the integrations for the Master Data that is loaded into Maximo from Workday.</p>
 <h3 id="suppliers">Suppliers</h3>
 <p>Workday is the System of Record for Suppliers.  The integration uses Workday API to fetch Suppliers and creates Companies in Maximo.  There are built-in capabilities for an initial synchronization (to load all suppliers during initial implementation) as well as incremental delta loads.  </p>
 <p>Suppliers are brought over as “Companies” of type “V” (vendors) to Maximo.  Additionally, the Workday primary key (WID) is also established as the external reference for each supplier.</p>
-<p><img width="1280" alt="Supplier Integration" src="https://media.github.ibm.com/user/348712/files/485f03ef-84b3-450e-bf80-4f67fdf8f7df"></p>
+<p><img width="1280" alt="Supplier Integration" src="https://media.github.ibm.com/user/348712/files/7ac8cc8f-4b9e-4784-a266-00f01c696dcb?token=AACVEKBY3IOCBMK4LGY2Z5DHHOUIC"></p>
 <h3 id="purchase-items">Purchase Items</h3>
 <p>Purchase items are maintained by Workday.  Like Suppliers, the integration fetches items using a Workday API and creates corresponding records in Maximo.  These can then be used during procurement on Purchase Requisitions.  Initial and delta loads are supported.</p>
-<p><img width="1280" alt="PI Integration" src="https://media.github.ibm.com/user/348712/files/05c815da-b9b8-433c-b322-ca4533546215"></p>
+<p><img width="1280" alt="PI Integration" src="https://media.github.ibm.com/user/348712/files/3b9778c1-1adc-4f3c-a4cb-ee5212237eb7?token=AACVEKADGCVSGVYGXGEPKRDHHOU7K"></p>
 <h3 id="purchase-contracts">Purchase Contracts</h3>
 <p>Workday is the System of Record for Purchase Contracts.  The integration fetches contracts using a filter (contract type) and creates corresponding contracts in Maximo.  Contract revisions are also supported, as well as initial and delta loads.</p>
-<p><img width="1280" alt="PC Integration" src="https://media.github.ibm.com/user/348712/files/269326b1-7ffb-4959-9b39-5642088aab6e"></p>
+<p><img width="1280" alt="PC Integration" src="https://media.github.ibm.com/user/348712/files/2dfded0b-97a1-45cc-a70b-b54db17757f6?token=AACVEKFYJ3YKYZJFH2BWNI3HHOVJ6"></p>
 <hr />
 <h2 id="purchasing-cycle">Purchasing Cycle</h2>
 <p>The following sections detail the transactional data in the integrations for the Purchasing Cycle.</p>
@@ -181,7 +177,7 @@ activities independent of the ERP (Workday) system.</li>
 <p>The supply chain cycle begins in Maximo.  Asset management drives the demand for spare parts, materials and services.  Maximo can use the suppliers, items and contracts previously synchronized from Workday to generate purchase requisitions.  The integration then sends these requisitions to Workday for fulfillment.  </p>
 <p>In addition to common purchasing data like item, supplier, quantity, etc., the integration also supports several pre-defined worktags.  Workday uses worktags to simplify accounting transactions and they play a central role in many business processes.  Worktags are stored as General Ledger (GL) components in Maximo, and they are synchronized using financial flows discussed later in this paper.  </p>
 <p>When a purchase requisition is created in Maximo, a user can select values for the debit/credit accounts.  These values are presented in a dialog box and are sourced from Workday worktags (such as spend category, cost center, fund, account and project task).  We also provide an example of transferring a custom organization into a GL component.  This allows for extra flexibility for customers who need more worktags in Maximo.</p>
-<p><img width="1280" alt="Requisition Integration" src="https://media.github.ibm.com/user/348712/files/4f22bd72-c9f8-4fce-b3d1-11906a8de3c4"></p>
+<p><img width="1280" alt="Requisition Integration" src="https://media.github.ibm.com/user/348712/files/9461fde3-2042-46ab-879b-7f6f040d7530?token=AACVEKAQXPPDSM5RQXWTJXLHHOZKU"></p>
 <p>Purchase Requisitions in Maximo can be generated for inventory replenishment as well as for ongoing work order needs.  By using data from Workday, Maximo users can request fulfillment of inventory or direct issue items/materials and/or services from Workday.  Approval of the requisition is what initially triggers the integration but that is also a configurable element.</p>
 <p>In Maximo, a purchase requisition line can be “coded” for things like items, materials (non-stocked items), and services.  Workday similarly supports these types of lines, and the integration populates the Workday API request with data for each of these, enabling capability to simultaneously procure items and services.</p>
 <p>Finally, the Purchase Requisition is the document that links what you’re buying with the Work Order or Storeroom that you’re buying it for.  These details are used for subsequent transactions like the PO that will be linked to the PR and inherit the work order or inventory storeroom data.</p>
@@ -190,32 +186,32 @@ activities independent of the ERP (Workday) system.</li>
 <p>Maximo does not allow for Purchase Orders that have lines from multiple sites (combining requisitions from multiple sites).  Therefore, the integration enforces this business rule by checking the worktag that holds the site identifier from Maximo.  All of the site identifiers on all of the lines must match or an error condition is set.</p>
 <p>Purchase Order lines can be created for materials and/or services.  Both are supported by the integration and are mapped back to Maximo.  Additionally, several worktags are also supported, and they are mapped back to a Maximo GL account.</p>
 <p>Purchase Order revisions are also supported by the adapter.  These revisions are fetched using a different Workday SOAP API but mapped using the same flow.</p>
-<p><img width="1280" alt="PO Integration" src="https://media.github.ibm.com/user/348712/files/a536bf5a-b6dd-4da6-877b-a1735a479d86"></p>
+<p><img width="1280" alt="PO Integration" src="https://media.github.ibm.com/user/348712/files/97703cc4-134a-405f-8c29-fbbad5ba5bf9?token=AACVEKC7FVQP3LE5DI3VNVTHHOZL4"></p>
 <h3 id="receipts">Receipts</h3>
 <p>Receipts are created in Maximo and sent to Workday.  Returns and cancellations are also supported and sent via the same integration back to Workday.  </p>
 <p>Receipts are sent to Workday using a Maximo Integration Framework Publish Channel that invokes an App Connect flow.  The flow receives a copy of the receipt data from Maximo and transforms that message into a Workday SOAP request.</p>
 <p>The integration flow inspects the Maximo “issuetype” to determine if the transaction is supposed to submit a receipt, void it, or return it and it calls the appropriate Workday API to perform the corresponding action.</p>
-<p><img width="1280" alt="Receipt Integration" src="https://media.github.ibm.com/user/348712/files/288d3131-78cb-4d2c-b3da-151e75868a62"></p>
+<p><img width="1280" alt="Receipt Integration" src="https://media.github.ibm.com/user/348712/files/50508f30-0908-4ecf-9548-3ef1f3a41704?token=AACVEKHXF3QFFJQ4K2AWRN3HHOZNA"></p>
 <h3 id="invoices">Invoices</h3>
 <p>Invoices are entered, approved, and paid in Workday.  After payment is complete, the invoice is brought back to Maximo and should be considered “read-only”.  The main purpose of bringing the invoice back is to close the procurement cycle.  The invoice transaction can update the Maximo work order if there are any variances, such as currency variances or amounts that were within tolerance of the invoice.</p>
 <p>On the Workday side, the integration uses the “Get_Supplier_Invoices” API, which does not currently support delta extraction of supplier invoices based on dates.  Therefore, a complex solution was developed for this integration that extract a page of invoices based on a sliding number of days.  By default, this is set to 90 days.</p>
 <p>Once pulled, the primary keys for these invoices are then used to extract a list of the same keys out of Maximo.  Any missing keys in Maximo indicate a missing invoice.  These missing invoices are then sent to Maximo so that the next invoice pull will exclude them.  This approach minimizes the amount of data and duplicates that are sent to Maximo.</p>
 <p>It is important to note that this integration was designed as a “one time only” extraction of the invoice and does not support ongoing updates to it.  Since Maximo does not have an Accounts Payable module, it is expecting that the ERP system pay the supplier and then provide the final details to Maximo.</p>
-<p><img width="1280" alt="Invoice Integration" src="https://media.github.ibm.com/user/348712/files/288d3131-78cb-4d2c-b3da-151e75868a62"></p>
+<p><img width="1280" alt="Invoice Integration" src="https://media.github.ibm.com/user/348712/files/9948091a-e75e-4e4a-ae51-3f979232fe3a?token=AACVEKH5YW7H5FWCHA5JKKDHHOZOG"></p>
 <hr />
 <h2 id="financials">Financials</h2>
 <p>The following sections detail the integrations for the financial data that is loaded into Maximo from Workday.</p>
 <h3 id="worktags-gl-components">Worktags (GL Components)</h3>
 <p>Worktags are used in Workday to simplify accounting entries.  The integration supports some pre-defined worktags and can be configured to extract a list of values for each tag.  These values are stored as GL components in Maximo.  The primary function of these worktags is to enable outbound (Maximo à WD) transactions to use these values to report costs to Workday.</p>
 <p>The diagram below represents a synchronization of Cost Centers from Workday to Maximo.  There are numerous worktags supported in addition to Cost Centers, such as Spend Categories, Fund Codes, Custom Organizations, Account Sets, and Project Tasks.  The architecture for these is essentially the same as for Cost Centers:</p>
-<p><img width="1280" alt="Worktag Integration" src="https://media.github.ibm.com/user/348712/files/c1f56dab-6389-4fa0-9a2b-eae29a6e0e52"></p>
+<p><img width="1280" alt="Worktag Integration" src="https://media.github.ibm.com/user/348712/files/ac4570ab-b67d-4742-b99b-719d842b26b0?token=AACVEKBWVHKQDTDFWREHYFTHHOZPK"></p>
 <h3 id="work-order">Work Order</h3>
 <p>The integration also provides an outbound worktag for Work Orders.  This worktag can be used to create a Custom Organization in a hierarchy (“All Maximo Workorders”) in Workday.  Once created, the worktag can be used to create Purchase Order lines and set the worktag on the line so the integration “knows” which Work Order to apply the purchase line to.  This step is not necessary if the line is sourced from a requisition that originated in Maximo, since the integration will automatically add this worktag on the requisition line AND the Purchase Order in Workday inherits this value automatically.  It is provided to support charging Maximo work orders for transactions that do not originate in Maximo.</p>
-<p><img width="1280" alt="Work Order Integration" src="https://media.github.ibm.com/user/348712/files/df09e182-6486-4766-be2c-5c1a520b84fc"></p>
+<p><img width="1280" alt="Work Order Integration" src="https://media.github.ibm.com/user/348712/files/63f26caa-1225-4f78-836a-a6e3d408ba9c?token=AACVEKC47DV3PS2S2DI6IR3HHOZ4W"></p>
 <h3 id="journal-entries">Journal Entries</h3>
 <p>Journal entries for maintenance-related activities can be sent to Workday (for example, journals for labor reporting, material issues, tools, etc.).  As part of the normal supply chain cycle, some journals will be generated in Maximo, and some in Workday.  To prevent “double dipping” on journals, each of the Maximo journal types can be individually controlled to send or not.  This is done using an integration control and can be configured by implementation team.</p>
 <p>Journals fully support the pre-defined worktags previously mentioned (Cost Center, Spend Category, Fund, Account, Project Task, and Custom Organization).  The integration includes code that uses a new Maximo domain to map the individual segments of a GL chart of accounts entry to the individual worktags in Workday.  So even though the integration ships with a pre-defined list of Worktags, the implementation team can configure the order of the segments and even add new ones as a customization.</p>
-<p><img width="1280" alt="Journal Integration" src="https://media.github.ibm.com/user/348712/files/6ba2afa5-db55-4446-9f8d-00fcfbbe070b"></p>
+<p><img width="1280" alt="Journal Integration" src="https://media.github.ibm.com/user/348712/files/a4af4be1-c758-4646-8b6e-8ac516def5d1?token=AACVEKE3ODSXXQYKIDVPMFTHHOZ76"></p>
 <hr />
 <h2 id="hcm">HCM</h2>
 <p>The following sections detail the integrations for the Human Capital Management Data that is entered in Maximo and sent to Workday.</p>
@@ -224,10 +220,10 @@ activities independent of the ERP (Workday) system.</li>
 <p>For the Worker integration, a separate flow is used to perform the initial fetch from Workday.  This “sub flow” is used by a second “mapping flow” that performs the transformations and posting to Maximo.  The reason for breaking this process into two flows is that the “Worker” schema from the Workday API is extremely large and it slows down the UI on App Connect and makes it difficult to perform the mapping work.</p>
 <p>By separating the “Get Worker” fetch with the “Map Worker” workload, the fetching flow can be used as any other API and since that flow returns a much smaller payload to the mapping flow, it will not slow down the App Connect UI.</p>
 <p>The integration fetches worker data from Workday and creates People, Labor, Craft, and Skill data in Maximo.  It also synchronizes pay rates (for hourly workers only) in case the customer wants to use these rates for applying costs to the Maximo workorder.  A complex JSONata function was developed to manipulate the payload from Workday and reduce its size.  The result of that function is a smaller JSON payload that the mapping flow uses to produce the Maximo payload.</p>
-<p><img width="1280" alt="Worker Integration" src="https://media.github.ibm.com/user/348712/files/4f093098-309d-4db4-99cc-037d7c7e34fe"></p>
+<p><img width="1280" alt="Worker Integration" src="https://media.github.ibm.com/user/348712/files/9a264177-c3eb-4e2b-8a74-7ac892ee8649?token=AACVEKBV3U7OB4ALDFSBDE3HHOZ7C"></p>
 <h3 id="time-reporting">Time Reporting</h3>
 <p>Labor reporting is performed in Maximo and time blocks are sent to Workday.  After labor is reported against a work order in Maximo, the integration sends this to Workday as a time block.  Currently, this integration point does not support worktags, as it was one of the original integration points released prior to worktag support.  </p>
-<p><img width="1280" alt="Time Reporting Integration" src="https://media.github.ibm.com/user/348712/files/949402fe-f192-4120-857b-7e1880fdec6c"></p>
+<p><img width="1280" alt="Time Reporting Integration" src="https://media.github.ibm.com/user/348712/files/c8d83000-9d75-4816-b2d2-86faf53ed394?token=AACVEKA4DASWP37KVGMH7G3HHO2BI"></p>
 <hr />
               
             </div>
