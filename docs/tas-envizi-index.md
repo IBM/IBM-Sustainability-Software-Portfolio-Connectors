@@ -20,7 +20,7 @@ Corporate sustainability managers can gather and maintain accurate sustainabilit
 
 **Native API framework** is used for TAS and enabled thorugh provided packages that can be imported.
 
-![TAS-Envizi Integration](https://media.github.ibm.com/user/348712/files/fdc31706-9350-4aee-a909-e10d2bb0f3c7)
+![TAS-Envizi Integration](https://media.github.ibm.com/user/348712/files/3ee11905-0300-46e7-b712-f16530fc9781?token=AACVEKB53IKNAW52RWXXNQ3IEUDCY)
 
 *TAS to Envizi Integration Diagram*
 
@@ -30,7 +30,7 @@ Corporate sustainability managers can gather and maintain accurate sustainabilit
 
 The image below illustrates the type of data that is being sent by the API and App Connect Flows.
 
-<img width="450" height="650" alt="TAS-Envizi Architecture" src="https://media.github.ibm.com/user/348712/files/b21644cd-0b16-450e-aff4-1720bc8cea43">
+<img width="450" height="650" alt="TAS-Envizi Architecture" src="https://media.github.ibm.com/user/348712/files/77d8c2bf-5a48-493f-bcbe-2ad84be2276c?token=AACVEKDFYNCHAWJAFV7MNU3IEUDG4">
 
 *TAS to Envizi Data Map*
 
@@ -87,47 +87,47 @@ Download the [zip file](https://github.com/IBM/tririga-envizi-appconnect-flows/r
 Before importing the flow to App Connect, add Accounts for **Amazon S3** and **HTTP** connectors. While adding the HTTP connector account, include credentials for the TAS user which can consume the OSLC API.
 
 1. Navigate to Catalog section of the App Connect instance
-<img width="960" alt="Create Account 1" src="https://media.github.ibm.com/user/375131/files/eb8b5a00-eb1d-11ec-8401-35b47d561ce4">
+<img width="960" alt="Create Account 1" src="https://media.github.ibm.com/user/348712/files/6b268957-79a9-46fa-9090-cb072f54f429?token=AACVEKBGYOUPQEM3ZUEX6VTIEUDPC">
 *Create Account 1*
 
 - In the **Search application** field, type name of the connector.
 
 - If the App Connect instance does not have an account for the connector, click on **Connect** to create a new account. Else, open the account selection drop down, and click on **Add a new account ...**
-<img width="948" alt="Create Account 2b" src="https://media.github.ibm.com/user/348712/files/02ef8867-555d-4949-a87b-5ffc68d5dca2">
+<img width="948" alt="Create Account 2b" src="https://media.github.ibm.com/user/348712/files/d218d606-4207-4a30-9c79-b7fe50ed6962?token=AACVEKGGX3SMCFXW7ABYC53IEUDQM">
 *Add a New Account*
 
 - Enter the necessary details for the connector<br>
     a. For Amazon S3, it will be the Secret Access Key and Access Key ID provided by Envizi.<br>
     b. For HTTP, it will be the Authentication Key or username and password needed for TAS.
-<img width="960" alt="Create Account 3" src="https://media.github.ibm.com/user/348712/files/07bdaf7e-7538-46e8-aaff-27b6acfb8738">
+<img width="960" alt="Create Account 3" src="https://media.github.ibm.com/user/348712/files/fd20a067-3625-488f-9fd6-664243b78a2a?token=AACVEKCWR257A4C42YWL4A3IEUDRU">
 *Connect to S3/HTTP*
 
 - Click on **Connect**
-<img width="960" alt="Create Account 4" src="https://media.github.ibm.com/user/375131/files/ed551d80-eb1d-11ec-983c-c276d43e0654">
+<img width="960" alt="Create Account 4" src="https://media.github.ibm.com/user/348712/files/236e201a-86bd-428b-9523-3ba6228346b0?token=AACVEKAJMSRSKZTHXPNJIPTIEUDTY">
 *Connect the Account*
 
 - From the account selection drop down, select the newly created account. e.g., The default name will be `Account 2` if `Account 1` is already present
 - Click on the kebab menu (three dots) and select **Rename Account**
-<img width="960" alt="Create Account 5" src="https://media.github.ibm.com/user/348712/files/f0d73883-70c5-4892-a996-fae0cd33a00f">
+<img width="960" alt="Create Account 5" src="https://media.github.ibm.com/user/348712/files/fbd1f475-0241-4f0f-8263-12f590b65649?token=AACVEKBCDKA6TAHOSN2ACP3IEUHHW">
 *Rename the Account step 1*
 
 - Enter an account name and click on **Rename Account**. This name can now be used by the connector in the flow.
-<img width="958" alt="Create Account 6" src="https://media.github.ibm.com/user/375131/files/ee864a80-eb1d-11ec-96d1-fdc42c679896">
+<img width="958" alt="Create Account 6" src="https://media.github.ibm.com/user/348712/files/11723edd-fd66-4df5-98eb-db9a4fcec940?token=AACVEKB5RA3P7NYTZGW2ITLIEUHIW">
 *Rename the Account step 2*
 
 ### Importing the flow
 
 1. Open the Dashboard of the App Connect instance.
 - Click on the **New** button and select **Import Flow**.
-<img width="861" alt="Flow Import 0" src="https://media.github.ibm.com/user/375131/files/ea582e00-eb19-11ec-9912-0881d321f3c7">
+<img width="861" alt="Flow Import 0" src="https://media.github.ibm.com/user/348712/files/8cd64d3b-3762-4d7d-a0a5-e23c6f090aa6?token=AACVEKAZ7PGROVHPY6OZKEDIEUEQO">
 *Import the flow*
 
 - Browse to the flow's YAML file and click on **Import**.
-<img width="960" alt="Flow Import 1" src="https://media.github.ibm.com/user/375131/files/ea582e00-eb19-11ec-88a7-abebff4e0534">
+<img width="960" alt="Flow Import 1" src="https://media.github.ibm.com/user/348712/files/31341919-c65f-4254-84aa-61d88404fdd8?token=AACVEKCM2HXS6GQDGM7W5VLIEUHC6">
 *Select the desired flow*
 
 - The flow will now be imported and opened.
-<img width="960" alt="Flow Import 2" src="https://media.github.ibm.com/user/375131/files/eaf0c480-eb19-11ec-885b-919da812499b">
+<img width="960" alt="Flow Import 2" src="https://media.github.ibm.com/user/348712/files/6837759f-a65c-40de-b914-5944d796b07b?token=AACVEKEJVI2FPXYG6VZHOZLIEUHE4">
 *The main page for the flow*
 
 ### Configuring the flow to use the right accounts
@@ -139,24 +139,24 @@ When importing a flow, it is important to check if the flow is using the right a
 - See if the connectors are using the right accounts.
 
 - To change the account for any connector, select the connector and click on the dropdown icon next to the Account's name
-<img width="960" alt="Select Account 1" src="https://media.github.ibm.com/user/348712/files/e61b9ed4-61ab-4782-b0c4-a42bb432467b">
+<img width="960" alt="Select Account 1" src="https://media.github.ibm.com/user/348712/files/6c1e1b32-6aba-481a-aa2d-a1ec66eff8a1?token=AACVEKAIVNVMAZI4ELHINRDIEUETI">
 *Change associated Account*
 
 - Select the account name to use from the list
-<img width="659" alt="Select Account 2" src="https://media.github.ibm.com/user/348712/files/52de25b1-d449-4aa8-a1d7-2b6af7e8b24e">
+<img width="659" alt="Select Account 2" src="https://media.github.ibm.com/user/348712/files/faa1ef04-1eb7-4570-91d0-cc3ffc295556?token=AACVEKDFTRZ4C6KK57O3UITIEUHKM">
 *Select desired Account*
 
 ### Configuring the Scheduler
 
 1. Click on the **Scheduler** node
-<img width="659" alt="Scheduler node" src="https://media.github.ibm.com/user/375131/files/ea694d80-01ed-11ed-8852-16b625339675">
+<img width="659" alt="Scheduler node" src="https://media.github.ibm.com/user/348712/files/682fa71c-e12c-4aa9-86ae-726a2c6f97dd?token=AACVEKECJA3XZK2XETLELY3IEUHL2">
 *The Scheduler node*
 
 - Configure the schedule as needed
 
-<img width="659" alt="Scheduler configuration 1" src="https://media.github.ibm.com/user/375131/files/d70ab200-01ee-11ed-9af7-4f66738aea7c">
+<img width="659" alt="Scheduler configuration 1" src="https://media.github.ibm.com/user/348712/files/2b01628c-ca01-4789-ab6f-9ad08f2a7c6b?token=AACVEKGFZYAY5IMSTA25EZ3IEUHN6">
 *Options for configuration- Hourly*
-<img width="659" alt="Scheduler configuration 2" src="https://media.github.ibm.com/user/375131/files/00c3d900-01ef-11ed-86aa-29008ff86450">
+<img width="659" alt="Scheduler configuration 2" src="https://media.github.ibm.com/user/348712/files/75a2d66d-190b-459a-b1e4-1cc5ce4b4c99?token=AACVEKAGX3FNKCUU3NH4IHDIEUHWG">
 *Options for configuration- Daily*
 
 ## Part 2: TAS Configuration
@@ -212,7 +212,7 @@ The following steps outline the necessary configurations for the Envizi Group Na
 2. Revise the BO and add four fields: **cstEnviziParentOneTX**, **cstEnviziParentTwoTX**,
 **cstEnviziParentThreeTX** and **cstEnviziGroupNamePathTX**
 
-<img width="512" alt="Data Modeler Fields" src="https://media.github.ibm.com/user/348712/files/3ddd5780-09b5-11ed-9014-fbd85b21e6eb">
+<img width="512" alt="Data Modeler Fields" src="https://media.github.ibm.com/user/348712/files/92433d64-1ab8-49c7-8a05-9c4dd26b8b39?token=AACVEKC5I5SGGWSNNDL7XBTIEUHX6">
 
 Name and Label should be the following:
 
@@ -242,11 +242,11 @@ After entering these values, click **Publish** to publish the BO
 - Select **cstEnviziGroupNamePathTX** and modify **Start Row** to 3 and **Col Span** to 2 on the
 properties window. Mark this field as **ReadOnly** and click **Apply**. The form should look like this:
 
-<img width="1028" alt="Form Builder" src="https://media.github.ibm.com/user/348712/files/4f266400-09b5-11ed-9ca4-4253b2fa9baa">
+<img width="1028" alt="Form Builder" src="https://media.github.ibm.com/user/348712/files/4474e0b1-6f5d-48a8-86d4-3eb9a208cf2d?token=AACVEKFYZNFRUMUTJANHRDDIEUH44">
 8. Click on **triBuilding** on the left panel and then click on **Sort Tab**. Move
 the **cstEnvizi** tab to the second position and click **Apply**
 
-<img width="256" alt="Form Builder Properties" src="https://media.github.ibm.com/user/348712/files/4f266400-09b5-11ed-8a73-f526a24a86db">
+<img width="256" alt="Form Builder Properties" src="https://media.github.ibm.com/user/348712/files/a6ba3235-942e-45f9-b38e-7a171723062a?token=AACVEKHP7TWOMYXWLSFQCLLIEUH6S">
 9. Publish the form
 
 
@@ -270,7 +270,7 @@ the **cstEnvizi** tab to the second position and click **Apply**
 
 - Choose the access level for the group and **Save**
 
-<img width="423" alt="Security Manager Access" src="https://media.github.ibm.com/user/348712/files/4fbefa80-09b5-11ed-99e5-b92fca943ddf">
+<img width="423" alt="Security Manager Access" src="https://media.github.ibm.com/user/348712/files/c0efc782-32e4-4ac8-a587-55ee1eb1aa97?token=AACVEKFVXERZLX2HUAR2NTDIEUIAK">
 
 #### Workflow Builder
 
@@ -281,11 +281,11 @@ the **cstEnvizi** tab to the second position and click **Apply**
 - Revise this workflow and after Call Module Level Validation add a new WF
 call to **triBuilding - Update Envizi fields with defined options** like displayed below:
 
-<img width="736" alt="WF call in Update Envizi Path" src="https://media.github.ibm.com/user/348712/files/374fdf80-09b7-11ed-8f47-3c588b667a58">
+<img width="736" alt="WF call in Update Envizi Path" src="https://media.github.ibm.com/user/348712/files/96f44db1-21c8-4027-900b-3c0b37ecd83e?token=AACVEKGVDUBNE3ETCFLWEXDIEUIB2">
 
 It will be defined as the image below:
  
-<img width="1062" alt="Call Envizi" src="https://media.github.ibm.com/user/348712/files/478e2400-4e19-11ed-81eb-e5462bbcdff1">
+<img width="1062" alt="Call Envizi" src="https://media.github.ibm.com/user/348712/files/a6aefe37-7261-4932-9120-251e838e82be?token=AACVEKCIM7B6FMTVWRDLGJ3IEUIDE">
 
 Click on the **Start** task at the top and publish the workflow
 
@@ -293,24 +293,24 @@ Click on the **Start** task at the top and publish the workflow
 
 1. Go to **My Reports** and navigate to **System Reports**. Add those four new fields to the existing query
 **triAPICBuilding - OSLC -- Outbound** by clicking the **Columns** tab and adding the four fields like below:
-<img width="800" alt="System-Report-Columns" src="https://media.github.ibm.com/user/348712/files/f0d51a00-4e19-11ed-9e28-a658b12af215">
+<img width="800" alt="System-Report-Columns" src="https://media.github.ibm.com/user/348712/files/b0361078-6b3e-4c45-b91c-2e276def1957?token=AACVEKFHYN3PC6HPWSIKYVDIEUIE6">
 
 - Save the report.
 
 - Open **Tools -> System Setup -> Integration -> OSLC Resource manager** and search for **triAPICOutboundBuildingRS**. On this resource, add the four new fields either individually or using **Import all Fields**
 
-<img width="683" alt="OSLC Manager" src="https://media.github.ibm.com/user/348712/files/73387400-09ba-11ed-912f-569fce1dc420">
+<img width="683" alt="OSLC Manager" src="https://media.github.ibm.com/user/348712/files/b7f51467-03e6-4fa8-9c53-1cb3eaab6fac?token=AACVEKALFSEJFMOYWR4Z2ZTIEUIGO">
 
 #### Navigation Builder
 
 1. Go to **Tools->Builder Tools-> Navigation Builder** and find TAS Global Menu (or the menu associated to the user that will need access to the app). Select and click **Edit**
-<img width="700" alt="Navigation-builder-1" src="https://media.github.ibm.com/user/348712/files/27c34480-3a95-11ed-89ca-17ce43fdeb1d">
+<img width="700" alt="Navigation-builder-1" src="https://media.github.ibm.com/user/348712/files/d5b8b531-c460-446c-abbb-6a77e600f52a?token=AACVEKC4UX6C63OTL6F4DULIEUIHW">
 
 - On navigation Items section, expand **Landing Page –Tools -> Menu Group –>System Setup**. Select **Menu group –>Integration** and expand **Navigations Item Library**
-<img width="700" alt="Navigation-builder-2" src="https://media.github.ibm.com/user/348712/files/272aae00-3a95-11ed-85a2-1cb9a42d6900">
+<img width="700" alt="Navigation-builder-2" src="https://media.github.ibm.com/user/348712/files/7ef392c8-4e3f-4b49-bea1-2a6a431a7d82?token=AACVEKFPLAEND46CESMYL3LIEUIJC">
 
 - Search for Envizi, select the item and click on **Add to Collection**
-<img width="414" alt="Navigation-builder-3" src="https://media.github.ibm.com/user/348712/files/272aae00-3a95-11ed-8777-57d9809f75dd">
+<img width="414" alt="Navigation-builder-3" src="https://media.github.ibm.com/user/348712/files/2e852ff1-b503-4255-915c-c6490be4f017?token=AACVEKAAV5HLEGGFBA23Z5TIEUIJ6">
 
 - Click **Save**. Logout and Login again to the system
 
@@ -326,7 +326,7 @@ Enable Envizi checkbox is available too. The Envizi tab will be displayed only w
 
 One more item that must be configured is the Number of levels to be used on the Envizi configuration. Envizi hierarchy path will match this selection.
 
-<img width="900" alt="How-to-use" src="https://media.github.ibm.com/user/348712/files/46f543c2-d118-4c98-8445-ed3e945d5dae">
+<img width="900" alt="How-to-use" src="https://media.github.ibm.com/user/348712/files/d369c828-f48f-4224-b517-2db8f5027df4?token=AACVEKD5MAIAJSSB5EVYE7LIEUIK6">
 
 Also, notice that there is a section named **Active/Retire with missing data** and **Draft/Revision with Missing Data**. This section will list the buildings that don’t have data defined for Envizi group 3, so it means that no Envizi group will be populated on those buildings.
 
@@ -334,7 +334,7 @@ You can filter to change only the desired records by changing query **cst -triBu
 
 To use the tool, just select the desired Envizi group names and click **Save**. On the moment Save is triggered, all buildings will be populated with the desired options. This process may take a few minutes depending on how many buildings you have on your system. After that Envizi groups and path will be updated according to the selections made on Envizi Integration page.
 
-<img width="900" alt="How-to-use-2" src="https://media.github.ibm.com/user/348712/files/27c34480-3a95-11ed-9dc8-b6347de21bee">
+<img width="900" alt="How-to-use-2" src="https://media.github.ibm.com/user/348712/files/d369c828-f48f-4224-b517-2db8f5027df4?token=AACVEKD5MAIAJSSB5EVYE7LIEUIK6">
 
 Also, every time a building is saved and there are changes on the defined fields, or a new building is created, the Envizi groups and path will be modified according to the selected options. You can find the groups on tab Envizi on the building record
 

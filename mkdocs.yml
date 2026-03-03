@@ -10,6 +10,7 @@ edit_uri: blob/master/docs/
 nav:
   - 'Sustainability Software Portfolio Connectors': index.md
   #- 'IBM MAS Connector for TRIRIGA':
+  - 'IBM MAS Connector for Workday': mas-workday-home.md
   - 'IBM MAS Connector for TRIRIGA': mas-tas-home.md
     # - 'Portfolio Data Integration' : mas-tas.md
     # - 'Service Request Integration': service-request.md

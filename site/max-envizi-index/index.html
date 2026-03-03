@@ -8,7 +8,7 @@
     <title>IBM MAS Connector for Envizi - IBM Sustainability Software Portfolio Connectors</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
     
       <script>
@@ -18,13 +18,12 @@
         var mkdocs_page_url = "/IBM-Sustainability-Software-Portfolio-Connectors/max-envizi-index/";
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -36,7 +35,7 @@
           <a href=".." class="icon icon-home"> IBM Sustainability Software Portfolio Connectors
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -47,11 +46,15 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mas-workday-home/">IBM MAS Connector for Workday</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../mas-tas-home/">IBM MAS Connector for TRIRIGA</a>
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">IBM MAS Connector for Envizi</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">IBM MAS Connector for Envizi</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#use-case-examples">Use Case Examples</a>
     </li>
@@ -159,11 +162,10 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>IBM MAS Connector for Envizi</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">IBM MAS Connector for Envizi</li>
     <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/max-envizi-index.md"
-          class="icon icon-github"> Edit on GitHub</a>
+          <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/max-envizi-index.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
@@ -182,12 +184,12 @@
 <p><strong>IBM App Connect</strong> provides a flexible environment for integration solutions to transform, enrich, route, and process business messages and data. </p>
 <p><strong>App Connect Flows</strong> enable specific integration use cases by connecting to predefined APIs to route and map data. Mapping has been pre-defined, but it can be customized.</p>
 <p><strong>Native API framework</strong> is used for Maximo and enabled thorugh provided packages that can be imported.</p>
-<p><img alt="Maximo-Envizi Integration" src="https://media.github.ibm.com/user/348712/files/c2494984-60cb-4cfb-ab5a-16602e969cbb" /></p>
+<p><img alt="Maximo-Envizi Integration" src="../Images/MAS-Envizi/MAS-Envizi%20Architecture.png" /></p>
 <p><em>Maximo to Envizi Integration Diagram</em></p>
 <hr />
 <h2 id="data-mapping">Data Mapping</h2>
 <p>The image below illustrates the type of data that is being sent by the API and App Connect Flows.</p>
-<p><img width="450" height="850" alt="MAS-Envizi Architecture" src="https://media.github.ibm.com/user/348712/files/0c4fda65-2306-476b-8d57-331e53654ea8"></p>
+<p><img width="450" height="850" alt="MAS-Envizi Architecture" src="../Images/MAS-Envizi/MAS-Envizi%20Data%20Mapping.png"></p>
 <p><em>Maximo to Envizi Data Map</em></p>
 <hr />
 <h2 id="app-connect-flows">App Connect Flows</h2>
@@ -254,11 +256,11 @@
 <p>Un-select the <strong>System managed</strong> button and add the File address for the file. Be sure to leave the Alias as the default value or else this process will not work properly. Once added, scroll to the top and click <strong>Apply Changes</strong> and <strong>Confirm</strong> on the next window.</p>
 </li>
 </ol>
-<p><img src="https://media.github.ibm.com/user/348712/files/9c466a39-45d4-4811-bed5-f80e208757bc" alt="Manage dashboard">
+<p><img src="../Images/MAS-Envizi/Manage%20Catalog%20Dashboard.png" alt="Manage dashboard">
 <em>Step 1: Manage dashboard</em></p>
-<p><img src="https://media.github.ibm.com/user/348712/files/4db55bcb-53ff-4cf3-a9c1-3ab760174406" alt="Configuration Page">
+<p><img src="../Images/MAS-Envizi/Manage%20Configuration%20Page.png" alt="Configuration Page">
 <em>Step 2: Navigate to Configuration page</em></p>
-<p><img src="https://media.github.ibm.com/user/348712/files/2a7f4f27-5c7a-4f87-858b-13ea68363879" alt="Add Customization">
+<p><img src="../Images/MAS-Envizi/Add%20Customization%20to%20Manage.png" alt="Add Customization">
 <em>Step 3: Add Customization to Manage instance</em></p>
 <p>The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created <code>build</code> pods in the Manage namespace in the OpenShift cluster to see the progress.</p>
 <h3 id="mas-810">MAS 8.10</h3>
@@ -271,9 +273,9 @@
 <p>On the tile page, click <strong>Configure</strong> and it will take you to the update configuration page. Select the latest version of the connector under the <strong>Components</strong> section and then click <strong>Apply Changes</strong> at the top of the page and <strong>Confirm</strong> on the next window.</p>
 </li>
 </ol>
-<p><img src="https://media.github.ibm.com/user/348712/files/aff7df19-4804-4407-9994-bb82fedd1c6e" alt="Tile dashboard">
+<p><img src="../Images/MAS-Envizi/Manage%20Component%20Selection.png" alt="Tile dashboard">
 <em>Step 1: Select Connector Tile</em></p>
-<p><img src="https://media.github.ibm.com/user/348712/files/9c550273-474a-41b4-bf9b-b266c90014ac" alt="Component Section">
+<p><img src="../Images/MAS-Envizi/Manage%20Configuration%20Page.png" alt="Component Section">
 <em>Step 2: Apply Changes for Connector</em></p>
 <p>The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created <code>build</code> pods in the Manage namespace in the OpenShift cluster to see the progress.</p>
 <h2 id="part-2-app-connect-configuration">Part 2: App Connect Configuration</h2>
@@ -795,16 +797,17 @@
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" defer></script>
-      <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

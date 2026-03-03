@@ -8,7 +8,7 @@
     <title>IBM TAS Connector for Envizi - IBM Sustainability Software Portfolio Connectors</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
     
       <script>
@@ -18,13 +18,12 @@
         var mkdocs_page_url = "/IBM-Sustainability-Software-Portfolio-Connectors/tas-envizi-index/";
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -36,7 +35,7 @@
           <a href=".." class="icon icon-home"> IBM Sustainability Software Portfolio Connectors
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -44,6 +43,10 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="..">Sustainability Software Portfolio Connectors</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mas-workday-home/">IBM MAS Connector for Workday</a>
                 </li>
               </ul>
               <ul>
@@ -55,7 +58,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">IBM TAS Connector for Envizi</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">IBM TAS Connector for Envizi</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#use-case-examples">Use Case Examples</a>
     </li>
@@ -169,11 +172,10 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>IBM TAS Connector for Envizi</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">IBM TAS Connector for Envizi</li>
     <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/tas-envizi-index.md"
-          class="icon icon-github"> Edit on GitHub</a>
+          <a href="https://github.com/IBM/IBM-Sustainability-Software-Portfolio-Connectors/blob/master/docs/tas-envizi-index.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
@@ -192,12 +194,12 @@
 <p><strong>IBM App Connect</strong> provides a flexible environment for integration solutions to transform, enrich, route, and process business messages and data. </p>
 <p><strong>App Connect Flows</strong> enable specific integration use cases by connecting to predefined APIs to route and map data. Mapping has been pre-defined, but it can be customized.</p>
 <p><strong>Native API framework</strong> is used for TAS and enabled thorugh provided packages that can be imported.</p>
-<p><img alt="TAS-Envizi Integration" src="https://media.github.ibm.com/user/348712/files/fdc31706-9350-4aee-a909-e10d2bb0f3c7" /></p>
+<p><img alt="TAS-Envizi Integration" src="https://media.github.ibm.com/user/348712/files/3ee11905-0300-46e7-b712-f16530fc9781?token=AACVEKB53IKNAW52RWXXNQ3IEUDCY" /></p>
 <p><em>TAS to Envizi Integration Diagram</em></p>
 <hr />
 <h2 id="data-mapping">Data Mapping</h2>
 <p>The image below illustrates the type of data that is being sent by the API and App Connect Flows.</p>
-<p><img width="450" height="650" alt="TAS-Envizi Architecture" src="https://media.github.ibm.com/user/348712/files/b21644cd-0b16-450e-aff4-1720bc8cea43"></p>
+<p><img width="450" height="650" alt="TAS-Envizi Architecture" src="https://media.github.ibm.com/user/348712/files/77d8c2bf-5a48-493f-bcbe-2ad84be2276c?token=AACVEKDFYNCHAWJAFV7MNU3IEUDG4"></p>
 <p><em>TAS to Envizi Data Map</em></p>
 <hr />
 <h2 id="app-connect-flows">App Connect Flows</h2>
@@ -260,7 +262,7 @@
 <ol>
 <li>
 <p>Navigate to Catalog section of the App Connect instance
-<img width="960" alt="Create Account 1" src="https://media.github.ibm.com/user/375131/files/eb8b5a00-eb1d-11ec-8401-35b47d561ce4">
+<img width="960" alt="Create Account 1" src="https://media.github.ibm.com/user/348712/files/6b268957-79a9-46fa-9090-cb072f54f429?token=AACVEKBGYOUPQEM3ZUEX6VTIEUDPC">
 <em>Create Account 1</em></p>
 </li>
 <li>
@@ -268,19 +270,19 @@
 </li>
 <li>
 <p>If the App Connect instance does not have an account for the connector, click on <strong>Connect</strong> to create a new account. Else, open the account selection drop down, and click on <strong>Add a new account ...</strong>
-<img width="948" alt="Create Account 2b" src="https://media.github.ibm.com/user/348712/files/02ef8867-555d-4949-a87b-5ffc68d5dca2">
+<img width="948" alt="Create Account 2b" src="https://media.github.ibm.com/user/348712/files/d218d606-4207-4a30-9c79-b7fe50ed6962?token=AACVEKGGX3SMCFXW7ABYC53IEUDQM">
 <em>Add a New Account</em></p>
 </li>
 <li>
 <p>Enter the necessary details for the connector<br>
     a. For Amazon S3, it will be the Secret Access Key and Access Key ID provided by Envizi.<br>
     b. For HTTP, it will be the Authentication Key or username and password needed for TAS.
-<img width="960" alt="Create Account 3" src="https://media.github.ibm.com/user/348712/files/07bdaf7e-7538-46e8-aaff-27b6acfb8738">
+<img width="960" alt="Create Account 3" src="https://media.github.ibm.com/user/348712/files/fd20a067-3625-488f-9fd6-664243b78a2a?token=AACVEKCWR257A4C42YWL4A3IEUDRU">
 <em>Connect to S3/HTTP</em></p>
 </li>
 <li>
 <p>Click on <strong>Connect</strong>
-<img width="960" alt="Create Account 4" src="https://media.github.ibm.com/user/375131/files/ed551d80-eb1d-11ec-983c-c276d43e0654">
+<img width="960" alt="Create Account 4" src="https://media.github.ibm.com/user/348712/files/236e201a-86bd-428b-9523-3ba6228346b0?token=AACVEKAJMSRSKZTHXPNJIPTIEUDTY">
 <em>Connect the Account</em></p>
 </li>
 <li>
@@ -288,12 +290,12 @@
 </li>
 <li>
 <p>Click on the kebab menu (three dots) and select <strong>Rename Account</strong>
-<img width="960" alt="Create Account 5" src="https://media.github.ibm.com/user/348712/files/f0d73883-70c5-4892-a996-fae0cd33a00f">
+<img width="960" alt="Create Account 5" src="https://media.github.ibm.com/user/348712/files/fbd1f475-0241-4f0f-8263-12f590b65649?token=AACVEKBCDKA6TAHOSN2ACP3IEUHHW">
 <em>Rename the Account step 1</em></p>
 </li>
 <li>
 <p>Enter an account name and click on <strong>Rename Account</strong>. This name can now be used by the connector in the flow.
-<img width="958" alt="Create Account 6" src="https://media.github.ibm.com/user/375131/files/ee864a80-eb1d-11ec-96d1-fdc42c679896">
+<img width="958" alt="Create Account 6" src="https://media.github.ibm.com/user/348712/files/11723edd-fd66-4df5-98eb-db9a4fcec940?token=AACVEKB5RA3P7NYTZGW2ITLIEUHIW">
 <em>Rename the Account step 2</em></p>
 </li>
 </ol>
@@ -302,17 +304,17 @@
 <li>Open the Dashboard of the App Connect instance.</li>
 <li>
 <p>Click on the <strong>New</strong> button and select <strong>Import Flow</strong>.
-<img width="861" alt="Flow Import 0" src="https://media.github.ibm.com/user/375131/files/ea582e00-eb19-11ec-9912-0881d321f3c7">
+<img width="861" alt="Flow Import 0" src="https://media.github.ibm.com/user/348712/files/8cd64d3b-3762-4d7d-a0a5-e23c6f090aa6?token=AACVEKAZ7PGROVHPY6OZKEDIEUEQO">
 <em>Import the flow</em></p>
 </li>
 <li>
 <p>Browse to the flow's YAML file and click on <strong>Import</strong>.
-<img width="960" alt="Flow Import 1" src="https://media.github.ibm.com/user/375131/files/ea582e00-eb19-11ec-88a7-abebff4e0534">
+<img width="960" alt="Flow Import 1" src="https://media.github.ibm.com/user/348712/files/31341919-c65f-4254-84aa-61d88404fdd8?token=AACVEKCM2HXS6GQDGM7W5VLIEUHC6">
 <em>Select the desired flow</em></p>
 </li>
 <li>
 <p>The flow will now be imported and opened.
-<img width="960" alt="Flow Import 2" src="https://media.github.ibm.com/user/375131/files/eaf0c480-eb19-11ec-885b-919da812499b">
+<img width="960" alt="Flow Import 2" src="https://media.github.ibm.com/user/348712/files/6837759f-a65c-40de-b914-5944d796b07b?token=AACVEKEJVI2FPXYG6VZHOZLIEUHE4">
 <em>The main page for the flow</em></p>
 </li>
 </ol>
@@ -327,12 +329,12 @@
 </li>
 <li>
 <p>To change the account for any connector, select the connector and click on the dropdown icon next to the Account's name
-<img width="960" alt="Select Account 1" src="https://media.github.ibm.com/user/348712/files/e61b9ed4-61ab-4782-b0c4-a42bb432467b">
+<img width="960" alt="Select Account 1" src="https://media.github.ibm.com/user/348712/files/6c1e1b32-6aba-481a-aa2d-a1ec66eff8a1?token=AACVEKAIVNVMAZI4ELHINRDIEUETI">
 <em>Change associated Account</em></p>
 </li>
 <li>
 <p>Select the account name to use from the list
-<img width="659" alt="Select Account 2" src="https://media.github.ibm.com/user/348712/files/52de25b1-d449-4aa8-a1d7-2b6af7e8b24e">
+<img width="659" alt="Select Account 2" src="https://media.github.ibm.com/user/348712/files/faa1ef04-1eb7-4570-91d0-cc3ffc295556?token=AACVEKDFTRZ4C6KK57O3UITIEUHKM">
 <em>Select desired Account</em></p>
 </li>
 </ol>
@@ -340,16 +342,16 @@
 <ol>
 <li>
 <p>Click on the <strong>Scheduler</strong> node
-<img width="659" alt="Scheduler node" src="https://media.github.ibm.com/user/375131/files/ea694d80-01ed-11ed-8852-16b625339675">
+<img width="659" alt="Scheduler node" src="https://media.github.ibm.com/user/348712/files/682fa71c-e12c-4aa9-86ae-726a2c6f97dd?token=AACVEKECJA3XZK2XETLELY3IEUHL2">
 <em>The Scheduler node</em></p>
 </li>
 <li>
 <p>Configure the schedule as needed</p>
 </li>
 </ol>
-<p><img width="659" alt="Scheduler configuration 1" src="https://media.github.ibm.com/user/375131/files/d70ab200-01ee-11ed-9af7-4f66738aea7c">
+<p><img width="659" alt="Scheduler configuration 1" src="https://media.github.ibm.com/user/348712/files/2b01628c-ca01-4789-ab6f-9ad08f2a7c6b?token=AACVEKGFZYAY5IMSTA25EZ3IEUHN6">
 <em>Options for configuration- Hourly</em>
-<img width="659" alt="Scheduler configuration 2" src="https://media.github.ibm.com/user/375131/files/00c3d900-01ef-11ed-86aa-29008ff86450">
+<img width="659" alt="Scheduler configuration 2" src="https://media.github.ibm.com/user/348712/files/75a2d66d-190b-459a-b1e4-1cc5ce4b4c99?token=AACVEKAGX3FNKCUU3NH4IHDIEUHWG">
 <em>Options for configuration- Daily</em></p>
 <h2 id="part-2-tas-configuration">Part 2: TAS Configuration</h2>
 <h3 id="step-1-initial-tas-configuration">Step 1: Initial TAS Configuration</h3>
@@ -433,7 +435,7 @@
 <strong>cstEnviziParentThreeTX</strong> and <strong>cstEnviziGroupNamePathTX</strong></p>
 </li>
 </ol>
-<p><img width="512" alt="Data Modeler Fields" src="https://media.github.ibm.com/user/348712/files/3ddd5780-09b5-11ed-9014-fbd85b21e6eb"></p>
+<p><img width="512" alt="Data Modeler Fields" src="https://media.github.ibm.com/user/348712/files/92433d64-1ab8-49c7-8a05-9c4dd26b8b39?token=AACVEKC5I5SGGWSNNDL7XBTIEUHX6"></p>
 <p>Name and Label should be the following:</p>
 <table>
 <thead>
@@ -487,10 +489,10 @@
 properties window. Mark this field as <strong>ReadOnly</strong> and click <strong>Apply</strong>. The form should look like this:</p>
 </li>
 </ol>
-<p><img width="1028" alt="Form Builder" src="https://media.github.ibm.com/user/348712/files/4f266400-09b5-11ed-9ca4-4253b2fa9baa">
+<p><img width="1028" alt="Form Builder" src="https://media.github.ibm.com/user/348712/files/4474e0b1-6f5d-48a8-86d4-3eb9a208cf2d?token=AACVEKFYZNFRUMUTJANHRDDIEUH44">
 8. Click on <strong>triBuilding</strong> on the left panel and then click on <strong>Sort Tab</strong>. Move
 the <strong>cstEnvizi</strong> tab to the second position and click <strong>Apply</strong></p>
-<p><img width="256" alt="Form Builder Properties" src="https://media.github.ibm.com/user/348712/files/4f266400-09b5-11ed-8a73-f526a24a86db">
+<p><img width="256" alt="Form Builder Properties" src="https://media.github.ibm.com/user/348712/files/a6ba3235-942e-45f9-b38e-7a171723062a?token=AACVEKHP7TWOMYXWLSFQCLLIEUH6S">
 9. Publish the form</p>
 <h4 id="object-migration">Object Migration</h4>
 <ol>
@@ -522,7 +524,7 @@ the <strong>cstEnvizi</strong> tab to the second position and click <strong>Appl
 <p>Choose the access level for the group and <strong>Save</strong></p>
 </li>
 </ol>
-<p><img width="423" alt="Security Manager Access" src="https://media.github.ibm.com/user/348712/files/4fbefa80-09b5-11ed-99e5-b92fca943ddf"></p>
+<p><img width="423" alt="Security Manager Access" src="https://media.github.ibm.com/user/348712/files/c0efc782-32e4-4ac8-a587-55ee1eb1aa97?token=AACVEKFVXERZLX2HUAR2NTDIEUIAK"></p>
 <h4 id="workflow-builder">Workflow Builder</h4>
 <ol>
 <li>
@@ -536,16 +538,16 @@ the <strong>cstEnvizi</strong> tab to the second position and click <strong>Appl
 call to <strong>triBuilding - Update Envizi fields with defined options</strong> like displayed below:</p>
 </li>
 </ol>
-<p><img width="736" alt="WF call in Update Envizi Path" src="https://media.github.ibm.com/user/348712/files/374fdf80-09b7-11ed-8f47-3c588b667a58"></p>
+<p><img width="736" alt="WF call in Update Envizi Path" src="https://media.github.ibm.com/user/348712/files/96f44db1-21c8-4027-900b-3c0b37ecd83e?token=AACVEKGVDUBNE3ETCFLWEXDIEUIB2"></p>
 <p>It will be defined as the image below:</p>
-<p><img width="1062" alt="Call Envizi" src="https://media.github.ibm.com/user/348712/files/478e2400-4e19-11ed-81eb-e5462bbcdff1"></p>
+<p><img width="1062" alt="Call Envizi" src="https://media.github.ibm.com/user/348712/files/a6aefe37-7261-4932-9120-251e838e82be?token=AACVEKCIM7B6FMTVWRDLGJ3IEUIDE"></p>
 <p>Click on the <strong>Start</strong> task at the top and publish the workflow</p>
 <h4 id="my-reports-and-oslc">My Reports and OSLC</h4>
 <ol>
 <li>
 <p>Go to <strong>My Reports</strong> and navigate to <strong>System Reports</strong>. Add those four new fields to the existing query
 <strong>triAPICBuilding - OSLC -- Outbound</strong> by clicking the <strong>Columns</strong> tab and adding the four fields like below:
-<img width="800" alt="System-Report-Columns" src="https://media.github.ibm.com/user/348712/files/f0d51a00-4e19-11ed-9e28-a658b12af215"></p>
+<img width="800" alt="System-Report-Columns" src="https://media.github.ibm.com/user/348712/files/b0361078-6b3e-4c45-b91c-2e276def1957?token=AACVEKFHYN3PC6HPWSIKYVDIEUIE6"></p>
 </li>
 <li>
 <p>Save the report.</p>
@@ -554,20 +556,20 @@ call to <strong>triBuilding - Update Envizi fields with defined options</strong>
 <p>Open <strong>Tools -&gt; System Setup -&gt; Integration -&gt; OSLC Resource manager</strong> and search for <strong>triAPICOutboundBuildingRS</strong>. On this resource, add the four new fields either individually or using <strong>Import all Fields</strong></p>
 </li>
 </ol>
-<p><img width="683" alt="OSLC Manager" src="https://media.github.ibm.com/user/348712/files/73387400-09ba-11ed-912f-569fce1dc420"></p>
+<p><img width="683" alt="OSLC Manager" src="https://media.github.ibm.com/user/348712/files/b7f51467-03e6-4fa8-9c53-1cb3eaab6fac?token=AACVEKALFSEJFMOYWR4Z2ZTIEUIGO"></p>
 <h4 id="navigation-builder">Navigation Builder</h4>
 <ol>
 <li>
 <p>Go to <strong>Tools-&gt;Builder Tools-&gt; Navigation Builder</strong> and find TAS Global Menu (or the menu associated to the user that will need access to the app). Select and click <strong>Edit</strong>
-<img width="700" alt="Navigation-builder-1" src="https://media.github.ibm.com/user/348712/files/27c34480-3a95-11ed-89ca-17ce43fdeb1d"></p>
+<img width="700" alt="Navigation-builder-1" src="https://media.github.ibm.com/user/348712/files/d5b8b531-c460-446c-abbb-6a77e600f52a?token=AACVEKC4UX6C63OTL6F4DULIEUIHW"></p>
 </li>
 <li>
 <p>On navigation Items section, expand <strong>Landing Page –Tools -&gt; Menu Group –&gt;System Setup</strong>. Select <strong>Menu group –&gt;Integration</strong> and expand <strong>Navigations Item Library</strong>
-<img width="700" alt="Navigation-builder-2" src="https://media.github.ibm.com/user/348712/files/272aae00-3a95-11ed-85a2-1cb9a42d6900"></p>
+<img width="700" alt="Navigation-builder-2" src="https://media.github.ibm.com/user/348712/files/7ef392c8-4e3f-4b49-bea1-2a6a431a7d82?token=AACVEKFPLAEND46CESMYL3LIEUIJC"></p>
 </li>
 <li>
 <p>Search for Envizi, select the item and click on <strong>Add to Collection</strong>
-<img width="414" alt="Navigation-builder-3" src="https://media.github.ibm.com/user/348712/files/272aae00-3a95-11ed-8777-57d9809f75dd"></p>
+<img width="414" alt="Navigation-builder-3" src="https://media.github.ibm.com/user/348712/files/2e852ff1-b503-4255-915c-c6490be4f017?token=AACVEKAAV5HLEGGFBA23Z5TIEUIJ6"></p>
 </li>
 <li>
 <p>Click <strong>Save</strong>. Logout and Login again to the system</p>
@@ -579,11 +581,11 @@ call to <strong>triBuilding - Update Envizi fields with defined options</strong>
 <p>When you open the page, the fields will be displayed as Group1/Group2/Group3. By default the values are World Region/Country/City. The field Envizi Hierarchy Path shows how the Envizi groupnames will be configured according to the selected option. </p>
 <p>Enable Envizi checkbox is available too. The Envizi tab will be displayed only when this checkbox is marked</p>
 <p>One more item that must be configured is the Number of levels to be used on the Envizi configuration. Envizi hierarchy path will match this selection.</p>
-<p><img width="900" alt="How-to-use" src="https://media.github.ibm.com/user/348712/files/46f543c2-d118-4c98-8445-ed3e945d5dae"></p>
+<p><img width="900" alt="How-to-use" src="https://media.github.ibm.com/user/348712/files/d369c828-f48f-4224-b517-2db8f5027df4?token=AACVEKD5MAIAJSSB5EVYE7LIEUIK6"></p>
 <p>Also, notice that there is a section named <strong>Active/Retire with missing data</strong> and <strong>Draft/Revision with Missing Data</strong>. This section will list the buildings that don’t have data defined for Envizi group 3, so it means that no Envizi group will be populated on those buildings.</p>
 <p>You can filter to change only the desired records by changing query <strong>cst -triBuilding -Query -Get All Buildings for envizi</strong>. The list of buildings displayed on this query will be the list of buildings that the patch helper will modify.</p>
 <p>To use the tool, just select the desired Envizi group names and click <strong>Save</strong>. On the moment Save is triggered, all buildings will be populated with the desired options. This process may take a few minutes depending on how many buildings you have on your system. After that Envizi groups and path will be updated according to the selections made on Envizi Integration page.</p>
-<p><img width="900" alt="How-to-use-2" src="https://media.github.ibm.com/user/348712/files/27c34480-3a95-11ed-9dc8-b6347de21bee"></p>
+<p><img width="900" alt="How-to-use-2" src="https://media.github.ibm.com/user/348712/files/d369c828-f48f-4224-b517-2db8f5027df4?token=AACVEKD5MAIAJSSB5EVYE7LIEUIK6"></p>
 <p>Also, every time a building is saved and there are changes on the defined fields, or a new building is created, the Envizi groups and path will be modified according to the selected options. You can find the groups on tab Envizi on the building record</p>
 <h2 id="operating-the-connector">Operating the Connector</h2>
 <h4 id="on-demand-flow">On-demand Flow</h4>
@@ -879,16 +881,17 @@ EOF
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" defer></script>
-      <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

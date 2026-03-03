@@ -20,7 +20,7 @@ Corporate sustainability managers can gather and maintain accurate sustainabilit
 
 **Native API framework** is used for Maximo and enabled thorugh provided packages that can be imported.
 
-![Maximo-Envizi Integration](https://media.github.ibm.com/user/348712/files/c2494984-60cb-4cfb-ab5a-16602e969cbb)
+![Maximo-Envizi Integration](../Images/MAS-Envizi/MAS-Envizi%20Architecture.png)
 
 *Maximo to Envizi Integration Diagram*
 
@@ -30,7 +30,7 @@ Corporate sustainability managers can gather and maintain accurate sustainabilit
 
 The image below illustrates the type of data that is being sent by the API and App Connect Flows.
 
-<img width="450" height="850" alt="MAS-Envizi Architecture" src="https://media.github.ibm.com/user/348712/files/0c4fda65-2306-476b-8d57-331e53654ea8">
+<img width="450" height="850" alt="MAS-Envizi Architecture" src="../Images/MAS-Envizi/MAS-Envizi%20Data%20Mapping.png">
 
 *Maximo to Envizi Data Map*
 
@@ -90,13 +90,13 @@ The MAS Connector to Envizi in Manage can be installed by using the proper custo
 
 3. Un-select the **System managed** button and add the File address for the file. Be sure to leave the Alias as the default value or else this process will not work properly. Once added, scroll to the top and click **Apply Changes** and **Confirm** on the next window.
 
-<img src="https://media.github.ibm.com/user/348712/files/9c466a39-45d4-4811-bed5-f80e208757bc" alt="Manage dashboard">
+<img src="../Images/MAS-Envizi/Manage%20Catalog%20Dashboard.png" alt="Manage dashboard">
 *Step 1: Manage dashboard*
 
-<img src="https://media.github.ibm.com/user/348712/files/4db55bcb-53ff-4cf3-a9c1-3ab760174406" alt="Configuration Page">
+<img src="../Images/MAS-Envizi/Manage%20Configuration%20Page.png" alt="Configuration Page">
 *Step 2: Navigate to Configuration page*
 
-<img src="https://media.github.ibm.com/user/348712/files/2a7f4f27-5c7a-4f87-858b-13ea68363879" alt="Add Customization">
+<img src="../Images/MAS-Envizi/Add%20Customization%20to%20Manage.png" alt="Add Customization">
 *Step 3: Add Customization to Manage instance*
 
 The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created `build` pods in the Manage namespace in the OpenShift cluster to see the progress.
@@ -108,10 +108,10 @@ The MAS Connector to Envizi in Manage can be installed on the MAS administration
 
 2. On the tile page, click **Configure** and it will take you to the update configuration page. Select the latest version of the connector under the **Components** section and then click **Apply Changes** at the top of the page and **Confirm** on the next window.
 
-<img src="https://media.github.ibm.com/user/348712/files/aff7df19-4804-4407-9994-bb82fedd1c6e" alt="Tile dashboard">
+<img src="../Images/MAS-Envizi/Manage%20Component%20Selection.png" alt="Tile dashboard">
 *Step 1: Select Connector Tile*
 
-<img src="https://media.github.ibm.com/user/348712/files/9c550273-474a-41b4-bf9b-b266c90014ac" alt="Component Section">
+<img src="../Images/MAS-Envizi/Manage%20Configuration%20Page.png" alt="Component Section">
 *Step 2: Apply Changes for Connector*
 
 The process can take anywhere between 20 minutes to 1-2 hours depending on the cluster resources. Monitor the logs in the created `build` pods in the Manage namespace in the OpenShift cluster to see the progress.
