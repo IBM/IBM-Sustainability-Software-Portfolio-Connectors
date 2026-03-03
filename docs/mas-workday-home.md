@@ -28,7 +28,7 @@ On the Maximo side, the solution includes all of the necessary integration artif
 App Connect layer provides message transformation and communication with Workday SOAP APIs.  Workday provides numerous SOAP APIs to import and fetch data from their system.
 
 
-![MAS-Workday Architecture](../Images/MAS-Workday/Whitepaper%20Architecture.jpg)
+![MAS-Workday Architecture](Images/MAS-Workday/Whitepaper%20Architecture.jpg)
 
 As part of the normal cycle of maintaining assets, resources such as spare parts, labor, tools, and materials are required.  While IBM Manage has built-in capabilities to source and manage these resources, many customers prefer to use their ERP system to perform these business processes.  
 
@@ -36,7 +36,7 @@ They may have implemented complex procurement business processes, rules, and dep
 
 The adapter supports Supply Chain master data (such as Suppliers, Purchase Items, and Purchase Contracts), as well as transactional data (Requisitions, Orders, Receipts and Invoices).
 
-![MAS-Workday Purchasing Cycle Image](../Images/MAS-Workday/MAS-Workday%20Purchasing%20Cycle%20Image.png)
+![MAS-Workday Purchasing Cycle Image](Images/MAS-Workday/MAS-Workday%20Purchasing%20Cycle%20Image.png)
 
 ***
 
@@ -51,21 +51,21 @@ Workday is the System of Record for Suppliers.  The integration uses Workday API
 Suppliers are brought over as “Companies” of type “V” (vendors) to Maximo.  Additionally, the Workday primary key (WID) is also established as the external reference for each supplier.
 
 
-![Supplier Integration](../Images/MAS-Workday/Supplier%20Integration.png)
+![Supplier Integration](Images/MAS-Workday/Supplier%20Integration.png)
 
 
 ### Purchase Items
 
 Purchase items are maintained by Workday.  Like Suppliers, the integration fetches items using a Workday API and creates corresponding records in Maximo.  These can then be used during procurement on Purchase Requisitions.  Initial and delta loads are supported.
 
-![PI Integration](../Images/MAS-Workday/PI%20Integration.png)
+![PI Integration](Images/MAS-Workday/PI%20Integration.png)
 
 
 ### Purchase Contracts
 
 Workday is the System of Record for Purchase Contracts.  The integration fetches contracts using a filter (contract type) and creates corresponding contracts in Maximo.  Contract revisions are also supported, as well as initial and delta loads.
 
-![PC Integration](../Images/MAS-Workday/PC%20Integration.png)
+![PC Integration](Images/MAS-Workday/PC%20Integration.png)
 
 
 ***
@@ -82,7 +82,7 @@ In addition to common purchasing data like item, supplier, quantity, etc., the i
 
 When a purchase requisition is created in Maximo, a user can select values for the debit/credit accounts.  These values are presented in a dialog box and are sourced from Workday worktags (such as spend category, cost center, fund, account and project task).  We also provide an example of transferring a custom organization into a GL component.  This allows for extra flexibility for customers who need more worktags in Maximo.
 
-![Requisition Integration](../Images/MAS-Workday/Requisition%20Integration.png)
+![Requisition Integration](Images/MAS-Workday/Requisition%20Integration.png)
 
 
 Purchase Requisitions in Maximo can be generated for inventory replenishment as well as for ongoing work order needs.  By using data from Workday, Maximo users can request fulfillment of inventory or direct issue items/materials and/or services from Workday.  Approval of the requisition is what initially triggers the integration but that is also a configurable element.
@@ -103,7 +103,7 @@ Purchase Order lines can be created for materials and/or services.  Both are sup
 Purchase Order revisions are also supported by the adapter.  These revisions are fetched using a different Workday SOAP API but mapped using the same flow.
 
 
-![PO Integration](../Images/MAS-Workday/PO%20Integration.png)
+![PO Integration](Images/MAS-Workday/PO%20Integration.png)
 
 
 ### Receipts
@@ -115,7 +115,7 @@ Receipts are sent to Workday using a Maximo Integration Framework Publish Channe
 The integration flow inspects the Maximo “issuetype” to determine if the transaction is supposed to submit a receipt, void it, or return it and it calls the appropriate Workday API to perform the corresponding action.
 
 
-![Receipt Integration](../Images/MAS-Workday/Receipt%20Integration.png)
+![Receipt Integration](Images/MAS-Workday/Receipt%20Integration.png)
 
 
 ### Invoices
@@ -129,7 +129,7 @@ Once pulled, the primary keys for these invoices are then used to extract a list
 It is important to note that this integration was designed as a “one time only” extraction of the invoice and does not support ongoing updates to it.  Since Maximo does not have an Accounts Payable module, it is expecting that the ERP system pay the supplier and then provide the final details to Maximo.
 
 
-![Invoice Integration](../Images/MAS-Workday/Invoice%20Integration.png)
+![Invoice Integration](Images/MAS-Workday/Invoice%20Integration.png)
 
 
 ***
@@ -145,14 +145,14 @@ Worktags are used in Workday to simplify accounting entries.  The integration su
 The diagram below represents a synchronization of Cost Centers from Workday to Maximo.  There are numerous worktags supported in addition to Cost Centers, such as Spend Categories, Fund Codes, Custom Organizations, Account Sets, and Project Tasks.  The architecture for these is essentially the same as for Cost Centers:
 
 
-![Worktag Integration](../Images/MAS-Workday/Worktag%20Integration.png)
+![Worktag Integration](Images/MAS-Workday/Worktag%20Integration.png)
 
 
 ### Work Order
 
 The integration also provides an outbound worktag for Work Orders.  This worktag can be used to create a Custom Organization in a hierarchy (“All Maximo Workorders”) in Workday.  Once created, the worktag can be used to create Purchase Order lines and set the worktag on the line so the integration “knows” which Work Order to apply the purchase line to.  This step is not necessary if the line is sourced from a requisition that originated in Maximo, since the integration will automatically add this worktag on the requisition line AND the Purchase Order in Workday inherits this value automatically.  It is provided to support charging Maximo work orders for transactions that do not originate in Maximo.
 
-![Work Order Integration](../Images/MAS-Workday/Work%20Order%20Integration.png)
+![Work Order Integration](Images/MAS-Workday/Work%20Order%20Integration.png)
 
 
 ### Journal Entries
@@ -162,7 +162,7 @@ Journal entries for maintenance-related activities can be sent to Workday (for e
 Journals fully support the pre-defined worktags previously mentioned (Cost Center, Spend Category, Fund, Account, Project Task, and Custom Organization).  The integration includes code that uses a new Maximo domain to map the individual segments of a GL chart of accounts entry to the individual worktags in Workday.  So even though the integration ships with a pre-defined list of Worktags, the implementation team can configure the order of the segments and even add new ones as a customization.
 
 
-![Journal Integration](../Images/MAS-Workday/Journal%20Integration.png)
+![Journal Integration](Images/MAS-Workday/Journal%20Integration.png)
 
 
 ***
@@ -181,7 +181,7 @@ By separating the “Get Worker” fetch with the “Map Worker” workload, the
 
 The integration fetches worker data from Workday and creates People, Labor, Craft, and Skill data in Maximo.  It also synchronizes pay rates (for hourly workers only) in case the customer wants to use these rates for applying costs to the Maximo workorder.  A complex JSONata function was developed to manipulate the payload from Workday and reduce its size.  The result of that function is a smaller JSON payload that the mapping flow uses to produce the Maximo payload.
 
-![Worker Integration](../Images/MAS-Workday/Worker%20Integration.png)
+![Worker Integration](Images/MAS-Workday/Worker%20Integration.png)
 
 
 
@@ -190,7 +190,7 @@ The integration fetches worker data from Workday and creates People, Labor, Craf
 
 Labor reporting is performed in Maximo and time blocks are sent to Workday.  After labor is reported against a work order in Maximo, the integration sends this to Workday as a time block.  Currently, this integration point does not support worktags, as it was one of the original integration points released prior to worktag support.  
 
-![Time Reporting Integration](../Images/MAS-Workday/Time%20Reporting%20Integration.png)
+![Time Reporting Integration](Images/MAS-Workday/Time%20Reporting%20Integration.png)
 
 
 
