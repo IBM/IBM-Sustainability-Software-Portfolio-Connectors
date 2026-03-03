@@ -17,18 +17,18 @@ This connector supports the following capabilities:<br>
 
 ## App Connect
 
-**IBM App Connect** is a middlware that provides a flexible environment for integration solutions to transform, enrich, route, and process business messages and data. It is a pre-requisite for all the Portfolio Connectors and it is made available as a supporting program through TAS 11.3 and MAS 8.9.
+**IBM App Connect** is a middlware that provides a flexible environment for integration solutions to transform, enrich, route, and process business messages and data. It is a pre-requisite for all the Portfolio Connectors. A restricted-use licence for App Connect Enterprise is made available as a supporting program through TAS 11.3+ and MAS 8.9+ but please note that it may not be hosted by IBM as a Managed Service. For all IBM hosted solution please acquire App Connect SaaS.
 
 **App Connect Flows** enable specific integration use cases by connecting to predefined APIs to route and transform data. They can be applied in different combinations to support a variety of use cases, they handle the required data mapping, data validation and they can be modified to support customizations. 
 
 
 ### Installing App Connect
 
-- **App Connect SaaS** is available in the [IBM Cloud catalog](https://cloud.ibm.com/catalog/services/app-connect). 
+- **App Connect SaaS** is available in the [AWS catalog](https://aws.amazon.com/marketplace/pp/prodview-jj6bmzvpna2bg). 
 
 
 
 - **App Connect Enterprise on-prem** can be provisioned within your RedHat OpenShift Cluster directly from the [OpenShift Operator](https://www.ibm.com/docs/en/mas-cd/continuous-delivery?topic=ons-app-connect) 
 
-- If you are using a MAS or TAS Managed Service provided by IBM SRE you can request Dev and Test instances of App Connect. Please reach out to your SRE contact.
+Note: If you are using a MAS or TAS Managed Service provided by IBM SRE you will need to obtain App Connect SaaS
 
